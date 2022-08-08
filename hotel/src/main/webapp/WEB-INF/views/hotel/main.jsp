@@ -6,8 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/project/css/reset.css"/>
-<link rel="stylesheet" href="/project/css/contents.css"/>
+<link rel="stylesheet" href="/hotel/css/reset.css"/>
+<link rel="stylesheet" href="/hotel/css/contents.css"/>
 <link rel="stylesheet" href="/hotel/css/hotel.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" /></script>
 <meta charset="UTF-8">

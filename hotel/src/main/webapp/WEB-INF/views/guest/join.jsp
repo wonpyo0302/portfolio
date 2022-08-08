@@ -10,8 +10,8 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <title>회원가입</title>
-   <link rel="stylesheet" href="hotel/css/reset.css"/>
-    <link rel="stylesheet" href="hotel/css/contents.css"/>
+   <link rel="stylesheet" href="/hotel/css/reset.css"/>
+    <link rel="stylesheet" href="/hotel/css/contents.css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
         <!-- JavaScript Bundle with Popper -->

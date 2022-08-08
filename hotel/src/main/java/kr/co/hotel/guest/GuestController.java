@@ -99,7 +99,7 @@ public class GuestController {
 		return "guest/findPwd";
 	}
 	
-	@PostMapping("/hotel/guest/findGuestPwd.do")
+	@PostMapping("/guest/findGuestPwd.do")
 	public String findGuestPwd(Model model, GuestVO param) {
 		GuestVO gvo = gservice.findGuestPwd(param);
 		if (gvo != null) {

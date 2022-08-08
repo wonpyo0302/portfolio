@@ -95,7 +95,7 @@ public class HostController {
 	
 	@GetMapping("/host/findHostPwd.do")
 	public String findHostPwd() {
-		return "member/hotel/host/findPwd";
+		return "host/findPwd";
 	}
 	
 	@PostMapping("/host/findHostPwd.do")
