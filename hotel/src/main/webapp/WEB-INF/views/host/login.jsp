@@ -34,7 +34,7 @@
     </script>
 </head>
 <body>
-     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+     <jsp:include page="/WEB-INF/views/includes/H_header.jsp"/>
         <form action="login.do" method="post" id="loginFrm1" name="loginFrm1" onsubmit="return loginCheck1();"><!-- header에서 id="board"이미 사용중이라서 board2로 함 -->
             <div class="sub">
                 <div class="size">

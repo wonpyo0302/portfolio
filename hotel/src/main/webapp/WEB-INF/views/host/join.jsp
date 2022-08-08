@@ -195,7 +195,7 @@
 	</script>
 </head>
 <body>
-     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+     <jsp:include page="/WEB-INF/views/includes/H_header.jsp"/>
         <div class="sub">
             <div class="size">
                 <h3 class="sub_title">회원가입</h3>

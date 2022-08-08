@@ -194,7 +194,7 @@
 	</script>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/views/common/header.jsp"/> 
+    <jsp:include page="/WEB-INF/views/includes/G_header.jsp"/> 
         <div class="sub">
             <div class="size">
                 <h3 class="sub_title">GUEST 회원가입</h3>
