@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hotel.host.HostMapper">
+
+	<insert id="insert" parameterType="kr.co.hotel.host.HostVO">
+		INSERT INTO host (
+		host_id, host_pwd, host_email, host_name, host_hp,
+		host_joindate, host_accountno, host_bank
+		) VALUES (
+		#{host_id},
+		md5(#{host_pwd}),#{host_email},#{host_name},#{host_hp},NOW(),#{host_accountno},#{host_bank}
+		)
+	</insert>
+	<select id="emailDupCheck" parameterType="string" resultType="int">	
+		SELECT COUNT(*) FROM host WHERE host_email = #{host_email}
+	</select>
+	
+	<select id="idDupCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM host WHERE host_id = #{host_id}
+	</select>
+	<select id="HostloginCheck" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
+		SELECT * FROM host WHERE host_id = #{host_id} AND host_pwd = md5(#{host_pwd})
+	</select>
+	<select id="findHostEmail" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
+		SELECT * FROM host WHERE host_name=#{host_name} AND host_hp=#{host_hp}
+	</select>
+	
+	<select id="findHostPwd" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
+		SELECT * FROM host WHERE host_id=#{host_id} AND host_hp=#{host_hp} AND host_email = #{host_email}
+	</select>
+	
+	<update id="updateTempHostPwd" parameterType="kr.co.hotel.host.HostVO">
+		UPDATE host SET host_pwd = md5(#{host_pwd}) WHERE host_id=#{host_id} AND host_hp=#{host_hp} AND host_email = #{host_email}
+	</update>
+</mapper>

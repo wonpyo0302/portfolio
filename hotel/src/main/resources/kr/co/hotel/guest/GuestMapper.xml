@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.hotel.guest.GuestMapper">
-	
-	
-	
 
-	<!-- 로그인체크 22.07.25 -->
-	<select id="loginCheck" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
-		SELECT * FROM guest WHERE guest_email = #{guest_email} AND guest_pwd = md5(#{guest_pwd})
+<insert id="insert" parameterType="kr.co.hotel.guest.GuestVO">
+		INSERT INTO guest (
+		guest_id, guest_pwd, guest_email, guest_name, guest_hp,
+		guest_addr1, guest_addr2, guest_birth, g_joindate, g_accountno, g_bank, totalpoint, g_gender
+		) VALUES (
+		#{guest_id},
+		md5(#{guest_pwd}),#{guest_email},#{guest_name},#{guest_hp},#{guest_addr1}, #{guest_addr2}, 
+		#{guest_birth},NOW(),#{g_accountno},#{g_bank}, #{totalpoint} , #{g_gender}
+		)
+	</insert>
+	<select id="emailDupCheck" parameterType="string" resultType="int">	
+		SELECT COUNT(*) FROM guest WHERE guest_email = #{guest_email}
 	</select>
 	
+	<select id="idDupCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM guest WHERE guest_id = #{guest_id}
+	</select>
+	<select id="guestloginCheck" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
+		SELECT * FROM guest WHERE guest_id = #{guest_id} AND guest_pwd = md5(#{guest_pwd})
+	</select>
+	<select id="findGuestEmail" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
+		SELECT * FROM guest WHERE guest_name=#{guest_name} AND guest_hp=#{guest_hp}
+	</select>
 	
+	<select id="findGuestPwd" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
+		SELECT * FROM guest WHERE guest_id=#{guest_id} AND guest_hp=#{guest_hp} AND guest_email = #{guest_email}
+	</select>
+	
+	<update id="updateTempGuestPwd" parameterType="kr.co.hotel.guest.GuestVO">
+		UPDATE guest SET guest_pwd = md5(#{guest_pwd}) WHERE guest_id=#{guest_id} AND guest_hp=#{guest_hp} AND guest_email = #{guest_email}
+	</update>
 </mapper>
