@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class GuestVO {
-	
 	private int guest_no;
 	private String guest_id;
 	private String guest_pwd;
@@ -21,5 +20,5 @@ public class GuestVO {
 	private String g_bank;
 	private int totalpoint;
 	private int g_gender;
-
+	
 }
