@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hotel.board.HotelMapper">
+	
+	<select id="count" parameterType="kr.co.hotel.board.HotelVO" resultType="int">
+		SELECT COUNT(*) FROM hotel
+		<where>
+			<if test="searchWord != null and searchWord !=''">
+				<if test="searchField == 'title'">
+				${searchField}' LIKE '%${searchWord}%'
+				</if>
+				<if test="searchField == 'all'">
+				title LIKE '%${searchWord}%' OR content LIKE '%${searchWord}%'
+				</if>
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertMain">
+		INSERT INTO hotel (
+			host_no, hotel_name, addr, tel, isConfirm, hotel_content, reject, state_code, district_code, lat, lot, regdate
+		) VALUES (
+			#{host_no}, #{hotel_name}, #{addr}, #{tel}, #{isConfirm}, #{hotel_content}, #{reject}, #{state_code}, #{district_code}, #{lat}, #{lot}, NOW()
+		)
+	</insert>
+	
+	<!--메인화면 호텔리스트
+	 1. 아무런 조건이 없을때
+	 	- 지역별 호텔 상위 3개 (리스트를 여럿 작성)
+	 2. 키워드를 검색했을때
+	 3. "도"셀렉 박스에 값이 있을 때
+	 4. "시"셀렉 박스에 값이 있을 때
+	 5. "구"셀렉 박스에 값이 있을 때
+	 6. 셀렉박스에 값이 있고 키워드가 공백이 아닐때
+	 
+	 7. 평점순
+	 	- 리뷰테이블과 join
+	 8. 좋아요순
+	 	- 라이크테이블 join
+	 
+	 -->
+	 
+	 <!-- 1번조건 지역별 호텔 상위 3개 (리스트를 여럿 작성) -->
+	 <select id="listSeoul" parameterType="kr.co.hotel.board.HotelVO" resultType="kr.co.hotel.board.HotelVO">
+	 <![CDATA[
+	 	SELECT *, (SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice
+	 	FROM hotel h
+        where state_code = 11
+	 	LIMIT 3
+	 ]]>
+	 </select>
+	 <select id="listIncheon" parameterType="kr.co.hotel.board.HotelVO" resultType="kr.co.hotel.board.HotelVO">
+	 <![CDATA[
+	 	SELECT *, (SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice
+	 	FROM hotel h
+        where state_code = 23
+	 	LIMIT 3
+	 ]]>
+	 </select>
+	 <select id="listKyeonggi" parameterType="kr.co.hotel.board.HotelVO" resultType="kr.co.hotel.board.HotelVO">
+	 <![CDATA[
+	 	SELECT *, (SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice
+	 	FROM hotel h
+        where state_code = 31
+	 	LIMIT 3
+	 ]]>
+	 </select>
+	 
+	 <!-- 2~6  -->
+	<select id="searchList" parameterType ="kr.co.hotel.board.HotelVO" resultType="kr.co.hotel.board.HotelVO">
+		SELECT * 
+		FROM hotel h LEFT JOIN like l
+		ON h.hotel_no = l.hotel_no LEFT JOIN review r
+		ON l.hotel_no = r.hotel_no
+		<where>
+			<if test="searchWord !=''"> <!-- 2번 -->
+				addr LIKE %#{searchWord}% OR hotel_name = %#{searchWord}%
+				<if test="selectbox_state !=null">
+					AND state_code = #{selectbox_state}
+					<if test="searchbox_district !=null">
+						AND district_code = #{selectbox_district}
+					</if>
+				</if>
+			</if>
+		</where>
+		ORDER BY hotel_no, #{soltType}
+	</select>
+
+</mapper>
