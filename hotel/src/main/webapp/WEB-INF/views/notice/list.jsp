@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@include file="/WEB-INF/views/includes/header.jsp" %>
+<%@include file="/WEB-INF/views/includes/G_header.jsp" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -43,6 +43,8 @@
 <body>
 	<div class="sub">
 		<div class="size">
+		<br>
+		<br>
 		<br>
 			<h3 class="sub_title" style="text-align:left">공지사항</h3>
 			<br>

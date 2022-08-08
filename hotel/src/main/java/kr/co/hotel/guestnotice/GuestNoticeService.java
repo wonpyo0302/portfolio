@@ -3,14 +3,13 @@ package kr.co.hotel.guestnotice;
 import java.util.Map;
 
 public interface GuestNoticeService {
-	
 	Map index(GuestNoticeVO vo);
-	int insert(GuestNoticeVO  vo);
-	GuestNoticeVO view( GuestNoticeVO vo);
-
+	boolean insert(GuestNoticeVO  vo);
+	GuestNoticeVO edit(int gnotice_no);
 	int updateViewcount(int gnotice_no);
-	int update(GuestNoticeVO vo);
-	int delete(int gnotice_no);
+	boolean update(GuestNoticeVO vo);
+	boolean delete(int gnotice_no);
+	GuestNoticeVO view(GuestNoticeVO vo);
 	
 
 }

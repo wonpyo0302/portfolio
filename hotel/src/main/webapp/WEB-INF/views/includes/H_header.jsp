@@ -33,7 +33,7 @@
           <c:if test="${!empty loginInfo}"> 
           <div style="width:60%">
           	<div style="text-align:right;width:115%;">
-          		<a>${loginInfo.guest_name }님 환영합니다</a>
+          		<a>${loginInfo.host_name }님 환영합니다</a>
           	</div>
           </div>
           </c:if>
