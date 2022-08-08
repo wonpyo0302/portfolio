@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hotel.guest.GuestMapper">
+	
+	
+	
+
+	<!-- 로그인체크 22.07.25 -->
+	<select id="loginCheck" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
+		SELECT * FROM guest WHERE guest_email = #{guest_email} AND guest_pwd = md5(#{guest_pwd})
+	</select>
+	
+	
+</mapper>

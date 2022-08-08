@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hotel.guestnotice.GuestNoticeMapper">
+	
+	<!-- 등록하기 -->
+	<insert id="insert" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" >
+		INSERT INTO guestnotice (
+			admin_no, gnotice_title, gnotice_content, gnotice_regdate, gnotice_viewcount
+		) VALUES (
+			#{admin_no}, #{gnotice_title}, #{gnotice_content}, now(), #{gnotice_viewcount}
+		)
+	</insert>
+	
+	<!-- 총 게시물 수 체크 -->
+	<select id="count" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM guestnotice 
+		<where>
+			<if test="stype != null and stype != ''">
+				<if test="stype !='all'">
+					${stype} LIKE '%${sword}%'
+				</if>
+				<if test="stype == 'all'">
+					gboard_title LIKE '%${sword}%' or gboard_content LIKE '%${sword}%'
+				</if>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 목록보기 -->
+	<select id="list" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" resultType="kr.co.hotel.guestnotice.GuestNoticeVO">
+		SELECT * FROM guestnotice
+			<where>
+				<if test="stype != null and sword != ''">
+					<if test="stype != 'all'">
+						${stype} LIKE '%${sword}%'
+					</if>
+					<if test="stype == 'all'">
+						gboard_title LIKE '%${sword}%' or gboard_content LIKE '%${sword}%' 
+					</if>
+				</if>
+			</where>
+			ORDER BY fix DESC, gnotice_regdate DESC
+			LIMIT ${startIdx} , ${pageRow}
+	</select>
+	
+	<!-- 조회하기 -->
+	<select id="view" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" resultType="kr.co.hotel.guestnotice.GuestNoticeVO">
+		SELECT * FROM guestnotice WHERE gnotice_no = #{gnotice_no}
+	</select>
+	
+	<!-- 조회수 1 증가 처리 -->
+	<update id="updateViewcount" parameterType="int">
+		UPDATE guestnotice SET gnotice_viewcount = gnotice_viewcount + 1 WHERE gnotice_no = #{gnotice_no}
+	</update>
+	
+	<!-- 수정하기 -->
+	<update id="update" parameterType="int">
+		UPDATE guestnotice SET 
+			gnotice_title = #{gnotice_title}, gnotice_content = #{gnotice_content}
+			WHERE gnotice_no = #{gnotice_no}
+	</update>
+	
+	<!-- 삭제하기 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM guestnotice WHERE gnotice_no = #{gnotice_no}
+	</delete>
+	
+	
+</mapper>
