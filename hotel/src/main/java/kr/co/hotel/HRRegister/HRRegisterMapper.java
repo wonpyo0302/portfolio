@@ -1,4 +1,4 @@
-package kr.co.hotel.room;
+package kr.co.hotel.HRRegister;
 
 import java.util.List;
 import java.util.Map;
@@ -6,8 +6,8 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 
-@Mapper
-public interface RoomMapper {
+@Mapper  
+public interface HRRegisterMapper {
 	
 	public int insert(RoomVO vo);
 	

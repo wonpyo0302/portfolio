@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import kr.co.hotel.room.GuestMemberVO;
+import kr.co.hotel.HRRegister.GuestMemberVO;
 
 @Controller
 public class PointController {

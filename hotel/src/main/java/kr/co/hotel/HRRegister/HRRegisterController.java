@@ -1,4 +1,4 @@
-package kr.co.hotel.room;
+package kr.co.hotel.HRRegister;
 
 import java.util.List;
 import java.util.Map;
@@ -17,15 +17,29 @@ import org.springframework.web.multipart.MultipartFile;
 import util.ImgHandling;
 
 @Controller
-public class RoomController {
+public class HRRegisterController {
 
 	@Autowired
-	RoomService service;
+	HRRegisterService service;
 	
 	
-	
+	//on going
 	@GetMapping("/room/index.do")
-	public String index(Model model, RoomVO vo) {
+	public String index(Model model, RoomVO vo, HttpSession sess) {
+		
+		HostMemberVO loginInfo1 = new HostMemberVO();// demo data
+		loginInfo1.setHost_no(1);//demo data
+		loginInfo1.setHost_name("홍길동");//demo data
+		sess.setAttribute("loginInfo", loginInfo1);
+		HostMemberVO Host_loginInfo = (HostMemberVO) sess.getAttribute("loginInfo");
+		
+		
+		
+		Map map = service.index(vo);
+		System.out.println("map 확인 : " + map);
+		model.addAttribute("point", map);
+		
+		
 		model.addAttribute("data", service.index(vo));
 		return "room/index";//검색...포함?
 	}
@@ -54,8 +68,7 @@ public class RoomController {
 		
 		vo.setImage_type("ROOM");
 		ImgHandling ih = new ImgHandling();//파일명을 org와 real 구분 후, map에 담아 반환하고 파일을 저장
-		
-		if(!filename.isEmpty()) {//filename이 비어있는지 확인
+		if(!filename.get(0).isEmpty()) {//filename이 비어있는지 확인
 			for(int i=0; i<filename.size(); i++) {
 				Map map = ih.imghandle(filename.get(i), req);
 					vo.setFilename_org((String)map.get("filename_org"));

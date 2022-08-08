@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.hotel.room.RoomMapper">
+<mapper namespace="kr.co.hotel.HRRegister.HRRegisterMapper">  
 
-	<insert id="insert" parameterType="kr.co.hotel.room.RoomVO" >
+	<insert id="insert" parameterType="kr.co.hotel.HRRegister.RoomVO" >
 		INSERT INTO room
 			( host_no, hotel_no, number, room_name, room_content, room_price, status)
 		VALUES
 			(#{host_no},#{hotel_no},#{number},#{room_name},#{room_content},#{room_price},#{status});
 	</insert>
 	
-	<insert id="img_insert" parameterType="kr.co.hotel.room.RoomVO" >
+	<insert id="img_insert" parameterType="kr.co.hotel.HRRegister.RoomVO" >
 		INSERT INTO image
 			( hotel_no, filename_org, filename_real, image_order, image_type)
 		VALUES
@@ -17,7 +17,7 @@
 	</insert>
 	
 	
-	<select id="count" parameterType="kr.co.hotel.room.RoomVO" resultType="java.lang.Integer">
+	<select id="count" parameterType="kr.co.hotel.HRRegister.RoomVO" resultType="java.lang.Integer">
 	<!-- 테이블 명이 변수로 들어갈수 있음 -->
 		select count(*) from room
 		
@@ -35,7 +35,7 @@
 	</select>
 	
 	
-	<select id="list" parameterType="kr.co.hotel.room.RoomVO" resultType="kr.co.hotel.room.RoomVO">
+	<select id="list" parameterType="kr.co.hotel.HRRegister.RoomVO" resultType="kr.co.hotel.HRRegister.RoomVO">
 
 			select * from room
 				<where>
@@ -54,7 +54,7 @@
 	
 	</select>
 	
-	<select id="view" parameterType="java.lang.Integer" resultType="kr.co.hotel.room.RoomVO">
+	<select id="view" parameterType="java.lang.Integer" resultType="kr.co.hotel.HRRegister.RoomVO">
 		
 		select * from room
 		where room_no = #{xx}
@@ -64,7 +64,7 @@
 	
 	
 	
-	<update id="update" parameterType="kr.co.hotel.room.RoomVO">
+	<update id="update" parameterType="kr.co.hotel.HRRegister.RoomVO">
 	
 		UPDATE 	room
 		SET
@@ -87,7 +87,7 @@
 	</delete>
 	
 	
-	<select id="get_hotelInfo" parameterType="int" resultType="kr.co.hotel.room.RoomVO">
+	<select id="get_hotelInfo" parameterType="int" resultType="kr.co.hotel.HRRegister.RoomVO">
 	<!-- 테이블 명이 변수로 들어갈수 있음 -->
 		select * from hotel where host_no =#{host_no}
 		
@@ -95,7 +95,7 @@
 	</select>
 	
 	
-
+  
 	
 	
 

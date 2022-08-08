@@ -1,4 +1,4 @@
-package kr.co.hotel.room;
+package kr.co.hotel.HRRegister;
 
 import java.sql.Timestamp;
 

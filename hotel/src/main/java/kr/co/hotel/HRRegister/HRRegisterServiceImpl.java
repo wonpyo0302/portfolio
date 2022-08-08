@@ -1,4 +1,4 @@
-package kr.co.hotel.room;
+package kr.co.hotel.HRRegister;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,10 +7,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
-public class RoomServiceImpl implements RoomService {
+public class HRRegisterServiceImpl implements HRRegisterService {
 
 	@Autowired
-	RoomMapper mapper;
+	HRRegisterMapper mapper;
 	
 	@Override
 	public Map index(RoomVO vo) {

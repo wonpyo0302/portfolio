@@ -1,8 +1,8 @@
-package kr.co.hotel.room;
+package kr.co.hotel.HRRegister;
 
 import java.util.Map;
 
-public interface RoomService {
+public interface HRRegisterService {
 	//목록
 	Map index (RoomVO vo);
 	

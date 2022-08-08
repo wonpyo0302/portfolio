@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.hotel.room.RoomMapper;
-import kr.co.hotel.room.RoomVO;
+import kr.co.hotel.HRRegister.HRRegisterMapper;
+import kr.co.hotel.HRRegister.RoomVO;
 
 public class ImgHandling {
 		
 	@Autowired
-	RoomMapper mapper;
+	HRRegisterMapper mapper;
 	
 	public static Map imghandle( MultipartFile filename, HttpServletRequest req) {
 	
