@@ -17,12 +17,12 @@ public class HotelController {
 
 	HotelService service;
 	
-	@GetMapping("/board/main.do")
+	@GetMapping("/hotel/main.do")
 	public String Main(HotelVO vo, Model model) {
 		model.addAttribute("Seoul",service.listSeoul(vo));
 		model.addAttribute("Incheon",service.listIncheon(vo));
 		model.addAttribute("Kyeonggi",service.listKyeonggi(vo));
-		return "/board/main";
+		return "/hotel/main";
 	}
 	
 }
