@@ -69,7 +69,7 @@ $(function() {
 			enddate : $('#enddate').val()
 		}
 	 }).done(function (res){
-		 
+		 console.log (res);
 		 var startdate=(Number)($('#startdate').val().replace(/-/g,""))
     	 var enddate=(Number)($('#enddate').val().replace(/-/g,""))
     	 console.log(startdate < enddate);
@@ -78,11 +78,12 @@ $(function() {
 	    	 $("#submit").attr("disabled", true);
 		 }
 		 else{
-			 if(startdate < enddate){
+			 if(startdate <= enddate){
 			 	$("#submit").val("예약");
 			 	$("#submit").attr("disabled", false);
 			 }
 			 else{
+				 $('#enddate').val("");
 				 $("#submit").val("예약 불가");
 		    	 $("#submit").attr("disabled", true);
 			 }
@@ -94,7 +95,7 @@ $(function() {
 
 $(function(){
 	$("#point").on("focusout", function(res){
-    	if(${logininfo.totalpoint} < $("#point").val()){
+    	if(${loginInfo.totalpoint} < $("#point").val()){
     		alert("포인트가 부족합니다. 다시입력하세요");
 			$("#point").val('');
     	}
@@ -105,7 +106,7 @@ $(function(){
 	});
 });
 	
-    function reserv(){
+    function reserve(){
     	var con = true;
     	console.log(typeof(Date($("#startdate"))));
     	var IMP = window.IMP;      
@@ -116,16 +117,16 @@ $(function(){
     		merchant_uid: 'merchant_' + new Date().getTime(),
     		name: '주문명:결제테스트',//상품페이지에서 있는 객실이름
     		amount: $("#total_price").val()-$("#point").val(), //상품페이지에서 있는 금액
-    		buyer_email: "${logininfo.guest_email}",//로그인 세션에 저장되어있는 이메일
-    		buyer_name: "${logininfo.guest_name}",//로그인 세션에 저장되어있는 이름
-    		buyer_tel: "${logininfo.guest_hp}",//로그인 세션에 저장되어있는 전화번호
-    		buyer_addr: "${logininfo.guest_addr1}",//로그인 세션에 저장되어있는 주소
+    		buyer_email: "${loginInfo.guest_email}",//로그인 세션에 저장되어있는 이메일
+    		buyer_name: "${loginInfo.guest_name}",//로그인 세션에 저장되어있는 이름
+    		buyer_tel: "${loginInfo.guest_hp}",//로그인 세션에 저장되어있는 전화번호
+    		buyer_addr: "${loginInfo.guest_addr1}",//로그인 세션에 저장되어있는 주소
     		buyer_postcode: '123-456',////로그인 세션에 저장되어있는 우편번호(생략할 생각)
     		},function (rsp) { 
     			console.log(rsp)
     					   if (rsp.success) {
     					    $.ajax({
-    					           url: "revinsert.do",
+    					           url: "reserveinsert.do",
     					           type : "POST",
     					           async : false,
     					           data : 
@@ -133,12 +134,12 @@ $(function(){
     					        	total_price : String($("#total_price").val()),
     					        	startdate : $("#startdate").val(),
     					        	enddate : $("#enddate").val(),
-    					        	guest_no : ${logininfo.guest_no},
-    					        	guest_hp : "${logininfo.guest_hp}",
+    					        	guest_no : ${loginInfo.guest_no},
+    					        	guest_hp : "${loginInfo.guest_hp}",
     					        	rev_name : $("#rev_name").val(),
     					        	rev_hp : $("#rev_hp").val(),
     					        	used_point : $("#point").val(),
-    					        	totalpoint : ${logininfo.totalpoint},
+    					        	totalpoint : ${loginInfo.totalpoint},
     					        	
     					           }
     					       }).done(function (data) {
@@ -186,15 +187,14 @@ $(function(){
 		<td><input type="text" name="rev_hp" id="rev_hp"></td>
 	</tr>
 	<tr>
-		<th>사용가능한 포인트 : ${logininfo.totalpoint}</th>
+		<th>사용가능한 포인트 : ${loginInfo.totalpoint}</th>
 		<td>사용할 포인트 : <input type="text" id="point" name="point"></td>
 	</tr>
 	<tr>
-		<th colspan="2"><input type="button" id="submit" value="예약" onclick="reserv();"></th>
+		<th colspan="2"><input type="button" id="submit" value="예약" onclick="reserve();"></th>
 	</tr>
 </table>
 </form>
-<a href="login.do"><input type="button" id="button" value="로그인"></a>
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
 		var container = document.getElementById('map');

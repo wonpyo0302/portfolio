@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.hotel.coupon.CouponMapper">
 	
-	<select id="list" resultType="kr.co.hotel.member.GuestVO">
+	<select id="list" resultType="kr.co.hotel.guest.GuestVO">
 		select * from guest
 	</select>
 
-	<select id="selectGuestNo" parameterType="string" resultType="kr.co.hotel.member.GuestVO">
+	<select id="selectGuestNo" parameterType="string" resultType="kr.co.hotel.guest.GuestVO">
 		select * from guest where guest_id=#{guest_id}
 	</select>
 	

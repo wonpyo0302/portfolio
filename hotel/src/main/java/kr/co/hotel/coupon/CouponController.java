@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.hotel.guest.GuestVO;
 
+
 @Controller
 
 public class CouponController {
