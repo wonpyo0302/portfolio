@@ -1,5 +1,6 @@
 package kr.co.hotel.HRRegister;
 
+import java.util.List;
 import java.util.Map;
 
 public interface HRRegisterService {
@@ -16,7 +17,7 @@ public interface HRRegisterService {
 	boolean update(RoomVO vo);
 	
 	//삭제 처리
-	boolean delete(int no);
+	boolean delete(int room_no);
 	
 	//등록 처리
 	boolean insert(RoomVO vo);
@@ -25,5 +26,9 @@ public interface HRRegisterService {
 	boolean img_insert(RoomVO vo);
 	
 	RoomVO get_hotelInfo(int host_no);
+	
+	RoomVO get_roomInfo();
+	
+	List<RoomVO> get_imgList(int room_no);
 	
 }

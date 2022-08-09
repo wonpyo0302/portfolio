@@ -42,7 +42,6 @@ public class PointController {
 			e.printStackTrace();
 			System.out.println("pointController에서 예외발생!");
 		}
-		
 		return "point/index";
 	}
 	
@@ -51,7 +50,6 @@ public class PointController {
 		
 		GuestMemberVO loginInfo = (GuestMemberVO)sess.getAttribute("loginInfo");
 		int totalpoint= service.total(loginInfo.getGuest_no());
-		
 		
 		return "point/index";
 	}
