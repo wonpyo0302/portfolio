@@ -43,7 +43,7 @@
 	                        <tr>
 	                            <th>객실명</th>
 	                            <td>
-	                                <input type="text" name="title" id="title" class="wid100" value=""/>
+	                                <input type="text" name="room_name" id="room_name" class="wid100" value=""/>
 	                            </td>
 	                        </tr>
 	                        <tr>

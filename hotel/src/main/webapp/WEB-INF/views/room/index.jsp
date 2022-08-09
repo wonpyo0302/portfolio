@@ -25,27 +25,26 @@
     
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title">게시판</h3>
-                <p class="sub_title">로그인 정보 :${loginInfo.host_name } 님 안녕하세요</p>
+                <h3 class="sub_title">호텔&객실 등록 신청</h3>
     
                 <div class="bbs">
                     <table class="list">
                     <p><span><strong>총 ${data.totalCount}개</strong>  |  ${roomVO.page}/${data.totalPage}페이지</span></p>
                         <caption>게시판 목록</caption>
                         <colgroup>
-                            <col width="80px" />
                             <col width="*" />
-                            <col width="100px" />
-                            <col width="100px" />
-                            <col width="200px" />
+                            <col width="*" />
+                            <col width="*" />
+                            <col width="*" />
+                            <col width="*" />
                         </colgroup>
-                        <thead>
+                        <thead style="text-align:center;">
                             <tr>
                                 <th>번호</th>
-                                <th>제목</th>
-                                <th>조회수</th>
-                                <th>작성자</th>
-                                <th>작성일</th>
+                                <th>객실명 | 객실번호</th>
+                                <th>수용 인원</th>
+                                <th>객실 가격</th>
+                                <th>체크인/아웃</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,19 +57,34 @@
 							
 								
 							<c:forEach items="${data.list}" var="row" varStatus="loop">
+							
 	                            <tr><!-- 글번호 총갯수 - 인덱스 -(현재페이지 번호 - 1)*페이지당 갯수///다시보자-->
-	                                <td>${data.totalCount - loop.index -(roomVO.page-1)*roomVO.pageRow}</td>
+	                                <td>
+	                                	${data.totalCount - loop.index -(roomVO.page-1)*roomVO.pageRow}
+	                                </td>
 	                                
 	                                <td class="txt_l">
-	                                   <a href="view.do?no=${row.room_no} ">${row.room_name}</a>
+	                                   ${row.room_name} | ${row.number}
+	                                </td>
+	                                
+	                                <td>
+	                                	2 명 
 	                                </td>
 	                                
 	                                
 	                                <td class="writer">
-	                                    ${row.room_content}
+	                                    ${row.room_price}
 	                                </td>
-	                                <td class="date">${room_price }</td><!-- 시간 포멧 -->
+	                                <td class="date">
+	                                	13:00 / 11:00
+	                                </td><!-- 시간 포멧 -->
+	                                
+	                                <td>
+	                                	<strong><a href="view.do?room_no=${row.room_no}" onmouseover=""> [상세보기] </a></strong> <br>
+	                                	<strong><a href="edit.do?room_no=${row.room_no}"> [수정하기] </a></strong>
+	                                </td>
 	                            </tr>
+	                            
 							</c:forEach>
 					
 							
@@ -81,7 +95,7 @@
                     
                     <div class="btnSet"  style="text-align:right;">
 	                  
-	                        <a class="btn" href="javaScript:goWrite();">글작성 </a>
+	                        <a class="btn" href="write.do"> 객실 등록 + </a>
 	                 
                     </div>
                      <div class="pagenate clear">
