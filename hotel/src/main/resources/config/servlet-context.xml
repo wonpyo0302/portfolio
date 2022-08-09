@@ -33,7 +33,7 @@
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/project"/>
     -->
         <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
-        <property name="jdbcUrl" value="jdbc:log4jdbc:mysql://13.209.75.119:3306/project"/>
+        <property name="jdbcUrl" value="jdbc:log4jdbc:mysql://43.200.76.254:3306/project"/>
         
         <property name="username" value="root"/>
         <property name="password" value="root1234"/>
