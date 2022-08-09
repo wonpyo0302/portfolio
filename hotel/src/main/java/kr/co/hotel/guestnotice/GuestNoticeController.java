@@ -1,5 +1,6 @@
 package kr.co.hotel.guestnotice;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,11 @@ public class GuestNoticeController {
 	
 	// 조회
 	@GetMapping("/notice/view.do")
-	public String view(Model model, GuestNoticeVO vo) {
+	public String view(Model model, GuestNoticeVO vo, HttpServletRequest req) {
+		HttpSession sess = req.getSession();
+		GuestNoticeVO gnvo = (GuestNoticeVO)sess.getAttribute("loginInfo");
+		
 		service.updateViewcount(vo.getGnotice_no());
-		 //vo= service.view(vo);
-		//System.out.println("정신차려 ??:"+ r.gnotice_title);
 		model.addAttribute("data", service.view(vo));
 		System.out.println("확인"+vo.getGnotice_content());
 		return "notice/view";
