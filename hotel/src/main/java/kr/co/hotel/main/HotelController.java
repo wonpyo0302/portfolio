@@ -20,9 +20,8 @@ public class HotelController {
 	
 	@GetMapping("/main/main.do")
 	public String Main(HotelVO vo, Model model) {
-		model.addAttribute("Seoul",service.listSeoul(vo));
-		model.addAttribute("Incheon",service.listIncheon(vo));
-		model.addAttribute("Kyeonggi",service.listKyeonggi(vo));
+		model.addAttribute("data",service.hotelTopFive(vo, model));
+		model.addAttribute("image",service.imageInMainPage(vo, model));
 		return "/main/main";
 	}
 	
