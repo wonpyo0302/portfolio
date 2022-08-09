@@ -72,13 +72,11 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 			if(a>=0) {
 				r = true;
 			}
-		}
-		return r ;
+		}return r ;
 	}
 
 	@Override
 	public boolean insert(RoomVO vo) {
-		
 		return mapper.insert(vo) > 0 ? true : false;
 	}
 
