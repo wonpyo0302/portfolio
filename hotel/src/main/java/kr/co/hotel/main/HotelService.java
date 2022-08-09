@@ -1,4 +1,4 @@
-package kr.co.hotel.board;
+package kr.co.hotel.main;
 
 import java.util.List;
 import java.util.Map;
@@ -12,5 +12,7 @@ public interface HotelService {
 	public List<HotelVO> listSeoul(HotelVO vo);
 	public List<HotelVO> listIncheon(HotelVO vo);
 	public List<HotelVO> listKyeonggi(HotelVO vo);
+	
+	public List<HotelVO> searchList(HotelVO vo);
 	
 }

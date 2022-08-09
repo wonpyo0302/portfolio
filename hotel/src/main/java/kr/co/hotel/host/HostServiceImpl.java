@@ -1,54 +1,52 @@
-package kr.co.hotel.guest;
+package kr.co.hotel.host;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import kr.co.hotel.guest.GuestVO;
+import kr.co.hotel.host.HostVO;
 import util.SendMail;
 @Service
-public class GuestServiceImpl implements GuestService {
+public class HostServiceImpl implements HostService {
 
 	@Autowired
-	GuestMapper gmapper;
+	HostMapper hmapper;
 
 	@Override
-	public int insert(GuestVO gvo) {
-		return gmapper.insert(gvo);
+	public int insert(HostVO hvo) {
+		return hmapper.insert(hvo);
 	}
 
 	@Override
-	public int emailDupCheck(String guest_email) {
-		return gmapper.emailDupCheck(guest_email);
+	public int emailDupCheck(String host_email) {
+		return hmapper.emailDupCheck(host_email);
 	}
 
 	@Override
-	public int idDupCheck(String guest_id) {
-		return gmapper.idDupCheck(guest_id);
+	public int idDupCheck(String host_id) {
+		return hmapper.idDupCheck(host_id);
 	}
 
 	@Override
-	public boolean guestloginCheck(GuestVO gvo, HttpSession sess) {
+	public boolean HostloginCheck(HostVO hvo, HttpSession sess) {
 		boolean r = false;
-		GuestVO loginInfo = gmapper.guestloginCheck(gvo);
+		HostVO loginInfo = hmapper.HostloginCheck(hvo);
 		if (loginInfo != null) {
 			r = true;
 			// 로그인 성공시 세션에 저장
 			sess.setAttribute("loginInfo", loginInfo);
-			
 		}
 		return r;
 	}
 
 	@Override
-	public GuestVO findGuestEmail(GuestVO gvo) {
-		return gmapper.findGuestEmail(gvo);
+	public HostVO findHostEmail(HostVO hvo) {
+		return hmapper.findHostEmail(hvo);
 	}
 	@Override
-	public GuestVO findGuestPwd(GuestVO gvo) {
+	public HostVO findHostPwd(HostVO hvo) {
 		// update
-		GuestVO mv = gmapper.findGuestPwd(gvo);
+		HostVO mv = hmapper.findHostPwd(hvo);
 		if (mv != null) {
 			// 임시비밀번호 생성
 			// 영문두자리, 숫자두자리
@@ -61,11 +59,11 @@ public class GuestServiceImpl implements GuestService {
 			}
 			
 			// 임시비밀번호 update
-			gvo.setGuest_pwd(temp);
-			gmapper.updateTempGuestPwd(gvo);
+			hvo.setHost_pwd(temp);
+			hmapper.updateTempHostPwd(hvo);
 			
 			// email발송
-			SendMail.sendMail("gdbebe@naver.com", gvo.getGuest_email(), "[둘이놀까]임시비밀번호", "임시비밀번호:"+temp);
+			SendMail.sendMail("gdbebe@naver.com", hvo.getHost_email(), "[둘이놀까]임시비밀번호", "임시비밀번호:"+temp);
 			
 			return mv;
 		} else {

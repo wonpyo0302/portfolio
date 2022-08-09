@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.hotel.board.HotelMapper">
+<mapper namespace="kr.co.hotel.main.HotelMapper">
 	
-	<select id="count" parameterType="kr.co.hotel.board.HotelVO" resultType="int">
+	<select id="count" parameterType="kr.co.hotel.main.HotelVO" resultType="int">
 		SELECT COUNT(*) FROM hotel
 		<where>
 			<if test="searchWord != null and searchWord !=''">
@@ -41,7 +41,7 @@
 	 -->
 	 
 	 <!-- 1번조건 지역별 호텔 상위 3개 (리스트를 여럿 작성) -->
-	 <select id="listSeoul" parameterType="kr.co.hotel.board.HotelVO" resultType="kr.co.hotel.board.HotelVO">
+	 <select id="listSeoul" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
 	 <![CDATA[
 	 	SELECT *, (SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice
 	 	FROM hotel h
@@ -49,7 +49,7 @@
 	 	LIMIT 3
 	 ]]>
 	 </select>
-	 <select id="listIncheon" parameterType="kr.co.hotel.board.HotelVO" resultType="kr.co.hotel.board.HotelVO">
+	 <select id="listIncheon" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
 	 <![CDATA[
 	 	SELECT *, (SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice
 	 	FROM hotel h
@@ -57,7 +57,7 @@
 	 	LIMIT 3
 	 ]]>
 	 </select>
-	 <select id="listKyeonggi" parameterType="kr.co.hotel.board.HotelVO" resultType="kr.co.hotel.board.HotelVO">
+	 <select id="listKyeonggi" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
 	 <![CDATA[
 	 	SELECT *, (SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice
 	 	FROM hotel h
@@ -67,7 +67,7 @@
 	 </select>
 	 
 	 <!-- 2~6  -->
-	<select id="searchList" parameterType ="kr.co.hotel.board.HotelVO" resultType="kr.co.hotel.board.HotelVO">
+	<select id="searchList" parameterType ="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
 		SELECT * 
 		FROM hotel h LEFT JOIN like l
 		ON h.hotel_no = l.hotel_no LEFT JOIN review r

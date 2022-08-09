@@ -49,33 +49,40 @@ public class GuestNoticeServiceImpl implements GuestNoticeService {
 	}
 
 	@Override
-	public int insert(GuestNoticeVO vo) {
-		return mapper.insert(vo);
+	public boolean insert(GuestNoticeVO vo) {
+		return mapper.insert(vo) > 0 ? true : false;
 	}
 
 
-
-	@Override
-	public GuestNoticeVO view(GuestNoticeVO vo) {
-		return mapper.view(vo);
-	}
-	
-	
-	
 	@Override
 	public int updateViewcount(int gnotice_no) {
 		return mapper.updateViewcount(gnotice_no);
 	}
 
 	@Override
-	public int update(GuestNoticeVO vo) {
-		return mapper.update(vo);
+	public boolean update(GuestNoticeVO vo) {
+		return mapper.update(vo) > 0 ? true : false;
 	}
 
 	@Override
-	public int delete(int gnotice_no) {
-		return mapper.delete(gnotice_no);
+	public boolean delete(int gnotice_no) {
+		return mapper.delete(gnotice_no) > 0 ? true : false;
 	}
+
+
+	@Override
+	public GuestNoticeVO view(GuestNoticeVO vo) {
+		return mapper.view(vo);
+	}
+
+	@Override
+	public GuestNoticeVO edit(int gnotice_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
 
 	
 }

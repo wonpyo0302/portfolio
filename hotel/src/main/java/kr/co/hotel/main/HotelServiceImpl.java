@@ -1,4 +1,4 @@
-package kr.co.hotel.board;
+package kr.co.hotel.main;
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +56,11 @@ public class HotelServiceImpl implements HotelService {
 	public List<HotelVO> listKyeonggi(HotelVO vo) {
 		List list = mapper.listKyeonggi(vo);
 		return list;
+	}
+
+	@Override
+	public List<HotelVO> searchList(HotelVO vo) {
+		return mapper.searchList(vo);
 	}
 
 }

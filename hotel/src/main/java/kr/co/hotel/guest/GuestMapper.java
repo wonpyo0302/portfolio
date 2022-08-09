@@ -1,11 +1,14 @@
 package kr.co.hotel.guest;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
-@Mapper
 
+@Mapper
 public interface GuestMapper {
-	GuestVO loginCheck(GuestVO vo); // 로그인
-	
+	int insert (GuestVO gvo);
+	int emailDupCheck(String guest_email);
+	int idDupCheck(String guest_id);
+	GuestVO guestloginCheck(GuestVO gvo);
+	GuestVO findGuestEmail(GuestVO gvo);
+	GuestVO findGuestPwd(GuestVO gvo);
+	int updateTempGuestPwd(GuestVO gvo);
 }

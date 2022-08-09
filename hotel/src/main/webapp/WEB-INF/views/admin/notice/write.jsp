@@ -22,11 +22,21 @@
     
     <script>
     	function goSave(){
-    		
+    		<c:if test="${data.loginInfo}">
+    		</c:if>
     		frm.submit();
     	}
- 
-    	});
+  	
+    	function goDelete(gnotice_no){
+    		if (confirm('삭제하시겠습니까?')){
+    			location.href="delete.do?gnotice_no="+${gnotice_no};
+    		}
+    	}
+    	
+    	function goList(){
+    		location.href="list.do";
+    	}
+    	
     </script>
     
 </head>
@@ -41,8 +51,7 @@
     
                 <div class="bbs">
                 <form method="post" name="frm" id="frm" action="insert.do"  enctype="multipart/form-data" > 
-                <!--  <input type="hidden" name="admin_no" value="${loginInfo.no}"> -->
-            
+                <input type="hidden" name="admin_no" value="${loginInfo.no}">
                     <table class="board_write">
                         <tbody>
 							<tr>
@@ -59,7 +68,7 @@
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td><textarea name="content" id="content" style="width: 90%"></textarea></td>
+								<td><textarea name="content" id="content" style="width: 90%" value="${data.gnotice_content }"></textarea></td>
 							</tr>
 							<tr>
                         	<th>첨부파일</th>
@@ -71,6 +80,10 @@
                     </table>
                     <div class="btnSet"  style="text-align:right;">
                         <a class="btn" href="javascript:goSave();">저장 </a>
+                    <div class="btnSet"  style="text-align:right;">
+                        <a class="btn" href="javascript:goDelete();">삭제 </a>
+                    <div class="btnSet"  style="text-align:right;">
+                        <a class="btn" href="javascript:goList();">목록 </a>
                     </div>
                     </form>
                 </div>

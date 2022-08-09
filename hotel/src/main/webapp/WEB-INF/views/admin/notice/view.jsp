@@ -26,6 +26,48 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
+
+	// 저장
+	function goSave() {
+		<c:if test="${!empty loginInfo}">
+			$.ajax({
+				url : "/hotel/admin/notice/write.do",
+				data : {
+					gnotice_no : ${view.gnotice_no},
+					tablename : 'guestnotice',
+					content : $("#content").val(),
+					
+				},
+				success : function(res){
+					if (res.trim() == 1){
+					alert("정상적으로 등록되었습니다.");
+					$("#content").val('');
+					}
+				}
+				frm.submit();
+			}
+			location.href = 'list.do';
+		</c:if>
+	}
+	
+	// 수정
+	function goEdit(gnotice_no) {
+		location.href = "edit.do?gnotice_no="+gnotice_no;
+	}
+	
+	// 삭제
+	function goDelete(gnotice_no) {
+		if (confirm ("삭제하시겠습니까?")){
+			var pwd = prompt('비밀번호를 입력하세요!');
+			if (pwd == "1234") {
+				location.href = 'delete.do?gnotice_no='+gnotice_no;
+			} else {
+				alert('비밀번호가 일치하지 않습니다. 다시 입력 바랍니다.');
+			}
+		}
+	}
+	
+
 	// 목록가기
 	function goList() {
 		location.href = "list.do";
@@ -69,11 +111,14 @@
 						</tr>
 						</div>
 					</table>
+
 					<div class="btnSet" style="text-align: right;">
 						<a class="btn" href="javascript:goList();">목록 </a>
+						
 				</form>
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
