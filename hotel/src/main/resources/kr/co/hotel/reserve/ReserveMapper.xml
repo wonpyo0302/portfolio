@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hotel.reserve.ReserveMapper">
+
+	<select id="select" parameterType="kr.co.hotel.member.GuestMemberVO" resultType="kr.co.hotel.member.GuestMemberVO">
+		select * from guest where guest_email =#{guest_name} and guest_pwd = #{guest_pwd}
+	</select>
+	
+	<insert id="insert" parameterType="kr.co.hotel.reserve.ReserveVO">
+		insert into reserv (
+			coupon_no, room_no, guest_no, hotel_no, startdate, 
+			enddate, used_point, cancledate, 
+			total_price, rev_date, pay_type, imp_uid, rev_status, use_status, pay_status, rev_name, rev_hp
+		) values (
+			#{coupon_no}, #{room_no}, #{guest_no}, #{hotel_no}, #{startdate}, 
+			#{enddate}, #{used_point}, #{cancledate}, #{total_price}, 
+			 now(), #{pay_type}, #{imp_uid}, 0, 0, 1 , #{rev_name}, #{rev_hp}
+		)
+	</insert>
+	
+	<insert id="pointinsert" parameterType="kr.co.hotel.reserve.ReserveVO">
+		<if test="used_point !=0">
+			insert into point (
+				guest_no, io_point, totalpoint, pointtype, date)
+			values (#{guest_no}, #{used_point}, (select totalpoint from guest where guest_no = #{guest_no}), 1, now() )
+		</if>
+	</insert>
+	
+	<update id="guestUsedPointUpdate" parameterType="kr.co.hotel.member.GuestMemberVO">
+		update guest set totalpoint = #{totalpoint}
+	</update>
+	
+	<select id="reservecheck" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="int">
+			select count(*) from reserv where room_no =#{room_no} and hotel_no =#{hotel_no} and
+			startdate between #{startdate} and #{enddate}
+	</select>
+	
+</mapper>
