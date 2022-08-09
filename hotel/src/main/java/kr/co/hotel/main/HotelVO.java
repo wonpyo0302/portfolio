@@ -1,4 +1,4 @@
-package kr.co.hotel.board;
+package kr.co.hotel.main;
 
 import java.sql.Timestamp;
 
@@ -23,6 +23,10 @@ public class HotelVO {
 	private String lat;
 	private String lot;
 	private int lowPrice;
+	
+	private int avgScore;
+	private int totalReview;
+	private int totalLike;
 	
 	
 	private int page;
