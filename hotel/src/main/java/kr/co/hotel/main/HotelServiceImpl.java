@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 public class HotelServiceImpl implements HotelService {
@@ -43,24 +44,30 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public List<HotelVO> listSeoul(HotelVO vo) {
-		List list = mapper.listSeoul(vo);
-		return list;
-	}
-	@Override
-	public List<HotelVO> listIncheon(HotelVO vo) {
-		List list = mapper.listIncheon(vo);
-		return list;
-	}
-	@Override
-	public List<HotelVO> listKyeonggi(HotelVO vo) {
-		List list = mapper.listKyeonggi(vo);
-		return list;
+	public List<HotelVO> searchList(HotelVO vo) {
+		return mapper.searchList(vo);
 	}
 
 	@Override
-	public List<HotelVO> searchList(HotelVO vo) {
-		return mapper.searchList(vo);
+	public Model hotelTopFive(HotelVO vo, Model model) {
+		vo.setState_code(11);
+		model.addAttribute("listSeoul",mapper.hotelTopFive(vo));
+		vo.setState_code(23);
+		model.addAttribute("listIncheon",mapper.hotelTopFive(vo));
+		vo.setState_code(31);
+		model.addAttribute("listKyeonggi",mapper.hotelTopFive(vo));
+		return model;
+	}
+
+	@Override
+	public Model imageInMainPage(HotelVO vo, Model model) {
+		vo.setState_code(11);
+		model.addAttribute("imageSeoul",mapper.hotelTopFive(vo));
+		vo.setState_code(23);
+		model.addAttribute("imageIncheon",mapper.hotelTopFive(vo));
+		vo.setState_code(31);
+		model.addAttribute("imageKyeonggi",mapper.hotelTopFive(vo));
+		return model;
 	}
 
 }

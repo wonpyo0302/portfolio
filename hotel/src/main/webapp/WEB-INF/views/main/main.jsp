@@ -31,7 +31,7 @@
         font-size: 14px;
         color: #000;
         margin: 0;
-        padding: 0;
+        padding-top: 60px;
       }
 
       .swiper {
@@ -118,11 +118,13 @@
 	<h2 align="center">서울상품</h2>
 	<div class="swiper mySwiper_s">
 		<div class="swiper-wrapper">
-			<c:forEach var="SH" items="${Seoul }">
+			<c:forEach var="SH" items="${data.listSeoul }">
 			<div class="swiper-slide">
 				<a href="">
-					<div class="hotel01" style="background-image: url(https://yaimg.yanolja.com/v5/2022/08/04/10/640/62eb9cd354f6c7.57974264.jpg);">
-					</div>
+					<c:forEach var="SI" items="${image.imageSeoul }">
+						<div class="hotel01" style="background-image: url(https://yaimg.yanolja.com/v5/2022/08/04/10/640/${SI.filename});">
+						</div>
+					</c:forEach>
 					<div><p>${SH.hotel_name}</p></div>
 					<span>최저가:  ${SH.lowPrice } ~</span>
 				</a>
@@ -137,13 +139,15 @@
     <!-- Swiper incheon -->
 	<div class="swiper mySwiper_i ">
 		<div class="swiper-wrapper">
-			<c:forEach var="SH" items="${Incheon }">
+			<c:forEach var="IH" items="${data.listIncheon }">
 			<div class="swiper-slide">
 				<a href="">
-					<div class="hotel01" style="background-image: url(https://yaimg.yanolja.com/v5/2022/08/04/10/640/62eb9cd354f6c7.57974264.jpg);">
-					</div>
-					<div><p>${SH.hotel_name}</p></div>
-					<span>최저가:  ${SH.lowPrice } ~</span>
+					<c:forEach var="II" items="${image.imageIncheon }">
+						<div class="hotel01" style="background-image: url(https://yaimg.yanolja.com/v5/2022/08/04/10/640/${II.filename});">
+						</div>
+					</c:forEach>
+					<div><p>${IH.hotel_name}</p></div>
+					<span>최저가:  ${IH.lowPrice } ~</span>
 				</a>
 			</div>
 			</c:forEach>
@@ -156,13 +160,15 @@
     <!-- Swiper kyeonggi -->
 	<div class="swiper mySwiper_k">
 		<div class="swiper-wrapper">
-			<c:forEach var="SH" items="${Kyeonggi }">
+			<c:forEach var="KH" items="${data.listKyeonggi }">
 			<div class="swiper-slide">
 				<a href="">
-					<div class="hotel01" style="background-image: url(https://yaimg.yanolja.com/v5/2022/08/04/10/640/62eb9cd354f6c7.57974264.jpg);">
-					</div>
-					<div><p>${SH.hotel_name}</p></div>
-					<span>최저가:  ${SH.lowPrice } ~</span>
+					<c:forEach var="KI" items="${image.imageKyeonggi }">	
+						<div class="hotel01" style="background-image: url(https://yaimg.yanolja.com/v5/2022/08/04/10/640/${KI.filename});">
+						</div>
+					</c:forEach>
+					<div><p>${KH.hotel_name}</p></div>
+					<span>최저가:  ${KH.lowPrice } ~</span>
 				</a>
 			</div>
 			</c:forEach>
@@ -180,7 +186,6 @@
       var swiper = new Swiper(".mySwiper_s", {
     	  sildesPerView: 3,
     	  slidesPerGroup: 3,
-    	  observer: true,
     	  spaceBetween: 24,
           navigation: {
 	          nextEl: ".swiper-button-next",
@@ -196,7 +201,6 @@
       var swiper = new Swiper(".mySwiper_i", {
     	  siledsPerView: 3,
     	  slidesPerGroup: 3,
-    	  observer: true,
     	  spaceBetween: 24,
           navigation: {
 	          nextEl: ".swiper-button-next",
@@ -216,7 +220,6 @@
       var swiper = new Swiper(".mySwiper_k", {
     	  siledsPerView: 3,
     	  slidesPerGroup: 3,
-    	  observer: true,
     	  spaceBetween: 24,
           navigation: {
 	          nextEl: ".swiper-button-next",
