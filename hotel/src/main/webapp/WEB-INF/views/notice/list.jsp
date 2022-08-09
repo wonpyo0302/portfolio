@@ -48,7 +48,7 @@
 		<br>
 			<h3 class="sub_title" style="text-align:left">공지사항</h3>
 			<br>
-			<h6 class="sub_content" style="text-align:left"> <img src="/hotel/image/free.png" width="100px"> 게스트 전용 공지사항 게시판입니다.</h6>
+			<h6 class="sub_content" style="text-align:left"> <img src="/hotel/image/notice.png" width="60px"> 게스트 전용 공지사항 게시판입니다.</h6>
 			<br><br><br><br>
 			<div class="bbs">
 				<table class="list">

@@ -57,7 +57,7 @@
     </script>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+    <jsp:include page="/WEB-INF/views/includes/G_header.jsp"/>
         <form action="findGuestPwd.do" method="post" id="loginFrm1" name="loginFrm1" onsubmit="return findGuestPwd();"><!-- header에서 id="board"이미 사용중이라서 board2로 함 -->
             <div class="sub">
                 <div class="size">

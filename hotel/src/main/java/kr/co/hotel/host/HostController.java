@@ -75,7 +75,7 @@ public class HostController {
 		sess.invalidate(); // 세션초기화(세션객체에있는 모든 값들이 삭제)
 		//sess.removeAttribute("loginInfo"); // 세션객체의 해당값만 삭제
 		model.addAttribute("msg", "로그아웃되었습니다.");
-		model.addAttribute("url", "/hotel/board/index.do");
+		model.addAttribute("url", "/hotel/host/login.do");
 		return "common/alert";
 	}
 	
