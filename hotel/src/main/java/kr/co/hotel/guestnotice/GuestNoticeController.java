@@ -42,6 +42,38 @@ public class GuestNoticeController {
 		model.addAttribute("data", service.insert(vo));
 		return "notice/write";
 	}
+	
+	// 수정 폼
+	@GetMapping("/notice/edit.do")
+	public String edit(Model model, GuestNoticeVO vo) {
+		model.addAttribute("data", service.view(vo));
+		return "notice/edit";
+	}
+	
+	// 수정 처리
+	@PostMapping("/notice/update.do")
+	public String update(Model model, GuestNoticeVO vo) {
+		if (service.update(vo)) {
+			model.addAttribute("msg", "정상적으로 수정되었습니다.");
+			model.addAttribute("url", "view.do?gnotice_no="+vo.getGnotice_no());
+			return "common/alert";
+		} else {
+			model.addAttribute("msg", "수정 실패했습니다. 다시 확인바랍니다.");
+			return "common/alert";
+		}
+	}
+	
+	@GetMapping("/notice/delete.do")
+	public String delete(Model model, GuestNoticeVO vo) {
+		if (service.delete(vo.getGnotice_no())) {
+			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
+			model.addAttribute("url", "list.do");
+			return "common/alert";
+		} else {
+			model.addAttribute("msg", "삭제 실패했습니다.");
+			return "common/alert";
+		}
+	}
 
 	
 } 

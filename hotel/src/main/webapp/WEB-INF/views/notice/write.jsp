@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="/WEB-INF/views/includes/G_header.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -33,7 +34,10 @@
     
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title" style="text-align:left">새 글 작성</h3>
+            <br> 
+            <br> 
+            <br>
+			<h3 class="sub_title" style="text-align:left">새 글 작성</h3>
     
                 <div class="bbs">
                 <form method="post" name="frm" id="frm" action="insert.do"  enctype="multipart/form-data" > 
