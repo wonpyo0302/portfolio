@@ -109,7 +109,7 @@
 						<a class="btn" href="javascript:goSave();">저장 </a>
 						<td class="btnSet" style="text-align: right;"><a class="btn" onclick="goDelete()">삭제</a> <!-- 비밀번호로 본인확인 -->
 							<div class="btnSet" style="text-align: right;">
-								<a class="btn" href="javascript:goList();">목록으로 </a></td>
+								<a class="btn" href="javascript:goList();">목록 </a></td>
 				</form>
 			</div>
 		</div>
