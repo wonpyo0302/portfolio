@@ -1,5 +1,7 @@
 package kr.co.hotel.guestnotice;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,7 @@ public class GuestNoticeController {
 		 //vo= service.view(vo);
 		//System.out.println("정신차려 ??:"+ r.gnotice_title);
 		model.addAttribute("data", service.view(vo));
+		System.out.println("확인"+vo.getGnotice_content());
 		return "notice/view";
 	}
 
@@ -38,7 +41,8 @@ public class GuestNoticeController {
 	}
 	
 	@PostMapping("/notice/write.do")
-	public String insert(Model model, GuestNoticeVO vo) {
+	public String insert(Model model, GuestNoticeVO vo, HttpSession sess) {
+	
 		model.addAttribute("data", service.insert(vo));
 		return "notice/write";
 	}
