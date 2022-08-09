@@ -41,28 +41,13 @@
 	 -->
 	 
 	 <!-- 1번조건 지역별 호텔 상위 3개 (리스트를 여럿 작성) -->
-	 <select id="listSeoul" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
+	 <select id="hotelTopFive" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
 	 <![CDATA[
-	 	SELECT *, (SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice
+	 	SELECT *, 
+	 		(SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice
 	 	FROM hotel h
-        where state_code = 11
-	 	LIMIT 3
-	 ]]>
-	 </select>
-	 <select id="listIncheon" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
-	 <![CDATA[
-	 	SELECT *, (SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice
-	 	FROM hotel h
-        where state_code = 23
-	 	LIMIT 3
-	 ]]>
-	 </select>
-	 <select id="listKyeonggi" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
-	 <![CDATA[
-	 	SELECT *, (SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice
-	 	FROM hotel h
-        where state_code = 31
-	 	LIMIT 3
+        where state_code = ${state_code}
+	 	LIMIT 5
 	 ]]>
 	 </select>
 	 
@@ -83,7 +68,16 @@
 				</if>
 			</if>
 		</where>
-		ORDER BY hotel_no, #{soltType}
+		ORDER BY #{soltType}
+	</select>
+
+	<!-- 메인화면에 지역별 3개 호텔의 이미지 불러오기 -->
+	<select id="imageInMainPage">
+		SELECT *,
+			(SELECT filename_org FROM image WHERE hotel_no = hotel.hotel_no limit 1) AS filename
+		FROM hotel
+		WHERE state_code = ${state_code}
+		limit 5; 
 	</select>
 
 </mapper>

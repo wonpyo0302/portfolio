@@ -28,6 +28,7 @@ public class HotelVO {
 	private int totalReview;
 	private int totalLike;
 	
+	private String filename;
 	
 	private int page;
 	private String searchField;

@@ -64,14 +64,19 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 	}
 
 	@Override
-	public boolean delete(int no) {
+	public boolean delete(int room_no) {
 		//회원 삭제시, 회원테이블만 인스턴스만 지우는 것이 아니라 relation이 걸려있는 테이블을 모두 찾아서 delete해야한다.
-		return mapper.delete(no)>0?true:false;
+		boolean r = false;
+		if(mapper.delete(room_no)>0) {
+			int a = mapper.delete_img(room_no);
+			if(a>=0) {
+				r = true;
+			}
+		}return r ;
 	}
 
 	@Override
 	public boolean insert(RoomVO vo) {
-		
 		return mapper.insert(vo) > 0 ? true : false;
 	}
 
@@ -83,6 +88,16 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 	@Override
 	public RoomVO get_hotelInfo(int host_no) {
 		return mapper.get_hotelInfo(host_no);
+	}
+
+	@Override
+	public RoomVO get_roomInfo() {
+		return mapper.get_roomInfo();
+	}
+
+	@Override
+	public List<RoomVO> get_imgList(int room_no) {
+		return mapper.get_imgList(room_no);
 	}
 
 }
