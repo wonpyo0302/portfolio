@@ -111,16 +111,16 @@ public class HRRegisterController {
 		
 	}
 	
-	/*
+	
 	@GetMapping("/room/edit.do")
 	public String edit(RoomVO vo, Model model) {
-		RoomVO data = service.edit(vo.getNo());
+		RoomVO data = service.edit(vo.getRoom_no());
 		model.addAttribute("data", data);
 		return "room/edit";
 		
 
 	}
-	
+	/*
 	 @PostMapping("/room/update.do")	
 	 public String update(RoomVO vo, Model model) {
 		 if(service.update(vo)) {

@@ -67,9 +67,12 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 	public boolean delete(int room_no) {
 		//회원 삭제시, 회원테이블만 인스턴스만 지우는 것이 아니라 relation이 걸려있는 테이블을 모두 찾아서 delete해야한다.
 		boolean r = false;
-		mapper.delete(room_no);
-				
-				
+		if(mapper.delete(room_no)>0) {
+			int a = mapper.delete_img(room_no);
+			if(a>=0) {
+				r = true;
+			}
+		}
 		return r ;
 	}
 
