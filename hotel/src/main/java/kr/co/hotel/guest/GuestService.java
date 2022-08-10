@@ -10,4 +10,5 @@ public interface GuestService {
 	boolean guestloginCheck(GuestVO gvo, HttpSession sess);
 	GuestVO findGuestEmail(GuestVO gvo);
 	GuestVO findGuestPwd(GuestVO gvo);
+	int myinfoLogin(String guest_pwd);
 }

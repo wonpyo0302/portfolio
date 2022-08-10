@@ -16,7 +16,7 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
         <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
     	function goSave() {
@@ -269,8 +269,10 @@
                         <tr>
                             <th>계좌번호</th>
                             <td>
-                                <input type="text" name="g_accountno" id="g_accountno" value=""  maxlength="15" style="float:left;">
-                                <span class="guest_accountno_check"><a href="javascript:;"  class="btn bgGray" style="float:left; width:auto; clear:none;" id="dupCheckBtn">계좌확인</a></span>
+                                <input type="text" name="g_accountno" id="g_accountno" value=""  maxlength="15" style="float:left;" />
+                                <span class="guest_accountno_check"><a href="javascript:;"  class="btn bgGray" style="float:left; width:auto; clear:none;" id=""
+                                href="">계좌확인</a></span>
+                               
                             </td>
                         </tr>
                         <tr>
@@ -288,9 +290,13 @@
                 </form>
                 <!-- //write--->
                 <div class="btnSet clear">
-                    <div><a href="javascript:;" class="btn" onclick="goSave();">가입</a> <a href="javascript:;" class="btn" onclick="history.back();">취소</a></div>
-                    <div><a href="login.do" class="btn" onclick="">로그인</a></div>
+                	<div>
+                    	<a class="btn bgGray" href="javascript:;"  onclick="goSave()">가입</a> &nbsp;&nbsp;
+                    	<a class="btn bgGray" href="javascript:;"  onclick="history.back()">취소</a> &nbsp;&nbsp;
+                    	<a class="btn bgGray" href="login.do" >로그인 </a>
+                    </div>
                 </div>
+                
             </div>
         </div>
         
