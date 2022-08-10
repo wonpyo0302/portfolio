@@ -44,7 +44,8 @@
 	 <select id="hotelTopFive" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
 	 <![CDATA[
 	 	SELECT *, 
-	 		(SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice
+	 		(SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice,
+	 		(SELECT filename_org FROM image i WHERE i.hotel_no = h.hotel_no limit 1) AS filename
 	 	FROM hotel h
         where state_code = ${state_code}
 	 	LIMIT 5
@@ -69,15 +70,6 @@
 			</if>
 		</where>
 		ORDER BY #{soltType}
-	</select>
-
-	<!-- 메인화면에 지역별 3개 호텔의 이미지 불러오기 -->
-	<select id="imageInMainPage">
-		SELECT *,
-			(SELECT filename_org FROM image WHERE hotel_no = hotel.hotel_no limit 1) AS filename
-		FROM hotel
-		WHERE state_code = ${state_code}
-		limit 5; 
 	</select>
 
 </mapper>
