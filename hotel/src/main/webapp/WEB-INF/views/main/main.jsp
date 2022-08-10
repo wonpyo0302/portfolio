@@ -68,7 +68,7 @@
 
       
       .hotel01 {
-        background-size: cover;
+        background-size: 150px;
         height: 150px;
        }
     </style>
