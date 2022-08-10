@@ -86,9 +86,6 @@
 	                        <tr>
 	                        	<th> 객실 사진</th>
 	                        	<td>
-	                        		<img alt="" src="">
-	                           		<a href="/common/download.jsp?oName=${data.filename_org}&sName=${data.filename_real}" target="_blank">${data.filename_org } </a>
-	                        	
 	                        		<c:forEach items="${imgList }" var="img" varStatus="loop">
 	                        			
 	                        			<img src="/hotel/upload/${img.filename_real }" style="width:100px; height:100px; padding: 5px 5px 5px 5px; boarder='1';">

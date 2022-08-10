@@ -29,7 +29,7 @@ public interface HRRegisterMapper {
 	
 	public RoomVO get_roomInfo(); //객실 정보 등록(insert)후 생성된 room_no를 축출
 	
-	public List<RoomVO> get_imgList(int room_no);
+	public List<RoomVO> get_imgList(int room_no);//이미지를 리스트로 불러옴
 	
 	
 	
