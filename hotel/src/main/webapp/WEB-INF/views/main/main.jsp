@@ -121,7 +121,7 @@
 			<c:forEach var="SH" items="${data.listSeoul }">
 			<div class="swiper-slide">
 				<a href="">
-						<div class="hotel01" style="background-image: url(/hotel/upload/${SH.filename});">
+						<div class="hotel01" style="background-image: url(/hotel/image/hotel/${SH.filename});">
 						</div>
 					<div><p>${SH.hotel_name}</p></div>
 					<span>최저가:  ${SH.lowPrice } ~</span>
