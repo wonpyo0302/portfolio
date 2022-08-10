@@ -16,9 +16,6 @@ public interface HotelMapper {
 	//지역별 5개추천
 	List<HotelVO> hotelTopFive(HotelVO vo);
 	
-	//지역별 이미지 5개
-	List<HotelVO> imageInMainPage(HotelVO vo);
-	
 	//목록검색
 	List<HotelVO> searchList(HotelVO vo); 
 	

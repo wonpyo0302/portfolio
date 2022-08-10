@@ -12,8 +12,6 @@ public interface HotelService {
 	
 	public Model hotelTopFive(HotelVO vo, Model model);
 	
-	public Model imageInMainPage(HotelVO vo, Model model);
-	
 	public List<HotelVO> searchList(HotelVO vo);
 	
 }

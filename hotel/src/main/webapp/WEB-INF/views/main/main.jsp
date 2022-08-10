@@ -121,10 +121,8 @@
 			<c:forEach var="SH" items="${data.listSeoul }">
 			<div class="swiper-slide">
 				<a href="">
-					<c:forEach var="SI" items="${image.imageSeoul }">
-						<div class="hotel01" style="background-image: url(https://yaimg.yanolja.com/v5/2022/08/04/10/640/${SI.filename});">
+						<div class="hotel01" style="background-image: url(/hotel/upload/${SH.filename});">
 						</div>
-					</c:forEach>
 					<div><p>${SH.hotel_name}</p></div>
 					<span>최저가:  ${SH.lowPrice } ~</span>
 				</a>
@@ -142,10 +140,8 @@
 			<c:forEach var="IH" items="${data.listIncheon }">
 			<div class="swiper-slide">
 				<a href="">
-					<c:forEach var="II" items="${image.imageIncheon }">
-						<div class="hotel01" style="background-image: url(https://yaimg.yanolja.com/v5/2022/08/04/10/640/${II.filename});">
+						<div class="hotel01" style="background-image: url(/hotel/upload/${IH.filename});">
 						</div>
-					</c:forEach>
 					<div><p>${IH.hotel_name}</p></div>
 					<span>최저가:  ${IH.lowPrice } ~</span>
 				</a>
@@ -163,10 +159,8 @@
 			<c:forEach var="KH" items="${data.listKyeonggi }">
 			<div class="swiper-slide">
 				<a href="">
-					<c:forEach var="KI" items="${image.imageKyeonggi }">	
-						<div class="hotel01" style="background-image: url(https://yaimg.yanolja.com/v5/2022/08/04/10/640/${KI.filename});">
+						<div class="hotel01" style="background-image: url(/hotel/upload/${KH.filename});">
 						</div>
-					</c:forEach>
 					<div><p>${KH.hotel_name}</p></div>
 					<span>최저가:  ${KH.lowPrice } ~</span>
 				</a>
