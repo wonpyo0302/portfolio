@@ -14,30 +14,20 @@ public class GuestFaqController {
 	GuestFaqService service;
 	
 	// 목록
-	@GetMapping("/board/list.do")
+	@GetMapping("/faq/list.do")
 	public String index(Model model, GuestFaqVO vo) {
 		model.addAttribute("data", service.index(vo));
-		return "board/list";
+		return "faq/list";
 	}
 	
 	// 조회
-	@GetMapping("/board/view.do")
+	@GetMapping("/faq/view.do")
 	public String view(Model model, GuestFaqVO vo) {
-		service.viewCount(vo.getGboard_no());
-		model.addAttribute("data", service.view(vo.getGboard_no()));
-		return "board/view";
+		model.addAttribute(vo.getGfaq_no());
+		model.addAttribute("data", service.view(vo));
+		return "faq/view";
 	}
 
-	// 등록
-	@GetMapping("/board/write.do")
-	public String write(Model model, GuestFaqVO vo) {
-		return "board/write";
-	}
-	
-	@PostMapping("/board/write.do")
-	public String insert(Model model, GuestFaqVO vo) {
-		model.addAttribute("data", service.insert(vo));
-		return "board/write";
-	}
+
 	
 }
