@@ -59,4 +59,9 @@ public class HotelServiceImpl implements HotelService {
 		return model;
 	}
 
+	@Override
+	public List<HotelVO> LocationInfo(HotelVO vo) {
+		return mapper.getDistrict(vo);
+	}
+
 }

@@ -9,11 +9,11 @@
 	<insert id="insert" parameterType="kr.co.hotel.reserve.ReserveVO">
 		insert into reserv (
 			coupon_no, room_no, guest_no, hotel_no, startdate, 
-			enddate, used_point, cancledate, 
+			enddate, used_point, canceldate, 
 			total_price, rev_date, pay_type, imp_uid, rev_status, use_status, pay_status, rev_name, rev_hp
 		) values (
 			#{coupon_no}, #{room_no}, #{guest_no}, #{hotel_no}, #{startdate}, 
-			#{enddate}, #{used_point}, #{cancledate}, #{total_price}, 
+			#{enddate}, #{used_point}, #{canceldate}, #{total_price}, 
 			 now(), #{pay_type}, #{imp_uid}, 0, 0, 1 , #{rev_name}, #{rev_hp}
 		)
 	</insert>
@@ -27,12 +27,12 @@
 	</insert>
 	
 	<update id="guestUsedPointUpdate" parameterType="kr.co.hotel.guest.GuestVO">
-		update guest set totalpoint = #{totalpoint}
+		update guest set totalpoint = #{totalpoint} where guest_no =#{guest_no}
 	</update>
 	
 	<select id="reservecheck" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="int">
 			select count(*) from reserv where room_no =#{room_no} and hotel_no =#{hotel_no} and
-			startdate between #{startdate} and #{enddate}
+			startdate between #{startdate} and #{enddate} and rev_status != 1
 	</select>
 	
 </mapper>

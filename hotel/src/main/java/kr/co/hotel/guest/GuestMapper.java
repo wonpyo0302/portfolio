@@ -11,4 +11,5 @@ public interface GuestMapper {
 	GuestVO findGuestEmail(GuestVO gvo);
 	GuestVO findGuestPwd(GuestVO gvo);
 	int updateTempGuestPwd(GuestVO gvo);
+	int myinfoLogin(String guest_pwd);
 }

@@ -14,4 +14,6 @@ public interface HotelService {
 	
 	public List<HotelVO> searchList(HotelVO vo);
 	
+	public List<HotelVO> LocationInfo(HotelVO vo);
+	
 }

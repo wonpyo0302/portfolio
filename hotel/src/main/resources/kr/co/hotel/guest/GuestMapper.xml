@@ -33,4 +33,7 @@
 	<update id="updateTempGuestPwd" parameterType="kr.co.hotel.guest.GuestVO">
 		UPDATE guest SET guest_pwd = md5(#{guest_pwd}) WHERE guest_id=#{guest_id} AND guest_hp=#{guest_hp} AND guest_email = #{guest_email}
 	</update>
+	<select id="myinfoLogin" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM guest where md5(#{guest_pwd}) = guest_pwd
+	</select>
 </mapper>

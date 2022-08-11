@@ -60,7 +60,7 @@
 		ON l.hotel_no = r.hotel_no
 		<where>
 			<if test="searchWord !=''"> <!-- 2번 -->
-				addr LIKE %#{searchWord}% OR hotel_name = %#{searchWord}%
+				addr LIKE %#{searchWord}% OR hotel_name LIKE %#{searchWord}%
 				<if test="selectbox_state !=null">
 					AND state_code = #{selectbox_state}
 					<if test="searchbox_district !=null">
@@ -71,5 +71,22 @@
 		</where>
 		ORDER BY #{soltType}
 	</select>
+
+<!-- 시도코드와 시군구 코드 가져오기 -->
+	<select id="getDistrict" resultType="kr.co.hotel.main.HotelVO">
+		SELECT * FROM district where district_code LIKE '${state_code}%'
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </mapper>
