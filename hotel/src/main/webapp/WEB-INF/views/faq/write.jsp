@@ -42,8 +42,9 @@
     
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title" style="text-align:left">FAQ</h3>
-    
+           		<br><br>
+                <h3 class="sub_title" style="text-align:left">FAQ 새 글 작성</h3>
+    				<br><br>
                 <div class="bbs">
                 <form method="post" name="frm" id="frm" action="insert.do"  enctype="multipart/form-data" > 
                 <!--  <input type="hidden" name="member_no" value="${loginInfo.no}"> -->
@@ -55,11 +56,11 @@
                         <tr>
                             <th>문의유형</th>
                             <td>
-                                <input type="checkbox" name="type" id="type" value="예약 문의"/> 예약 문의 <br>
-                                <input type="checkbox" name="type" id="type" value="결제 문의"/> 결제 문의 <br>
-                                <input type="checkbox" name="type" id="type" value="숙소 문의"/> 숙소 문의 <br>
-                                <input type="checkbox" name="type" id="type" value="포인트/쿠폰 문의"/> 포인트/쿠폰 문의 <br>
-                                <input type="checkbox" name="type" id="type" value="이용/기타 문의"/> 이용/기타 문의
+                                <input type="radio" name="type" id="type" value="예약 문의"/> 예약 문의 <br>
+                                <input type="radio" name="type" id="type" value="결제 문의"/> 결제 문의 <br>
+                                <input type="radio" name="type" id="type" value="숙소 문의"/> 숙소 문의 <br>
+                                <input type="radio" name="type" id="type" value="포인트/쿠폰 문의"/> 포인트/쿠폰 문의 <br>
+                                <input type="radio" name="type" id="type" value="이용/기타 문의"/> 이용/기타 문의
                             </td>
                         </tr>
                         <tr>
