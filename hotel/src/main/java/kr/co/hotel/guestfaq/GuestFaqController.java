@@ -27,7 +27,19 @@ public class GuestFaqController {
 		model.addAttribute("data", service.view(vo));
 		return "faq/view";
 	}
-
+	
+	// 등록폼
+	@GetMapping("/faq/write.do")
+	public String write() {
+		return "faq/write";
+	}
+	
+	// 등록처리
+	@PostMapping("/faq/write.do")
+	public String insert(Model model, GuestFaqVO vo) {
+		model.addAttribute("data", service.insert(vo));
+		return "faq/write";
+	}
 
 	
 }
