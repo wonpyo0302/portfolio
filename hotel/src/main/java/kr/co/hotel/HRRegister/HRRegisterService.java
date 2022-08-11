@@ -30,11 +30,13 @@ public interface HRRegisterService {
 	//1개의 호텔 인스턴스 가져오기
 	HotelVO get_hotelInfo(int host_no);
 	
+	HotelVO get_hotelview(int hotel_no);
+	
 	//가장 최근 저장된 1개의 객실 인스턴스 가져오기 
 	RoomVO get_roomInfo();
 	
 	//해당 객실의 이미지 리스트 가져오기
-	List<ImageVO> get_imgList(int room_no);
+	List<ImageVO> get_imgList(ImageVO ivo);
 	
 	boolean hotel_insert (HotelVO hvo);
 	

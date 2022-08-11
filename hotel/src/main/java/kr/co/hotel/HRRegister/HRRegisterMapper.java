@@ -28,9 +28,11 @@ public interface HRRegisterMapper {
 	
 	public HotelVO get_hotelInfo(int host_no);
 	
+	public HotelVO get_hotelview(int hotel_no);
+	
 	public RoomVO get_roomInfo(); //객실 정보 등록(insert)후 생성된 room_no를 축출
 	
-	public List<ImageVO> get_imgList(int room_no);//이미지를 리스트로 불러옴
+	public List<ImageVO> get_imgList(ImageVO ivo);//이미지를 리스트로 불러옴
 	
 	
 	
