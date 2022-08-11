@@ -13,20 +13,19 @@ public class GuestFaqController {
 	
 	@Autowired
 	GuestFaqService service;
-	
-	// 목록
-	@GetMapping("/faq/list.do")
-	public String index(Model model, GuestFaqVO vo) {
-		model.addAttribute("data", service.index(vo));
-		return "faq/list";
-	}
+	/*
+	 * // 목록
+	 * 
+	 * @GetMapping("/faq/list.do") public String list(Model model, GuestFaqVO vo) {
+	 * model.addAttribute("data", service.list(vo)); return "faq/list"; }
+	 */
 	
 	// 조회
 	@GetMapping("/faq/view.do")
 	public String view(Model model, GuestFaqVO vo) {
 		GuestFaqVO r = service.view(vo.getGfaq_no());
 		System.out.println("=================================="+r);
-		model.addAttribute("data",service.view(vo.getGfaq_no()));
+		model.addAttribute("data",service.list(vo));
 		return "faq/view";
 	}
 	
