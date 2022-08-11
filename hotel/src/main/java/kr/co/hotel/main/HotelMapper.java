@@ -24,5 +24,6 @@ public interface HotelMapper {
 	
 	//시군구코드 및 이름 가져오기
 	List<HotelVO> getDistrict(HotelVO vo);
+	List<HotelVO> getState(HotelVO vo);
 	
 }
