@@ -43,7 +43,7 @@ public class GuestController {
 	@PostMapping("/guest/login.do")
 	public String login(GuestVO gvo, HttpSession sess, Model model) {
 		if (gservice.guestloginCheck(gvo, sess)) {
-			return "redirect:/board/guest/index.do";
+			return "main/main";
 		} else {
 			model.addAttribute("msg", "비밀번호를 확인해 주세요");
 			return "common/alert";
@@ -107,8 +107,21 @@ public class GuestController {
 		}
 		return "common/return";
 	}
-	/*
-	 * @GetMapping("board/guest/index.do") public String boardindex(GuestVO
-	 * gvo,HttpSession sess, Model model) { return "guest/index"; }
-	 */
+	@GetMapping("guest/myinfo")
+	public String myinfo() {
+		return"guest/myinfoLogin";
+	}
+	@GetMapping("/guest/myinfoLogin.do")
+	public void myinfoLogin(@RequestParam String guest_pwd, HttpServletResponse res, Model model) throws IOException {
+		int count=gservice.myinfoLogin(guest_pwd);
+		boolean r=false;
+		if(count==1) r=true;
+		PrintWriter out = res.getWriter();
+		out.print(r);
+		out.flush();
+	}
+	@PostMapping ("/guest/myinfoLogin.do")
+	public String myinfoLogin() {
+		return "guest/myinfoModify";
+	}
 }
