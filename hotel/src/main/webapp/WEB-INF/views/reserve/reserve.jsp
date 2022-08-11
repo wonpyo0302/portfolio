@@ -63,8 +63,8 @@ $(function() {
 		url : "reservecheck.do",
 		type : "post",
 		data : {
-			room_no : 0, //${param.room_no}
-			hotel_no : 0, //${param.hotel_no}
+			room_no : 2, //${param.room_no}
+			hotel_no : 1, //${param.hotel_no}
 			startdate : $('#startdate').val(),
 			enddate : $('#enddate').val()
 		}
@@ -131,16 +131,17 @@ $(function(){
     					           async : false,
     					           data : 
     					           {imp_uid: rsp.imp_uid,
-    					        	total_price : String($("#total_price").val()),
+    					        	total_price : String($("#total_price").val() - $("#point").val()),
     					        	startdate : $("#startdate").val(),
     					        	enddate : $("#enddate").val(),
+    					        	room_no : 2,
+    					        	hotel_no : 1,
     					        	guest_no : ${loginInfo.guest_no},
     					        	guest_hp : "${loginInfo.guest_hp}",
     					        	rev_name : $("#rev_name").val(),
     					        	rev_hp : $("#rev_hp").val(),
     					        	used_point : $("#point").val(),
-    					        	totalpoint : ${loginInfo.totalpoint},
-    					        	
+    					        	totalpoint : ${loginInfo.totalpoint}-$("#point").val(),
     					           }
     					       }).done(function (data) {
     					          alert("결제 완료");
@@ -195,6 +196,7 @@ $(function(){
 	</tr>
 </table>
 </form>
+
 <div id="map" style="width:500px;height:400px;"></div>
 <script>
 		var container = document.getElementById('map');

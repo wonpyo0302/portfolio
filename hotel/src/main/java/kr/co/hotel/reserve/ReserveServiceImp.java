@@ -20,7 +20,6 @@ public class ReserveServiceImp implements ReserveService {
 
 	@Override
 	public void insert(ReserveVO vo,GuestVO gvo) {
-		gvo.setTotalpoint(gvo.getTotalpoint() - vo.getUsed_point());
 		mapper.insert(vo);
 		mapper.guestUsedPointUpdate(gvo);
 		mapper.pointinsert(vo);
