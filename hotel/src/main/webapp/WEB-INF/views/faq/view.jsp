@@ -23,42 +23,117 @@
 
 <script src="/hotel/smarteditor/js/HuskyEZCreator.js"></script>
 <script src="/hotel/js/function.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<srcipt>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-</srcipt>
+<style>
+.Title {
+	font-style: bold;
+}
+
+#text {
+	display: none;
+	font-size: 20px;
+	background-color: pink;
+}
+
+#downbtn {
+	width: 25px;
+	height: 25px;
+}
+</style>
+
+<!-- 질문 클릭시 답변 보여주기 -->
+<script>
+	$(function() {
+		$(".item").click(function() {
+			$(this).find(".text").toggle(350);
+		})
+	});
+	
+
+
+</script>
+
+</head>
 <body>
-	<div class="faq list">
+	<br>
+	<br>
+	<br>
+	<div class="sub">
 		<div class="size">
-			<br> <br> <br> <br> <br> <br>
+			<br>
 			<h3 class="sub_title" style="text-align: left">FAQ</h3>
-			<br> <br>
+			<br>
 			<h6 class="sub_content" style="text-align: left">
 				<img src="/hotel/image/faq.png" width="40px"> 게스트 전용 자주 묻는 질문
 				게시판입니다.
 			</h6>
-			<br> <br> <br> <br>
-			<div class="q1" style="display: block">
-			 <span>[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png" id="downbtn" width="18px"></span>
-			 	<ul class="a1">
-				 	<li>
-				 		<font face="arial"> 
-							<span style="font-size: 13px; display: none;">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수 있습니다. </span>
-					 		<span style="font-family: arial; font-size: 10pt;">&nbsp;연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</span>
-					 	</font>
-					 </li> 
-				</ul>
-			</div>
-			
-			<div class="a2">
-				<p>
-					<font face="arial"> 
-					<span style="font-size: 13px; display: none;">일부 시간대에는 통화량이 많아
-							상담사 연결이 지연될 수 있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</span>
-					</font> <span style="font-family: arial; font-size: 10pt;">&nbsp;</span>
-			</div>
+			<br> 
+			<br>
+			<br>
+			<br>
+			<section id="wrapper">
+				<div class="container">
+					<ul class="list">
+						<li class="item">
+							<h5 class="Title">
+								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png"
+									id="downbtn"><span class="accIcon"></span>
+							</h5> 
+							<br>
+							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
+								있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</div>
+						</li>
+						<br>
+						<li class="item">
+							<h5 class="Title">
+								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png"
+									id="downbtn"><span class="accIcon"></span>
+							</h5> 
+							<br>
+							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
+								있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</div>
+						</li>
+						<br>
+						<li class="item">
+							<h5 class="Title">
+								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png"
+									id="downbtn"><span class="accIcon"></span>
+							</h5> 
+							<br>
+							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
+								있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</div>
+						</li>
+						<br>
+						<li class="item">
+							<h5 class="Title">
+								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png"
+									id="downbtn"><span class="accIcon"></span>
+							</h5> 
+							<br>
+							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
+								있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</div>
+						</li>
+						<br>
+						<li class="item">
+							<h5 class="Title">
+								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png"
+									id="downbtn"><span class="accIcon"></span>
+							</h5> 
+							<br>
+							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
+								있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</div>
+						</li>
+					</ul>
+				</div>
+			</section>
 		</div>
 	</div>
 </head>
 </body>
-</html> 
+</html>
+
+
+
+
