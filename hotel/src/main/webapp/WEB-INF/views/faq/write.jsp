@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@include file="/WEB-INF/views/includes/G_header.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,6 +20,13 @@
     <script src="/hotel/js/function.js"></script><!-- 22.08.03 추가 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><!-- 22.08.03 추가 -->
     
+    <style>
+    .title{
+    		width : 80%;
+    }
+    </style>
+    
+    
     <script>
     	function goSave(){
     		
@@ -26,6 +34,7 @@
     	}
  
     	});
+
     </script>
     
 </head>
@@ -33,7 +42,7 @@
     
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title">FAQ</h3>
+                <h3 class="sub_title" style="text-align:left">FAQ</h3>
     
                 <div class="bbs">
                 <form method="post" name="frm" id="frm" action="insert.do"  enctype="multipart/form-data" > 
@@ -44,9 +53,20 @@
                     <table class="board_write">
                         <tbody>
                         <tr>
+                            <th>문의유형</th>
+                            <td>
+                                <input type="checkbox" name="type" id="type" value="예약 문의"/> 예약 문의 <br>
+                                <input type="checkbox" name="type" id="type" value="결제 문의"/> 결제 문의 <br>
+                                <input type="checkbox" name="type" id="type" value="숙소 문의"/> 숙소 문의 <br>
+                                <input type="checkbox" name="type" id="type" value="포인트/쿠폰 문의"/> 포인트/쿠폰 문의 <br>
+                                <input type="checkbox" name="type" id="type" value="이용/기타 문의"/> 이용/기타 문의
+                            </td>
+                        </tr>
+                        <tr>
+                        <tr>
                             <th>제목</th>
                             <td>
-                                <input type="text" name="title" id="title" class="wid100" value=""/>
+                                <input type="text" name="title" id="title"  value=""/>
                             </td>
                         </tr>
                         <tr>

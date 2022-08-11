@@ -23,8 +23,7 @@ public class GuestFaqController {
 	// 조회
 	@GetMapping("/faq/view.do")
 	public String view(Model model, GuestFaqVO vo) {
-		model.addAttribute(vo.getGfaq_no());
-		model.addAttribute("data", service.view(vo));
+		model.addAttribute("data", service.view(vo.getGfaq_no()));
 		return "faq/view";
 	}
 	

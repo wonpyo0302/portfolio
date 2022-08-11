@@ -16,7 +16,7 @@
 	</select>
 	
 	<!-- 조회하기 -->
-	<select id="view" parameterType="kr.co.hotel.guestfaq.GuestFaqVO" resultType="kr.co.hotel.guestfaq.GuestFaqVO">
+	<select id="view" parameterType="int" resultType="kr.co.hotel.guestfaq.GuestFaqVO">
 		SELECT * FROM guestfaq WHERE gfaq_no = #{gfaq_no}
 	</select>
 	

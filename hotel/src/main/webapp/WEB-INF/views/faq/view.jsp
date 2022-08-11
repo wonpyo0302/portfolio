@@ -97,6 +97,7 @@
 			<br>
 			<h3 class="sub_title" style="text-align: left">FAQ</h3>
 			<br>
+			<form method="get" name="frm" id="frm" action="view.do">
 			<h6 class="sub_content" style="text-align: left">
 				<img src="/hotel/image/faq.png" width="40px"> 게스트 전용 자주 묻는 질문
 				게시판입니다.
@@ -111,7 +112,7 @@
 						<c:forEach items="${data.list }" var="faq" varStatus="status">
 							<li class="item">
 								<h5 class="Title">
-									[${data.gfaq_type }] ${data.gfaq_title } <img
+									${data.gfaq_type } ${data.gfaq_title } <img
 										src="/hotel/image/down.png" class="downbtn"> <span
 										class="accIcon"></span>
 								</h5> <br>
@@ -169,6 +170,7 @@
 					</ul>
 				</div>
 			</section>
+			</form>
 		</div>
 	</div>
 </head>

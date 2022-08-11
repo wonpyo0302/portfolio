@@ -21,8 +21,8 @@ public class GuestFaqServiceImpl implements GuestFaqService {
 	
 	//상세보기
 	@Override
-	public GuestFaqVO view(GuestFaqVO vo) {
-		return mapper.view(vo.getGfaq_no());
+	public GuestFaqVO view(int gfaq_no) {
+		return mapper.view(gfaq_no);
 	}
 
 	@Override
