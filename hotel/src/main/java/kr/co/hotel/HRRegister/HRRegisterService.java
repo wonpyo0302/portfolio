@@ -3,6 +3,8 @@ package kr.co.hotel.HRRegister;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.hotel.main.HotelVO;
+
 public interface HRRegisterService {
 	//목록
 	Map index (RoomVO vo);
@@ -23,12 +25,18 @@ public interface HRRegisterService {
 	boolean insert(RoomVO vo);
 	
 	//이미지 등록
-	boolean img_insert(RoomVO vo);
+	boolean img_insert(ImageVO ivo);
 	
-	RoomVO get_hotelInfo(int host_no);
+	//1개의 호텔 인스턴스 가져오기
+	HotelVO get_hotelInfo(int host_no);
 	
+	//가장 최근 저장된 1개의 객실 인스턴스 가져오기 
 	RoomVO get_roomInfo();
 	
-	List<RoomVO> get_imgList(int room_no);
+	//해당 객실의 이미지 리스트 가져오기
+	List<ImageVO> get_imgList(int room_no);
 	
+	boolean hotel_insert (HotelVO hvo);
+	
+	List<HotelVO> get_district_code (HotelVO hvo); 
 }

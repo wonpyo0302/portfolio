@@ -30,6 +30,7 @@ public class HotelVO {
 	
 	private String filename;
 	
+	
 	private int page;
 	private String searchField;
 	private String searchWord;

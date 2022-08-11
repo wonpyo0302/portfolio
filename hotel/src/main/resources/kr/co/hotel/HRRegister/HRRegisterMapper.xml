@@ -9,7 +9,7 @@
 			(#{host_no},#{hotel_no},#{number},#{room_name},#{room_content},#{room_price},#{status})
 	</insert>
 	
-	<insert id="img_insert" parameterType="kr.co.hotel.HRRegister.RoomVO" >
+	<insert id="img_insert" parameterType="kr.co.hotel.HRRegister.ImageVO" >
 		INSERT INTO image
 			( hotel_no,room_no, filename_org, filename_real, image_order, image_type)
 		VALUES
@@ -96,7 +96,7 @@
 	</delete>
 	
 	
-	<select id="get_hotelInfo" parameterType="int" resultType="kr.co.hotel.HRRegister.RoomVO">
+	<select id="get_hotelInfo" parameterType="int" resultType="kr.co.hotel.main.HotelVO">
 	<!-- 테이블 명이 변수로 들어갈수 있음 -->
 		select * from hotel where host_no =#{host_no}
 		
@@ -108,10 +108,37 @@
 		
 	</select>
 	
-	<select id="get_imgList" parameterType="int" resultType="kr.co.hotel.HRRegister.RoomVO">
+	<select id="get_imgList" parameterType="int" resultType="kr.co.hotel.HRRegister.ImageVO">
 		select * from image 
 		where room_no = #{room_no}
 		order by image_order
+	</select>
+	
+	
+	<insert id="hotel_insert" parameterType="kr.co.hotel.main.HotelVO" >
+		INSERT INTO hotel
+			(host_no, 
+			state_code, district_code, 
+			hotel_name, addr, tel, 
+			isConfirm, hotel_content, reject, 
+			lat, lot,  totalReview, totalLike)
+		VALUES
+			(#{host_no}, 
+			#{state_code}, #{district_code}, 
+			#{hotel_name}, #{addr}, #{tel}, 
+			#{isConfirm}, #{hotel_content}, #{reject}, 
+			#{lat}, #{lot},  #{totalReview}, #{totalLike});
+			
+			
+		<selectKey keyProperty="hotel_no" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+
+	</insert>
+	
+	
+	<select id="get_district_code" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
+		select * from district where district_code like '${state_code}%'
 	</select>
 	
 	
