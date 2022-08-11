@@ -174,10 +174,6 @@ public class HRRegisterController {
 		
 		
 		
-		
-		
-		
-		
 		@PostMapping("/myhotel/insert.do")
 		public String hotel_insert(HotelVO hvo, ImageVO ivo, Model model, @RequestParam("filename2") List<MultipartFile> filename, HttpServletRequest req ) {
 			//세션 정보 축출

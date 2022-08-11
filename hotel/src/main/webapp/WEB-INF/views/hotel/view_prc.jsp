@@ -11,19 +11,23 @@
     <meta name="format-detection" content="telephone=no, address=no, email=no">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>객실 상세 수정</title>
+    <title>게시판 등록</title>
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
     <script type="text/javascript">
-   
-    
-    
+    function del(room_no){
+    	if(confirm('삭제하시겠습니까?')){
+    		location.href='delete.do?room_no='+room_no
+    	}
+    }
+  
     </script>
-		
+
 	<style type="text/css">
-		
+	
+
 	</style>
 </head>
 <body>
@@ -32,32 +36,29 @@
             <div class="size">
             
             	
-                <h3 class="sub_title"> 객실 정보 수정 </h3>
+                <h3 class="sub_title"> 객실 정보 </h3>
     
                 <div class="bbs">
-                	<form method="get" name="frm" id="frm" action="update.do" enctype="multipart/form-data" > <!-- enctype="multipart/form-data" -->
+                	<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data" > <!-- enctype="multipart/form-data" -->
 	                   <input type="hidden" name = "room_no" value="${data.room_no }"/>
 	                    <table class="board_write">
 	                        <tbody>
 	                        <tr>
 	                            <th>객실명</th>
 	                            <td>
-	                            	<input type="text" name="room_name" id="room_name" class="wid100" value="${data.room_name}"/>
-	                               
+	                               ${data.room_name}
 	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <th>객실 번호</th>
 	                            <td>
-	                            	<input type="number" name="number" id="number" class="wid100" value="${data.number}"/>
-	                                 
+	                                 ${data.number}
 	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <th>객실 가격</th>
 	                            <td>
-	                            	<input type="number" step='10000' name="room_price" id="room_price" class="wid100" value="${data.room_price}"/>
-	                                 
+	                                 ${data.room_price}
 	                            </td>
 	                        </tr>
 	                        <tr>
@@ -79,23 +80,28 @@
 	                        <tr>
 	                            <th>객실 상세</th>
 	                            <td>
-	                             <textarea name="room_content" id="room_content">${data.room_content}</textarea>
+	                                 ${data.room_content}
 	                            </td>
 	                        </tr>
 	                        <tr>
 	                        	<th> 객실 사진</th>
 	                        	<td>
-	                        		<c:forEach items="${imgList }" var="img" varStatus="idx">
-		                        			<img src="/hotel/upload/${img.filename_real }" id="drag<c:out value='${idx.count }'/>"  width="128" height="128">
+	                        		<c:forEach items="${imgList }" var="img" varStatus="loop">
+	                        			
+	                        			<img src="/hotel/upload/${img.filename_real }" style="width:100px; height:100px; padding: 5px 5px 5px 5px; boarder='1';">
+	                        			
 	                        		</c:forEach>
 	                        	
+	                        	</td>
+			                     
 	                        </tr>
 	                        </tbody>
 	                    </table>
 	                    
 	                    <div class="btnSet"  style="text-align:right;">
                        		<a href="index.do" class="btn">목록으로</a>
-                      		<input type="submit" class="btn" value="수정하기">
+                      		<a href="edit.do?room_no=${data.room_no }" class="btn">수정</a>
+                         	<a class="btn" onclick="del(${data.room_no})" >삭제</a>
 	                    </div>
                     </form>
                 </div>

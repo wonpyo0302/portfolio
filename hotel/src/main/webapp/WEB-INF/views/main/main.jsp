@@ -94,32 +94,25 @@ body {
   <body>
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <div class="search_box">
-	<form class="search_box_form" action="/hotel/search.do">
-		<input type="text" size="50%" height="40px" id="searchWord" name="searchWord" value="호텔이름을 입력하세요" ><br>
+	<form class="search_box_form" action="/hotel/main/search.do" method="get">
+		<input type="text" size="50%" height="40px" id="searchWord" name="searchWord" value="" placeholder="호텔이름을 입력하세요" ><br>
 		
 		<div class ="location_box">
 			<div class ="location_box_select">
+				<span style="align-items: flex-end;">지역 카테고리를 선택하세요.</span>
 				<select name ="selectbox_state" id="selectbox_state" onchange="optionChange()">
-					<option value ="1" selected>시/도</option>
-					<option value ="11" >서울</option>
-					<option value ="23" >인천</option>
-					<option value ="31" >경기</option>
+					<option value ="" selected>시/도</option>
+					<c:forEach var ="state" items="${list}">
+					<option value ="${state.state_code}" >${state.state_name}</option>
+					</c:forEach>
 				</select>
 				
 				<select name ="selectbox_district" id="selectbox_district" >
 					<option value ="2" selected>시/군/구</option>
 				</select>
 				
-				<select name ="soltType" id="soltType" onchange="soltList()" >
-					<option value ="" selected>---</option>
-					<option value ="score" >평점순</option>
-					<option value ="balance" >낮은 가격순</option>
-					<option value ="review" >리뷰순</option>
-					<option value ="like" >좋아요순</option>
-				</select>
 				<input type="submit" value="검색">
 				</div>
-	
 			</div>
 	</form><br>
 	</div>
@@ -188,33 +181,21 @@ body {
 	<!-- 동적셀렉트 -->
 	<script>
 	function optionChange() {
-		
-		var type = $("#selectbox_state").val();
-		var submitObj = new Object();
-		
 		$.ajax({
 			url : "district.do",
 			type : "POST",
 			data : {
-					state_code : type
+					state_code : $("#selectbox_state").val()
 				},
 			success : function(result) {
-				//console.log(typeof(result));
-				console.log(result.length);
-				//셀렉트박스에 값을 뿌려줌
-				//for (var i=0; i<result.length; i++){
-					//type.val(result[i].district_name);				
-					//console.log(result[i].district_name);
-					
-					
-					var str = "<option value =" + 2 + " selected>시/군/구</option>";
-					if($("#selectbox_state").val() != "1"){
-						$.each(result, function(i){
-	                        str += "<option value = ";
-	                        str +=  + result[i].district_code +""; 
-	                        str +=  ">" +result[i].district_name+"</option>"
-	                    });
-					} else {
+				var str = "<option value =" + 2 + " selected>시/군/구</option>";
+				if($("#selectbox_state").val() != ""){
+					$.each(result, function(i){
+	                   str += "<option value = ";
+	                   str +=  + result[i].district_code +""; 
+	                   str +=  ">" +result[i].district_name+"</option>"
+	                });
+				} else {
 						str = "<option value =" + 2 + " selected>시/군/구</option>";
 					}
 					$("#selectbox_district").empty($("#selectbox_district").val());
