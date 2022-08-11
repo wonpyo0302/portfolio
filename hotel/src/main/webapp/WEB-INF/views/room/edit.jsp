@@ -11,7 +11,7 @@
     <meta name="format-detection" content="telephone=no, address=no, email=no">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>게시판 등록</title>
+    <title>객실 상세 수정</title>
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -22,12 +22,12 @@
     		location.href='delete.do?room_no='+room_no
     	}
     }
-  
+    
+    
     </script>
-
+		
 	<style type="text/css">
-	
-
+		
 	</style>
 </head>
 <body>
@@ -36,7 +36,7 @@
             <div class="size">
             
             	
-                <h3 class="sub_title"> 객실 정보 </h3>
+                <h3 class="sub_title"> 객실 정보 수정 </h3>
     
                 <div class="bbs">
                 	<form method="get" name="frm" id="frm" action="update.do" enctype="multipart/form-data" > <!-- enctype="multipart/form-data" -->
@@ -89,20 +89,17 @@
 	                        <tr>
 	                        	<th> 객실 사진</th>
 	                        	<td>
-	                        		<c:forEach items="${imgList }" var="img" varStatus="loop">
-		                        			<img src="/hotel/upload/${img.filename_real }" style="width:100px; height:100px; padding: 5px 5px 5px 5px; boarder='1';">
+	                        		<c:forEach items="${imgList }" var="img" varStatus="idx">
+		                        			<img src="/hotel/upload/${img.filename_real }" id="drag<c:out value='${idx.count }'/>"  width="128" height="128">
 	                        		</c:forEach>
 	                        	
-	                        	</td>
-			                     
 	                        </tr>
 	                        </tbody>
 	                    </table>
 	                    
 	                    <div class="btnSet"  style="text-align:right;">
                        		<a href="index.do" class="btn">목록으로</a>
-                      		<a href="update.do?room_no=${data.room_no }" class="btn">수정하기</a>
-                      		<input type="submit" class="btn" value="수정하기2">
+                      		<input type="submit" class="btn" value="수정하기">
 	                    </div>
                     </form>
                 </div>

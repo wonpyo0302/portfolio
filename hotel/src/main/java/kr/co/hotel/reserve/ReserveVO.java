@@ -14,7 +14,7 @@ public class ReserveVO {
 	private String startdate; 
 	private String enddate; 
 	private int used_point; 
-	private String cancledate; 
+	private String canceldate; 
 	private int total_price; 
 	private int use_status; 
 	private int rev_status;
