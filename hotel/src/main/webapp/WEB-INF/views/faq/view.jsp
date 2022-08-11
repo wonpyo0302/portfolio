@@ -108,53 +108,61 @@
 			<section id="wrapper">
 				<div class="container">
 					<ul class="list">
-						<li class="item">
-							<h5 class="Title">
-								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png" class="downbtn">
-							 <span class="accIcon"></span>
-							</h5> <br>
-							<div>
-								<div class="text" id="text">
-									일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수 있습니다.
-									<div>
-										<span class="text" id="text">연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수 있습니다.</span>
+						<c:forEach items="${data.list }" var="faq" varStatus="status">
+							<li class="item">
+								<h5 class="Title">
+									[${data.gfaq_type }] ${data.gfaq_title } <img
+										src="/hotel/image/down.png" class="downbtn"> <span
+										class="accIcon"></span>
+								</h5> <br>
+								<div>
+									<div class="text" id="text">
+										${data.gfaq_content }
+										<div>
+											<span class="text" id="text">연결 지연 시, 문의사항을 남겨주시면
+												감사하겠습니다.일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수 있습니다.</span>
+										</div>
 									</div>
 								</div>
-							</div>
-						</li>
-						<br><br>
+							</li>
+						</c:forEach>
+						<br>
+						<br>
 						<li class="item">
 							<h5 class="Title">
-								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png" class="downbtn"><span class="accIcon"></span>
-							</h5> 
-							<br>
+								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png"
+									class="downbtn"><span class="accIcon"></span>
+							</h5> <br>
 							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
 								있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</div>
 						</li>
-						<br><br>
+						<br>
+						<br>
 						<li class="item">
 							<h5 class="Title">
-								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png" class="downbtn"><span class="accIcon"></span>
-							</h5> 
-							<br>
+								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png"
+									class="downbtn"><span class="accIcon"></span>
+							</h5> <br>
 							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
 								있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</div>
 						</li>
-						<br><br>
+						<br>
+						<br>
 						<li class="item">
 							<h5 class="Title">
-								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png" class="downbtn"><span class="accIcon"></span>
-							</h5> 
-							<br>
+								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png"
+									class="downbtn"><span class="accIcon"></span>
+							</h5> <br>
 							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
 								있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</div>
 						</li>
-						<br><br>
+						<br>
+						<br>
 						<li class="item">
 							<h5 class="Title">
-								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png" class="downbtn"><span class="accIcon"></span>
-							</h5> 
-							<br>
+								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png"
+									class="downbtn"><span class="accIcon"></span>
+							</h5> <br>
 							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
 								있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</div>
 						</li>
