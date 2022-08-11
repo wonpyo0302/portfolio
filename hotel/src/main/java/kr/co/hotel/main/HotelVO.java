@@ -33,16 +33,9 @@ public class HotelVO {
 	private int page;
 	private String searchField;
 	private String searchWord;
-	private int startIdx;
-	private int pageRow;
+	private String selectbox_district;
+	private String selectbox_state;
+	private String soltType;
 	
-	public HotelVO() {
-//		this.page = 1;
-//		this.pageRow = 10;
-		this(1, 10);
-	}
-	public HotelVO(int page, int pageRow) {
-		this.page = page;
-		this.pageRow = pageRow;
-	}
+
 }
