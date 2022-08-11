@@ -47,12 +47,10 @@
 <script>
 	$(function() {
 		$(".item").click(function() {
-			$(this).find(".text").toggle(350);
+			$(".text").slideUp("fast");
+			$(this).find(".text").slideDown("fast");            
 		})
 	});
-	
-
-
 </script>
 
 </head>
