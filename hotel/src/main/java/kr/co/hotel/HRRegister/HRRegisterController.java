@@ -97,42 +97,42 @@ public class HRRegisterController {
 	
 	
 	@GetMapping("/room/view.do")
-	public String view(RoomVO vo, Model model, HttpServletRequest req ) {
+	public String view(RoomVO vo, Model model) {
 		RoomVO data = service.view(vo.getRoom_no());
 		List<RoomVO> imgList = service.get_imgList(vo.getRoom_no());
 		model.addAttribute("data", data);
 		model.addAttribute("imgList", imgList);
-		
-		String path = req.getRealPath("/upload/");
-		model.addAttribute("path", path);
-		
-		
+				
 		return "room/view";
-		
 	}
 	
 	
 	@GetMapping("/room/edit.do")
 	public String edit(RoomVO vo, Model model) {
 		RoomVO data = service.edit(vo.getRoom_no());
+		List<RoomVO> imgList = service.get_imgList(vo.getRoom_no());
 		model.addAttribute("data", data);
+		model.addAttribute("imgList", imgList);
+		
+		
 		return "room/edit";
 		
 
 	}
-	/*
-	 @PostMapping("/room/update.do")	
+	
+	 @GetMapping("/room/update.do")	
 	 public String update(RoomVO vo, Model model) {
+		 System.out.println("vo 확인 : "+ vo);
 		 if(service.update(vo)) {
 			 model.addAttribute("msg","정상적으로 수정되었습니다");
-			 model.addAttribute("url","view.do?no="+vo.getNo());
+			 model.addAttribute("url","view.do?room_no="+vo.getRoom_no());
 			 return"common/alert";
 		 }else {
 			 model.addAttribute("msg","수정 실패");
 			 return"common/alert";
 		 }
 	 }
-	 	 */
+	 	 
 	 @GetMapping("/room/delete.do")	
 	 public String delete(RoomVO vo, Model model) {
 		 if(service.delete(vo.getRoom_no())) {

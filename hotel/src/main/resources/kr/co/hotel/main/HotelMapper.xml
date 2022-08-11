@@ -44,7 +44,8 @@
 	 <select id="hotelTopFive" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
 	 <![CDATA[
 	 	SELECT *, 
-	 		(SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice
+	 		(SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice,
+	 		(SELECT filename_org FROM image i WHERE i.hotel_no = h.hotel_no limit 1) AS filename
 	 	FROM hotel h
         where state_code = ${state_code}
 	 	LIMIT 5
@@ -59,7 +60,7 @@
 		ON l.hotel_no = r.hotel_no
 		<where>
 			<if test="searchWord !=''"> <!-- 2번 -->
-				addr LIKE %#{searchWord}% OR hotel_name = %#{searchWord}%
+				addr LIKE %#{searchWord}% OR hotel_name LIKE %#{searchWord}%
 				<if test="selectbox_state !=null">
 					AND state_code = #{selectbox_state}
 					<if test="searchbox_district !=null">
@@ -71,13 +72,21 @@
 		ORDER BY #{soltType}
 	</select>
 
-	<!-- 메인화면에 지역별 3개 호텔의 이미지 불러오기 -->
-	<select id="imageInMainPage">
-		SELECT *,
-			(SELECT filename_org FROM image WHERE hotel_no = hotel.hotel_no limit 1) AS filename
-		FROM hotel
-		WHERE state_code = ${state_code}
-		limit 5; 
+<!-- 시도코드와 시군구 코드 가져오기 -->
+	<select id="getDistrict" resultType="kr.co.hotel.main.HotelVO">
+		SELECT * FROM district where district_code LIKE '${state_code}%'
 	</select>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </mapper>

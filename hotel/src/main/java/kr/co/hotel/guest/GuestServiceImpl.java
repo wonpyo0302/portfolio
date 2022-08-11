@@ -72,5 +72,8 @@ public class GuestServiceImpl implements GuestService {
 			return null;
 		}
 	}
-
+	@Override
+	public int myinfoLogin(String guest_pwd) {
+		return gmapper.myinfoLogin(guest_pwd);
+	}
 }

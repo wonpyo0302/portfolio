@@ -16,15 +16,13 @@ public interface HotelMapper {
 	//지역별 5개추천
 	List<HotelVO> hotelTopFive(HotelVO vo);
 	
-	//지역별 이미지 5개
-	List<HotelVO> imageInMainPage(HotelVO vo);
-	
 	//목록검색
 	List<HotelVO> searchList(HotelVO vo); 
 	
 	//페이징처리
 	public List<HotelVO> pagingList(HotelVO vo);
 	
-	
+	//시군구코드 및 이름 가져오기
+	List<HotelVO> getDistrict(HotelVO vo);
 	
 }

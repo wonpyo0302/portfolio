@@ -60,14 +60,8 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public Model imageInMainPage(HotelVO vo, Model model) {
-		vo.setState_code(11);
-		model.addAttribute("imageSeoul",mapper.hotelTopFive(vo));
-		vo.setState_code(23);
-		model.addAttribute("imageIncheon",mapper.hotelTopFive(vo));
-		vo.setState_code(31);
-		model.addAttribute("imageKyeonggi",mapper.hotelTopFive(vo));
-		return model;
+	public List<HotelVO> LocationInfo(HotelVO vo) {
+		return mapper.getDistrict(vo);
 	}
 
 }
