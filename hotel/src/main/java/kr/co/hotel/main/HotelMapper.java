@@ -22,6 +22,7 @@ public interface HotelMapper {
 	//페이징처리
 	public List<HotelVO> pagingList(HotelVO vo);
 	
-	
+	//시군구코드 및 이름 가져오기
+	List<HotelVO> getDistrict(HotelVO vo);
 	
 }

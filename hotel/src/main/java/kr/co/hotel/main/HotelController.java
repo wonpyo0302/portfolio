@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.AllArgsConstructor;
 
@@ -28,6 +29,16 @@ public class HotelController {
 	public String searchList(HotelVO vo, Model model) {
 		model.addAttribute("list", service.searchList(vo));
 		return "/main/search.do";
+	}
+	
+	@PostMapping("/main/district.do")
+	@ResponseBody
+	public List selectBox(HotelVO vo, Model model) {
+		List list = service.LocationInfo(vo);
+		System.out.println(list);
+		return list;
+		
+		
 	}
 	
 }
