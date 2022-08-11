@@ -17,9 +17,9 @@ public class HotelVO {
 	private String hotel_content;
 	private String reject;
 	private int state_code;
-	private int state_name;
+	private String state_name;
 	private int district_code;
-	private int district_name;
+	private String district_name;
 	private String lat;
 	private String lot;
 	private int lowPrice;
@@ -29,6 +29,7 @@ public class HotelVO {
 	private int totalLike;
 	
 	private String filename;
+	
 	
 	private int page;
 	private String searchField;

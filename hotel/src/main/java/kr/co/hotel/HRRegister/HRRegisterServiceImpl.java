@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import kr.co.hotel.main.HotelVO;
 @Service
 public class HRRegisterServiceImpl implements HRRegisterService {
 
@@ -81,12 +83,12 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 	}
 
 	@Override
-	public boolean img_insert(RoomVO vo) {
-		return mapper.img_insert(vo) > 0 ? true : false;
+	public boolean img_insert(ImageVO ivo) {
+		return mapper.img_insert(ivo) > 0 ? true : false;
 	}
 
 	@Override
-	public RoomVO get_hotelInfo(int host_no) {
+	public HotelVO get_hotelInfo(int host_no) {
 		return mapper.get_hotelInfo(host_no);
 	}
 
@@ -96,8 +98,19 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 	}
 
 	@Override
-	public List<RoomVO> get_imgList(int room_no) {
+	public List<ImageVO> get_imgList(int room_no) {
 		return mapper.get_imgList(room_no);
+	}
+
+	@Override
+	public boolean hotel_insert(HotelVO hvo) {
+		return mapper.hotel_insert(hvo) > 0 ? true : false;
+	}
+
+	@Override
+	public List<HotelVO> get_district_code(HotelVO hvo) {
+		
+		return mapper.get_district_code(hvo);
 	}
 
 }

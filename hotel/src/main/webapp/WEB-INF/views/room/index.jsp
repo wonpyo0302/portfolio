@@ -22,10 +22,92 @@
 
 
 <body>
-    
+
+
+	   <!-- hotel 정보  -->
         <div class="sub">
+                   <div class="size">
+                <h3 class="sub_title">호텔 등록 신청</h3>
+    
+                <div class="bbs">
+                    <table class="list">
+                    <p><span><strong>총 ${data.totalCount}개</strong>  |  ${roomVO.page}/${data.totalPage}페이지</span></p>
+                        <caption>게시판 목록</caption>
+                        <colgroup>
+                            <col width="*" />
+                            <col width="*" />
+                            <col width="*" />
+                            <col width="*" />
+                            <col width="*" />
+                        </colgroup>
+                        <thead style="text-align:center;">
+                            <tr>
+                                <th>번호</th>
+                                <th>객실명 | 객실번호</th>
+                                <th>수용 인원</th>
+                                <th>객실 가격</th>
+                                <th>체크인/아웃</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+							
+							<c:if test="${empty data.list}">
+	                            <tr>
+	                                <td class="first" colspan="5">등록된 글이 없습니다.</td>
+	                            </tr>
+							</c:if>
+							
+								
+							<c:forEach items="${data.list}" var="row" varStatus="loop">
+							
+	                            <tr>
+	                                <td>
+	                                	${data.totalCount - loop.index -(roomVO.page-1)*roomVO.pageRow}
+	                                </td>
+	                                
+	                                <td class="txt_l">
+	                                   ${row.room_name} | ${row.number}
+	                                </td>
+	                                
+	                                <td>
+	                                	2 명 
+	                                </td>
+	                                
+	                                
+	                                <td class="writer">
+	                                    ${row.room_price}
+	                                </td>
+	                                <td class="date">
+	                                	13:00 / 11:00
+	                                </td><!-- 시간 포멧 -->
+	                                
+	                                <td>
+	                                	<strong><a href="view.do?room_no=${row.room_no}" onmouseover=""> [상세보기] </a></strong> <br>
+	                                	<strong><a href="edit.do?room_no=${row.room_no}"> [수정하기] </a></strong>
+	                                </td>
+	                            </tr>
+	                            
+							</c:forEach>
+					
+							
+						
+                        </tbody>
+                    </table>
+                    <!-- 로그인한 사람만 글쓰기 버튼을 눌를 수 있도록 -->
+                    
+                </div>
+                    <div class="btnSet"  style="text-align:right;">
+                    <c:if test=""></c:if>
+	                        <a class="btn" href="../myhotel/write.do"> 호텔 등록 + </a>
+                    
+                    </div>
+            </div>
+            
+            
+            
+    <!-- room 정보  -->
             <div class="size">
-                <h3 class="sub_title">호텔&객실 등록 신청</h3>
+                <h3 class="sub_title">객실 등록 신청</h3>
     
                 <div class="bbs">
                     <table class="list">
@@ -94,10 +176,9 @@
                     <!-- 로그인한 사람만 글쓰기 버튼을 눌를 수 있도록 -->
                     
                     <div class="btnSet"  style="text-align:right;">
-	                  
 	                        <a class="btn" href="write.do"> 객실 등록 + </a>
-	                 
                     </div>
+                    
                      <div class="pagenate clear">
 		               <ul class='paging'>
 			               <c:if test="${data.prev ==true }">
