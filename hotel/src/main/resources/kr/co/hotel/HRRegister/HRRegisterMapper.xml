@@ -59,14 +59,12 @@
 	</select>
 	
 	<select id="view" parameterType="java.lang.Integer" resultType="kr.co.hotel.HRRegister.RoomVO">
-		
 		select * from room
 		where room_no = #{xx}
 		<!--#{xx}> #{아무 이름이나 써도 괜찮다} 정수 하나만 넘어오니까-->
 	</select>
 	
-	
-	
+		
 	
 	<update id="update" parameterType="kr.co.hotel.HRRegister.RoomVO">
 	
@@ -98,7 +96,12 @@
 	
 	<select id="get_hotelInfo" parameterType="int" resultType="kr.co.hotel.main.HotelVO">
 	<!-- 테이블 명이 변수로 들어갈수 있음 -->
-		select * from hotel where host_no =#{host_no}
+		select * from hotel where host_no = #{host_no}
+		
+	</select>
+	<select id="get_hotelview" parameterType="int" resultType="kr.co.hotel.main.HotelVO">
+	<!-- 테이블 명이 변수로 들어갈수 있음 -->
+		select * from hotel where hotel_no = #{hotel_no}
 		
 	</select>
 	
@@ -108,9 +111,16 @@
 		
 	</select>
 	
-	<select id="get_imgList" parameterType="int" resultType="kr.co.hotel.HRRegister.ImageVO">
+	<select id="get_imgList" parameterType="kr.co.hotel.HRRegister.ImageVO" resultType="kr.co.hotel.HRRegister.ImageVO">
 		select * from image 
-		where room_no = #{room_no}
+		<where>
+			<if test="image_type == 'ROOM'">
+				room_no = #{room_no}
+			</if>
+			<if test="image_type == 'HOTEL'">
+				hotel_no = #{hotel_no}
+			</if>
+		</where>
 		order by image_order
 	</select>
 	
@@ -140,6 +150,8 @@
 	<select id="get_district_code" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
 		select * from district where district_code like '${state_code}%'
 	</select>
+	
+	
 	
 	
   

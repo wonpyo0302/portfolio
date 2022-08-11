@@ -30,23 +30,21 @@ public class HRRegisterController {
 	
 	//on going
 	@GetMapping("/room/index.do")
-	public String index(Model model, RoomVO vo, HttpSession sess, HttpServletRequest req) {
+	public String index(Model model,HotelVO hvo, RoomVO vo, HttpSession sess, HttpServletRequest req) {
 		System.out.println(req.getRealPath("/upload"));
 		HostVO loginInfo1 = new HostVO();// demo data
-		loginInfo1.setHost_no(1);//demo data
+		loginInfo1.setHost_no(50);//demo data
 		loginInfo1.setHost_name("호스트 ");//demo data
 		sess.setAttribute("loginInfo", loginInfo1);
 		HostVO Host_loginInfo = (HostVO) sess.getAttribute("loginInfo");
 		
 		
-		Map map = service.index(vo);
-		System.out.println("map 확인 : " + map);
-		model.addAttribute("point", map);
-		 Map m =service.index(vo);
-		 System.out.println("리스트 확인 : "+ m.get("list"));
-		
-		
 		model.addAttribute("data", service.index(vo));
+		//-----------이하 호텔--------------------------------
+		HotelVO hotelInfo = service.get_hotelInfo(Host_loginInfo.getHost_no());//1개의 호텔 인스턴스를 불러옴
+		if(hotelInfo.getHotel_no() != 0) {
+			model.addAttribute("Hdata", hotelInfo);
+		}
 		return "room/index";//검색...포함?
 	}
 	
@@ -67,9 +65,11 @@ public class HRRegisterController {
 		//세션에서 host_no를 가져옴, host_no로 hotel테이블에서 hotel_no를 가져옴
 		HostVO Host_loginInfo = (HostVO) sess.getAttribute("loginInfo");
 		Host_loginInfo.setHost_no(1);//demo data
+		
 		vo.setHost_no(Host_loginInfo.getHost_no());
 		HotelVO hotelInfo = service.get_hotelInfo(vo.getHost_no());
 		vo.setHotel_no(hotelInfo.getHotel_no());   
+		
 		vo.setImage_type("ROOM");
 		ImgHandling ih = new ImgHandling();//파일명을 org와 real 구분 후, map에 담아 반환하고 파일을 저장
 		
@@ -103,9 +103,13 @@ public class HRRegisterController {
 	
 	
 	@GetMapping("/room/view.do")
-	public String view(RoomVO vo, Model model) {
+	public String view(RoomVO vo, Model model, ImageVO ivo) {
 		RoomVO data = service.view(vo.getRoom_no());
-		List<ImageVO> imgList = service.get_imgList(vo.getRoom_no());
+		ivo.setRoom_no(vo.getRoom_no());
+		ivo.setImage_type("ROOM");
+		
+		List<ImageVO> imgList = service.get_imgList(ivo);
+		
 		model.addAttribute("data", data);
 		model.addAttribute("imgList", imgList);
 				
@@ -114,16 +118,15 @@ public class HRRegisterController {
 	
 	
 	@GetMapping("/room/edit.do")
-	public String edit(RoomVO vo, Model model) {
+	public String edit(RoomVO vo, Model model, ImageVO ivo) {
 		RoomVO data = service.edit(vo.getRoom_no());
-		List<ImageVO> imgList = service.get_imgList(vo.getRoom_no());
+		ivo.setRoom_no(vo.getRoom_no());
+		ivo.setImage_type("ROOM");
+		List<ImageVO> imgList = service.get_imgList(ivo);
 		model.addAttribute("data", data);
 		model.addAttribute("imgList", imgList);
 		
-		
 		return "room/edit";
-		
-
 	}
 	
 	 @GetMapping("/room/update.do")	
@@ -158,12 +161,11 @@ public class HRRegisterController {
 		@GetMapping("/myhotel/write.do")
 		public String hotelWrite() {
 			//로그인세션이 없으면 들어갈 수 없도록 처리
-			
 			return"/hotel/write";
 		}
 		
 		
-		// 지역코드
+		// 호텔등록페이지 지역코드 ajax
 		@PostMapping("/myhotel/district.do")
 		@ResponseBody
 		public List<HotelVO> district(HotelVO vo, Model model) {
@@ -183,7 +185,7 @@ public class HRRegisterController {
 
 			//세션에서 host_no를 가져옴, host_no로 hotel테이블에서 hotel_no를 가져옴
 			HostVO Host_loginInfo = (HostVO)sess.getAttribute("loginInfo");
-			Host_loginInfo.setHost_no(1);//demo data
+			Host_loginInfo.setHost_no(50);//demo data
 			hvo.setHost_no(Host_loginInfo.getHost_no());//hvo에 세션으로부터 host_no를 넣어줌
 			ivo.setImage_type("HOTEL");
 			ImgHandling ih = new ImgHandling();//파일명을 org와 real 구분 후, map에 담아 반환하고 파일을 저장
@@ -192,7 +194,7 @@ public class HRRegisterController {
 			
 			
 			if(service.hotel_insert(hvo)) {
-			//이미지 insert처리
+				//이미지 insert처리
 				if(!filename.get(0).isEmpty()) {//filename이 비어있는지 확인
 					ivo.setHotel_no(hvo.getHotel_no());
 					for(int i=0; i<filename.size(); i++) {
@@ -206,13 +208,41 @@ public class HRRegisterController {
 				}
 				
 				model.addAttribute("msg", "정상적으로 저장되었습니다");
-				model.addAttribute("url", "index.do");
+				model.addAttribute("url", "../room/index.do");
 				return "common/alert";
 			}else {
 				model.addAttribute("msg", "저장 실패하였습니다.");
 				return "common/alert";
 			}
 			
+		}
+		
+		@GetMapping("/myhotel/view.do")
+		public String H_view(HotelVO hvo, Model model, ImageVO ivo) {
+			
+			
+			HotelVO data = service.get_hotelview(hvo.getHotel_no());
+			model.addAttribute("data", data);
+			
+			ivo.setHotel_no(hvo.getHotel_no());
+			ivo.setImage_type("HOTEL");
+			
+			List<ImageVO> imgList = service.get_imgList(ivo);
+			model.addAttribute("imgList", imgList);
+					
+			return "hotel/view";
+		}
+		
+		@GetMapping("/myhotel/edit.do")
+		public String H_edit(HotelVO hvo, Model model, ImageVO ivo) {
+			HotelVO data = service.get_hotelview(hvo.getHotel_no());
+			ivo.setHotel_no(hvo.getHotel_no());
+			ivo.setImage_type("HOTEL");
+			List<ImageVO> imgList = service.get_imgList(ivo);
+			model.addAttribute("data", data);
+			model.addAttribute("imgList", imgList);
+			
+			return "hotel/edit";
 		}
 	
 }

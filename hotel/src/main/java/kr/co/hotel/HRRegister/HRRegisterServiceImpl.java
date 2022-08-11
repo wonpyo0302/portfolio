@@ -91,6 +91,11 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 	public HotelVO get_hotelInfo(int host_no) {
 		return mapper.get_hotelInfo(host_no);
 	}
+	
+	@Override
+	public HotelVO get_hotelview(int hotel_no) {
+		return mapper.get_hotelview(hotel_no);
+	}
 
 	@Override
 	public RoomVO get_roomInfo() {
@@ -98,8 +103,8 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 	}
 
 	@Override
-	public List<ImageVO> get_imgList(int room_no) {
-		return mapper.get_imgList(room_no);
+	public List<ImageVO> get_imgList(ImageVO ivo) {
+		return mapper.get_imgList(ivo);
 	}
 
 	@Override
@@ -112,5 +117,7 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 		
 		return mapper.get_district_code(hvo);
 	}
+
+	
 
 }
