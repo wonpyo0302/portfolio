@@ -43,7 +43,7 @@ public class GuestController {
 	@PostMapping("/guest/login.do")
 	public String login(GuestVO gvo, HttpSession sess, Model model) {
 		if (gservice.guestloginCheck(gvo, sess)) {
-			return "main/main";
+			return "redirect:/main/main.do";
 		} else {
 			model.addAttribute("msg", "비밀번호를 확인해 주세요");
 			return "common/alert";
@@ -64,6 +64,15 @@ public class GuestController {
 	public void idDupCheck(@RequestParam String guest_id, HttpServletResponse res) throws IOException {
 		int count = gservice.idDupCheck(guest_id);
 		boolean r = false;
+		if (count == 1) r = true;
+		PrintWriter out = res.getWriter();
+		out.print(r);
+		out.flush();
+	}
+	@GetMapping("/guest/hpDupCheck.do")
+	public void hpDupCheck(@RequestParam String guest_hp, HttpServletResponse res) throws IOException {
+		int count = gservice.hpDupCheck(guest_hp);
+		boolean r= false;
 		if (count == 1) r = true;
 		PrintWriter out = res.getWriter();
 		out.print(r);
@@ -107,21 +116,26 @@ public class GuestController {
 		}
 		return "common/return";
 	}
-	@GetMapping("guest/myinfo")
-	public String myinfo() {
-		return"guest/myinfoLogin";
+	@GetMapping("/guest/myinfo.do")
+	public String myinfo(HttpSession sess, Model model) {
+		if(sess.getAttribute("loginInfo") == null) {
+			model.addAttribute("msg","로그인이 필요한 기능입니다");
+			return "common/alert";
+		}else { return"/guest/myinfoLogin";
+		}
 	}
-	@GetMapping("/guest/myinfoLogin.do")
-	public void myinfoLogin(@RequestParam String guest_pwd, HttpServletResponse res, Model model) throws IOException {
-		int count=gservice.myinfoLogin(guest_pwd);
+	@PostMapping("/guest/myinfoLogin.do")
+	public void myinfoLogin(GuestVO gvo, HttpServletResponse res, HttpSession sess) throws IOException {
+		GuestVO count = gservice.myinfoLogin(gvo);
 		boolean r=false;
-		if(count==1) r=true;
+		if(count==sess.getAttribute("loginInfo")) r= true;
 		PrintWriter out = res.getWriter();
 		out.print(r);
 		out.flush();
+	
 	}
-	@PostMapping ("/guest/myinfoLogin.do")
-	public String myinfoLogin() {
-		return "guest/myinfoModify";
+	@PostMapping("/guest/myinfoModify.do")
+	public String myinfoModify() {
+		return "/guest/myinfoModify";
 	}
 }

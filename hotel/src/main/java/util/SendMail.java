@@ -26,7 +26,7 @@ public class SendMail {
 		
 		Session session = Session.getDefaultInstance(prop, new Authenticator() {//2번째 매개변수
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("qlc9", "blingbrave90!!");
+				return new PasswordAuthentication("gdbebe", "Wjd!1882244");
 			}
 		});
 		session.setDebug(true);
@@ -51,7 +51,7 @@ public class SendMail {
 	}
 	
 	public static void main(String[] args) {
-		sendMail("qlc9@naver.com", "blingbc@gmail.com", "test", "<b>한글</b>testest");
+		//sendMail("qlc9@naver.com", "blingbc@gmail.com", "test", "<b>한글</b>testest");
 	}
 
 }

@@ -19,6 +19,9 @@
 	<select id="idDupCheck" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM guest WHERE guest_id = #{guest_id}
 	</select>
+	<select id="hpDupCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM guest WHERE guest_hp = #{guest_hp}
+	</select>
 	<select id="guestloginCheck" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
 		SELECT * FROM guest WHERE guest_id = #{guest_id} AND guest_pwd = md5(#{guest_pwd})
 	</select>
@@ -33,7 +36,8 @@
 	<update id="updateTempGuestPwd" parameterType="kr.co.hotel.guest.GuestVO">
 		UPDATE guest SET guest_pwd = md5(#{guest_pwd}) WHERE guest_id=#{guest_id} AND guest_hp=#{guest_hp} AND guest_email = #{guest_email}
 	</update>
-	<select id="myinfoLogin" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM guest where md5(#{guest_pwd}) = guest_pwd
+	<select id="myinfoLogin" parameterType="String" resultType="kr.co.hotel.guest.GuestVO">
+		SELECT * FROM guest 
+		WHERE guest_pwd = md5(#{guest_pwd}) 
 	</select>
 </mapper>
