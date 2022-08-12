@@ -132,6 +132,18 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 		return mapper.get_district_code(hvo);
 	}
 
+	@Override
+	public boolean toAdmin(RoomVO vo, HotelVO hvo) {
+		
+		boolean r = mapper.room_toAdmin(vo) > 0 ? true:false;
+		boolean h = mapper.hotel_toAdmin(hvo) > 0 ? true:false;
+		
+		if(r&&h) {
+			return true;
+		}
+		return false;
+	}
+
 
 
 	
