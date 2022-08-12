@@ -16,9 +16,7 @@
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
-    <script type="text/javascript">
-
-    </script>
+   
     <!-- 우편번호 API -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -68,8 +66,11 @@
 	    }
 	</script>
 
-		<script>
-		
+	<script>
+	
+		$(function(){
+			optionChange();
+		})
 		
 			function optionChange() {
 				$.ajax({
@@ -83,7 +84,11 @@
 						
 						if($("#selectbox_state").val() != "1"){
 							$.each(result, function(i){
-								str += "<option value = "+ result[i].district_code + " label="+result[i].district_name+"></option>"
+								str += "<option value = '"+ result[i].district_code+"' ";
+								if (result[i].district_code == ${data.district_code}) {
+									str += " selected ";
+								}
+								str += ">"+result[i].district_name+"</option>"
 			                });
 						} else {
 								str = "<option value =2 selected>시/군/구</option>";
@@ -93,8 +98,10 @@
 						}
 				})
 			}
-		</script>
 		
+	</script>
+	
+	
 </head>
 <body>
     
@@ -105,8 +112,9 @@
     			<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*는 필수입력사항 입니다.</p>
     			
                 <div class="bbs">
-                	<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data" > <!-- enctype="multipart/form-data" -->
+                	<form method="post" name="frm" id="frm" action="../myhotel/update.do" enctype="multipart/form-data" > <!-- enctype="multipart/form-data" -->
 	                   <%--  <input type="hidden" name = "memberno" value="${loginInfo.no }"/> --%>
+	                   <input type="hidden" name = "hotel_no" value="${data.hotel_no }"/>
 	                    <table class="board_write">
 	                        <tbody>
 	                        <tr>
@@ -146,24 +154,24 @@
 	                            <th>*지역코드 입력</th>
 	                            <td> <c:if test="">selected</c:if>
 	                            	<select name='state_code' id="selectbox_state" onchange="optionChange()">
-										<option value='1' <c:if test="">selected</c:if> label='시 / 도' selected></option>
-										<option value='11' label='서울특별시'></option>
-										<option value='21' label='부산광역시'></option>
-										<option value='22' label='대구광역시'></option>
-										<option value='23' label='인천광역시'></option>
-										<option value='24' label='광주광역시'></option>
-										<option value='25' label='대전광역시'></option>
-										<option value='26' label='울산광역시'></option>
-										<option value='29' label='세종특별자치시'></option>
-										<option value='31' label='경기도'></option>
-										<option value='32' label='강원도'></option>
-										<option value='33' label='충청북도'></option>
-										<option value='34' label='충청남도'></option>
-										<option value='35' label='전라북도'></option>
-										<option value='36' label='전라남도'></option>
-										<option value='37' label='경상북도'></option>
-										<option value='38' label='경상남도'></option>
-										<option value='39' label='제주특별자치도'></option>
+										<option value='1'  label='시 / 도' selected></option>
+										<option value='11' <c:if test="${data.state_code ==11 }">selected</c:if> label='서울특별시'></option>
+										<option value='12' <c:if test="${data.state_code ==12 }">selected</c:if> label='부산광역시'></option>
+										<option value='13' <c:if test="${data.state_code ==13 }">selected</c:if> label='대구광역시'></option>
+										<option value='14' <c:if test="${data.state_code ==14 }">selected</c:if> label='인천광역시'></option>
+										<option value='15' <c:if test="${data.state_code ==15 }">selected</c:if> label='광주광역시'></option>
+										<option value='16' <c:if test="${data.state_code ==16 }">selected</c:if> label='대전광역시'></option>
+										<option value='17' <c:if test="${data.state_code ==17 }">selected</c:if> label='울산광역시'></option>
+										<option value='18' <c:if test="${data.state_code ==18 }">selected</c:if> label='세종특별자치시'></option>
+										<option value='19' <c:if test="${data.state_code ==19 }">selected</c:if> label='경기도'></option>
+										<option value='20' <c:if test="${data.state_code ==20 }">selected</c:if> label='강원도'></option>
+										<option value='21' <c:if test="${data.state_code ==21 }">selected</c:if> label='충청북도'></option>
+										<option value='22' <c:if test="${data.state_code ==22 }">selected</c:if> label='충청남도'></option>
+										<option value='23' <c:if test="${data.state_code ==23 }">selected</c:if> label='전라북도'></option>
+										<option value='24' <c:if test="${data.state_code ==24 }">selected</c:if> label='전라남도'></option>
+										<option value='25' <c:if test="${data.state_code ==25 }">selected</c:if>  label='경상북도'></option>
+										<option value='26' <c:if test="${data.state_code ==26 }">selected</c:if> label='경상남도'></option>
+										<option value='27' <c:if test="${data.state_code ==27 }">selected</c:if> label='제주특별자치도'></option>
 									</select>
 									
 									<select name='district_code' id="selectbox_district">
@@ -175,7 +183,7 @@
 	                        <tr>
 	                            <th>호텔 공지 사항</th>
 	                            <td>
-	                                <textarea name="hotel_content" id="hotel_content" value="${data.hotel_content }"></textarea>
+	                                <textarea name="hotel_content" id="hotel_content" >${data.hotel_content }</textarea>
 	                            </td>
 	                        </tr>
 	                        <tr>
@@ -190,7 +198,7 @@
 	                    </table>
 	                    
 	                    <div class="btnSet"  style="text-align:right;">
-	                        <a class="btn" href="javascript:goSave();">저장 </a>
+	                        <input type="submit" class="btn" value="수정하기">
 	                    </div>
                     </form>
                 </div>
