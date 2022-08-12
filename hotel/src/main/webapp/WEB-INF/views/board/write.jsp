@@ -43,6 +43,17 @@
                 그리고 loginInfo안에 MemberVO vo객체가 들어있는 것이고 member테이블에서는 member_no가 아니라 no!!!-->
                     <table class="board_write">
                         <tbody>
+                         <tr>
+                            <th>문의유형</th>
+                            <td>
+                            		<text type="text" name="text"/>문의유형을 선택하시면 빠른 답변을 받을 수 있습니다.<br><br>
+                                <input type="radio" name="type" id="type" value="예약 문의"/> 예약 문의 <br>
+                                <input type="radio" name="type" id="type" value="결제 문의"/> 결제 문의 <br>
+                                <input type="radio" name="type" id="type" value="숙소 문의"/> 숙소 문의 <br>
+                                <input type="radio" name="type" id="type" value="포인트/쿠폰 문의"/> 포인트/쿠폰 문의 <br>
+                                <input type="radio" name="type" id="type" value="이용/기타 문의"/> 이용/기타 문의
+                            </td>
+                        </tr>
                         <tr>
                             <th>제목</th>
                             <td>
