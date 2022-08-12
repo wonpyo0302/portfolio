@@ -83,63 +83,63 @@
 				<section id="wrapper">
 					<div class="container">
 						<ul class="list">
-							<c:forEach items="${data }" var="faq" varStatus="status">
+							<c:forEach items="${data }" var="qna" varStatus="status">
 							<!-- [예약 문의] -->
-								<c:if test="${faq.gfaq_type == 1}">
+								<c:if test="${qna.gboard_type == 1}">
 									<li class="item">
 										<h5 class="Title">
-											[예약 문의] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[예약 문의] &nbsp; ${qna.gboard_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
-											<div class="text" id="text">${faq.gfaq_content}</div>
+											<div class="text" id="text">${qna.gboard_content}</div>
 										</div>
 									</li>
 								</c:if>
 								
 								<!-- [결제 문의] -->
-								<c:if test="${faq.gfaq_type == 2}">
+								<c:if test="${qna.gboard_type == 2}">
 									<li class="item">
 										<h5 class="Title">
-											[결제 문의] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[결제 문의] &nbsp; ${qna.gboard_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
-											<div class="text" id="text">${faq.gfaq_content}</div>
+											<div class="text" id="text">${qna.gboard_content}</div>
 										</div>
 									</li>
 								</c:if>
 								
 								<!-- [숙소 문의] -->
-								<c:if test="${faq.gfaq_type == 3}">
+								<c:if test="${qna.gboard_type == 3}">
 									<li class="item">
 										<h5 class="Title">
-											[숙소 문의] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[숙소 문의] &nbsp; ${qna.gboard_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
-											<div class="text" id="text">${faq.gfaq_content}</div>
+											<div class="text" id="text">${qna.gboard_content}</div>
 										</div>
 									</li>
 								</c:if>
 								
 								<!-- [포인트/쿠폰 문의] -->
-								<c:if test="${faq.gfaq_type == 4}">
+								<c:if test="${qna.gboard_type == 4}">
 									<li class="item">
 										<h5 class="Title">
-											[포인트/쿠폰 문의] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[포인트/쿠폰 문의] &nbsp; ${qna.gboard_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
-											<div class="text" id="text">${faq.gfaq_content}</div>
+											<div class="text" id="text">${qna.gboard_content}</div>
 										</div>
 									</li>
 								</c:if>
 								
 								<!-- [이용/기타 문의] -->
-								<c:if test="${faq.gfaq_type == 5}">
+								<c:if test="${qna.gboard_type == 5}">
 									<li class="item">
 										<h5 class="Title">
-											[이용/기타 문의] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[이용/기타 문의] &nbsp; ${qna.gboard_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
-											<div class="text" id="text">${faq.gfaq_content}</div>
+											<div class="text" id="text">${qna.gboard_content}</div>
 										</div>
 									</li>
 								</c:if>
