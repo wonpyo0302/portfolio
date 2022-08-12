@@ -16,48 +16,63 @@
     />
     <!-- Demo styles -->
     <style>
-<
-style>html, body {
-	align-content: center;
-	position: relative;
-	height: auto;
-	width: auto;
-}
-
-body {
-	background: #eee;
-	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	color: #000;
-	margin: 0;
-	padding-top: 60px;
-}
-
-
-.search_box {
-	text-align: center;
-}
-
-#searchWord {
-	color: inherit;
-	text-decoration: none;
-	font-size: 1.4rem;
-	font-weight: 400;
-	height: 3.6rem;
-	padding-left: 1.6rem;
-	margin-left: auto;
-	border-radius: 0.4rem;
-	border: 1px solid #e6e6e6;
-	background-color: #f8f8f8;
-	color: #919191;
-	line-height: 3.6rem;
-}
-
-.hotel01 {
-	background-size: 150px;
-	height: 150px;
-}
-</style>
+		style>html, body {
+			align-content: center;
+			position: relative;
+			height: auto;
+			width: auto;
+		}
+		
+		body {
+			background: #eee;
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-size: 14px;
+			color: #000;
+			margin: 0;
+			padding-top: 60px;
+		}
+		
+		
+		.search_box {
+			text-align: center;
+		}
+		
+		#searchWord {
+			color: inherit;
+			text-decoration: none;
+			font-size: 1.4rem;
+			font-weight: 400;
+			height: 3.6rem;
+			padding-left: 1.6rem;
+			margin-left: auto;
+			border-radius: 0.4rem;
+			border: 1px solid #e6e6e6;
+			background-color: #f8f8f8;
+			color: #919191;
+			line-height: 3.6rem;
+		}
+		
+		.selectbox_solt{
+			float:right;
+			margin-right: 50px;
+		}
+		
+		.hotel01 {
+			background-size: 150px;
+			height: 150px;
+		}
+		.list_hotel {
+			border: 1px
+		}
+		.list_body {
+			margin-left : 200px;
+			text-align : center;
+			width : 80%;
+			height: auto;
+			border: 1px solid #003458;
+		}
+		
+	</style>
 
   </head>
 
@@ -81,27 +96,36 @@ body {
 					</c:forEach> 
 				</select>
 				
+				<input type="submit" value="검색">
 			</div>
 		</div>
-		<input type="submit" value="검색">
 	</form><br>
 	</div>
-	<select name="soltType" id="soltType" onchange="soltList()">
-		<option value="3" selected>---</option>
-		<option value="score">평점순</option>
-		<option value="balance">낮은 가격순</option>
-		<option value="review">리뷰순</option>
-		<option value="like">좋아요순</option>
-	</select>
-	<div class="hotel_list">
-		<c:forEach var="list" items="${hotelList}">
-			<div class="leftHotel">
-			${list.hotel_name }
-			</div>
-			<div class="rightHotel">
-			
-			</div>
-		</c:forEach>
+	<div class="selectbox_solt">
+		<select name="soltType" id="soltType" onchange="soltList()">
+			<option value="3" selected>---</option>
+			<option value="score">평점순</option>
+			<option value="balance">낮은 가격순</option>
+			<option value="review">리뷰순</option>
+			<option value="like">좋아요순</option>
+		</select>
+	</div>
+	<div class="list_body">
+		<div class="list_container">
+			<c:forEach var="list" items="${hotelList }" varStatus="idx">
+				<div class="list_hotel">
+					<a href="">
+							<div class="hotel_img" style="background-image: url(/hotel/image/hotel/${list.filename}.jpg);">
+							</div>
+						<div><p>${list.hotel_name}</p></div>
+						<span>최저가:  ${list.lowPrice } ~</span>
+					</a>
+				<c:if test="${idx.count %2 == 0 && !idx.last}">
+				</div>
+				<div class="hotel_list">
+				</c:if>
+			</c:forEach>
+		</div>
 	</div>
 	
 	

@@ -32,8 +32,6 @@ public class HotelController {
 	
 	@GetMapping("/main/search.do")
 	public String searchList(HotelVO vo, Model model, @RequestParam("selectbox_state") int state_code) {
-		System.out.println("##############################");
-		System.out.println("성동구 : "+vo.getSelectbox_district());
 		model.addAttribute("state", service.stateInfo(vo));
 		model.addAttribute("hotelList",service.searchList(vo));
 		vo.setState_code(state_code);
