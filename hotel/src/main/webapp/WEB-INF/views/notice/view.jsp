@@ -38,11 +38,19 @@
 		<div class="size">
 			<br> <br> <br>
 			<h3 class="sub_title" style="text-align: left">공지사항</h3>
+			<br>
+			<h6 class="sub_content" style="text-align: left">
+				<img src="/hotel/image/notice.png" width="60px"> 게스트 전용 공지사항
+				게시판입니다.
+			</h6>
+			<br>
+			<br>
+			<br>
+			<br>
 			<div class="bbs">
-				<form method="get" name="frm" id="frm" action="edit.do"
-					enctype="multipart/form-data">
+				<form method="get" name="frm" id="frm" action="edit.do" enctype="multipart/form-data">
 					<input type="hidden" name="gnotice_no" value="${data.gnotice_no}">
-					<!--  <input type="hidden" name="admin_no" value="${loginInfo.no}"> -->
+					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
 					<table class="board_write">
 						<div class="title">
 						<tr>
