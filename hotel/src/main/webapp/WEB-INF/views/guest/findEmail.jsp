@@ -54,7 +54,7 @@
         <form action="findGuestEmail.do" method="post" id="loginFrm1" name="loginFrm1" onsubmit="return findGuestEmail();"><!-- header에서 id="board"이미 사용중이라서 board2로 함 -->
             <div class="sub">
                 <div class="size">
-                    <h3 class="sub_title">이메일 찾기</h3>
+                    <h3 class="sub_title">GUEST 이메일 찾기</h3>
                     
                     <div class="member">
                         <div class="box">
@@ -67,10 +67,9 @@
                                 <div class="login_btn"><input type="submit" href="javascript:;" onclick="findGuestEmail();" value="이메일 찾기" alt="이메일 찾기" /></div>
                             </fieldset>
                             <div class="btnSet clear">
-                                <div>
                                     <a href="join.do" class="btn">회원가입</a> 
                                     <a href="findGuestPwd.do" class="btn">비밀번호 찾기</a>
-                                </div>
+                                    <a href="login.do" style="background-color:black; color:white;">로그인</a>
                             </div>
                         </div>
                     </div>
