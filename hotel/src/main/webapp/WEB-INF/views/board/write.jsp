@@ -46,7 +46,7 @@
                          <tr>
                             <th>문의유형</th>
                             <td>
-                            		<text type="text" name="text"/>문의유형을 선택하시면 빠른 답변을 받을 수 있습니다.<br><br>
+                            		<text type="text" name="text"/><img src="image/smile.png" > 문의유형을 선택하시면 빠른 답변을 받을 수 있습니다.<br><br>
                                 <input type="radio" name="type" id="type" value="예약 문의"/> 예약 문의 <br>
                                 <input type="radio" name="type" id="type" value="결제 문의"/> 결제 문의 <br>
                                 <input type="radio" name="type" id="type" value="숙소 문의"/> 숙소 문의 <br>
