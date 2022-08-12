@@ -54,12 +54,20 @@
 		
 		.selectbox_solt{
 			float:right;
-			margin-right: 50px;
+			margin-right: 74px;
 		}
 		
 		.hotel01 {
 			background-size: 150px;
 			height: 150px;
+		}
+		
+		.hotel_img {
+			max-height:150px;
+			align-items:center;
+			overflow:hidden;
+			display: flex;
+			justify-content:center;
 		}
 		.list_hotel {
 			border: 1px
@@ -70,6 +78,9 @@
 			width : 80%;
 			height: auto;
 			border: 1px solid #003458;
+		}
+		.container list {
+			flex: auto;
 		}
 		
 	</style>
@@ -110,22 +121,29 @@
 			<option value="like">좋아요순</option>
 		</select>
 	</div>
-	<div class="list_body">
-		<div class="list_container">
+	<div class="container list_body" style="text-align: center;">
+		<div class="low">
 			<c:forEach var="list" items="${hotelList }" varStatus="idx">
-				<div class="list_hotel">
-					<a href="">
-							<div class="hotel_img" style="background-image: url(/hotel/image/hotel/${list.filename}.jpg);">
-							</div>
-						<div><p>${list.hotel_name}</p></div>
-						<span>최저가:  ${list.lowPrice } ~</span>
-					</a>
-				<c:if test="${idx.count %2 == 0 && !idx.last}">
-				</div>
-				<div class="hotel_list">
-				</c:if>
-			</c:forEach>
+				<table class="container list" style="table-layout: fixed;">
+					<tr>
+						<td class="list_hotel">
+							<a href="">
+								<div class="hotel_img" style="background-image: url(/hotel/image/hotel/${list.filename}.jpg);">
+								</div>
+								<div><p>${list.hotel_name}</p></div>
+								<span>최저가:  ${list.lowPrice } ~</span>
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td>${list.hotel_content}</td>
+					</tr>
+				</table>
+			<c:if test="${idx.count % 2 == 0 && !idx.last}">
 		</div>
+		<div class="low">
+			</c:if>
+			</c:forEach>
 	</div>
 	
 	

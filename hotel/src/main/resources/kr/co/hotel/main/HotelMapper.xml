@@ -108,8 +108,10 @@
 
 
 
-
-
+<!-- 이미지 데이터 삽입 -->
+<insert id="insertImage">
+	INSERT INTO image ( hotel_no, filename_org) VALUES ( #{hotel_no}, #{filename_org})
+</insert>
 
 
 
