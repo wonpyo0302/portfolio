@@ -4,7 +4,7 @@ import java.util.Map;
 
 public interface GuestNoticeService {
 	Map index(GuestNoticeVO vo);
-	boolean insert(GuestNoticeVO  vo);
+	boolean insert(GuestNoticeVO vo);
 	GuestNoticeVO edit(int gnotice_no);
 	int updateViewcount(int gnotice_no);
 	boolean update(GuestNoticeVO vo);

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.hotel.guestfaq.GuestFaqVO;
+
 @Controller
 public class GuestBoardController {
 	
@@ -28,12 +30,12 @@ public class GuestBoardController {
 		return "board/view";
 	}
 
-	// 등록
+	// 등록폼
 	@GetMapping("/board/write.do")
 	public String write(Model model, GuestBoardVO vo) {
 		return "board/write";
 	}
-	
+	// 등록처리
 	@PostMapping("/board/write.do")
 	public String insert(Model model, GuestBoardVO vo) {
 		model.addAttribute("data", service.insert(vo));

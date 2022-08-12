@@ -29,7 +29,7 @@ public class GuestNoticeController {
 	public String view(Model model, GuestNoticeVO vo) {
 		service.updateViewcount(vo.getGnotice_no());
 		model.addAttribute("data", service.view(vo));
-		System.out.println("확인"+vo.getGnotice_content());
+	
 		return "notice/view";
 	}
 
