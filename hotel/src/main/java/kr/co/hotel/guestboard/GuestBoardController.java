@@ -26,16 +26,16 @@ public class GuestBoardController {
 	@GetMapping("/board/view.do")
 	public String view(Model model, GuestBoardVO vo) {
 		service.viewCount(vo.getGboard_no());
-		model.addAttribute("data", service.index(vo));
+		model.addAttribute("data", service.view(vo.getGboard_no()));
 		return "board/view";
 	}
 
-	// 등록
+	// 등록폼
 	@GetMapping("/board/write.do")
 	public String write(Model model, GuestBoardVO vo) {
 		return "board/write";
 	}
-	
+	// 등록처리
 	@PostMapping("/board/write.do")
 	public String insert(Model model, GuestBoardVO vo) {
 		model.addAttribute("data", service.insert(vo));

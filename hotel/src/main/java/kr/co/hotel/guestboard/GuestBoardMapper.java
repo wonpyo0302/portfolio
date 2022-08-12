@@ -11,7 +11,7 @@ public interface GuestBoardMapper {
 	List<GuestBoardVO> list(GuestBoardVO vo); // 목록
 	int updateViewcount(int gboard_no); // 조회수 증가
 	int count(GuestBoardVO vo); // 게시물 개수 체크
-	int update(int gboard_no); // 수정
+	int update(GuestBoardVO vo); // 수정
 	int delete(int gboard_no); // 삭제
 	GuestBoardVO view(int gboard_no); //상세보기
 
