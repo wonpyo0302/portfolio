@@ -101,14 +101,14 @@ body {
 			<div class ="location_box_select">
 				<span style="align-items: flex-end;">지역 카테고리를 선택하세요.</span>
 				<select name ="selectbox_state" id="selectbox_state" onchange="optionChange()">
-					<option value ="" selected>시/도</option>
+					<option value ="0" selected>시/도</option>
 					<c:forEach var ="state" items="${list}">
 					<option value ="${state.state_code}" >${state.state_name}</option>
 					</c:forEach>
 				</select>
 				
 				<select name ="selectbox_district" id="selectbox_district" >
-					<option value ="2" selected>시/군/구</option>
+					<option value ="0" selected>시/군/구</option>
 				</select>
 				
 				<input type="submit" value="검색">
@@ -188,15 +188,15 @@ body {
 					state_code : $("#selectbox_state").val()
 				},
 			success : function(result) {
-				var str = "<option value =" + 2 + " selected>시/군/구</option>";
-				if($("#selectbox_state").val() != ""){
+				var str = "<option value =" + 0 + " selected>시/군/구</option>";
+				if($("#selectbox_state").val() != 0){
 					$.each(result, function(i){
 	                   str += "<option value = ";
 	                   str +=  + result[i].district_code +""; 
 	                   str +=  ">" +result[i].district_name+"</option>"
 	                });
 				} else {
-						str = "<option value =" + 2 + " selected>시/군/구</option>";
+						str = "<option value =" + 0 + " selected>시/군/구</option>";
 					}
 					$("#selectbox_district").empty($("#selectbox_district").val());
                     $("#selectbox_district").append(str);

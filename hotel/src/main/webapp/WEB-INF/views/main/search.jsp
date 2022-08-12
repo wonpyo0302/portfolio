@@ -96,12 +96,14 @@
 		<div class ="location_box">
 			<div class ="location_box_select">
 				<select name ="selectbox_state" id="selectbox_state" onchange="optionChange()">
+					<option value ="0">시/도</option>
 					<c:forEach var ="state" items="${state}">
 					<option value ="${state.state_code}" <c:if test="${state.state_code == param.selectbox_state}">selected</c:if>>${state.state_name}</option>
 					</c:forEach>
 				</select>
 				
 				<select name ="selectbox_district" id="selectbox_district" >
+					<option value ="0">시/군/구</option>
 					<c:forEach var="district" items="${district}" >
 					<option value ="${district.district_code }"<c:if test="${district.district_code == param.selectbox_district}">selected</c:if>>${district.district_name }</option>
 					</c:forEach> 
@@ -112,9 +114,10 @@
 		</div>
 	</form><br>
 	</div>
+	<span>입력한 검색어: ${hotelVO.searchWord}</span>
 	<div class="selectbox_solt">
 		<select name="soltType" id="soltType" onchange="soltList()">
-			<option value="3" selected>---</option>
+			<option value="" selected>---</option>
 			<option value="score">평점순</option>
 			<option value="balance">낮은 가격순</option>
 			<option value="review">리뷰순</option>
@@ -126,7 +129,7 @@
 			<c:forEach var="list" items="${hotelList }" varStatus="idx">
 				<table class="container list" style="table-layout: fixed;">
 					<tr>
-						<td class="list_hotel">
+						<td class="list_hotel" style="border: 1px;">
 							<a href="">
 								<div class="hotel_img" style="background-image: url(/hotel/image/hotel/${list.filename}.jpg);">
 								</div>
@@ -139,11 +142,12 @@
 						<td>${list.hotel_content}</td>
 					</tr>
 				</table>
-			<c:if test="${idx.count % 2 == 0 && !idx.last}">
+			<c:if test="${idx.count % 3 == 0 && !idx.last}">
 		</div>
 		<div class="low">
 			</c:if>
 			</c:forEach>
+		</div>
 	</div>
 	
 	
@@ -162,7 +166,7 @@
 					state_code : $("#selectbox_state").val()
 				},
 			success : function(result) {
-				var str = "<option value =" + 2 + " selected>시/군/구</option>";
+				var str = "<option value =" + 0 + " selected>시/군/구</option>";
 				if($("#selectbox_state").val() != ""){
 					$.each(result, function(i){
 	                   str += "<option value = ";
@@ -170,7 +174,7 @@
 	                   str +=  ">" +result[i].district_name+"</option>"
 	                });
 				} else {
-						str = "<option value =" + 2 + " selected>시/군/구</option>";
+						str = "<option value =" + 0 + " selected>시/군/구</option>";
 					}
 					$("#selectbox_district").empty($("#selectbox_district").val());
                     $("#selectbox_district").append(str);
