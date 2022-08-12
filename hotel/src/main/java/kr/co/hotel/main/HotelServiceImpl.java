@@ -16,6 +16,7 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public List<HotelVO> searchList(HotelVO vo) {
+		System.out.println("서비스 : " + vo.getSelectbox_district());
 		return mapper.searchList(vo);
 	}
 
@@ -23,9 +24,9 @@ public class HotelServiceImpl implements HotelService {
 	public Model hotelTopFive(HotelVO vo, Model model) {
 		vo.setState_code(11);
 		model.addAttribute("listSeoul",mapper.hotelTopFive(vo));
-		vo.setState_code(23);
+		vo.setState_code(14);
 		model.addAttribute("listIncheon",mapper.hotelTopFive(vo));
-		vo.setState_code(31);
+		vo.setState_code(19);
 		model.addAttribute("listKyeonggi",mapper.hotelTopFive(vo));
 		return model;
 	}
@@ -38,6 +39,11 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public List<HotelVO> stateInfo(HotelVO vo) {
 		return mapper.getState(vo);
+	}
+
+	@Override
+	public int searchCount(HotelVO vo) {
+		return mapper.searchCount(vo);
 	}
 
 }

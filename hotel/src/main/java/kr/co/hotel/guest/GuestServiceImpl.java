@@ -4,8 +4,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
-import kr.co.hotel.guest.GuestVO;
 import util.SendMail;
 @Service
 public class GuestServiceImpl implements GuestService {
@@ -27,7 +27,10 @@ public class GuestServiceImpl implements GuestService {
 	public int idDupCheck(String guest_id) {
 		return gmapper.idDupCheck(guest_id);
 	}
-
+	@Override
+	public int hpDupCheck(String guest_hp) {
+		return gmapper.hpDupCheck(guest_hp);
+	}
 	@Override
 	public boolean guestloginCheck(GuestVO gvo, HttpSession sess) {
 		boolean r = false;
@@ -36,7 +39,6 @@ public class GuestServiceImpl implements GuestService {
 			r = true;
 			// 로그인 성공시 세션에 저장
 			sess.setAttribute("loginInfo", loginInfo);
-			
 		}
 		return r;
 	}
@@ -65,7 +67,7 @@ public class GuestServiceImpl implements GuestService {
 			gmapper.updateTempGuestPwd(gvo);
 			
 			// email발송
-			SendMail.sendMail("gdbebe@naver.com", gvo.getGuest_email(), "[둘이놀까]임시비밀번호", "임시비밀번호:"+temp);
+			SendMail.sendMail("gdbebe@naver.com", gvo.getGuest_email(), "[둘이놀까]Guest임시비밀번호", "임시비밀번호:"+temp);
 			
 			return mv;
 		} else {
@@ -73,7 +75,8 @@ public class GuestServiceImpl implements GuestService {
 		}
 	}
 	@Override
-	public int myinfoLogin(String guest_pwd) {
-		return gmapper.myinfoLogin(guest_pwd);
+	public GuestVO myinfoLogin(GuestVO gvo) {
+		return gmapper.myinfoLogin(gvo);
+		
 	}
 }

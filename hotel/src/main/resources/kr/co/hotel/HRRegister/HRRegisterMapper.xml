@@ -81,6 +81,23 @@
 		
 	</update>
 	
+	<update id="H_update" parameterType="kr.co.hotel.main.HotelVO">
+	
+		UPDATE hotel 
+		SET
+			
+			 state_code  = #{state_code},
+			 district_code  = #{district_code},
+			 hotel_name  = #{hotel_name},
+			 addr  = #{addr},
+			 tel  = #{tel},
+			 hotel_content  = #{hotel_content}
+		
+		WHERE  hotel_no  = #{hotel_no}
+
+		
+	</update>
+	
 
 	
 	<delete id="delete" parameterType="int">

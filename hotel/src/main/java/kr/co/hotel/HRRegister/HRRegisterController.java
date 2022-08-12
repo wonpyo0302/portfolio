@@ -236,6 +236,7 @@ public class HRRegisterController {
 		@GetMapping("/myhotel/edit.do")
 		public String H_edit(HotelVO hvo, Model model, ImageVO ivo) {
 			HotelVO data = service.get_hotelview(hvo.getHotel_no());
+			System.out.println("코드확인 : "+data.getState_code());
 			ivo.setHotel_no(hvo.getHotel_no());
 			ivo.setImage_type("HOTEL");
 			List<ImageVO> imgList = service.get_imgList(ivo);
@@ -245,4 +246,16 @@ public class HRRegisterController {
 			return "hotel/edit";
 		}
 	
+		 @PostMapping("/myhotel/update.do")	
+		 public String H_update(HotelVO hvo, Model model) {
+			 System.out.println("vo 확인 : "+ hvo);
+			 if(service.H_update(hvo)) {
+				 model.addAttribute("msg","정상적으로 수정되었습니다");
+				 model.addAttribute("url","view.do?hotel_no="+hvo.getHotel_no());
+				 return"common/alert";
+			 }else {
+				 model.addAttribute("msg","수정 실패");
+				 return"common/alert";
+			 }
+		 }
 }

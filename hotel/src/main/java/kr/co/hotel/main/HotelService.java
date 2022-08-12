@@ -16,4 +16,6 @@ public interface HotelService {
 	
 	public List<HotelVO> stateInfo(HotelVO vo);
 	
+	public int searchCount(HotelVO vo);
+	
 }

@@ -59,38 +59,31 @@ body {
 }
 </style>
 
-<script type="text/javascript">
-$(function() {
-	
-})
-</script>
-
   </head>
 
   <body>
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <div class="search_box">
-	<form class="search_box_form" action="/hotel/search.do">
+	<form class="search_box_form" action="/hotel/main/search.do">
 		<input type="text" size="50%" height="40px" id="searchWord" name="searchWord" value="" placeholder="호텔이름을 입력하세요" ><br>
 		
 		<div class ="location_box">
 			<div class ="location_box_select">
-				<select name ="state_code" id="selectbox_state" onchange="optionChange()">
+				<select name ="selectbox_state" id="selectbox_state" onchange="optionChange()">
 					<c:forEach var ="state" items="${state}">
 					<option value ="${state.state_code}" <c:if test="${state.state_code == param.selectbox_state}">selected</c:if>>${state.state_name}</option>
 					</c:forEach>
 				</select>
 				
-				<select name ="district_code" id="selectbox_district" >
+				<select name ="selectbox_district" id="selectbox_district" >
 					<c:forEach var="district" items="${district}" >
 					<option value ="${district.district_code }"<c:if test="${district.district_code == param.selectbox_district}">selected</c:if>>${district.district_name }</option>
 					</c:forEach> 
 				</select>
 				
-				<input type="submit" value="검색">
-				</div>
-	
 			</div>
+		</div>
+		<input type="submit" value="검색">
 	</form><br>
 	</div>
 	<select name="soltType" id="soltType" onchange="soltList()">
@@ -100,14 +93,25 @@ $(function() {
 		<option value="review">리뷰순</option>
 		<option value="like">좋아요순</option>
 	</select>
+	<div class="hotel_list">
+		<c:forEach var="list" items="${hotelList}">
+			<div class="leftHotel">
+			${list.hotel_name }
+			</div>
+			<div class="rightHotel">
+			
+			</div>
+		</c:forEach>
+	</div>
+	
+	
+	
+	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 	<!-- 동적셀렉트 -->
 	<script>
-	
-	
-	
 	function optionChange() {
 		$.ajax({
 			url : "district.do",
@@ -128,6 +132,18 @@ $(function() {
 					}
 					$("#selectbox_district").empty($("#selectbox_district").val());
                     $("#selectbox_district").append(str);
+				}
+		})
+	}
+	function soltList() {
+		$.ajax({
+			url : "soltType.do",
+			type : "POST",
+			data : {
+					soltType : $("#soltType").val()
+				},
+			success : function(result) {
+				
 				}
 		})
 	}

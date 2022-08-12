@@ -15,8 +15,11 @@ public interface HRRegisterService {
 	//수정폼 > 수정될 내용을 가져와야함, 
 	RoomVO edit(int no);
 	
-	//수정 처리 > 
+	//객실 수정 처리 > 
 	boolean update(RoomVO vo);
+	
+	//호텔 수정 처리
+	boolean H_update (HotelVO vo);
 	
 	//삭제 처리
 	boolean delete(int room_no);

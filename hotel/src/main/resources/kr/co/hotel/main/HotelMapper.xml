@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.hotel.main.HotelMapper">
-	
-	<select id="count" parameterType="kr.co.hotel.main.HotelVO" resultType="int">
-		SELECT COUNT(*) FROM hotel
-		<where>
-			<if test="searchWord != null and searchWord !=''">
-				<if test="searchField == 'title'">
-				${searchField}' LIKE '%${searchWord}%'
-				</if>
-				<if test="searchField == 'all'">
-				title LIKE '%${searchWord}%' OR content LIKE '%${searchWord}%'
-				</if>
-			</if>
-		</where>
-	</select>
-	
+	<!-- 모의데이터 인서트 -->
 	<insert id="insertMain">
 		INSERT INTO hotel (
 			host_no, hotel_name, addr, tel, isConfirm, hotel_content, reject, state_code, district_code, lat, lot, regdate
@@ -59,19 +45,50 @@
 		ON h.hotel_no = f.hotel_no LEFT JOIN review r
 		ON f.hotel_no = r.hotel_no
 		<where>
+			<if test="searchWord ==''">
+				state_code = #{selectbox_state}
+				<if test="selectbox_district !=null">
+					AND district_code = #{selectbox_district}
+				</if>
+			</if>
 			<if test="searchWord !=''"> <!-- 2번 -->
 				addr LIKE '%#{searchWord}%' OR hotel_name LIKE '%#{searchWord}%'
 				<if test="selectbox_state !=null">
-					AND state_code = #{selectbox-state}
+					AND state_code = #{selectbox_state}
+					<if test="selectbox_district !=null">
+						AND district_code = #{selectbox_district}
+					</if>
+				</if>
+			</if>
+		</where>
+		<if test="soltType != 3 | soltType != null">
+		ORDER BY #{soltType} DESC
+		</if>
+	</select>
+	
+	<!-- 검색 count -->
+	<select id="searchCount" parameterType ="kr.co.hotel.main.HotelVO" resultType="int">
+		SELECT COUNT(*) 
+		FROM hotel h LEFT JOIN favorit f
+		ON h.hotel_no = f.hotel_no LEFT JOIN review r
+		ON f.hotel_no = r.hotel_no
+		<where>
+			<if test="searchWord ==''">
+				state_code = #{selectbox_state}
+				<if test="searchbox_district !=null">
+					AND district_code = #{selectbox_district}
+				</if>
+			</if>
+			<if test="searchWord !=''"> <!-- 2번 -->
+				addr LIKE '%#{searchWord}%' OR hotel_name LIKE '%#{searchWord}%'
+				<if test="selectbox_state !=null">
+					AND state_code = #{selectbox_state}
 					<if test="searchbox_district !=null">
 						AND district_code = #{selectbox_district}
 					</if>
 				</if>
 			</if>
 		</where>
-		<if test="soltType != 3">
-		ORDER BY #{soltType} DESC
-		</if>
 	</select>
 
 <!-- 시도코드와 시군구 코드 가져오기 -->

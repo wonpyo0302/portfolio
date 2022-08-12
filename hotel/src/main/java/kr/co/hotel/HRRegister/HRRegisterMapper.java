@@ -20,6 +20,8 @@ public interface HRRegisterMapper {
 
 	public int update (RoomVO vo);
 	
+	public int H_update (HotelVO vo);
+	
 	public int delete (int room_no);
 	
 	public int delete_img(int room_no);

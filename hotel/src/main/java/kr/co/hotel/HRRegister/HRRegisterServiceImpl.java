@@ -48,21 +48,22 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 
 	@Override
 	public RoomVO view(int no) {
-		
-		
 		return mapper.view(no);
 	}
 
 	@Override
 	public RoomVO edit(int no) {
 		return mapper.view(no);
- 
-		
 	}
 
 	@Override
 	public boolean update(RoomVO vo) {
 		return mapper.update(vo) >0?true:false;
+	}
+	
+	@Override
+	public boolean H_update(HotelVO vo) {
+		return mapper.H_update(vo) > 0 ? true : false;
 	}
 
 	@Override
@@ -117,6 +118,8 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 		
 		return mapper.get_district_code(hvo);
 	}
+
+	
 
 	
 
