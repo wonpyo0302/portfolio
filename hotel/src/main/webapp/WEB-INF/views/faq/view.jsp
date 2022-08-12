@@ -49,7 +49,7 @@
 	background-color: pink;
 }
 
-#downbtn {
+.downbtn {
 	width: 25px;
 	height: 25px;
 	float : right;
@@ -67,10 +67,24 @@
 <script>
 	$(function() {
 		$(".item").click(function() {
-			$(".text").slideUp("fast");
-			$(this).find(".text").slideDown("fast");            
+			if ($(this).find(".text").css('display') == 'none') {
+				$(".text").slideUp("fast");
+				$(this).find(".text").slideDown("fast");  
+				$(".downbtn").attr("src", "/hotel/image/down.png"); 
+				$(this).find(".downbtn").attr("src", "/hotel/image/up.png");
+			} else {
+				$(this).find(".text").slideUp("fast"); 
+				$(".downbtn").attr("src", "/hotel/image/down.png"); 
+			}
 		})
+
 	});
+	
+
+
+	
+  
+	
 </script>
 
 </head>
@@ -83,75 +97,88 @@
 			<br>
 			<h3 class="sub_title" style="text-align: left">FAQ</h3>
 			<br>
+			<form method="get" name="frm" id="frm" action="view.do">
 			<h6 class="sub_content" style="text-align: left">
 				<img src="/hotel/image/faq.png" width="40px"> 게스트 전용 자주 묻는 질문
 				게시판입니다.
 			</h6>
 			<br> 
 			<br>
-			<br>
-			<br>
-			<section id="wrapper">
-				<div class="container">
-					<ul class="list">
-						<li class="item">
-							<h5 class="Title">
-								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? 
-								<img src="/hotel/image/down.png"	id="downbtn"><span class="accIcon"></span>
-							</h5> 
-							<br>
-							<div>
-							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
-								있습니다.</div>
-							<div> <span class="text" id="text">연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</span></div>
-							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
-								있습니다.</div>
-							</div>
-
-						</li>
-						<br>
-						<li class="item">
-							<h5 class="Title">
-								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png"
-									id="downbtn"><span class="accIcon"></span>
-							</h5> 
-							<br>
-							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
-								있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</div>
-						</li>
-						<br>
-						<li class="item">
-							<h5 class="Title">
-								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png"
-									id="downbtn"><span class="accIcon"></span>
-							</h5> 
-							<br>
-							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
-								있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</div>
-						</li>
-						<br>
-						<li class="item">
-							<h5 class="Title">
-								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png"
-									id="downbtn"><span class="accIcon"></span>
-							</h5> 
-							<br>
-							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
-								있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</div>
-						</li>
-						<br>
-						<li class="item">
-							<h5 class="Title">
-								[이용문의] 고객센터 연결 지연 시 어떻게 하나요?? <img src="/hotel/image/down.png"
-									id="downbtn"><span class="accIcon"></span>
-							</h5> 
-							<br>
-							<div class="text" id="text">일부 시간대에는 통화량이 많아 상담사 연결이 지연될 수
-								있습니다. 연결 지연 시, 문의사항을 남겨주시면 감사하겠습니다.</div>
-						</li>
-					</ul>
-				</div>
-			</section>
+			<br> <br>
+				<section id="wrapper">
+					<div class="container">
+						<ul class="list">
+							<c:forEach items="${data }" var="faq" varStatus="status">
+						
+								<c:if test="${faq.gfaq_type == 1}">
+									<li class="item">
+										<h5 class="Title">
+											[예약 문의] &nbsp; ${faq.gfaq_title } <img
+												src="/hotel/image/down.png" class="downbtn"> <span
+												class="accIcon"></span>
+										</h5>
+										<div>
+											<div class="text" id="text">${faq.gfaq_content}</div>
+										</div>
+									</li>
+								</c:if>
+								
+								<c:if test="${faq.gfaq_type == 2}">
+									<li class="item">
+										<h5 class="Title">
+											[결제 문의] &nbsp; ${faq.gfaq_title } <img
+												src="/hotel/image/down.png" class="downbtn"> <span
+												class="accIcon"></span>
+										</h5>
+										<div>
+											<div class="text" id="text">${faq.gfaq_content}</div>
+										</div>
+									</li>
+								</c:if>
+								
+								<c:if test="${faq.gfaq_type == 3}">
+									<li class="item">
+										<h5 class="Title">
+											[숙소 문의] &nbsp; ${faq.gfaq_title } <img
+												src="/hotel/image/down.png" class="downbtn"> <span
+												class="accIcon"></span>
+										</h5>
+										<div>
+											<div class="text" id="text">${faq.gfaq_content}</div>
+										</div>
+									</li>
+								</c:if>
+							
+								<c:if test="${faq.gfaq_type == 4}">
+									<li class="item">
+										<h5 class="Title">
+											[포인트/쿠폰 문의] &nbsp; ${faq.gfaq_title } <img
+												src="/hotel/image/down.png" class="downbtn"> <span
+												class="accIcon"></span>
+										</h5>
+										<div>
+											<div class="text" id="text">${faq.gfaq_content}</div>
+										</div>
+									</li>
+								</c:if>
+								
+								<c:if test="${faq.gfaq_type == 5}">
+									<li class="item">
+										<h5 class="Title">
+											[이용/기타 문의] &nbsp; ${faq.gfaq_title } <img
+												src="/hotel/image/down.png" class="downbtn"> <span
+												class="accIcon"></span>
+										</h5>
+										<div>
+											<div class="text" id="text">${faq.gfaq_content}</div>
+										</div>
+									</li>
+								</c:if>
+							</c:forEach>
+						</ul>
+					</div>
+				</section>
+			</form>
 		</div>
 	</div>
 </head>

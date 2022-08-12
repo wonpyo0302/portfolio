@@ -2,13 +2,16 @@ package kr.co.hotel.guest;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.ui.Model;
+
 public interface GuestService {
 
 	int insert(GuestVO gvo);
 	int emailDupCheck(String guest_email);
 	int idDupCheck(String guest_id);
+	int hpDupCheck(String guest_hp);
 	boolean guestloginCheck(GuestVO gvo, HttpSession sess);
 	GuestVO findGuestEmail(GuestVO gvo);
 	GuestVO findGuestPwd(GuestVO gvo);
-	int myinfoLogin(String guest_pwd);
+	GuestVO myinfoLogin(GuestVO gvo);
 }

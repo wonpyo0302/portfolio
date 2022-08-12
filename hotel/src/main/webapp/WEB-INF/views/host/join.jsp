@@ -223,7 +223,7 @@
                         </tr>
                         <tr>
                             <th>*비밀번호</th>
-                            <td><input type="password" name="host_pwd" id="host_pwd" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
+                            <td><input type="password" name="host_pwd" id="host_pwd" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문, 특수문자 조합으로 8자 이상으로 입력해주세요.</span> </td>
                         </tr>
                         <tr>
                             <th>*비밀번호<span>확인</span></th>

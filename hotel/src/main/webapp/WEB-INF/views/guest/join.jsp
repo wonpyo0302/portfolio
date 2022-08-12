@@ -64,6 +64,19 @@
 					}
 				}
 			});
+    		$.ajax({
+    			url : 'hpDupCheck.do',
+    			data : {guest_hp:$("#guest_hp").val()},
+    			async:false,
+    			success:function(res) {
+    				if (res =='true') {
+    					alert('입력한 휴대폰번호가 중복되었습니다. 다른 번호를 입력해 주세요');
+    					$("#guest_hp").val('');
+    					$("#guest_hp").focus();
+    					isCon = false;
+    				}
+    			}
+    		});
     		if (!isCon) return;
     		if ($("#guest_pwd").val().trim() == '') {
     			alert('비밀번호를 입력해 주세요');
@@ -83,6 +96,11 @@
     		if ($("#guest_name").val().trim() == '') {
     			alert('이름을 입력해 주세요');
     			$("#guest_name").focus();
+    			return;
+    		}
+    		if ($("#guest_hp").val().trim() == ''){
+    			alert('휴대폰번호를 입력해 주세요');
+    			$("#guest_hp").focus();
     			return;
     		}
     		$("#frm").submit();
@@ -126,6 +144,25 @@
 	    			});
     			}
     		});
+    		$("#hpdupCheckBtn").click(function(){
+    			if ($("#guest_hp").val().trim() == '') {
+    				alert('휴대폰번호를 입력해 주세요');
+    				$("#guest_hp").focus();
+    			} else{
+    				$.ajax({
+    					url : 'hpDupCheck.do',
+    					data:{guest_hp:$("#guest_hp").val()},
+    					success:function(res) {
+    						if (res == 'true') {
+    							alert('사용 불가');
+    						} else {
+    							alert('사용 가능');
+    						}
+    					}
+    				});
+    			}
+    		});
+    	
     		$( "#birthday" ).datepicker({
                 dateFormat: 'yy-mm-dd' //Input Display Format 변경
                     ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
@@ -142,7 +179,7 @@
                     ,minDate: "-100Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
                     ,maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
                 });
-    	})
+    	});
     </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -222,20 +259,21 @@
                         </tr>
                         <tr>
                             <th>*비밀번호</th>
-                            <td><input type="password" name="guest_pwd" id="guest_pwd" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
+                            <td><input type="password" name="guest_pwd" id="guest_pwd" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문, 특수문자 조합으로 8자 이상으로 입력해주세요.</span> </td>
                         </tr>
                         <tr>
                             <th>*비밀번호<span>확인</span></th>
                             <td><input type="password" name="guest_pwd_check" id="guest_pwd_check" style="float:left;"></td>
                         </tr>
                         <tr>
-                            <th>이름</th>
+                            <th>*이름</th>
                             <td><input type="text" name="guest_name" id="guest_name" style="float:left;" maxlength="5" required> </td>
                         </tr>                   
                         <tr>
                             <th>*휴대폰 번호</th>
                             <td>
                                 <input type="text" name="guest_hp" id="guest_hp" value=""  maxlength="15" style="float:left;">
+                            	<span class="guest_hp_check"><a href="javascript:;" class="btn bgGray" style="float:left; width:auto; clear:none;" id="hpdupCheckBtn">중복확인</a></span>
                             </td>
                         </tr>
                         <tr>
