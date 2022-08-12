@@ -42,8 +42,10 @@ public class HRRegisterController {
 		model.addAttribute("data", service.index(vo));
 		//-----------이하 호텔--------------------------------
 		HotelVO hotelInfo = service.get_hotelInfo(Host_loginInfo.getHost_no());//1개의 호텔 인스턴스를 불러옴
-		if(hotelInfo.getHotel_no() != 0) {
+		if(hotelInfo != null) {
 			model.addAttribute("Hdata", hotelInfo);
+		}else {
+			model.addAttribute("Hdate","");
 		}
 		return "room/index";//검색...포함?
 	}
@@ -255,6 +257,18 @@ public class HRRegisterController {
 				 return"common/alert";
 			 }else {
 				 model.addAttribute("msg","수정 실패");
+				 return"common/alert";
+			 }
+		 }
+		 
+		 @GetMapping("/myhotel/delete.do")	
+		 public String H_delete(HotelVO hvo, Model model) {
+			 if(service.H_delete(hvo.getHotel_no())) {
+				 model.addAttribute("msg","정상적으로 삭제되었습니다");
+				 model.addAttribute("url","../room/index.do");
+				 return"common/alert";
+			 }else {
+				 model.addAttribute("msg","삭제 실패");
 				 return"common/alert";
 			 }
 		 }

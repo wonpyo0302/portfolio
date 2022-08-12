@@ -54,7 +54,7 @@
 	                            </tr>
 							</c:if>
 							
-								
+							<c:if test="${!empty Hdata}">
 	                            <tr>
 	                                <td class="txt_l">
 	                                   ${Hdata.hotel_name}
@@ -80,7 +80,7 @@
 	                                </td>
 	                            </tr>
 	                            
-						
+							</c:if>
 					
 							
 						

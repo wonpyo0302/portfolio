@@ -77,6 +77,19 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 			}
 		}return r ;
 	}
+	
+	@Override
+	public boolean H_delete(int hotel_no) {
+		//회원 삭제시, 회원테이블만 인스턴스만 지우는 것이 아니라 relation이 걸려있는 테이블을 모두 찾아서 delete해야한다.
+		boolean r = false;
+		if(mapper.H_delete(hotel_no)>0) {
+			int a = mapper.H_delete_img(hotel_no);
+			if(a>=0) {
+				r = true;
+			}
+		}return r ;
+
+	}
 
 	@Override
 	public boolean insert(RoomVO vo) {
@@ -118,6 +131,8 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 		
 		return mapper.get_district_code(hvo);
 	}
+
+
 
 	
 

@@ -24,8 +24,12 @@ public interface HRRegisterMapper {
 	
 	public int delete (int room_no);
 	
-	public int delete_img(int room_no);
+	public int H_delete (int hotel_no);
 	
+	public int delete_img(int room_no);
+
+	public int H_delete_img(int room_no);
+		
 	public int img_insert(ImageVO ivo);
 	
 	public HotelVO get_hotelInfo(int host_no);

@@ -101,12 +101,27 @@
 
 	
 	<delete id="delete" parameterType="int">
+		
 		delete from room where room_no = #{room_no}
 	
 	</delete>
 	
+	
+	<delete id="H_delete" parameterType="int">
+		
+		delete from hotel where hotel_no = #{hotel_no}
+	
+	</delete>
+	
 	<delete id="delete_img" parameterType="int">
+		
 		delete from image where room_no = #{room_no}
+	
+	</delete>
+	
+	<delete id="H_delete_img" parameterType="int">
+		
+		delete from image where hotel_no = #{hotel_no}
 	
 	</delete>
 	

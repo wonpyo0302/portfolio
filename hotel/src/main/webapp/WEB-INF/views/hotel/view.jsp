@@ -19,7 +19,7 @@
 	   <script type="text/javascript">
     function del(hotel_no){
     	if(confirm('삭제하시겠습니까?')){
-    		location.href='delete.do?hotel_no='+hotel_no
+    		location.href='../myhotel/delete.do?hotel_no='+hotel_no
     	}
     }
   
