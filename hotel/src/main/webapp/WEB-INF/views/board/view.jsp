@@ -66,6 +66,12 @@
 	function goList() {
 		location.href = "/board/list.do";
 	}
+	// 삭제하기
+	function goDel(gboard_no) {
+		if (confirm('정말 삭제하시겠습니까?')) {
+			location.href = "delete.do?gboard_no=" + gboard_no;
+		}
+	}
 </script>
 
 </head>
@@ -115,7 +121,10 @@
 						</div>
 					</table>
 					<div class="btnSet" style="text-align: right;">
-						<a class="btn" href="javascript:goList();">목록 </a>
+						<a href="edit.do?gboard_no=${data.gboard_no }" class="btn">수정</a>
+						<a href="javascript:goDel(${data.gboard_no});" class="btn">삭제</a>
+					</div>
+					<div><a href="javascript:goList();" class="btn" style="text-align:right">목록 </a></div>
 				</form>
 			</div>
 			

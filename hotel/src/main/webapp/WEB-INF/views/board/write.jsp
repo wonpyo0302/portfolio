@@ -79,21 +79,16 @@
 							<div class="container">
 								<ul class="list">
 									<li class="item">
-									<tr>
 										<th>문의유형</th>
 										</span>
 										<td class="choose">
-										
 										<span class="srchSelect"> <select id="stype" name="stype" class="dSelect" title="검색분류 선택">
-												<c:if test="${data.gboard_type == 1 }">
 												<option value="reservation">예약문의</option>
-												</c:if>
 												<option value="pay">결제 문의</option>
 												<option value="hotel">숙소 문의</option>
 												<option value="pointAndCoupon">포인트/쿠폰 문의</option>
 												<option value="etc">이용/기타 문의</option>
 										</select>
-									</tr>
 									</li>
 									<tr>
 										<th>이메일</th>
@@ -119,7 +114,7 @@
 						</tbody>
 					</table>
 					<div class="btnSet" style="text-align: right;">
-						<a class="btn" href="javascript:goSave();">저장 </a>
+						<a class="btn" href="javascript:goSave();">작성완료 </a>
 					</div>
 				</form>
 			</div>
