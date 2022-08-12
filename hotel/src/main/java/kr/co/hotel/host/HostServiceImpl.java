@@ -26,15 +26,18 @@ public class HostServiceImpl implements HostService {
 	public int idDupCheck(String host_id) {
 		return hmapper.idDupCheck(host_id);
 	}
-
+	@Override
+	public int hpDupCheck(String host_hp) {
+		return hmapper.hpDupCheck(host_hp);
+	}
 	@Override
 	public boolean HostloginCheck(HostVO hvo, HttpSession sess) {
 		boolean r = false;
-		HostVO loginInfo = hmapper.HostloginCheck(hvo);
+		HostVO loginInfo = hmapper.hostloginCheck(hvo);
 		if (loginInfo != null) {
 			r = true;
 			// 로그인 성공시 세션에 저장
-			sess.setAttribute("loginInfo", loginInfo);
+			sess.setAttribute("loginInfo2", loginInfo);
 		}
 		return r;
 	}
@@ -69,6 +72,10 @@ public class HostServiceImpl implements HostService {
 		} else {
 			return null;
 		}
+	}
+	@Override
+	public HostVO myinfoLogin(HostVO hvo) {
+		return hmapper.myinfoLogin(hvo);
 	}
 
 }

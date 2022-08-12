@@ -19,15 +19,15 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<script>
 		function confirm() {
-			if($("#guest_pwd").val().trim() == ''){
+			if($("#host_pwd").val().trim() == ''){
 				alert('비밀번호를 입력해주세요');
-				$("#guest_pwd").focus();
+				$("#host_pwd").focus();
 				return;
 			} else{
 				$.ajax({
 					type: "post",
 					url : "myinfoLogin.do",
-					data : {guest_pwd:$("#guest_pwd").val()},
+					data : {host_pwd:$("#host_pwd").val()},
 					success:function(res){
 						if(res=='true') {
 							alert('환영합니다');
@@ -36,8 +36,8 @@
 						}else{
 							alert('다시 입력하세요');
 							console.log(res);
-							$("#guest_pwd").val('');
-							$("#guest_pwd").focus();
+							$("#host_pwd").val('');
+							$("#host_pwd").focus();
 						}
 						
 					}
@@ -48,21 +48,21 @@
 	</script>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/views/includes/G_header.jsp" />
+    <jsp:include page="/WEB-INF/views/includes/H_header.jsp" />
     	<form id="frm" name="frm" method="post" action="myinfoModify.do">
             <div class="sub">
             	<div class="size">
                     <h1 class="sub_title">내정보 관리</h1>
-                        <p class="sub_a">GUEST</p>
+                        <p class="sub_a">HOST</p>
                         <table class="bordersize">
                         	<tr>
                         		<th>아이디</th>
-                        		<td>${loginInfo.guest_id}</td>
+                        		<td>${loginInfo2.host_id}</td>
                         		<td></td>
                         	</tr>
                         	<tr>
                         		<th>비밀번호</th>
-                        		<td><input type="password" id="guest_pwd" name="guest_pwd" /></td>
+                        		<td><input type="password" id="host_pwd" name="host_pwd" /></td>
                         		<td><input type="button" href="javascript:;" onclick="confirm();" value="비밀번호확인" /></td>
                         	</tr>
                         </table>
