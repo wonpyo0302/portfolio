@@ -69,6 +69,8 @@
 	</script>
 
 		<script>
+		
+		
 			function optionChange() {
 				$.ajax({
 					url : "district.do",
@@ -93,25 +95,6 @@
 			}
 		</script>
 		
-		<script >
-		$(function(){
-			var placeholder = 	 "EX) \n "
-								+"*공지사항 \n "
-								+"1. 폭우로 인한 침수로 지하주차장 운영을 중단합니다.\n"
-								+"2. 호텔 내에서는 마스크를 자율 착용입니다."
-			$('#hotel_content').attr('placeholder', placeholder);
-			
-		})
-		</script>
-		
-		
-		
-		
-		
-	<style type="text/css">
-	
-
-	</style>
 </head>
 <body>
     
@@ -129,7 +112,7 @@
 	                        <tr>
 	                            <th>*호텔명</th>
 	                            <td>
-	                                <input type="text" name="hotel_name" id="hotel_name" class="wid100" value="" />
+	                                <input type="text" name="hotel_name" id="hotel_name" class="wid100" value="${data.hotel_name }" />
 	                            </td>
 	                        </tr>
 	                        <tr>
@@ -141,7 +124,7 @@
 	                        <tr>
 	                            <th>*호텔 전화번호</th>
 	                            <td>
-	                                <input type="number" name="tel" id="tel" class="wid100" value=""/>
+	                                <input type="number" name="tel" id="tel" class="wid100" value="${data.tel }"/>
 	                            </td>
 	                        </tr>
 		                        <tr>
@@ -154,16 +137,16 @@
 		                        </tr>
 	                            <tr>
 		                            <td>
-		                            	<input type="text" name="addr" id="addr1" style="width:80%" readonly>
+		                            	<input type="text" name="addr" id="addr1" value="${data.addr }" style="width:80%" readonly>
 		                            </td>
 	                            </tr>
 	                            
 	                        </tr>
 	                        <tr>
 	                            <th>*지역코드 입력</th>
-	                            <td>
+	                            <td> <c:if test="">selected</c:if>
 	                            	<select name='state_code' id="selectbox_state" onchange="optionChange()">
-										<option value='1' label='시 / 도' selected></option>
+										<option value='1' <c:if test="">selected</c:if> label='시 / 도' selected></option>
 										<option value='11' label='서울특별시'></option>
 										<option value='21' label='부산광역시'></option>
 										<option value='22' label='대구광역시'></option>
@@ -192,13 +175,15 @@
 	                        <tr>
 	                            <th>호텔 공지 사항</th>
 	                            <td>
-	                                <textarea name="hotel_content" id="hotel_content" placeholder=""></textarea>
+	                                <textarea name="hotel_content" id="hotel_content" value="${data.hotel_content }"></textarea>
 	                            </td>
 	                        </tr>
 	                        <tr>
 	                        	<th>호텔 사진</th>
 	                        	<td>
-	                        		<input type="file" name="filename2" multiple>
+	                        		<c:forEach items="${imgList }" var="img" varStatus="idx">
+		                        			<img src="/hotel/upload/${img.filename_real }" id="drag<c:out value='${idx.count }'/>"  width="128" height="128">
+	                        		</c:forEach>
 	                        	</td>
 	                        </tr>
 	                        </tbody>
