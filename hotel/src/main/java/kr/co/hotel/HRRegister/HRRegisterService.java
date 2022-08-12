@@ -21,8 +21,11 @@ public interface HRRegisterService {
 	//호텔 수정 처리
 	boolean H_update (HotelVO vo);
 	
-	//삭제 처리
+	//객실등록정보 삭제 처리
 	boolean delete(int room_no);
+	
+	//호텔등록정보 삭제 처리
+	boolean H_delete(int room_no);
 	
 	//등록 처리
 	boolean insert(RoomVO vo);
