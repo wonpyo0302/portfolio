@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="/WEB-INF/views/includes/G_header.jsp"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -30,10 +31,10 @@
     
 </head>
 <body>
-    
+    <br><br>
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title">게시판</h3>
+                <h3 class="sub_title" style="text-align:left">새 문의글 작성</h3>
     
                 <div class="bbs">
                 <form method="post" name="frm" id="frm" action="insert.do"  enctype="multipart/form-data" > 
@@ -46,7 +47,7 @@
                          <tr>
                             <th>문의유형</th>
                             <td>
-                            		<text type="text" name="text"/><img src="image/smile.png" > 문의유형을 선택하시면 빠른 답변을 받을 수 있습니다.<br><br>
+                            		<text type="text" name="text"/><img src="/hotel/image/smile.png" style="width:20px"> 문의유형을 선택하시면 빠른 답변을 받을 수 있습니다.<br><br>
                                 <input type="radio" name="type" id="type" value="예약 문의"/> 예약 문의 <br>
                                 <input type="radio" name="type" id="type" value="결제 문의"/> 결제 문의 <br>
                                 <input type="radio" name="type" id="type" value="숙소 문의"/> 숙소 문의 <br>
@@ -55,13 +56,19 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>제목</th>
+                            <th>이메일</th>
                             <td>
-                                <input type="text" name="title" id="title" class="wid100" value=""/>
+                                 <input type="text" id="" value="">@<input type="text" id="" value="">
                             </td>
                         </tr>
                         <tr>
-                            <th>내용</th>
+                            <th>제목</th>
+                            <td>
+                                 <input type="text" style="width:90%" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>문의내용</th>
                             <td>
                                 <textarea name="content" id="content" style="width:90%"></textarea>
                             </td>

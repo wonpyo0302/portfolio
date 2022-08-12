@@ -62,7 +62,7 @@
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/hotel/notice/list.do">공지사항</a></li>
                     <li><a class="dropdown-item" href="/hotel/faq/view.do">FAQ</a></li>
-                    <li><a class="dropdown-item" href="/hotel/guestboard/list.do">QnA</a></li>
+                    <li><a class="dropdown-item" href="/hotel/board/list.do">QnA</a></li>
                     <li>
                       <hr class="dropdown-divider">
                     </li>
