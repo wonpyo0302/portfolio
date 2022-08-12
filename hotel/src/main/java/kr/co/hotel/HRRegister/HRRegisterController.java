@@ -60,13 +60,11 @@ public class HRRegisterController {
 	@PostMapping("/room/insert.do")
 	public String insert(RoomVO vo, ImageVO ivo, Model model, @RequestParam("filename") List<MultipartFile> filename, HttpServletRequest req ) {
 		
-		HostVO loginInfo1 = new HostVO();// demo data
 		HttpSession sess = req.getSession();
-		sess.setAttribute("loginInfo", loginInfo1);
-
 		//세션에서 host_no를 가져옴, host_no로 hotel테이블에서 hotel_no를 가져옴
 		HostVO Host_loginInfo = (HostVO) sess.getAttribute("loginInfo");
-		Host_loginInfo.setHost_no(1);//demo data
+		System.out.println("호스트번호확인스 : "+Host_loginInfo.getHost_no());
+		//Host_loginInfo.setHost_no(1);//demo data
 		
 		vo.setHost_no(Host_loginInfo.getHost_no());
 		HotelVO hotelInfo = service.get_hotelInfo(vo.getHost_no());
@@ -176,8 +174,6 @@ public class HRRegisterController {
 		}
 		
 		
-		
-		
 		@PostMapping("/myhotel/insert.do")
 		public String hotel_insert(HotelVO hvo, ImageVO ivo, Model model, @RequestParam("filename2") List<MultipartFile> filename, HttpServletRequest req ) {
 			//세션 정보 축출
@@ -219,9 +215,9 @@ public class HRRegisterController {
 			
 		}
 		
+		
 		@GetMapping("/myhotel/view.do")
 		public String H_view(HotelVO hvo, Model model, ImageVO ivo) {
-			
 			
 			HotelVO data = service.get_hotelview(hvo.getHotel_no());
 			model.addAttribute("data", data);
@@ -234,6 +230,7 @@ public class HRRegisterController {
 					
 			return "hotel/view";
 		}
+		
 		
 		@GetMapping("/myhotel/edit.do")
 		public String H_edit(HotelVO hvo, Model model, ImageVO ivo) {
@@ -248,6 +245,7 @@ public class HRRegisterController {
 			return "hotel/edit";
 		}
 	
+		
 		 @PostMapping("/myhotel/update.do")	
 		 public String H_update(HotelVO hvo, Model model) {
 			 System.out.println("vo 확인 : "+ hvo);
@@ -261,6 +259,7 @@ public class HRRegisterController {
 			 }
 		 }
 		 
+		 
 		 @GetMapping("/myhotel/delete.do")	
 		 public String H_delete(HotelVO hvo, Model model) {
 			 if(service.H_delete(hvo.getHotel_no())) {
@@ -272,4 +271,25 @@ public class HRRegisterController {
 				 return"common/alert";
 			 }
 		 }
+		 
+		 
+		//-----------이하 호텔---------------------------------------------------------------------		 
+		 
+		 @GetMapping("/myhotel/toAdmin.do")	
+		 public String HRRegister(RoomVO vo, HotelVO hvo, Model model) {
+			System.out.println("hostno확인합니다 : "+hvo.getHost_no());
+			System.out.println("hostno확인합니다 : "+vo.getHost_no());
+			 
+			
+			 if(service.toAdmin(vo, hvo)) {
+				 model.addAttribute("msg","관리자에게 정상적으로 신청되었습니다");
+				 model.addAttribute("url","../room/index.do");
+				 return"common/alert";
+			 }else {
+				 model.addAttribute("msg","신청 실패");
+				 return"common/alert";
+			 }
+		 }
+		 
+		 
 }

@@ -47,4 +47,7 @@ public interface HRRegisterService {
 	boolean hotel_insert (HotelVO hvo);
 	
 	List<HotelVO> get_district_code (HotelVO hvo); 
+	
+	//호텔, 객실 신청 toAdmin
+	boolean toAdmin(RoomVO vo, HotelVO hvo);
 }

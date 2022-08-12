@@ -126,13 +126,14 @@ public class GuestController {
 	}
 	@PostMapping("/guest/myinfoLogin.do")
 	public void myinfoLogin(GuestVO gvo, HttpServletResponse res, HttpSession sess) throws IOException {
-		GuestVO count = gservice.myinfoLogin(gvo);
+		GuestVO myinfo=(GuestVO)sess.getAttribute("loginInfo");
+		myinfo.setGuest_pwd(gvo.getGuest_pwd());
 		boolean r=false;
-		if(count==sess.getAttribute("loginInfo")) r= true;
+		if(gservice.myinfoLogin(myinfo)!=null) r=true;
 		PrintWriter out = res.getWriter();
 		out.print(r);
 		out.flush();
-	
+		
 	}
 	@PostMapping("/guest/myinfoModify.do")
 	public String myinfoModify() {
