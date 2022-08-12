@@ -35,6 +35,8 @@ public class HotelVO {
 	private String searchField;
 	private String searchWord;
 	private String selectbox_district;
+	private String searchbox_district;
+	
 	private String selectbox_state;
 	private String soltType;
 	
