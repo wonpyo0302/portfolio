@@ -44,9 +44,9 @@
 	<div class="sub">
 		<div class="size">
 		<br>
-			<h3 class="sub_title" style="text-align:left">Q&A</h3>
+			<h6 class="sub_content" style="text-align: left"> Q&A</h6>
 			<br>
-			<h8 class="sub_content" style="text-align:left">문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
+			<h8 class="sub_content" style="text-align:left"> <img src="/hotel/image/qna.png" width="40px">  게스트 전용 문의 게시판입니다. 문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
 			<br><br><br><br>
 			
 			<div class="bbs">

@@ -22,10 +22,23 @@
     
     <script>
     	function goSave(){
-    		
     		frm.submit();
-    	}
- 
+    	};
+    	</script>
+    	 
+    <script>
+    	$(function() {
+    		$(".choose").click(function() {
+    			if ($(this).find(".type").css('display') == 'none') {
+    				$(".type").slideUp("fast");
+    				$(this).find(".type").slideDown("fast");  
+    				$(".downbtn").attr("src", "/hotel/image/down.png"); 
+    				$(this).find(".downbtn").attr("src", "/hotel/image/up.png");
+    			} else {
+    				$(this).find(".type").slideUp("fast"); 
+    				$(".downbtn").attr("src", "/hotel/image/down.png"); 
+    			}
+    		})
     	});
     </script>
     
@@ -44,21 +57,25 @@
                 그리고 loginInfo안에 MemberVO vo객체가 들어있는 것이고 member테이블에서는 member_no가 아니라 no!!!-->
                     <table class="board_write">
                         <tbody>
+                        <div class="container">
+                        	<ul class="list">
+                        	<li class="item">
                          <tr>
                             <th>문의유형</th>
-                            <td>
+                            <td class="choose">
                             		<text type="text" name="text"/><img src="/hotel/image/smile.png" style="width:20px"> 문의유형을 선택하시면 빠른 답변을 받을 수 있습니다.<br><br>
-                                <input type="radio" name="type" id="type" value="예약 문의"/> 예약 문의 <br>
-                                <input type="radio" name="type" id="type" value="결제 문의"/> 결제 문의 <br>
-                                <input type="radio" name="type" id="type" value="숙소 문의"/> 숙소 문의 <br>
-                                <input type="radio" name="type" id="type" value="포인트/쿠폰 문의"/> 포인트/쿠폰 문의 <br>
-                                <input type="radio" name="type" id="type" value="이용/기타 문의"/> 이용/기타 문의
+                                <input type="radio" name="type" class="type" value="예약 문의"/> 예약 문의 <br>
+                                <input type="radio" name="type" class="type" value="결제 문의"/> 결제 문의 <br>
+                                <input type="radio" name="type" class="type" value="숙소 문의"/> 숙소 문의 <br>
+                                <input type="radio" name="type" class="type" value="포인트/쿠폰 문의"/> 포인트/쿠폰 문의 <br>
+                                <input type="radio" name="type" class="type" value="이용/기타 문의"/> 이용/기타 문의
                             </td>
                         </tr>
+                        </li>
                         <tr>
                             <th>이메일</th>
                             <td>
-                                 <input type="text" id="" value="">@<input type="text" id="" value="">
+                                 <input type="text" id="" value="" placeholder="선택사항입니다.">@<input type="text" id="" value="">
                             </td>
                         </tr>
                         <tr>
@@ -79,6 +96,8 @@
                         		<input type="file" name="filename">
                         	</td>
                         </tr>
+                        </ul>
+                        </div>
                         </tbody>
                     </table>
                     <div class="btnSet"  style="text-align:right;">

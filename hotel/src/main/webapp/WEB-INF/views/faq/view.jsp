@@ -89,7 +89,7 @@
 			<br>
 			<form method="get" name="frm" id="frm" action="view.do">
 				<h6 class="sub_content" style="text-align: left">
-					<img src="/hotel/image/faq.png" width="40px"> 게스트 전용 자주 묻는 질문
+					<img src="/hotel/image/faq2.png" width="40px"> 게스트 전용 자주 묻는 질문
 					게시판입니다.
 				</h6>
 				<br> <br> <br> <br>
