@@ -62,93 +62,63 @@
 </style>
 
 <script>
-
+	// 목록가기
+	function goList() {
+		location.href = "/board/list.do";
+	}
 </script>
 
 </head>
 <body>
-	<br>
-	<br>
-	<br>
 	<div class="sub">
 		<div class="size">
-			<br>
+			<br> <br> <br>
 			<h3 class="sub_title" style="text-align: left">Q&A</h3>
 			<br>
-			<form method="get" name="frm" id="frm" action="view.do">
-				<h6 class="sub_content" style="text-align: left">
-					<img src="/hotel/image/qna.png" width="40px"> 게스트 전용 문의사항 게시판입니다.
-				</h6>
-				<br> <br> <br> <br>
-				<section id="wrapper">
-					<div class="container">
-						<ul class="list">
-							<c:forEach items="${data }" var="qna" varStatus="status">
-							<!-- [예약 문의] -->
-								<c:if test="${qna.gboard_type == 1}">
-									<li class="item">
-										<h5 class="Title">
-											[예약 문의] &nbsp; ${qna.gboard_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
-										</h5> <br>
-										<div>
-											<div class="text" id="text">${qna.gboard_content}</div>
-										</div>
-									</li>
-								</c:if>
-								
-								<!-- [결제 문의] -->
-								<c:if test="${qna.gboard_type == 2}">
-									<li class="item">
-										<h5 class="Title">
-											[결제 문의] &nbsp; ${qna.gboard_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
-										</h5> <br>
-										<div>
-											<div class="text" id="text">${qna.gboard_content}</div>
-										</div>
-									</li>
-								</c:if>
-								
-								<!-- [숙소 문의] -->
-								<c:if test="${qna.gboard_type == 3}">
-									<li class="item">
-										<h5 class="Title">
-											[숙소 문의] &nbsp; ${qna.gboard_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
-										</h5> <br>
-										<div>
-											<div class="text" id="text">${qna.gboard_content}</div>
-										</div>
-									</li>
-								</c:if>
-								
-								<!-- [포인트/쿠폰 문의] -->
-								<c:if test="${qna.gboard_type == 4}">
-									<li class="item">
-										<h5 class="Title">
-											[포인트/쿠폰 문의] &nbsp; ${qna.gboard_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
-										</h5> <br>
-										<div>
-											<div class="text" id="text">${qna.gboard_content}</div>
-										</div>
-									</li>
-								</c:if>
-								
-								<!-- [이용/기타 문의] -->
-								<c:if test="${qna.gboard_type == 5}">
-									<li class="item">
-										<h5 class="Title">
-											[이용/기타 문의] &nbsp; ${qna.gboard_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
-										</h5> <br>
-										<div>
-											<div class="text" id="text">${qna.gboard_content}</div>
-										</div>
-									</li>
-								</c:if>
-								<br>
-							</c:forEach>
-						</ul>
-					</div>
-				</section>
-			</form>
+			<h6 class="sub_content" style="text-align: left">
+				<img src="/hotel/image/qna.png" width="40px"> 게스트 전용 문의사항
+				게시판입니다.
+			</h6>
+			<br> 
+			<br> 
+			<br> 
+			<br>
+			<div class="bbs">
+				<form method="get" name="frm" id="frm" action="view.do"
+					enctype="multipart/form-data">
+					<input type="hidden" name="gboard_no" value="${data.gboard_no}">
+					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
+					<table class="board_write">
+						<div class="title">
+						<tr>
+							<th>제목</th>
+							<td>${data.gboard_title }</td>
+							<th>등록일자</th>
+							<td class="date" style="width: 150px"><fmt:formatDate
+									value="${data.gboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+						</tr>
+						<tr>
+							<th>작성자</th>
+							<td>${loginInfo.guest_no}${data.gboard_writer}</td>
+							<th>수정일자</th>
+							<td class="date" style="width: 150px"><fmt:formatDate
+									value="${data.gboard_regdate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td style="width: 600px">${data.gboard_content}</td>
+						</tr>
+						<tr>
+							<th>첨부파일</th>
+							<td>첨부파일 다운 받을 수 있게</td>
+						</tr>
+						</div>
+					</table>
+					<div class="btnSet" style="text-align: right;">
+						<a class="btn" href="javascript:goList();">목록 </a>
+				</form>
+			</div>
+			
 		</div>
 	</div>
 </head>

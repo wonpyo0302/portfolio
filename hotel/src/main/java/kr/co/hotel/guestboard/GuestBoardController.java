@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.hotel.guestfaq.GuestFaqVO;
+
 @Controller
 public class GuestBoardController {
 	
@@ -24,7 +26,7 @@ public class GuestBoardController {
 	@GetMapping("/board/view.do")
 	public String view(Model model, GuestBoardVO vo) {
 		service.viewCount(vo.getGboard_no());
-		model.addAttribute("data", service.view(vo.getGboard_no()));
+		model.addAttribute("data", service.index(vo));
 		return "board/view";
 	}
 

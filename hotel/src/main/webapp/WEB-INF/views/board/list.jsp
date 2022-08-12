@@ -105,7 +105,7 @@
 										</c:if>
 										<td class="txt_l">
 										
-										<a href="/board/view.do?no=${vo.gboard_no}">${vo.gboard_title}</a></td>								
+										<a href="/hotel/board/view.do?no=${vo.gboard_no}">${vo.gboard_title}</a></td>								
 										
 										<td>${vo.gboard_viewcount}</td>
 										
@@ -146,8 +146,8 @@
 					</c:if>
 					</ul>
 				</div>
-
 				<!-- 페이지처리 -->
+
 				<div class="bbsSearch">
 					<form method="get" name="searchForm" id="searchForm" action="">
 						<span class="srchSelect"> <select id="stype" name="stype" class="dSelect" title="검색분류 선택">
@@ -160,7 +160,6 @@
 						<input type="button" id="" value="검색" title="검색">
 						</span>
 					</form>
-
 				</div>
 			</div>
 		</div>
