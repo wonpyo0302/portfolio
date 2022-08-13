@@ -16,7 +16,6 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public List<HotelVO> searchList(HotelVO vo) {
-		System.out.println("서비스 : " + vo.getSelectbox_district());
 		return mapper.searchList(vo);
 	}
 
