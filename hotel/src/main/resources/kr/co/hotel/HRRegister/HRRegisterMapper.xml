@@ -26,6 +26,7 @@
 		select count(*) from room
 		
 		<where>
+			host_no = #{host_no}
 			<if test="stype != null and stype !='' ">
 				<if test="stype != 'all' ">
 					${stype} like '%${sword}%'
@@ -43,6 +44,7 @@
 
 			select * from room
 				<where>
+					host_no = #{host_no}
 					<if test="stype != null and stype !='' ">
 						<if test="stype != 'all' ">
 							${stype} like '%${sword}%'

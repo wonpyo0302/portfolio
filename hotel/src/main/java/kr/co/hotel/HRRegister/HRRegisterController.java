@@ -31,13 +31,12 @@ public class HRRegisterController {
 	//on going
 	@GetMapping("/room/index.do")
 	public String index(Model model,HotelVO hvo, RoomVO vo, HttpSession sess, HttpServletRequest req) {
-		System.out.println(req.getRealPath("/upload"));
 		HostVO loginInfo1 = new HostVO();// demo data
 		loginInfo1.setHost_no(50);//demo data
 		loginInfo1.setHost_name("호스트 ");//demo data
-		sess.setAttribute("loginInfo", loginInfo1);
-		HostVO Host_loginInfo = (HostVO) sess.getAttribute("loginInfo");
-		
+		sess.setAttribute("loginInfo2", loginInfo1);
+		HostVO Host_loginInfo = (HostVO) sess.getAttribute("loginInfo2");
+		vo.setHost_no(Host_loginInfo.getHost_no());
 		
 		model.addAttribute("data", service.index(vo));
 		//-----------이하 호텔--------------------------------

@@ -1,6 +1,6 @@
 package kr.co.hotel.reserve;
 
-import java.util.Map;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,5 +14,9 @@ public interface ReserveMapper {
 	public void pointinsert(ReserveVO vo);
 	public void guestUsedPointUpdate(GuestVO vo);
 	public int reservecheck(ReserveVO vo);
+	
+	//이하 마이페이지 예약리스트_빛찬 
+	public int count(ReserveVO vo);
+	public List<ReserveVO> list (ReserveVO vo);
 	
 }
