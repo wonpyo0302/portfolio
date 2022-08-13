@@ -277,10 +277,6 @@ public class HRRegisterController {
 		 
 		 @GetMapping("/myhotel/toAdmin.do")	
 		 public String HRRegister(RoomVO vo, HotelVO hvo, Model model) {
-			System.out.println("hostno확인합니다 : "+hvo.getHost_no());
-			System.out.println("hostno확인합니다 : "+vo.getHost_no());
-			 
-			
 			 if(service.toAdmin(vo, hvo)) {
 				 model.addAttribute("msg","관리자에게 정상적으로 신청되었습니다");
 				 model.addAttribute("url","../room/index.do");
