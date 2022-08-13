@@ -25,7 +25,7 @@
     	<form id="frm" name="frm" method="post" action="myinfoModify.do">
             <div class="sub">
             	<div class="size">
-                    <h1 class="sub_title">내정보 관리</h1>
+                    <h1 class="sub_title">내정보수정</h1>
                         <p class="sub_a">GUEST</p>
                        <table class="board_write">
                     	<caption>회원가입</caption>
