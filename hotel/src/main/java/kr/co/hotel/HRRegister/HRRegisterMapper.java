@@ -41,7 +41,6 @@ public interface HRRegisterMapper {
 	public List<ImageVO> get_imgList(ImageVO ivo);//이미지를 리스트로 불러옴
 	
 	
-	
 	//호텔 등록
 	public int hotel_insert (HotelVO hvo);
 	

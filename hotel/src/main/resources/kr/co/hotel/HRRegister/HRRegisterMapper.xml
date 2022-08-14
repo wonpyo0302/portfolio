@@ -19,7 +19,7 @@
 	<select id="img_get" parameterType="int" resultType="kr.co.hotel.HRRegister.RoomVO">
 		
 	</select>
-	
+
 	
 	<select id="count" parameterType="kr.co.hotel.HRRegister.RoomVO" resultType="java.lang.Integer">
 	<!-- 테이블 명이 변수로 들어갈수 있음 -->

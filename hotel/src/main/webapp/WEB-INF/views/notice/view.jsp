@@ -57,7 +57,7 @@
 							<th>제목</th>
 							<td>${data.gnotice_title }</td>
 							<th>등록일자</th>
-							<td class="date" style="width: 150px"><fmt:formatDate
+							<td class="date"  style="width: 35%"><fmt:formatDate
 									value="${data.gnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 						</tr>
 						<tr>
@@ -69,11 +69,11 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td style="width: 600px">${data.gnotice_content}</td>
+							<td colspan="3" style="width: 600px">${data.gnotice_content}</td>
 						</tr>
 						<tr>
 							<th>첨부파일</th>
-							<td>첨부파일 다운 받을 수 있게</td>
+							<td colspan="3">첨부파일 다운 받을 수 있게</td>
 						</tr>
 						</div>
 					</table>
