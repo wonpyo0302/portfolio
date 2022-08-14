@@ -42,7 +42,7 @@ public class HostController {
 	@PostMapping("/host/login.do")
 	public String login(HostVO hvo, HttpSession sess, Model model) {
 		if (hservice.HostloginCheck(hvo, sess)) {
-			return "redirect:/board/hotel/host/index.do";
+			return "redirect:/host/myinfo.do";
 		} else {
 			model.addAttribute("msg", "비밀번호를 확인해 주세요");
 			return "common/alert";
@@ -65,6 +65,15 @@ public class HostController {
 		boolean r = false;
 		if (count == 1) r = true;
 		PrintWriter out = res.getWriter();
+		out.print(r);
+		out.flush();
+	}
+	@GetMapping("/host/hpDupCheck.do")
+	public void hpDupCheck(@RequestParam String host_hp, HttpServletResponse res) throws IOException {
+		int count = hservice.hpDupCheck(host_hp);
+		boolean r=false;
+		if(count==1)r=true;
+		PrintWriter out=res.getWriter();
 		out.print(r);
 		out.flush();
 	}
@@ -97,7 +106,13 @@ public class HostController {
 	public String findHostPwd() {
 		return "host/findPwd";
 	}
-	
+	@GetMapping("/host/myinfo.do")
+	public String myinfo(HttpSession sess, Model model) {
+		if(sess.getAttribute("loginInfo2")==null) {
+			model.addAttribute("msg","로그인이 필요한 기능입니다.");
+			return "common/alert";
+		}else {return "/host/myinfoLogin";}
+	}
 	@PostMapping("/host/findHostPwd.do")
 	public String findHostPwd(Model model, HostVO param) {
 		HostVO hvo = hservice.findHostPwd(param);
@@ -106,8 +121,18 @@ public class HostController {
 		}
 		return "common/return";
 	}
-	/*
-	 * @GetMapping("hotel/host/index.do") public String boardindex(HostMemberVO
-	 * hvo,HttpSession sess, Model model) { return "host/index"; }
-	 */
+	@PostMapping("/host/myinfoLogin.do")
+	public void myinfoLogin(HostVO hvo, HttpServletResponse res, HttpSession sess) throws IOException {
+		HostVO myinfo=(HostVO)sess.getAttribute("loginInfo2");
+		myinfo.setHost_pwd(hvo.getHost_pwd());
+		boolean r=false;
+		if(hservice.myinfoLogin(myinfo)!=null)r=true;
+		PrintWriter out = res.getWriter();
+		out.print(r);
+		out.flush();
+	}
+	@PostMapping("/host/myinfoModify.do")
+	public String myinfoModify() {
+		return "/host/myinfoModify";
+	}
 }

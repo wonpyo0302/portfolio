@@ -21,41 +21,41 @@
     	.sub_a{text-align: center; font-size:22px;}
     </style>
 <body>
-<jsp:include page="/WEB-INF/views/includes/G_header.jsp" />
+<jsp:include page="/WEB-INF/views/includes/H_header.jsp" />
     	<form id="frm" name="frm" method="post" action="myinfoModify.do">
             <div class="sub">
             	<div class="size">
-                    <h1 class="sub_title">내정보수정</h1>
-                        <p class="sub_a">GUEST</p>
+                    <h1 class="sub_title">내정보 관리</h1>
+                        <p class="sub_a">HOST</p>
                        <table class="board_write">
                     	<caption>회원가입</caption>
                         <tbody>
                         	<tr>
                         		<th>아이디</th>
-                        		<td>${loginInfo.guest_id}</td>
+                        		<td>${loginInfo2.host_id}</td>
                         		<td></td>
                         	</tr>
                        
                         	<tr>
                         		<th>이름</th>
-                        		<td>${loginInfo.guest_name}</td>
+                        		<td>${loginInfo2.host_name}</td>
                         		<td></td>
                         	</tr>
                         	<tr>
                         		<th>이메일</th>
-                        		<td>${loginInfo.guest_email}</td>
+                        		<td>${loginInfo2.host_email}</td>
                         		<td><input type="button" href="javascript:;" onclick="emainlChange();" value="이메일바꾸기" /></td>
                         	</tr>
                         
                         	<tr>
                         		<th>휴대폰번호</th>
-                        		<td>${loginInfo.guest_hp}</td>
+                        		<td>${loginInfo2.host_hp}</td>
                         		<td><input type="button" href="javascript:;" onclick="hpChange();" value="휴대폰번호바꾸기" /></td>
                         	</tr>
                         	<tr>
                         		<th>계좌번호</th>
-                      			<td>${loginInfo.g_bank }&nbsp;&nbsp;&nbsp;${loginInfo.g_accountno }</td>
-                      			<td><input type="button" href="javascript:;" onclick="g_acnoChange();" value="계좌번호바꾸기" /></td>
+                      			<td>${loginInfo2.host_bank }&nbsp;&nbsp;&nbsp;${loginInfo2.host_accountno }</td>
+                      			<td><input type="button" href="javascript:;" onclick="h_acnoChange();" value="계좌번호바꾸기" /></td>
                         	</tr>
                         </tbody>
                         </table>
@@ -64,28 +64,14 @@
                         <tbody>
                         	<tr>
                         		<th>비밀번호</th>
-                        			<td><input type="password" id="guest_pwd" name="guest_pwd" />기존 비밀번호</td><br>
-      								<td><input type="password" id="guest_pwd" name="guest_pwd" />새로운 비밀번호</td>
+                        			<td><input type="password" id="host_pwd" name="host_pwd" />기존 비밀번호</td><br>
+      								<td><input type="password" id="host_pwd" name="host_pwd" />새로운 비밀번호</td>
       							
                         		<td><input type="button" href="javascript:;" onclick="pwdChange();" value="비밀번호바꾸기" /></td>
                         	</tr>
                         </tbody>
                         </table>
-                        <br><br>
-                        <table class="board_write">
-                        <tbody>
-                        	<tr>
-                        		<th>생일</th>
-                        		<td>${loginInfo.guest_birth}</td>
-                        		
-                        	</tr>
                         
-                        	<tr>
-                        		<th>주소</th>
-                        		<td>${loginInfo.guest_addr1}&nbsp;&nbsp;&nbsp;&nbsp;${loginInfo.guest_addr2 }</td>
-                        	</tr>
-                    	</tbody>
-                      </table>
               		</div>
               </div>
        </form>

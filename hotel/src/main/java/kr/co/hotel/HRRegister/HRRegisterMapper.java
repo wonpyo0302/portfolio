@@ -47,6 +47,11 @@ public interface HRRegisterMapper {
 	//지역 코드 가져오기
 	public List<HotelVO> get_district_code (HotelVO hvo); 
 	
+	//호텔/객실 신청하기 toAdmin
+	public int room_toAdmin(RoomVO vo);
+	
+	public int hotel_toAdmin(HotelVO hvo);
+	
 	
 	
 }

@@ -78,6 +78,7 @@
                                 <div>
                                     <a href="join.do" class="btn">회원가입</a> 
                                     <a href="findHostEmail.do" class="btn">이메일 찾기</a>
+                                    <a href="login.do" style="background-color:black; color:white;">로그인</a>
                                 </div>
                             </div>
                         </div>

@@ -26,6 +26,7 @@
 		select count(*) from room
 		
 		<where>
+			host_no = #{host_no}
 			<if test="stype != null and stype !='' ">
 				<if test="stype != 'all' ">
 					${stype} like '%${sword}%'
@@ -43,6 +44,7 @@
 
 			select * from room
 				<where>
+					host_no = #{host_no}
 					<if test="stype != null and stype !='' ">
 						<if test="stype != 'all' ">
 							${stype} like '%${sword}%'
@@ -183,6 +185,25 @@
 		select * from district where district_code like '${state_code}%'
 	</select>
 	
+	<!-- 호텔 객실 신청 toAdmin -->
+	
+	<update id="room_toAdmin" parameterType="kr.co.hotel.HRRegister.RoomVO">
+		
+		UPDATE room
+		SET
+		status = 1
+		WHERE host_no = #{host_no} AND status = 0 or -1
+		
+	</update>
+	
+	<update id="hotel_toAdmin" parameterType="kr.co.hotel.main.HotelVO">
+	
+		UPDATE hotel
+		SET
+		isConfirm = 1
+		where host_no = #{host_no} and isConfirm = 0 or -1;
+		
+	</update>
 	
 	
 	

@@ -1,45 +1,19 @@
-package kr.co.hotel.reserve;
+package kr.co.hotel.reivew;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.hotel.HRRegister.RoomVO;
-import kr.co.hotel.guest.GuestVO;
-
 @Service
-public class ReserveServiceImp implements ReserveService {
-
-	@Autowired
-	ReserveMapper mapper;
+public class ReviewServiceImpl implements ReviewService {
+	@Autowired 
+	ReviewMapper mapper;
 	
 	@Override
-	public GuestVO select(GuestVO vo) {
-		return mapper.select(vo);
-	}
-
-	@Override
-	public void insert(ReserveVO vo,GuestVO gvo) {
-		mapper.insert(vo);
-		mapper.guestUsedPointUpdate(gvo);
-		mapper.pointinsert(vo);
-	}
-
-	@Override
-	public int reservecheck(ReserveVO vo) {
-		return mapper.reservecheck(vo);
-	}
-	
-	
-	//--이하 마이페이지 예약내역리스트_빛찬--------------------
-	@Override
-	public Map index(ReserveVO vo) {
-		
+	public Map index(ReviewVO vo) {
 		int totalCount = mapper.count(vo);//총개시물 수
 		//총 페이지 수
 		int totalPage = totalCount / vo.getPageRow();
@@ -48,7 +22,7 @@ public class ReserveServiceImp implements ReserveService {
 		//시작 인덱스
 		int startIdx = (vo.getPage()-1)*vo.getPageRow();
 		vo.setStartIdx(startIdx);
-		List<ReserveVO> list = mapper.list(vo);
+		List<ReviewVO> list = mapper.list(vo);
 		
 		//페이징 처리
 		int endPage = (int)(Math.ceil(vo.getPage()/10.0)*10);
@@ -69,8 +43,16 @@ public class ReserveServiceImp implements ReserveService {
 		return map;
 	}
 
+	@Override
+	public int insert(ReviewVO vo) {
+		
+		return mapper.insert(vo);
+	}
 
-
-	
+	@Override
+	public int delete(ReviewVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.delete(vo.getNo());
+	}
 
 }

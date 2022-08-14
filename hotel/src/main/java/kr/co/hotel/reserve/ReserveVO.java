@@ -24,4 +24,29 @@ public class ReserveVO {
 	private String imp_uid;
 	private String rev_name;
 	private String rev_hp;
+	
+	
+	
+	//예약 내역에 필요한 필드 추가
+	private String hotel_name;
+ 	private int number;
+	
+	
+	//페이지 및 검색
+	private int page;
+	private String stype;
+	private String sword;
+	
+	private int startIdx;
+	private int pageRow;
+	
+	public ReserveVO() {
+		this(1, 10);
+	}
+	
+	public ReserveVO(int page, int pageRow) {
+		this.page = page;
+		this.pageRow = pageRow;
+	}
+	
 }

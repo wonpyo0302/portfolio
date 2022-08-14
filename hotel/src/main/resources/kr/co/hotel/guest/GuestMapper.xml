@@ -36,8 +36,8 @@
 	<update id="updateTempGuestPwd" parameterType="kr.co.hotel.guest.GuestVO">
 		UPDATE guest SET guest_pwd = md5(#{guest_pwd}) WHERE guest_id=#{guest_id} AND guest_hp=#{guest_hp} AND guest_email = #{guest_email}
 	</update>
-	<select id="myinfoLogin" parameterType="String" resultType="kr.co.hotel.guest.GuestVO">
+	<select id="myinfoLogin" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
 		SELECT * FROM guest 
-		WHERE guest_pwd = md5(#{guest_pwd}) 
+		WHERE guest_pwd = md5(#{guest_pwd}) AND guest_no = #{guest_no}
 	</select>
 </mapper>
