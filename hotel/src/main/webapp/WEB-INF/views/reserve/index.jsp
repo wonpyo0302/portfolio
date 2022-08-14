@@ -17,22 +17,25 @@
     <title>예약내역</title>
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 
 
 
 <body>  
     <!-- room 정보  -->
+            <div class="sub">
             <div class="size">
-                <h3 class="sub_title">객실 등록 신청</h3>
     
                 <div class="bbs">
+	                <h3 class="sub_title">나의 예약 내역</h3>
                     <table class="list">
                     <p><span><strong>총 ${data.totalCount}개</strong>  |  ${roomVO.page}/${data.totalPage}페이지</span></p>
                         <caption>my rooms</caption>
                         <colgroup>
                             <col width="*" />
-                            <col width="300px" />
+                            <col width="*" />
+                            <col width="*" />
                             <col width="*" />
                             <col width="*" />
                             <col width="*" />
@@ -48,6 +51,7 @@
                                 <th>결제금액</th>
                                 <th>예약상태</th>
                                 <th>이용상태</th>
+                                <th>리뷰</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,6 +70,8 @@
 		                                </td>
 		                                
 		                                <td class="txt_l">
+		                                	<fmt:formatDate value="" pattern=""/>
+		                                	<fmt:parseDate value=""  pattern="yy-MM-dd"/>
 		                                  ${row.startdate} ~ ${row.enddate }
 		                                </td>
 		                                
@@ -89,8 +95,14 @@
 		                                <td>
 			                                 <c:if test="${row.use_status == 0}">이용전</c:if>
 			                                 <c:if test="${row.use_status == 1}">이용완료</c:if>
-			                                 <c:if test="${row.use_status == 2}"></c:if>
+			                                 <c:if test="${row.use_status == 2}">-</c:if>
 		                                </td>
+						
+										<td>
+											<c:if test="${row.use_status == 1}">
+												<a onclick="location.href='../review/write.do?guest_no=${loginInfo.guest_no}&reserv_no=${row.reserv_no }&hotel_no=${row.hotel_no}&room_no=${row.room_no }'">[리뷰 작성하기]</a>
+											</c:if>
+										</td>
 		                            </tr>
 		                          
 							</c:forEach>
@@ -99,10 +111,7 @@
 						
                         </tbody>
                     </table>
-                    
-                    <div class="btnSet"  style="text-align:right;">
-	                        <a class="btn" href="write.do"> 객실 등록 + </a>
-                    </div>
+                   
                     
                     <!-- 페이지 처리 -->
                      <div class="pagenate clear">
