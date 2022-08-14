@@ -17,13 +17,9 @@
 <!-- 아래부분 공통이니까 include -->
 <link rel="stylesheet" href="/hotel/css/reset.css" />
 <link rel="stylesheet" href="/hotel/css/contents.css" />
-
 <script src="/hotel/smarteditor/js/HuskyEZCreator.js"></script>
-<!-- 22.08.03 추가 -->
 <script src="/hotel/js/function.js"></script>
-<!-- 22.08.03 추가 -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
 <style>
@@ -36,6 +32,9 @@
 <script>
     	function goSave(){
     		frm.submit();
+    		/*
+    		location.href='view.do?gboard_no='+gboard_no;
+    		*/
     	};
     	</script>
 
@@ -71,8 +70,10 @@
 			<h3 class="sub_title" style="text-align: left">새 문의글 작성</h3>
 			<br>
 			<div class="bbs">
-				<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data">
+				<form method="post" name="frm" id="frm" action="../board/insert.do" enctype="multipart/form-data">
+					<input type="hidden" name="gboard_no" value="${gboard_no}">
 					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
+					<input type="hidden" name="loginInfo" value="${loginInfo}">
 					<table class="board_write">
 						<tbody>
 							<div class="container">
@@ -92,17 +93,15 @@
 									<tr>
 										<th>이메일</th>
 										<td><input type="text" id="" value=""
-											placeholder="선택사항입니다.">@<input type="text" id=""
-											value=""></td>
+											placeholder="선택사항입니다.">@<input type="text" id="" value=""></td>
 									</tr>
 							<tr>
 								<th>제목</th>
-								<td><input type="text" style="width: 90%"></td>
+								<td><input name="gboard_title" id="gboard_title" type="text" style="width: 90%"></td>
 							</tr>
 							<tr>
 								<th>문의내용</th>
-								<td><textarea name="content" id="content"
-										style="width: 90%"></textarea></td>
+								<td><textarea name="gboard_content" id="gboard_content" style="width: 90%"></textarea></td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>
@@ -114,6 +113,8 @@
 					</table>
 					<div class="btnSet" style="text-align: right;">
 						<a class="btn" href="javascript:goSave();">작성완료 </a>
+						<a class="btn" href="javascript:goSave();">작성완료3 </a>
+						<input type="submit" href="insert.do">
 					</div>
 				</form>
 			</div>

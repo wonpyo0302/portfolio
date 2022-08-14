@@ -19,11 +19,8 @@
 <link rel="stylesheet" href="/hotel/css/contents.css" />
 
 <script src="/hotel/smarteditor/js/HuskyEZCreator.js"></script>
-<!-- 22.08.03 추가 -->
 <script src="/hotel/js/function.js"></script>
-<!-- 22.08.03 추가 -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
 <style>

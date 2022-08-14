@@ -1,5 +1,8 @@
 package kr.co.hotel.guestboard;
 
+import java.io.File;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -30,9 +33,6 @@ public class GuestBoardController extends ImgHandling{
 	// 조회
 	@GetMapping("/board/view.do")
 	public String view(Model model, GuestBoardVO vo) {
-
-		System.out.println("보드브이오 : " + vo.getGboard_no());
-
 		service.viewCount(vo.getGboard_no());
 		GuestBoardVO gvo = service.view(vo.getGboard_no());
 		model.addAttribute("data", gvo);
@@ -41,21 +41,35 @@ public class GuestBoardController extends ImgHandling{
 
 	// 등록 폼
 	@GetMapping("/board/write.do")
-	public String write(Model model, GuestBoardVO vo) {
+	public String write(Model model) {
 		return "board/write";
 	}
 
 	// 등록처리
-	@PostMapping("/board/write.do")
+	@PostMapping("/board/insert.do")
 	public String insert(Model model, GuestBoardVO vo, @RequestParam MultipartFile filename, HttpServletRequest req) {
-
+		System.out.println("타이틀나와라 :"+vo.getGboard_title());
+		System.out.println("컨텐츠 :"+vo.getGboard_content());
+		if(!filename.isEmpty()) {
+			String org = filename.getOriginalFilename();
+			String ext = org.substring(org.lastIndexOf("."));
+			String real = new Date().getTime()+ext;
+			
+			String path = req.getRealPath("/upload/");
+			try {
+				filename.transferTo(new File(path+real));
+			} catch (Exception e) {}
+				vo.setFilenmae_org(org);
+				vo.setFilename_real(real);
+		}
+		
 		HttpSession sess = req.getSession();
 		GuestVO gvo = (GuestVO)sess.getAttribute("loginInfo");
 		vo.setGuest_no(gvo.getGuest_no());
 		
 		if(service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
-			model.addAttribute("url", "list.do");
+			model.addAttribute("url", "view.do?gboard_no="+vo.getGboard_no());
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "저장 실패했습니다.");

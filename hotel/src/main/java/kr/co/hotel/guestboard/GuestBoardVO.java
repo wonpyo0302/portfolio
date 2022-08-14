@@ -18,6 +18,9 @@ public class GuestBoardVO {
 	private Timestamp gboard_regdate; // 작성일
 	private int gboard_status; // 답변상태
 	
+	private String filenmae_org;
+	private String filename_real;
+	
 	
 	private int page; // 현재 페이지
 	private int pageRow; // 한 페이지당 행(게시물)의 개수
