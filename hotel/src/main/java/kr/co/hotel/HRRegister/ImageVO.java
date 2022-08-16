@@ -13,6 +13,7 @@ public class ImageVO {
 		
 		private int hotel_no;
 		private int room_no;
+		private int review_no;
 		  
 		
 }

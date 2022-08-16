@@ -46,6 +46,7 @@
                             <tr>
                                 <th>번호</th>
                                 <th>예약일자</th>
+                                <th>예약자</th>
                                 <th>호텔</th>
                                 <th>객실</th>
                                 <th>결제금액</th>
@@ -76,6 +77,9 @@
 		                                </td>
 		                                
 		                                <td class="txt_l">
+		                                  ${row.rev_name }
+		                                </td>
+		                                <td class="txt_l">
 		                                   ${row.hotel_name}
 		                                </td>
 		                                
@@ -85,7 +89,7 @@
 		                                
 		                                
 		                                <td class="writer">
-		                                    ${row.total_price}
+		                                    ${row.total_price} 
 		                                </td>
 		                                <td >
 		                                	<c:if test="${row.rev_status ==0 }">예약완료</c:if>
@@ -99,8 +103,11 @@
 		                                </td>
 						
 										<td>
-											<c:if test="${row.use_status == 1}">
+											<c:if test="${row.use_status == 1 && row.review_status==0}">
 												<a onclick="location.href='../review/write.do?guest_no=${loginInfo.guest_no}&reserv_no=${row.reserv_no }&hotel_no=${row.hotel_no}&room_no=${row.room_no }'">[리뷰 작성하기]</a>
+											</c:if>
+											<c:if test="${row.review_status==1}">
+												<a onclick="location.href=''">[나의 리뷰(..ing)]</a>
 											</c:if>
 										</td>
 		                            </tr>

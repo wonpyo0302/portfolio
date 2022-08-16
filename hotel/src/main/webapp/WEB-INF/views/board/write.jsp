@@ -71,7 +71,6 @@
 			<br>
 			<div class="bbs">
 				<form method="post" name="frm" id="frm" action="../board/insert.do" enctype="multipart/form-data">
-					<input type="hidden" name="gboard_no" value="${gboard_no}">
 					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
 					<input type="hidden" name="loginInfo" value="${loginInfo}">
 					<table class="board_write">

@@ -18,7 +18,7 @@ public class GuestBoardVO {
 	private Timestamp gboard_regdate; // 작성일
 	private int gboard_status; // 답변상태
 	
-	private String filenmae_org;
+	private String filename_org;
 	private String filename_real;
 	
 	

@@ -29,7 +29,17 @@ public class ReserveVO {
 	
 	//예약 내역에 필요한 필드 추가
 	private String hotel_name;
- 	private int number;
+	private int number;
+	private int review_status;
+	
+	private int check_in_out_status;
+	private Timestamp checkin_date;
+	private Timestamp checkout_date;
+	
+	
+	
+	
+	
 	
 	
 	//페이지 및 검색

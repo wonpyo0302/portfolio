@@ -59,7 +59,7 @@ public class GuestBoardController extends ImgHandling{
 			try {
 				filename.transferTo(new File(path+real));
 			} catch (Exception e) {}
-				vo.setFilenmae_org(org);
+				vo.setFilename_org(org);
 				vo.setFilename_real(real);
 		}
 		

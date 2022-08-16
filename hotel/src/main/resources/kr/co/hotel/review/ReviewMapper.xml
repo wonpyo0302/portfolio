@@ -52,6 +52,23 @@
 		where reserv_no = #{reserv_no}
 		
 	</select>
+	
+	<insert id="insert" parameterType="kr.co.hotel.review.ReviewVO">
+		INSERT INTO review
+		(reserv_no,guest_no,hotel_no,room_no,review_title,review_content,review_regdate,review_score)
+		VALUES
+		(#{reserv_no}, #{guest_no}, #{hotel_no}, #{room_no}, #{review_title}, #{review_content}, now(), #{review_score})
+		<selectKey resultType="int" keyProperty="review_no" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="update_review_status" parameterType="kr.co.hotel.review.ReviewVO">
+		UPDATE reserv
+		SET
+		review_status = 1
+		WHERE reserv_no = #{reserv_no}
+	</update>
 	 
 
 </mapper>
