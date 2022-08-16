@@ -5,9 +5,9 @@
 	<!-- 등록하기 -->
 	<insert id="insert" parameterType="kr.co.hotel.guestboard.GuestBoardVO" >
 		INSERT INTO guestboard (
-			gboard_type, gboard_title, gboard_content, gboard_viewcount, gboard_writer, gboard_regdate, gboard_status
+			guest_no, gboard_type, gboard_title, gboard_content, gboard_viewcount, gboard_writer, gboard_regdate, gboard_status, filename_org, filenmae_real
 		) VALUES (
-			#{gboard_type}, #{gboard_title}, #{gboard_content}, #{gboard_viewcount}, #{gboard_writer}, now(), #{gboard_status} 
+			#{guest_no}, #{gboard_type}, #{gboard_title}, #{gboard_content}, #{gboard_viewcount}, #{gboard_writer}, now(), #{gboard_status}, #{filename_org}, #{filename_real}
 		)
 	</insert>
 	

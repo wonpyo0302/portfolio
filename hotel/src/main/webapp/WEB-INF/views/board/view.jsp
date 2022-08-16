@@ -64,7 +64,7 @@
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "/board/list.do";
+		location.href = "/hotel/board/list.do";
 	}
 	// 삭제하기
 	function goDel(gboard_no) {
@@ -96,35 +96,46 @@
 					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
 					<table class="board_write">
 						<div class="title">
+							<tr>
+								<th>제목</th>
+								<td>${data.gboard_title }</td>
+								
+								<th>문의유형</th>
+								<td style="text-align:left" colspan='2'>
+									<c:if test="${data.gboard_type==1 }">[예약]</c:if>
+									<c:if test="${data.gboard_type==2 }">[결제]</c:if>
+									<c:if test="${data.gboard_type==3 }">[숙소]</c:if>
+									<c:if test="${data.gboard_type==4 }">[포인트/쿠폰]</c:if>
+									<c:if test="${data.gboard_type==5 }">[이용/기타]</c:if>
+								</td>
+							</tr>
 						<tr>
-							<th>제목</th>
-							<td>${data.gboard_title }</td>
 							<th>등록일자</th>
-							<td class="date" style="width: 150px"><fmt:formatDate
-									value="${data.gboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+							<td  class="date" style="width: 35%"><fmt:formatDate value="${data.gboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+							<th>수정일자</th>
+							<td colspan='2'  class="date" style="width: 35%"><fmt:formatDate value="${data.gboard_regdate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td>${loginInfo.guest_no}${data.gboard_writer}</td>
-							<th>수정일자</th>
-							<td class="date" style="width: 150px"><fmt:formatDate
-									value="${data.gboard_regdate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
+							<td>${data.gboard_writer}</td>
+							<th>첨부파일</th>
+							<td colspan="2">첨부파일 다운 받을 수 있게</td>
 						</tr>
+						
 						<tr>
 							<th>내용</th>
-							<td style="width: 600px">${data.gboard_content}</td>
+							<td colspan="2">${data.gboard_content}</td>
 						</tr>
 						<tr>
-							<th>첨부파일</th>
-							<td>첨부파일 다운 받을 수 있게</td>
 						</tr>
 						</div>
 					</table>
 					<div class="btnSet" style="text-align: right;">
 						<a href="edit.do?gboard_no=${data.gboard_no }" class="btn">수정</a>
 						<a href="javascript:goDel(${data.gboard_no});" class="btn">삭제</a>
+						<a href="javascript:goList();" class="btn" style="text-align:right">목록 </a>
 					</div>
-					<div><a href="javascript:goList();" class="btn" style="text-align:right">목록 </a></div>
+					
 				</form>
 			</div>
 			

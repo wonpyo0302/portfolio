@@ -30,7 +30,7 @@
 				<!-- 관리자에게 보낼 호텔/객실 승인 신청 버튼  -->
 					<div class="btnSet"  style="text-align:right;">
 	                    <c:if test="${!empty Hdata}">
-							<a class="btn" href="../myhotel/toAdmin.do?host_no=${loginInfo.host_no}"> 호텔/객실 승인신청 </a>
+							<a class="btn" href="../myhotel/toAdmin.do?host_no=${loginInfo2.host_no}"> 호텔/객실 승인신청 </a>
 	                    </c:if>
                     </div>
 					
@@ -40,7 +40,7 @@
                 <div class="bbs">
                 	
                     <table class="list">
-                        <caption>게시판 목록</caption>
+                        <caption>my hotel</caption>
                         
                         <colgroup>
                             <col width="*" />
@@ -69,11 +69,11 @@
 	                            <tr onClick="location.href='../myhotel/view.do?hotel_no=${Hdata.hotel_no}'">
 	                                <td class="txt_l">
 	                                   ${Hdata.hotel_name}
-	                                   <input type="hidden" name="host_no" value="${loginInfo.host_no }">
+	                                   <input type="hidden" name="host_no" value="${loginInfo2.host_no }">
 	                                </td>
 	                                
 	                                <td>
-	                                	${loginInfo.host_name } 
+	                                	${loginInfo2.host_name } 
 	                                </td>
 	                                
 	                                
@@ -114,7 +114,7 @@
                 <div class="bbs">
                     <table class="list">
                     <p><span><strong>총 ${data.totalCount}개</strong>  |  ${roomVO.page}/${data.totalPage}페이지</span></p>
-                        <caption>게시판 목록</caption>
+                        <caption>my rooms</caption>
                         <colgroup>
                             <col width="*" />
                             <col width="300px" />

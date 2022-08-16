@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@include file="/WEB-INF/views/includes/G_header.jsp"%>
+<%@ include file="/WEB-INF/views/includes/G_header.jsp" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -45,7 +45,13 @@
 #text {
 	display: none;
 	font-size: 20px;
-	background-color: pink;
+	background: rgba(0,0,0,0.08);
+	font-style: bold;
+	margin-bottom: 0;
+	padding: 35px 32px;
+	border-radius : 1px;
+	font-size: 20px;
+	line-height : 26px;
 }
 
 .downbtn {
@@ -101,7 +107,7 @@
 								<c:if test="${faq.gfaq_type == 1}">
 									<li class="item">
 										<h5 class="Title">
-											[예약 문의] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[예약] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
 											<div class="text" id="text">${faq.gfaq_content}</div>
@@ -113,7 +119,7 @@
 								<c:if test="${faq.gfaq_type == 2}">
 									<li class="item">
 										<h5 class="Title">
-											[결제 문의] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[결제] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
 											<div class="text" id="text">${faq.gfaq_content}</div>
@@ -125,7 +131,7 @@
 								<c:if test="${faq.gfaq_type == 3}">
 									<li class="item">
 										<h5 class="Title">
-											[숙소 문의] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[숙소] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
 											<div class="text" id="text">${faq.gfaq_content}</div>
@@ -137,7 +143,7 @@
 								<c:if test="${faq.gfaq_type == 4}">
 									<li class="item">
 										<h5 class="Title">
-											[포인트/쿠폰 문의] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[포인트/쿠폰] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
 											<div class="text" id="text">${faq.gfaq_content}</div>
@@ -149,13 +155,14 @@
 								<c:if test="${faq.gfaq_type == 5}">
 									<li class="item">
 										<h5 class="Title">
-											[이용/기타 문의] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[이용/기타] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
 											<div class="text" id="text">${faq.gfaq_content}</div>
 										</div>
 									</li>
 								</c:if>
+								
 								<br>
 							</c:forEach>
 						</ul>

@@ -20,6 +20,7 @@
 	function goWrite(){
 		<c:if test="${empty loginInfo}">
 			alert('로그인 후 작성 가능합니다.');
+			location.href='/hotel/guest/login.do';
 		</c:if>
 		<c:if test="${!empty loginInfo}">
 			location.href='write.do';
@@ -105,7 +106,7 @@
 										</c:if>
 										<td class="txt_l">
 										
-										<a href="/hotel/board/view.do?no=${vo.gboard_no}">${vo.gboard_title}</a></td>								
+										<a href="/hotel/board/view.do?gboard_no=${vo.gboard_no}">${vo.gboard_title}</a></td>								
 										
 										<td>${vo.gboard_viewcount}</td>
 										
@@ -127,7 +128,6 @@
 				<div class="btnSet" style="text-align: right;">
 				
 					<a class="btn" href="javascript:goWrite();">글작성 </a>
-					<a class="btn" href="javascript:login();">로그인</a>
 					
 				</div>
 				<div class="pagenate clear">
