@@ -43,7 +43,7 @@ public class ReserveController {
 	
 	
 	//-----이하 빛찬-----------------------------------------------
-	
+	//-----게스트-----------------------------------------------
 	@GetMapping("/reserve/index.do")
 	public String index(Model model,HotelVO hvo, ReserveVO vo, HttpSession sess, HttpServletRequest req) {
 		GuestVO loginInfo1 = new GuestVO();// demo data
@@ -59,6 +59,5 @@ public class ReserveController {
 		
 		return "reserve/index";
 	}
-	
 	
 }
