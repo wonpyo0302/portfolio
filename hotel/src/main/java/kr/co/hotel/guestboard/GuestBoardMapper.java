@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import kr.co.hotel.guest.GuestVO;
 @Mapper
 
 public interface GuestBoardMapper {
