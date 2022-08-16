@@ -11,9 +11,9 @@
 	
 	<insert id="img_insert" parameterType="kr.co.hotel.HRRegister.ImageVO" >
 		INSERT INTO image
-			( hotel_no,room_no, filename_org, filename_real, image_order, image_type)
+			( hotel_no,room_no,review_no, filename_org, filename_real, image_order, image_type)
 		VALUES
-			(#{hotel_no},#{room_no},#{filename_org},#{filename_real},#{image_order},#{image_type})
+			(#{hotel_no},#{room_no},#{review_no} ,#{filename_org},#{filename_real},#{image_order},#{image_type})
 	</insert>
 	
 	<select id="img_get" parameterType="int" resultType="kr.co.hotel.room.RoomVO">

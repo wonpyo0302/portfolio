@@ -2,8 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.hotel.coupon.CouponMapper">
 	
-	<select id="list" resultType="kr.co.hotel.guest.GuestVO">
+	<select id="list" parameterType="java.util.Map" resultType="kr.co.hotel.guest.GuestVO">
 		select * from guest
+		<where>
+			guest_id like '%${idsearch}%'
+		</where>
 	</select>
 
 	<select id="selectGuestNo" parameterType="string" resultType="kr.co.hotel.guest.GuestVO">

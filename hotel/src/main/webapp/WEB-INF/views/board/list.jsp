@@ -110,7 +110,7 @@
 										
 										<td>${vo.gboard_viewcount}</td>
 										
-										<td class="writer">${vo.gboard_writer}</td>
+										<td class="writer">${loginInfo.guest_name}</td>
 										
 										<td class="date"> <fmt:formatDate value="${vo.gboard_regdate}" pattern="yyyy-MM-dd"/></td>
 										

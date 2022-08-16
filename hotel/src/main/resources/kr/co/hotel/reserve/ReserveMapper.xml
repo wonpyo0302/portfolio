@@ -32,8 +32,33 @@
 	
 	<select id="reservecheck" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="int">
 			select count(*) from reserv where room_no =#{room_no} and hotel_no =#{hotel_no} and
-			startdate between #{startdate} and #{enddate} and rev_status != 1
+			startdate between #{startdate} and #{enddate} and rev_status != 0
 	</select>
+	
+	<update id="updateCoupon" parameterType="kr.co.hotel.reserve.ReserveVO">
+		update coupon set use_status=1, usedate=now() where coupon_no =#{coupon_no} 
+	</update>
+	
+	<select id="couponlist" parameterType="kr.co.hotel.coupon.CouponVO" resultType="kr.co.hotel.coupon.CouponVO">
+		select * from coupon where guest_no=#{guest_no} and use_status !=1 and delete_status !=1
+	</select>
+	
+	<update id="CounponDelete">
+		update coupon set delete_status = 1 where now() > expdate and delete_status !=1
+	</update>
+	
+	<update id="UpdatePointDeposit" parameterType="kr.co.hotel.reserve.ReserveVO">
+		update reserv set point_deposit_status=1 where imp_uid = #{imp_uid}
+	</update>
+	
+	<insert id="InsertPointDeposit" parameterType="kr.co.hotel.reserve.ReserveVO">
+		insert into point 
+			(guest_no, io_point, totalpoint, pointtype)
+		values (#{guest_no}, #{used_point},(select totalpoint from guest where guest_no = #{guest_no}),1)
+	</insert>
+	
+	
+	
 	
 	
 	

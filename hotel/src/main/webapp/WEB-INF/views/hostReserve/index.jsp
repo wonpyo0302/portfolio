@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@include file="/WEB-INF/views/includes/G_header.jsp" %>
+<%@include file="/WEB-INF/views/includes/H_header.jsp" %>
 
 
 <!DOCTYPE html>
@@ -47,7 +47,7 @@
                                 <th>번호</th>
                                 <th>예약일자</th>
                                 <th>예약자</th>
-                                <th>호텔</th>
+                               
                                 <th>객실</th>
                                 <th>결제금액</th>
                                 <th>예약상태</th>
@@ -79,9 +79,7 @@
 		                                <td class="txt_l">
 		                                  ${row.rev_name }
 		                                </td>
-		                                <td class="txt_l">
-		                                   ${row.hotel_name}
-		                                </td>
+		                             
 		                                
 		                                <td>
 		                                	${row.number}

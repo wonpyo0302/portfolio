@@ -68,9 +68,26 @@
 	}
 	// 삭제하기
 	function goDel(gboard_no) {
+		
+		var pwd = ${loginInfo.guest_pwd};
+		
 		if (confirm('정말 삭제하시겠습니까?')) {
-			location.href = "delete.do?gboard_no=" + gboard_no;
+			if(!pwd){
+				alert("본인확인을 위해 비밀번호를 입력하세요.");
+			} else if(pwd){
+				location.href = "delete.do?gboard_no=" + gboard_no;
+			}
+		
 		}
+		
+		
+		/* if(${loginInfo.guest_pwd}) {
+			if (confirm('정말 삭제하시겠습니까?')) {
+				location.href = "delete.do?gboard_no=" + gboard_no;
+			}
+		} else if(!${loginInfo.guest_pwd}) {
+			alert("본인확인을 위해 비밀번호를 입력하세요.");
+		} */
 	}
 </script>
 
@@ -117,7 +134,7 @@
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td>${data.gboard_writer}</td>
+							<td>${loginInfo.guest_name}</td>
 							<th>첨부파일</th>
 							<td colspan="2">첨부파일 다운 받을 수 있게</td>
 						</tr>
@@ -127,6 +144,8 @@
 							<td colspan="2">${data.gboard_content}</td>
 						</tr>
 						<tr>
+							<th>비밀번호</th>
+							<td><input type="pwd" name="guest_pwd"></td>
 						</tr>
 						</div>
 					</table>

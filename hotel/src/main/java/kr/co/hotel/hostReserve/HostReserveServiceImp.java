@@ -1,4 +1,4 @@
-package kr.co.hotel.point;
+package kr.co.hotel.hostReserve;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,19 +7,22 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
-import kr.co.hotel.room.RoomVO;
-=======
-import kr.co.hotel.HRRegister.RoomVO;
+import kr.co.hotel.guest.GuestVO;
+import kr.co.hotel.main.HotelVO;
 import kr.co.hotel.reserve.ReserveVO;
->>>>>>> branch 'main' of https://github.com/ChloeJS/project_hotel.git
+
 @Service
-public class PointServiceImpl implements PointService {
-	@Autowired 
-	PointMapper mapper;
+public class HostReserveServiceImp implements HostReserveService {
+
+	@Autowired
+	HostReserveMapper mapper;
 	
+	
+	
+	//--이하 마이페이지 예약내역리스트_빛찬--------------------
 	@Override
-	public Map index(PointVO vo) {
+	public Map index(ReserveVO vo) {
+		
 		int totalCount = mapper.count(vo);//총개시물 수
 		//총 페이지 수
 		int totalPage = totalCount / vo.getPageRow();
@@ -28,8 +31,7 @@ public class PointServiceImpl implements PointService {
 		//시작 인덱스
 		int startIdx = (vo.getPage()-1)*vo.getPageRow();
 		vo.setStartIdx(startIdx);
-		List<PointVO> list = mapper.list(vo);
-		
+		List<ReserveVO> list = mapper.list(vo);
 		
 		//페이징 처리
 		int endPage = (int)(Math.ceil(vo.getPage()/10.0)*10);
@@ -53,12 +55,12 @@ public class PointServiceImpl implements PointService {
 
 
 	@Override
-	public int total(int guest_no) {
-		
-		return mapper.total(guest_no);
+	public HotelVO get_hotelInfo(int host_no) {
+		return mapper.get_hotelInfo(host_no);
 	}
 
 
 
+	
 
 }
