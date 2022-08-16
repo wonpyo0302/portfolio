@@ -7,12 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
 import kr.co.hotel.room.RoomVO;
-=======
-import kr.co.hotel.HRRegister.RoomVO;
+
 import kr.co.hotel.reserve.ReserveVO;
->>>>>>> branch 'main' of https://github.com/ChloeJS/project_hotel.git
 @Service
 public class PointServiceImpl implements PointService {
 	@Autowired 

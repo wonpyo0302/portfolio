@@ -8,12 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
-
-=======
 import kr.co.hotel.coupon.CouponVO;
-import kr.co.hotel.HRRegister.RoomVO;
->>>>>>> branch 'main' of https://github.com/ChloeJS/project_hotel.git
 import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.room.RoomVO;
 
