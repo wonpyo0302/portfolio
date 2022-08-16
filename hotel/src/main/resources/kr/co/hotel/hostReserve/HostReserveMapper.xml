@@ -50,6 +50,13 @@
 	<select id="get_hotelInfo" parameterType="int" resultType="kr.co.hotel.main.HotelVO">
 		select * from hotel where host_no = #{host_no}
 	</select>
+	
+	<update id="rejectRev" parameterType="int">
+		UPDATE reserv
+		SET
+		use_status = 2
+		WHERE reserv_no = #{reserv_no}
+	</update>
 
 	
 </mapper>
