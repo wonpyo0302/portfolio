@@ -48,6 +48,11 @@ public class HotelController {
 		return list;
 	}
 	
-	
+	@PostMapping("/main/sortType.do")
+	public String sortType(HotelVO vo, Model model, @RequestParam("sortType") String sortType) {
+		vo.setSortType(sortType);
+		model.addAttribute("hotelList",service.searchList(vo));
+		return "/main/sortType";
+	}
 	
 }

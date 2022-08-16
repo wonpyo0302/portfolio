@@ -38,7 +38,7 @@ public class HotelVO {
 	private String searchbox_district;
 	
 	private String selectbox_state;
-	private String soltType;
+	private String sortType;
 	
 
 }

@@ -52,9 +52,9 @@
 			line-height: 3.6rem;
 		}
 		
-		.selectbox_solt{
+		.selectbox_sort{
 			float:right;
-			margin-right: 74px;
+			margin-right: 105px;
 		}
 		
 		.hotel01 {
@@ -82,6 +82,9 @@
 		.container list {
 			flex: auto;
 		}
+		span {
+			font-weight: bolder;
+		}
 		
 	</style>
 
@@ -91,7 +94,7 @@
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <div class="search_box">
 	<form class="search_box_form" action="/hotel/main/search.do">
-		<input type="text" size="50%" height="40px" id="searchWord" name="searchWord" value="" placeholder="호텔이름을 입력하세요" ><br>
+		<input type="text" size="50%" height="40px" id="searchWord" name="searchWord" value="" placeholder="${hotelVO.searchWord}" ><br>
 		
 		<div class ="location_box">
 			<div class ="location_box_select">
@@ -109,31 +112,30 @@
 					</c:forEach> 
 				</select>
 				
-				<input type="submit" value="검색">
+				<input type="button" value="검색" onclick="sortList()">
 			</div>
 		</div>
 	</form><br>
 	</div>
-	<span>입력한 검색어: ${hotelVO.searchWord}</span>
-	<div class="selectbox_solt">
-		<select name="soltType" id="soltType" onchange="soltList()">
+	<span id="input_searchWord">입력한 검색어: ${hotelVO.searchWord}</span>
+	<div class="selectbox_sort">
+		<select name="sortType" id="sortType" onchange="sortList()">
 			<option value="" selected>---</option>
-			<option value="score">평점순</option>
-			<option value="balance">낮은 가격순</option>
+			<option value="scoreList">평점순</option>
+			<option value="lowPrice">낮은 가격순</option>
 			<option value="review">리뷰순</option>
 			<option value="like">좋아요순</option>
 		</select>
 	</div>
-	<div class="container list_body" style="text-align: center;">
+	<div id="searchArea" class="container list_body" style="text-align: center;">
 		<div class="low">
 			<c:forEach var="list" items="${hotelList }" varStatus="idx">
 				<table class="container list" style="table-layout: fixed;">
 					<tr>
 						<td class="list_hotel" style="border: 1px;">
 							<a href="">
-								<div class="hotel_img" style="background-image: url(/hotel/image/hotel/${list.filename}.jpg);">
-								</div>
-								<div><p>${list.hotel_name}</p></div>
+								<span class="hotel_img"><img alt="이미지오류" src="/hotel/image/hotel/${list.filename}" width="200" height="200"></span>
+								<span><p>${list.hotel_name}</p></span>
 								<span>최저가:  ${list.lowPrice } ~</span>
 							</a>
 						</td>
@@ -142,7 +144,7 @@
 						<td>${list.hotel_content}</td>
 					</tr>
 				</table>
-			<c:if test="${idx.count % 3 == 0 && !idx.last}">
+			<c:if test="${idx.count % 2 == 0 && !idx.last}">
 		</div>
 		<div class="low">
 			</c:if>
@@ -181,15 +183,19 @@
 				}
 		})
 	}
-	function soltList() {
+	function sortList() {
 		$.ajax({
-			url : "soltType.do",
+			url : "sortType.do",
 			type : "POST",
 			data : {
-					soltType : $("#soltType").val()
+					sortType : $("#sortType").val(),
+					searchWord : $("#searchWord").val(),
+					selectbox_state : $("#selectbox_state").val(),
+					selectbox_district : $("#selectbox_district").val()
+					
 				},
 			success : function(result) {
-				
+					$('#searchArea').html(result);
 				}
 		})
 	}
