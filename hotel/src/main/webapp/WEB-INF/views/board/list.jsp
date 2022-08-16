@@ -16,6 +16,9 @@
 <title>게시판목록</title>
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
+    
+
+    
 <script>
 	function goWrite(){
 		<c:if test="${empty loginInfo}">
@@ -49,7 +52,6 @@
 			<br>
 			<h8 class="sub_content" style="text-align:left"> <img src="/hotel/image/qna.png" width="40px">  게스트 전용 문의 게시판입니다. 문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
 			<br><br><br><br>
-			
 			<div class="bbs">
 				<table class="list">
 					<p>
@@ -110,7 +112,7 @@
 										
 										<td>${vo.gboard_viewcount}</td>
 										
-										<td class="writer">${loginInfo.guest_name}</td>
+										<td class="writer">${vo.guest_name}</td>
 										
 										<td class="date"> <fmt:formatDate value="${vo.gboard_regdate}" pattern="yyyy-MM-dd"/></td>
 										

@@ -15,8 +15,11 @@ public class GuestBoardVO {
 	private String gboard_content; // 내용
 	private int gboard_viewcount; // 조회수
 	private String gboard_writer; //작성자
-	private Timestamp gboard_regdate; // 작성일
+	private Timestamp gboard_regdate; // 등록일
+	private Timestamp gboard_updatedate; // 수정일
 	private int gboard_status; // 답변상태
+	
+	private String guest_name;//스칼라서브쿼리로 host_name를 가져옴
 	
 	private String filename_org;
 	private String filename_real;

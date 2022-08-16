@@ -32,9 +32,6 @@
 <script>
     	function goSave(){
     		frm.submit();
-    		/*
-    		location.href='view.do?gboard_no='+gboard_no;
-    		*/
     	};
     	</script>
 
@@ -90,8 +87,7 @@
 									</li>
 									<tr>
 										<th>이메일</th>
-										<td><input type="text" id="" value=""
-											placeholder="선택사항입니다.">@<input type="text" id="" value=""></td>
+										<td><input type="text" id="" value="" placeholder="선택사항입니다.">@<input type="text" id="" value=""></td>
 									</tr>
 							<tr>
 								<th>제목</th>

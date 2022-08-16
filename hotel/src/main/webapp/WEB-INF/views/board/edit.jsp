@@ -20,7 +20,8 @@
 
 <script src="/hotel/smarteditor/js/HuskyEZCreator.js"></script>
 <script src="/hotel/js/function.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
 <style>
@@ -28,15 +29,12 @@
 	height: 100%;
 	text-align: left;
 }
-
-
 </style>
 
 <script> 
 	// 글작성 완료 후 내가 쓴글 상세보기 이동
 	function goSave() {
 		frm.submit();
-		location.href='/hotel/board/view.do?gboard_no='+gboard_no;
 		
 	};
 </script>
@@ -66,15 +64,16 @@
 			<h3 class="sub_title" style="text-align: left">Q&A</h3>
 			<br>
 			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/qna.png" width="40px"> 게스트 전용 문의사항 게시판입니다.
+				<img src="/hotel/image/qna.png" width="40px"> 게스트 전용 문의사항
+				게시판입니다.
 			</h6>
 			<br>
 			<h3 class="sub_title" style="text-align: left">문의글 수정</h3>
 			<br>
 			<div class="bbs">
-				<form method="post" name="frm" id="frm" action="update.do"
+				<form method="post" name="frm" id="frm" action="edit.do"
 					enctype="multipart/form-data">
-					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
+					<input type="hidden" name="gboard_no" value="${data.gboard_no}">
 					<table class="board_write">
 						<tbody>
 							<div class="container">
@@ -82,8 +81,8 @@
 									<li class="item">
 									<th>문의유형</th>
 									</span>
-									<td class="choose"><span class="srchSelect"> 
-									<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
+									<td class="choose"><span class="srchSelect"> <select
+											id="stype" name="stype" class="dSelect" title="검색분류 선택">
 												<option value="reservation"
 													<c:if test="${data.gboard_type==1 }">selected</c:if>>
 													예약문의</option>
@@ -99,26 +98,29 @@
 												<option value="etc"
 													<c:if test="${data.gboard_type==5 }"> selected</c:if>>
 													이용/기타 문의</option>
-									</select>
+										</select>
 											</li>
-											<tr>
-												<th>이메일</th>
-												<td><input type="text" id="email" value="" placeholder="선택사항입니다.">@<input type="text" id="" value=""></td>
-											</tr>
-											<tr>
-												<th>제목</th>
-												<td><input type="text" style="width: 90%" value="${data.gboard_title }"></td>
-											</tr>
-											<tr>
-												<th>문의내용</th>
-												
-												<td><textarea name="content" id="content" style="width: 90% "></textarea></td>
-											</tr>
-											<tr>
-												<th>첨부파일</th>
-												<td><input type="file" name="filename"></td>
-											</tr>
-								</ul>
+							<tr>
+								<th>이메일</th>
+								<td><input type="text" name="guest_email" id="email" value="" placeholder="선택사항입니다.">@<input type="text" id="" value=""></td>
+							</tr>
+							<tr>
+								<th>제목</th>
+								<td><input type="text" name="gboard_title" style="width: 90%" value="${data.gboard_title }"></td>
+							</tr>
+							<tr>
+								<th>작성자</th>
+								<td>${loginInfo.guest_name}</td>
+							</tr>
+							<tr>
+								<th>문의내용</th>
+								<td><textarea name="gboard_content" id="content" style="width: 90%" >${data.gboard_content}</textarea></td>
+							</tr>
+							<tr>
+								<th>첨부파일</th>
+								<td><input type="file" name="filename"></td>
+							</tr>
+							</ul>
 							</div>
 						</tbody>
 					</table>

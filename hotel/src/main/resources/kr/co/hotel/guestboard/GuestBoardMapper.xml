@@ -10,6 +10,9 @@
 		) VALUES (
 			#{guest_no}, #{gboard_type}, #{gboard_title}, #{gboard_content}, #{gboard_viewcount}, #{gboard_writer}, now(), #{gboard_status}, #{filename_org}, #{filename_real}
 		)  
+		<selectKey keyProperty="gboard_no" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
 	
 	
@@ -30,7 +33,10 @@
 	
 	<!-- 목록보기 -->
 	<select id="list" parameterType="kr.co.hotel.guestboard.GuestBoardVO" resultType="kr.co.hotel.guestboard.GuestBoardVO">
-		SELECT * FROM guestboard
+		SELECT *,
+		(SELECT guest_name from guest where guest_no=guestboard.guest_no) as guest_name
+		
+		FROM guestboard
 			<where>
 				<if test="stype != null and sword != ''">
 					<if test="stype != 'all'">
@@ -56,9 +62,10 @@
 	</update>
 	
 	<!-- 수정하기 -->
-	<update id="update" parameterType="int">
+	<update id="update" parameterType="kr.co.hotel.guestboard.GuestBoardVO">
 		UPDATE guestboard SET 
-			gboard_title = #{gboard_title}, gboard_content = #{gboard_content}
+			gboard_title = #{gboard_title}, gboard_content = #{gboard_content}, gboard_updatedate = now()
+			
 			WHERE gboard_no = #{gboard_no}
 	</update>
 	
