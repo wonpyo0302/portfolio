@@ -9,11 +9,9 @@
 			guest_no, gboard_type, gboard_title, gboard_content, gboard_viewcount, gboard_writer, gboard_regdate, gboard_status, filename_org, filename_real
 		) VALUES (
 			#{guest_no}, #{gboard_type}, #{gboard_title}, #{gboard_content}, #{gboard_viewcount}, #{gboard_writer}, now(), #{gboard_status}, #{filename_org}, #{filename_real}
-		)
-		<selectKey keyProperty="gboard_no" resultType="int" order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
+		)  
 	</insert>
+	
 	
 	<!-- 총 게시물 수 체크 -->
 	<select id="count" parameterType="kr.co.hotel.guestboard.GuestBoardVO" resultType="java.lang.Integer">

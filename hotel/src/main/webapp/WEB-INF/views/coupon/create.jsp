@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -25,13 +26,35 @@
   		height:200px;
   		border-spacing: 0;
 	}
-	div{
+	.div1{
 		clear:both;
-		width:403.74px;
-		height:200px;
+		width:250px; 
+		height:150px;
+		float:left;
 	}
-	
+	.div2{
+		width:50px; 
+		height:150px;
+		float:left;
+	}
 </style>
+<script>
+$(function() {
+	search();
+})
+function search(){
+	var data=$('#idsearch').val();
+	$.ajax({
+		url : "idList.do?idsearch="+data,
+		cache:false,
+		success: function(res){
+			$("#test").empty();
+			$("#test").append(res);
+			
+		}
+	});
+}
+</script>
 <body>
 <h1>쿠폰생성</h1>
 
@@ -40,12 +63,8 @@
 		<tr>
 			<th>ID</th>
 		</tr>
-		<tr>
-			<c:forEach var="list" items="${data}">
-				<tr>
-					<td><input type="checkbox" name="guest_id" value="${list.guest_id}">${list.guest_id}</td>
-				</tr>
-			</c:forEach>
+		<tr id="test">
+				
 		</tr>
 	</table>
 	<table border="1" class="list2" style="float:left">
@@ -68,7 +87,10 @@
 				</tr>
 			</tr>
 	</table>
-	<div align="right">
+	<div class="div1">
+		 <input type="text" id="idsearch" name="idsearch" value="${param.idsearch}"><input type="button" value="검색" onclick="search();">
+	</div>
+	<div class="div2" align="right">
 		<input type="submit" id="sumbit" value="쿠폰생성"	>
 	</div>
 </form>

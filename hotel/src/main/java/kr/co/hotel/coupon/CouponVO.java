@@ -13,4 +13,6 @@ public class CouponVO {
 	private Timestamp expdate; 
 	private Timestamp usedate; 
 	private int use_status;
+	private int delete_status;
+	
 }
