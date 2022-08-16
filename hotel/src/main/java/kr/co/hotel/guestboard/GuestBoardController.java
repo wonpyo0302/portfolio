@@ -33,6 +33,7 @@ public class GuestBoardController extends ImgHandling{
 	// 조회
 	@GetMapping("/board/view.do")
 	public String view(Model model, GuestBoardVO vo) {
+		//System.out.println(vo.get);
 		service.viewCount(vo.getGboard_no());
 		GuestBoardVO gvo = service.view(vo.getGboard_no());
 		model.addAttribute("data", gvo);
@@ -48,8 +49,6 @@ public class GuestBoardController extends ImgHandling{
 	// 등록처리
 	@PostMapping("/board/insert.do")
 	public String insert(Model model, GuestBoardVO vo, @RequestParam MultipartFile filename, HttpServletRequest req) {
-		System.out.println("타이틀나와라 :"+vo.getGboard_title());
-		System.out.println("컨텐츠 :"+vo.getGboard_content());
 		if(!filename.isEmpty()) {
 			String org = filename.getOriginalFilename();
 			String ext = org.substring(org.lastIndexOf("."));
@@ -66,6 +65,9 @@ public class GuestBoardController extends ImgHandling{
 		HttpSession sess = req.getSession();
 		GuestVO gvo = (GuestVO)sess.getAttribute("loginInfo");
 		vo.setGuest_no(gvo.getGuest_no());
+		
+		System.out.println("========================="+vo.getGboard_type());
+		System.out.println("========================="+vo.getGboard_writer());
 		
 		if(service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
@@ -101,4 +103,19 @@ public class GuestBoardController extends ImgHandling{
 		}
 	}
 
+	@GetMapping("/board/delete.do")
+	public String delete(GuestBoardVO vo, Model model) {
+		if(service.delete(vo.getGboard_no())) {
+			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
+			model.addAttribute("url", "list.do");
+			return "common/alert";
+		} else {
+			model.addAttribute("msg", "삭제 실패했습니다.");
+			return "common/alert";
+		}
+	
+	}
+	
+	
+	
 }

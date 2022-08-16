@@ -24,7 +24,8 @@ public class ReserveVO {
 	private String imp_uid;
 	private String rev_name;
 	private String rev_hp;
-	
+	private int point_deposit_status;
+
 	
 	
 	//예약 내역에 필요한 필드 추가

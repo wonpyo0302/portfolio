@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.hotel.guest.GuestVO;
+
 @Service
 public class GuestBoardServiceImpl implements GuestBoardService {
 
@@ -87,6 +89,7 @@ public class GuestBoardServiceImpl implements GuestBoardService {
 	public int viewCount(int gboard_no) {
 		return mapper.updateViewcount(gboard_no);
 	}
+
 
 
 

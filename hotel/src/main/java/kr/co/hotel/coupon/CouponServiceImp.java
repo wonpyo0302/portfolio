@@ -1,8 +1,7 @@
 package kr.co.hotel.coupon;
 
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +15,8 @@ public class CouponServiceImp implements CouponService {
 	CouponMapper mapper;
 
 	@Override
-	public List<GuestVO> list() {
-		return mapper.list();
+	public List<GuestVO> list(Map map) {
+		return mapper.list(map);
 	}
 
 	@Override

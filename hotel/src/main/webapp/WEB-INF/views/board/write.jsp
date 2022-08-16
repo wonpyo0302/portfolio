@@ -72,7 +72,6 @@
 			<div class="bbs">
 				<form method="post" name="frm" id="frm" action="../board/insert.do" enctype="multipart/form-data">
 					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
-					<input type="hidden" name="loginInfo" value="${loginInfo}">
 					<table class="board_write">
 						<tbody>
 							<div class="container">
@@ -81,12 +80,12 @@
 										<th>문의유형</th>
 										</span>
 										<td class="choose">
-										<span class="srchSelect"> <select id="stype" name="stype" class="dSelect" title="검색분류 선택">
-												<option value="reservation">예약문의</option>
-												<option value="pay">결제 문의</option>
-												<option value="hotel">숙소 문의</option>
-												<option value="pointAndCoupon">포인트/쿠폰 문의</option>
-												<option value="etc">이용/기타 문의</option>
+										<span class="srchSelect"> <select id="stype" name="gboard_type" class="dSelect" title="검색분류 선택">
+												<option name="gboard_type" value="1">예약문의</option>
+												<option name="gboard_type" value="2">결제 문의</option>
+												<option name="gboard_type" value="3">숙소 문의</option>
+												<option name="gboard_type" value="4">포인트/쿠폰 문의</option>
+												<option name="gboard_type" value="5">이용/기타 문의</option>
 										</select>
 									</li>
 									<tr>
@@ -99,9 +98,14 @@
 								<td><input name="gboard_title" id="gboard_title" type="text" style="width: 90%"></td>
 							</tr>
 							<tr>
+								<th>작성자</th>
+								<td>${loginInfo.guest_name}</td>
+							</tr>
+							<tr>
 								<th>문의내용</th>
 								<td><textarea name="gboard_content" id="gboard_content" style="width: 90%"></textarea></td>
 							</tr>
+					
 							<tr>
 								<th>첨부파일</th>
 								<td><input type="file" name="filename"></td>
@@ -112,8 +116,6 @@
 					</table>
 					<div class="btnSet" style="text-align: right;">
 						<a class="btn" href="javascript:goSave();">작성완료 </a>
-						<a class="btn" href="javascript:goSave();">작성완료3 </a>
-						<input type="submit" href="insert.do">
 					</div>
 				</form>
 			</div>

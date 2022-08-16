@@ -1,14 +1,18 @@
 package kr.co.hotel.coupon;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.hotel.guest.GuestVO;
 
@@ -21,9 +25,18 @@ public class CouponController {
 	CouponService service;
 
 	@GetMapping("coupon/create.do")
-	public String create(HttpSession session) {
-		session.setAttribute("data",service.list());
+	public String create(Model model, HttpSession session) {
+		Map map = new HashMap();
+		model.addAttribute("data",service.list(map));
 		return "/coupon/create";
+	}
+	
+	@GetMapping("coupon/idList.do")
+	public String idList(Model model, @RequestParam(required = false) String idsearch) {
+		Map map = new HashMap();
+		map.put("idsearch", idsearch);
+		model.addAttribute("data",service.list(map));
+		return "/coupon/idList";
 	}
 	
 	@PostMapping("coupon/create.do")
