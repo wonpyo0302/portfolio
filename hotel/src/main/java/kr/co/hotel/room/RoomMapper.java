@@ -1,6 +1,5 @@
-package kr.co.hotel.main;
+package kr.co.hotel.room;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,25 +8,25 @@ import org.apache.ibatis.annotations.Mapper;
 import kr.co.hotel.HRRegister.ImageVO;
 
 @Mapper
-public interface HotelMapper {
+public interface RoomMapper {
 	
 	//api 호텔데이터 인서트
 	int insertMain(Map map);
 	
 	//지역별 5개추천
-	List<HotelVO> hotelTopFive(HotelVO vo);
+	List<RoomVO> hotelTopFive(RoomVO vo);
 	
 	//목록검색
-	List<HotelVO> searchList(HotelVO vo); 
+	List<RoomVO> searchList(RoomVO vo); 
 	//목록개수
-	int searchCount(HotelVO vo);
+	int searchCount(RoomVO vo);
 	
 	//시군구코드 및 이름 가져오기
-	List<HotelVO> getDistrict(HotelVO vo);
-	List<HotelVO> getState(HotelVO vo);
+	List<RoomVO> getDistrict(RoomVO vo);
+	List<RoomVO> getState(RoomVO vo);
 	
 	//호텔상세보기
-	List<LinkedHashMap> hotelView(int hotel_no);
+	List<RoomVO> hotelView(int hotel_no);
 	
 	//ImageVO  insertImage(ImageVO vo);
 	

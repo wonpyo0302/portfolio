@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.hotel.host.HostVO;
 import kr.co.hotel.main.HotelVO;
+import kr.co.hotel.room.RoomVO;
 import util.ImgHandling;
 
 @Controller
@@ -33,7 +34,7 @@ public class HRRegisterController {
 	public String index(Model model,HotelVO hvo, RoomVO vo, HttpSession sess, HttpServletRequest req) {
 		HostVO loginInfo1 = new HostVO();// demo data
 		loginInfo1.setHost_no(50);//demo data
-		loginInfo1.setHost_name("호스트 ");//demo data
+		loginInfo1.setHost_name("호스트_빛찬");//demo data
 		sess.setAttribute("loginInfo2", loginInfo1);
 		HostVO Host_loginInfo = (HostVO) sess.getAttribute("loginInfo2");
 		vo.setHost_no(Host_loginInfo.getHost_no());
@@ -61,7 +62,7 @@ public class HRRegisterController {
 		
 		HttpSession sess = req.getSession();
 		//세션에서 host_no를 가져옴, host_no로 hotel테이블에서 hotel_no를 가져옴
-		HostVO Host_loginInfo = (HostVO) sess.getAttribute("loginInfo");
+		HostVO Host_loginInfo = (HostVO) sess.getAttribute("loginInfo2");
 		System.out.println("호스트번호확인스 : "+Host_loginInfo.getHost_no());
 		//Host_loginInfo.setHost_no(1);//demo data
 		

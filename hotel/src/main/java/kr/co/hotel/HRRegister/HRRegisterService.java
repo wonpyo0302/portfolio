@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.hotel.main.HotelVO;
+import kr.co.hotel.room.RoomVO;
 
 public interface HRRegisterService {
 	//목록

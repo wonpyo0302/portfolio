@@ -2,7 +2,6 @@ package kr.co.hotel.main;
 
 import java.sql.Timestamp;
 
-
 import lombok.Data;
 
 @Data

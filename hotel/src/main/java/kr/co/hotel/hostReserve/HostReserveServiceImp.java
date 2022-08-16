@@ -1,40 +1,22 @@
-package kr.co.hotel.reserve;
+package kr.co.hotel.hostReserve;
 
-
-import java.util.List;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import kr.co.hotel.coupon.CouponVO;
+
 import kr.co.hotel.guest.GuestVO;
-import kr.co.hotel.room.RoomVO;
+import kr.co.hotel.main.HotelVO;
+import kr.co.hotel.reserve.ReserveVO;
 
 @Service
-public class ReserveServiceImp implements ReserveService {
+public class HostReserveServiceImp implements HostReserveService {
 
 	@Autowired
-	ReserveMapper mapper;
+	HostReserveMapper mapper;
 	
-	@Override
-	public GuestVO select(GuestVO vo) {
-		return mapper.select(vo);
-	}
-
-	@Override
-	public void insert(ReserveVO vo,GuestVO gvo) {
-		mapper.insert(vo);
-		mapper.guestUsedPointUpdate(gvo);
-		mapper.pointinsert(vo);
-		mapper.updateCoupon(vo);
-	}
-
-	@Override
-	public int reservecheck(ReserveVO vo) {
-		return mapper.reservecheck(vo);
-	}
 	
 	
 	//--이하 마이페이지 예약내역리스트_빛찬--------------------
@@ -70,23 +52,22 @@ public class ReserveServiceImp implements ReserveService {
 		return map;
 	}
 
-	@Override
-	public List<GuestVO> couponlist(GuestVO vo) {
-		return mapper.couponlist(vo);
-	}
+
 
 	@Override
-	public int CouponDelete() {
-		return mapper.CounponDelete();
+	public HotelVO get_hotelInfo(int host_no) {
+		return mapper.get_hotelInfo(host_no);
 	}
 
+
+
 	@Override
-	public void PointDeposit(ReserveVO vo, GuestVO gvo) {
-		mapper.UpdatePointDeposit(vo);
-		int point_depoist = (int)(vo.getTotal_price()*0.09);
-		gvo.setTotalpoint(gvo.getTotalpoint()+point_depoist);
-		mapper.guestUsedPointUpdate(gvo);
-		vo.setUsed_point(point_depoist);
-		mapper.UpdatePointDeposit(vo);
+	public boolean rejectRev(int reserve_no) {
+		return mapper.rejectRev(reserve_no) > 0? true : false;
 	}
+
+
+
+	
+
 }
