@@ -10,6 +10,11 @@
 <script src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5d133f411d7216df47f409d9f8b79bd"></script>
+
+<style>
+
+</style>
+
 <script>
 $(function() {
     	 $( "#startdate" ).datepicker({
@@ -63,8 +68,8 @@ $(function() {
 		url : "reservecheck.do",
 		type : "post",
 		data : {
-			room_no : 2, //${param.room_no}
-			hotel_no : 1, //${param.hotel_no}
+			room_no : 1, //${param.room_no}
+			hotel_no : 2, //${param.hotel_no}
 			startdate : $('#startdate').val(),
 			enddate : $('#enddate').val()
 		}
@@ -99,8 +104,8 @@ $(function(){
     		alert("포인트가 부족합니다. 다시입력하세요");
 			$("#point").val('');
     	}
-    	if(($("#total_price").val() - $("#point").val()) < 100){
-    		alert("최소 결제금액은 100원필수!!");
+    	if(($("#total_price").val() - $("#point").val()- $("#coupon_price").val()) < 100){
+    		alert("최소 결제금액은 100원입니다.");
     		$("#point").val('');
     	}
 	});
@@ -116,7 +121,7 @@ $(function(){
     		pay_method: 'card',//select 박스에서 선택한것
     		merchant_uid: 'merchant_' + new Date().getTime(),
     		name: '주문명:결제테스트',//상품페이지에서 있는 객실이름
-    		amount: $("#total_price").val()-$("#point").val(), //상품페이지에서 있는 금액
+    		amount: $("#total_price").val()-$("#point").val()-$("#coupon_price").val(), //상품페이지에서 있는 금액
     		buyer_email: "${loginInfo.guest_email}",//로그인 세션에 저장되어있는 이메일
     		buyer_name: "${loginInfo.guest_name}",//로그인 세션에 저장되어있는 이름
     		buyer_tel: "${loginInfo.guest_hp}",//로그인 세션에 저장되어있는 전화번호
@@ -131,17 +136,18 @@ $(function(){
     					           async : false,
     					           data : 
     					           {imp_uid: rsp.imp_uid,
-    					        	total_price : String($("#total_price").val() - $("#point").val()),
+    					        	total_price : String($("#total_price").val() - $("#point").val()-$("#coupon_price").val()),
     					        	startdate : $("#startdate").val(),
     					        	enddate : $("#enddate").val(),
-    					        	room_no : 2,
-    					        	hotel_no : 1,
+    					        	room_no : 142,
+    					        	hotel_no : 3,
     					        	guest_no : ${loginInfo.guest_no},
     					        	guest_hp : "${loginInfo.guest_hp}",
     					        	rev_name : $("#rev_name").val(),
     					        	rev_hp : $("#rev_hp").val(),
     					        	used_point : $("#point").val(),
-    					        	totalpoint : ${loginInfo.totalpoint}-$("#point").val(),
+    					        	coupon_no : $("#coupon_no").val(),
+    					        	totalpoint : ${loginInfo.totalpoint}-$("#point").val()
     					           }
     					       }).done(function (data) {
     					          alert("결제 완료");
@@ -152,6 +158,14 @@ $(function(){
     					     }
     		});
     	 }  
+function showPopup(data) { 
+	window.open("couponlist.do?guest_no="+data, "coupon_list", "width=500, height=500, left=200, top=200"); 
+}
+
+function resetcoupon(){
+	$("#coupon_price").val("");
+}
+    
 </script>
 
 <head>
@@ -188,8 +202,17 @@ $(function(){
 		<td><input type="text" name="rev_hp" id="rev_hp"></td>
 	</tr>
 	<tr>
-		<th>사용가능한 포인트 : ${loginInfo.totalpoint}</th>
+		<th>포인트 사용 ${loginInfo.totalpoint}P</th>
 		<td>사용할 포인트 : <input type="text" id="point" name="point"></td>
+	</tr>
+	<tr>
+		<th><button type="button" id="btn" onclick="showPopup(${loginInfo.guest_no});">보유 쿠폰 보기</button> </th>
+		<td> 
+			적용된쿠폰 : <input type="text" name="coupon_price" id="coupon_price" readonly="readonly" value="">
+			<input type="button" id="reset" onclick="resetcoupon();" value="쿠폰취소">
+			<input type="hidden" name="coupon_no" id="coupon_no" value="">
+			
+		</td>
 	</tr>
 	<tr>
 		<th colspan="2"><input type="button" id="submit" value="예약" onclick="reserve();"></th>

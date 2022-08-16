@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import kr.co.hotel.reserve.ReserveVO;
+
 
 @Mapper
 public interface PointMapper {

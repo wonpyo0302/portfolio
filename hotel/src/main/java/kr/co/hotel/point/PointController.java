@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import kr.co.hotel.HRRegister.GuestMemberVO;
+import kr.co.hotel.reserve.ReserveVO;
 
 @Controller
 public class PointController {
@@ -18,7 +20,6 @@ public class PointController {
 	PointService service;
 	
 	//목록, 등록, 삭제
-	
 	
 	@GetMapping("/point/list.do")
 	public String list(PointVO vo, Model model, HttpSession sess) {

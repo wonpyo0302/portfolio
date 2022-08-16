@@ -38,9 +38,6 @@ public class PointVO {
 		
 		this.searchStartDate = Timestamp.valueOf(past.atStartOfDay());
 		this.searchEndDate = Timestamp.valueOf(now.atStartOfDay()); //LocalDate > timestamp로 형변환
-		
-		
-		
 	}
 	
 	
