@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.hotel.HRRegister.RoomVO;
 import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.host.HostVO;
 import kr.co.hotel.main.HotelVO;
+import kr.co.hotel.room.RoomVO;
 
 @Controller
 

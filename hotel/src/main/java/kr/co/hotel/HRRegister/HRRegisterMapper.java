@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.hotel.main.HotelVO;
+import kr.co.hotel.room.RoomVO;
 
 
 @Mapper  

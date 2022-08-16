@@ -13,9 +13,14 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <body>
-
+  <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
 	
-	
-	
+  <table style="margin-top: 50px">
+  	<tr>
+  	<c:forEach var="data" items="${detail}">
+  		<th>${data.hotel_name}</th>
+  	</c:forEach>
+  	</tr>
+  </table>
 
   </body>

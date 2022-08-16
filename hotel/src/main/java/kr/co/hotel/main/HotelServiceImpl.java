@@ -1,6 +1,7 @@
 package kr.co.hotel.main;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +44,12 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public int searchCount(HotelVO vo) {
 		return mapper.searchCount(vo);
+	}
+
+	@Override
+	public List<LinkedHashMap> hotelView(int hotel_no) {
+		List<LinkedHashMap> list = mapper.hotelView(hotel_no);
+		return list;
 	}
 
 }

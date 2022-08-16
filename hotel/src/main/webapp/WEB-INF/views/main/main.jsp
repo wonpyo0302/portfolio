@@ -133,12 +133,13 @@
 	<div class="swiper mySwiper_s">
 		<div class="swiper-wrapper">
 			<c:forEach var="SH" items="${data.listSeoul }">
-			<div class="swiper-slide">
-				<a href="">
+			<div class="swiper-slide" >
+				<a href="/hotel/main/hotelView.do?hotel_no=${SH.hotel_no}">
 						<div class="hotel01" style="background-image: url(/hotel/image/hotel/${SH.filename}.jpg);">
 						</div>
 					<div><p>${SH.hotel_name}</p></div>
 					<span>최저가:  ${SH.lowPrice } ~</span>
+					<input type="hidden" name="hotel_no">${SH.hotel_no}
 				</a>
 			</div>
 			</c:forEach>
@@ -153,11 +154,12 @@
 		<div class="swiper-wrapper">
 			<c:forEach var="IH" items="${data.listIncheon }">
 			<div class="swiper-slide">
-				<a href="">
+				<a href="/hotel/main/hotelView.do?hotel_no=">
 						<div class="hotel01" style="background-image: url(/hotel/image/hotel/${IH.filename}.jpg);">
 						</div>
 					<div><p>${IH.hotel_name}</p></div>
 					<span>최저가:  ${IH.lowPrice } ~</span>
+					<input type="hidden" name="hotel_no">${IH.hotel_no}
 				</a>
 			</div>
 			</c:forEach>
@@ -172,11 +174,12 @@
 		<div class="swiper-wrapper">
 			<c:forEach var="KH" items="${data.listKyeonggi }">
 			<div class="swiper-slide">
-				<a href="">
+				<a href="/hotel/main/hotelView.do?hotel_no=">
 						<div class="hotel01" style="background-image: url(/hotel/image/hotel/${KH.filename}.jpg);">
 						</div>
 					<div><p>${KH.hotel_name}</p></div>
 					<span>최저가:  ${KH.lowPrice } ~</span>
+					<input type="hidden" name="hotel_no">${KH.hotel_no}
 				</a>
 			</div>
 			</c:forEach>

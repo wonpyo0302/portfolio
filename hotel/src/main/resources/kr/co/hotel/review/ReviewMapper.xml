@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.hotel.review.ReviewMapper">  
 
-	<select id="count" parameterType="kr.co.hotel.HRRegister.RoomVO" resultType="java.lang.Integer">
+	<select id="count" parameterType="kr.co.hotel.room.RoomVO" resultType="java.lang.Integer">
 	<!-- 테이블 명이 변수로 들어갈수 있음 -->
 		select count(*) from room
 		
@@ -21,7 +21,7 @@
 	</select>
 	
 	
-	<select id="list" parameterType="kr.co.hotel.HRRegister.RoomVO" resultType="kr.co.hotel.HRRegister.RoomVO">
+	<select id="list" parameterType="kr.co.hotel.room.RoomVO" resultType="kr.co.hotel.room.RoomVO">
 
 			select * from room
 				<where>
