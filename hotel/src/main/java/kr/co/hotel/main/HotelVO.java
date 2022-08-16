@@ -30,19 +30,15 @@ public class HotelVO {
 	
 	private String filename;
 	
+	
 	private int page;
 	private String searchField;
 	private String searchWord;
-	private int startIdx;
-	private int pageRow;
+	private String selectbox_district;
+	private String searchbox_district;
 	
-	public HotelVO() {
-//		this.page = 1;
-//		this.pageRow = 10;
-		this(1, 10);
-	}
-	public HotelVO(int page, int pageRow) {
-		this.page = page;
-		this.pageRow = pageRow;
-	}
+	private String selectbox_state;
+	private String sortType;
+	
+
 }

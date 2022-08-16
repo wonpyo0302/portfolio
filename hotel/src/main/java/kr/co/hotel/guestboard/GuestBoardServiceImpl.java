@@ -54,9 +54,8 @@ public class GuestBoardServiceImpl implements GuestBoardService {
 	
 	//등록
 	@Override
-	public int insert(GuestBoardVO vo) {
-		
-		return mapper.insert(vo);
+	public boolean insert(GuestBoardVO vo) {
+		return mapper.insert(vo) > 0? true : false;
 	}
 	
 	//상세보기
@@ -65,16 +64,22 @@ public class GuestBoardServiceImpl implements GuestBoardService {
 		return mapper.view(gboard_no);
 	}
 	
-	//수정
+	//수정폼
 	@Override
-	public int update(int gboard_no) {
-		return mapper.update(gboard_no);
+	public GuestBoardVO edit(int gboard_no) {
+		return mapper.view(gboard_no);
+	}
+	
+	//수정처리
+	@Override
+	public boolean update(GuestBoardVO vo) {
+		return mapper.update(vo) > 0 ? true : false;
 	}
 
 	//삭제
 	@Override
-	public int delete(int gboard_no) {
-		return mapper.delete(gboard_no);
+	public boolean delete(int gboard_no) {
+		return mapper.delete(gboard_no) > 0 ? true : false;
 	}
 	
 	//조회수 처리
@@ -82,6 +87,7 @@ public class GuestBoardServiceImpl implements GuestBoardService {
 	public int viewCount(int gboard_no) {
 		return mapper.updateViewcount(gboard_no);
 	}
+
 
 
 	

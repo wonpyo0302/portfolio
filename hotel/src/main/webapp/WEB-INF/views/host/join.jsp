@@ -65,6 +65,19 @@
 					}
 				}
 			});
+    		$.ajax({
+    			url: "hpDupCheck.do",
+    			data: {host_hp:$("#host_hp").val()},
+    			async: false,
+    			success:function(res){
+    				if(res=='true'){
+    					alert('입력한 휴대폰번호가 중복되었습니다. 다른 번호를 입력해 주세요');
+    					$('#host_hp').val('');
+    					$('#host_hp').focus();
+    					isCon=false;
+    				}
+    			}
+    		});
     		if (!isCon) return;
     		if ($("#host_pwd").val().trim() == '') {
     			alert('비밀번호를 입력해 주세요');
@@ -84,6 +97,11 @@
     		if ($("#host_name").val().trim() == '') {
     			alert('이름을 입력해 주세요');
     			$("#host_name").focus();
+    			return;
+    		}
+    		if($("#host_hp").val().trim()==''){
+    			alert('휴대폰번호를 입력해 주세요');
+    			$("#host_hp"),focus();
     			return;
     		}
     		$("#frm").submit();
@@ -127,23 +145,26 @@
 	    			});
     			}
     		});
-    		$( "#birthday" ).datepicker({
-                dateFormat: 'yy-mm-dd' //Input Display Format 변경
-                    ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-                    ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
-                    ,changeYear: true //콤보박스에서 년 선택 가능
-                    ,changeMonth: true //콤보박스에서 월 선택 가능                
-                    ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
-                    ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
-                    ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
-                    ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
-                    ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
-                    ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
-                    ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
-                    ,minDate: "-50Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-                    ,maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
-                });
-    	})
+    	
+    	$("#hpdupCheckBtn1").click(function(){
+			if ($("#host_hp").val().trim() == '') {
+				alert('휴대폰번호를 입력해 주세요');
+				$("#host_hp").focus();
+			} else{
+				$.ajax({
+					url : 'hpDupCheck.do',
+					data:{host_hp:$("#host_hp").val()},
+					success:function(res) {
+						if (res == 'true') {
+							alert('사용 불가');
+						} else {
+							alert('사용 가능');
+						}
+					}
+				});
+			}
+		});
+    	});
     </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -198,7 +219,7 @@
      <jsp:include page="/WEB-INF/views/includes/H_header.jsp"/>
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title">회원가입</h3>
+                <h3 class="sub_title">HOST 회원가입</h3>
                 <form name="frm" id="frm" action="join.do" method="post">
                 <table class="board_write">
                     <caption>회원가입</caption>
@@ -223,7 +244,7 @@
                         </tr>
                         <tr>
                             <th>*비밀번호</th>
-                            <td><input type="password" name="host_pwd" id="host_pwd" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
+                            <td><input type="password" name="host_pwd" id="host_pwd" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문, 특수문자 조합으로 8자 이상으로 입력해주세요.</span> </td>
                         </tr>
                         <tr>
                             <th>*비밀번호<span>확인</span></th>
@@ -236,18 +257,19 @@
                         <tr>
                             <th>*휴대폰 번호</th>
                             <td>
-                                <input type="text" name="host_hp" id="host_hp" value=""  maxlength="15" style="float:left;">
+                                <input type="text" name="host_hp" id="host_hp" maxlength="15" style="float:left;">
+                            	<span class="host_hp_check"><a href="javascript:;" class="btn bgGray" style="float:left; width:auto; clear:none;" id="hpdupCheckBtn1">중복확인</a></span>
                             </td>
                         </tr>
                         <tr>
-                            <th>*은행</th>
+                            <th>은행</th>
                             <td>
                                 <input type="text" name="host_bank" id="host_bank" value=""  maxlength="15" style="float:left;">
                             	<span class="host_bank_check"><a href="javascript:;"  class="btn bgGray" style="float:left; width:auto; clear:none;" id="dupCheckBtn">은행확인</a></span>
                             </td>
                         </tr>
                         <tr>
-                            <th>*계좌번호</th>
+                            <th>계좌번호</th>
                             <td>
                                 <input type="text" name="host_accountno" id="host_accountno" value=""  maxlength="15" style="float:left;">
                                 <span class="host_accountno_check"><a href="javascript:;"  class="btn bgGray" style="float:left; width:auto; clear:none;" id="dupCheckBtn">계좌확인</a></span>
@@ -259,9 +281,11 @@
                 </form>
                 <!-- //write--->
                 <div class="btnSet clear">
-                    <div><a href="javascript:;" class="btn" onclick="goSave();">가입</a> <a href="javascript:;" class="btn" onclick="history.back();">취소</a></div>
-                    <div><a href="login.do" class="btn" onclick="">로그인</a></div>
-                </div>
+                	<div>
+                    	<a class="btn bgGray" href="javascript:;"  onclick="goSave()">가입</a> &nbsp;&nbsp;
+                    	<a class="btn bgGray" href="javascript:;"  onclick="history.back()">취소</a> &nbsp;&nbsp;
+                    	<a class="btn bgGray" href="login.do" >로그인 </a>
+                    </div>
             </div>
         </div>
         

@@ -20,6 +20,7 @@
 	function goWrite(){
 		<c:if test="${empty loginInfo}">
 			alert('로그인 후 작성 가능합니다.');
+			location.href='/hotel/guest/login.do';
 		</c:if>
 		<c:if test="${!empty loginInfo}">
 			location.href='write.do';
@@ -44,9 +45,9 @@
 	<div class="sub">
 		<div class="size">
 		<br>
-			<h3 class="sub_title" style="text-align:left">Q&A</h3>
+			<h6 class="sub_content" style="text-align: left"> Q&A</h6>
 			<br>
-			<h8 class="sub_content" style="text-align:left">문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
+			<h8 class="sub_content" style="text-align:left"> <img src="/hotel/image/qna.png" width="40px">  게스트 전용 문의 게시판입니다. 문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
 			<br><br><br><br>
 			
 			<div class="bbs">
@@ -88,13 +89,37 @@
 									 <tr>
 										<td>${data.totalCount - status.index - ((guestBoardVO.page - 1) * guestBoardVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										
-										<td>${vo.gboard_type}</td>
+										<c:if test="${vo.gboard_type == 1 }">
+											<td>예약</td>
+										</c:if>
+										<c:if test="${vo.gboard_type == 2 }">
+											<td>결제</td>
+										</c:if>
+										<c:if test="${vo.gboard_type == 3 }">
+											<td>숙소</td>
+										</c:if>
+										<c:if test="${vo.gboard_type == 4 }">
+											<td>포인트/쿠폰</td>
+										</c:if>
+										<c:if test="${vo.gboard_type == 5 }">
+											<td>이용/기타</td>
+										</c:if>
 										<td class="txt_l">
-										<a href="/board/view.do?no=${vo.gboard_no}">${vo.gboard_title}</a></td>								
+										
+										<a href="/hotel/board/view.do?gboard_no=${vo.gboard_no}">${vo.gboard_title}</a></td>								
+										
 										<td>${vo.gboard_viewcount}</td>
+										
 										<td class="writer">${vo.gboard_writer}</td>
+										
 										<td class="date"> <fmt:formatDate value="${vo.gboard_regdate}" pattern="yyyy-MM-dd"/></td>
-										<td>${vo.gboard_status}</td>	
+										
+										<c:if test="${vo.gboard_status == 0 }">
+											<td>[답변대기]</td>
+										</c:if>	
+										<c:if test="${vo.gboard_status == 1 }">
+											<td>[답변완료]</td>
+										</c:if>	
 									</tr>
 							</c:forEach>	
 						</c:if>					
@@ -103,7 +128,6 @@
 				<div class="btnSet" style="text-align: right;">
 				
 					<a class="btn" href="javascript:goWrite();">글작성 </a>
-					<a class="btn" href="javascript:login();">로그인</a>
 					
 				</div>
 				<div class="pagenate clear">
@@ -122,8 +146,8 @@
 					</c:if>
 					</ul>
 				</div>
-
 				<!-- 페이지처리 -->
+
 				<div class="bbsSearch">
 					<form method="get" name="searchForm" id="searchForm" action="">
 						<span class="srchSelect"> <select id="stype" name="stype" class="dSelect" title="검색분류 선택">
@@ -136,7 +160,6 @@
 						<input type="button" id="" value="검색" title="검색">
 						</span>
 					</form>
-
 				</div>
 			</div>
 		</div>

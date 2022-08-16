@@ -43,7 +43,7 @@ public class GuestController {
 	@PostMapping("/guest/login.do")
 	public String login(GuestVO gvo, HttpSession sess, Model model) {
 		if (gservice.guestloginCheck(gvo, sess)) {
-			return "main/main";
+			return "redirect:/main/main.do";
 		} else {
 			model.addAttribute("msg", "비밀번호를 확인해 주세요");
 			return "common/alert";
@@ -64,6 +64,15 @@ public class GuestController {
 	public void idDupCheck(@RequestParam String guest_id, HttpServletResponse res) throws IOException {
 		int count = gservice.idDupCheck(guest_id);
 		boolean r = false;
+		if (count == 1) r = true;
+		PrintWriter out = res.getWriter();
+		out.print(r);
+		out.flush();
+	}
+	@GetMapping("/guest/hpDupCheck.do")
+	public void hpDupCheck(@RequestParam String guest_hp, HttpServletResponse res) throws IOException {
+		int count = gservice.hpDupCheck(guest_hp);
+		boolean r= false;
 		if (count == 1) r = true;
 		PrintWriter out = res.getWriter();
 		out.print(r);
@@ -107,21 +116,42 @@ public class GuestController {
 		}
 		return "common/return";
 	}
-	@GetMapping("guest/myinfo")
-	public String myinfo() {
-		return"guest/myinfoLogin";
+	@GetMapping("/guest/mypage.do")
+	public String mypage(HttpSession sess, Model model) {
+		if(sess.getAttribute("loginInfo")==null) {
+			//loginInfo는 게스트 전용 호스트는 lgoinInfo2
+			//게스트가 로그아웃하면 null 로그인하면 not null
+			//로그인해야 myPage.jsp로 넘어갈수 있음 
+			model.addAttribute("msg","로그인 해야합니다");
+			return "common/alert";
+		}else {
+			return "/guest/myPage";//myPage는 포인트, 예약내역등을 볼수 있는 곳, 이페이지에서 '내정보관리'로 넘어갈수 있음
+		}
 	}
-	@GetMapping("/guest/myinfoLogin.do")
-	public void myinfoLogin(@RequestParam String guest_pwd, HttpServletResponse res, Model model) throws IOException {
-		int count=gservice.myinfoLogin(guest_pwd);
+	@GetMapping("/guest/myinfo.do")
+	public String myinfo(HttpSession sess, Model model) {
+		if(sess.getAttribute("loginInfo") == null) {
+			model.addAttribute("msg","로그인이 필요한 기능입니다");
+			return "common/alert";
+		}else { 
+			return"/guest/myinfoLogin";
+			//로그인이 되어 있어야 myinfoLogin.jsp로 넘어갈수 있음
+		}
+	}
+	@PostMapping("/guest/myinfoLogin.do")
+	public void myinfoLogin(GuestVO gvo, HttpServletResponse res, HttpSession sess) throws IOException {
+		GuestVO myinfo=(GuestVO)sess.getAttribute("loginInfo");
+		myinfo.setGuest_pwd(gvo.getGuest_pwd());
 		boolean r=false;
-		if(count==1) r=true;
+		if(gservice.myinfoLogin(myinfo)!=null) r=true;
 		PrintWriter out = res.getWriter();
 		out.print(r);
 		out.flush();
+		//한번더 패스워드를 체크하는 행위 그래야 '내정보수정이 가능'하게끔 다음 페이지(myinfoModify.jsp)로 넘어감
 	}
-	@PostMapping ("/guest/myinfoLogin.do")
-	public String myinfoLogin() {
-		return "guest/myinfoModify";
+	@PostMapping("/guest/myinfoModify.do")//비밀번호등 민감한 정보가 있어서 Post방식
+	public String myinfoModify() {
+		return "/guest/myinfoModify";//내정보 수정하는 jsp
 	}
+	
 }

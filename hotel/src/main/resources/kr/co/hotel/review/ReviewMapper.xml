@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hotel.review.ReviewMapper">  
+
+	<select id="count" parameterType="kr.co.hotel.HRRegister.RoomVO" resultType="java.lang.Integer">
+	<!-- 테이블 명이 변수로 들어갈수 있음 -->
+		select count(*) from room
+		
+		<where>
+			host_no = #{host_no}
+			<if test="stype != null and stype !='' ">
+				<if test="stype != 'all' ">
+					${stype} like '%${sword}%'
+				</if>
+				
+				<if test="stype == 'all' ">
+		   			 content like '%${sword}%' or title like '%${sword}%'
+		    	</if>
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="list" parameterType="kr.co.hotel.HRRegister.RoomVO" resultType="kr.co.hotel.HRRegister.RoomVO">
+
+			select * from room
+				<where>
+					host_no = #{host_no}
+					<if test="stype != null and stype !='' ">
+						<if test="stype != 'all' ">
+							${stype} like '%${sword}%'
+						</if>
+						
+						<if test="stype == 'all' ">
+				   			 content like '%${sword}%' or title like '%${sword}%'
+				    	</if>
+					</if>
+				</where>
+			order by room_no desc
+			limit ${startIdx}, ${pageRow}
+	
+	</select>
+<!-- 이상 대기 -->	
+
+	<select id="get_reserve" parameterType="kr.co.hotel.review.ReviewVO" resultType="kr.co.hotel.reserve.ReserveVO">
+		
+		select *,
+		(select hotel_name from hotel where hotel_no = reserv.hotel_no)as hotel_name,
+		(select number from room where room_no=reserv.room_no)as number
+		
+		from reserv 
+		where reserv_no = #{reserv_no}
+		
+	</select>
+	
+	<insert id="insert" parameterType="kr.co.hotel.review.ReviewVO">
+		INSERT INTO review
+		(reserv_no,guest_no,hotel_no,room_no,review_title,review_content,review_regdate,review_score)
+		VALUES
+		(#{reserv_no}, #{guest_no}, #{hotel_no}, #{room_no}, #{review_title}, #{review_content}, now(), #{review_score})
+		<selectKey resultType="int" keyProperty="review_no" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="update_review_status" parameterType="kr.co.hotel.review.ReviewVO">
+		UPDATE reserv
+		SET
+		review_status = 1
+		WHERE reserv_no = #{reserv_no}
+	</update>
+	 
+
+</mapper>

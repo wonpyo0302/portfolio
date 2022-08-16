@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import kr.co.hotel.HRRegister.GuestMemberVO;
 import kr.co.hotel.reserve.ReserveVO;
+import kr.co.hotel.guest.GuestVO;
 
 @Controller
 public class PointController {
@@ -26,12 +27,12 @@ public class PointController {
 		try {
 			
 		//GuestMemberVO loginInfo = (GuestMemberVO)sess.getAttribute("loginInfo"); 		//세션에서 guest_no를 불러옵니다.
-		GuestMemberVO loginInfo1 = new GuestMemberVO();//demo GuestMemberVO()
+		GuestVO loginInfo1 = new GuestVO();//demo GuestMemberVO()
 		loginInfo1.setGuest_no(3); //demo guest_no 
 		loginInfo1.setGuest_name("홍길동");
 		sess.setAttribute("loginInfo", loginInfo1);
 		
-		GuestMemberVO loginInfo= (GuestMemberVO)sess.getAttribute("loginInfo");
+		GuestVO loginInfo= (GuestVO)sess.getAttribute("loginInfo");
 		
 		int totalpoint= service.total(loginInfo.getGuest_no());					//totalpoint를 구해 PointVO에 set합니다. PointVO는 jsp에 자동으로 전달됩니다.				
 		vo.setTotalpoint(totalpoint);
@@ -49,7 +50,7 @@ public class PointController {
 	@GetMapping("/point/total.do")
 	public String listtt(PointVO vo, Model model, HttpSession sess) {
 		
-		GuestMemberVO loginInfo = (GuestMemberVO)sess.getAttribute("loginInfo");
+		GuestVO loginInfo = (GuestVO)sess.getAttribute("loginInfo");
 		int totalpoint= service.total(loginInfo.getGuest_no());
 		
 		return "point/index";

@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import kr.co.hotel.main.HotelVO;
 @Service
 public class HRRegisterServiceImpl implements HRRegisterService {
 
@@ -46,21 +48,22 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 
 	@Override
 	public RoomVO view(int no) {
-		
-		
 		return mapper.view(no);
 	}
 
 	@Override
 	public RoomVO edit(int no) {
 		return mapper.view(no);
- 
-		
 	}
 
 	@Override
 	public boolean update(RoomVO vo) {
 		return mapper.update(vo) >0?true:false;
+	}
+	
+	@Override
+	public boolean H_update(HotelVO vo) {
+		return mapper.H_update(vo) > 0 ? true : false;
 	}
 
 	@Override
@@ -74,6 +77,19 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 			}
 		}return r ;
 	}
+	
+	@Override
+	public boolean H_delete(int hotel_no) {
+		//회원 삭제시, 회원테이블만 인스턴스만 지우는 것이 아니라 relation이 걸려있는 테이블을 모두 찾아서 delete해야한다.
+		boolean r = false;
+		if(mapper.H_delete(hotel_no)>0) {
+			int a = mapper.H_delete_img(hotel_no);
+			if(a>=0) {
+				r = true;
+			}
+		}return r ;
+
+	}
 
 	@Override
 	public boolean insert(RoomVO vo) {
@@ -81,13 +97,18 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 	}
 
 	@Override
-	public boolean img_insert(RoomVO vo) {
-		return mapper.img_insert(vo) > 0 ? true : false;
+	public boolean img_insert(ImageVO ivo) {
+		return mapper.img_insert(ivo) > 0 ? true : false;
 	}
 
 	@Override
-	public RoomVO get_hotelInfo(int host_no) {
+	public HotelVO get_hotelInfo(int host_no) {
 		return mapper.get_hotelInfo(host_no);
+	}
+	
+	@Override
+	public HotelVO get_hotelview(int hotel_no) {
+		return mapper.get_hotelview(hotel_no);
 	}
 
 	@Override
@@ -96,8 +117,37 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 	}
 
 	@Override
-	public List<RoomVO> get_imgList(int room_no) {
-		return mapper.get_imgList(room_no);
+	public List<ImageVO> get_imgList(ImageVO ivo) {
+		return mapper.get_imgList(ivo);
 	}
+
+	@Override
+	public boolean hotel_insert(HotelVO hvo) {
+		return mapper.hotel_insert(hvo) > 0 ? true : false;
+	}
+
+	@Override
+	public List<HotelVO> get_district_code(HotelVO hvo) {
+		
+		return mapper.get_district_code(hvo);
+	}
+
+	@Override
+	public boolean toAdmin(RoomVO vo, HotelVO hvo) {
+		
+		boolean r = mapper.room_toAdmin(vo) > 0 ? true:false;
+		boolean h = mapper.hotel_toAdmin(hvo) > 0 ? true:false;
+		
+		if(r&&h) {
+			return true;
+		}
+		return false;
+	}
+
+
+
+	
+
+	
 
 }

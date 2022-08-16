@@ -58,4 +58,53 @@
 	</insert>
 	
 	
+	
+	
+	
+	
+	<!-- 이하_ 마이페이지 예약리스트_빛찬 -->
+	
+	<select id="count" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="java.lang.Integer">
+		select count(*) from reserv
+		
+		<where>
+			guest_no = #{guest_no}
+			<if test="stype != null and stype !='' ">
+				<if test="stype != 'all' ">
+					${stype} like '%${sword}%'
+				</if>
+				
+				<if test="stype == 'all' ">
+		   			 content like '%${sword}%' or title like '%${sword}%'
+		    	</if>
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="list" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="kr.co.hotel.reserve.ReserveVO">
+
+			select * ,
+			(select hotel_name from hotel where hotel_no = reserv.hotel_no) as hotel_name,
+			(select number from room where room_no=reserv.room_no)as number
+			from reserv
+				<where>
+					guest_no = #{guest_no}
+					<if test="stype != null and stype !='' ">
+						<if test="stype != 'all' ">
+							${stype} like '%${sword}%'
+						</if>
+						
+						<if test="stype == 'all' ">
+				   			 content like '%${sword}%' or title like '%${sword}%'
+				    	</if>
+					</if>
+				</where>
+			order by reserv_no desc
+			limit ${startIdx}, ${pageRow}
+	
+	</select>
+	
+	
+	
 </mapper>

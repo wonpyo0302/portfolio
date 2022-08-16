@@ -30,10 +30,10 @@
         <div class="container-fluid">
           <a class="navbar-brand" href="#">둘이놀까</a>
           
-          <c:if test="${!empty loginInfo}"> 
+          <c:if test="${!empty loginInfo2}"> 
           <div style="width:60%">
           	<div style="text-align:right;width:115%;">
-          		<a>${loginInfo.host_name }님 환영합니다</a>
+          		<a>${loginInfo2.host_name }님 환영합니다</a>
           	</div>
           </div>
           </c:if>
@@ -50,7 +50,7 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">마이페이지</a>
+                  <a class="nav-link active" aria-current="page" href="/hotel/host/myinfo.do">마이페이지</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">예약내역</a>

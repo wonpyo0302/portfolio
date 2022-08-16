@@ -82,7 +82,6 @@
 	                                    ${row.io_point}
 	                                </td>
 	                                
-	                                
 	                            </tr>
 							</c:forEach>
 					

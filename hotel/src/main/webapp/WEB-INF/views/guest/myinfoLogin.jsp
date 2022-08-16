@@ -25,18 +25,21 @@
 				return;
 			} else{
 				$.ajax({
-					url : 'myinfoLogin.do',
+					type: "post",
+					url : "myinfoLogin.do",
 					data : {guest_pwd:$("#guest_pwd").val()},
 					success:function(res){
 						if(res=='true') {
 							alert('환영합니다');
+							console.log(res);
 							$("#frm").submit();
-						} else{
-							alert('다시입력하세요');
+						}else{
+							alert('다시 입력하세요');
+							console.log(res);
 							$("#guest_pwd").val('');
 							$("#guest_pwd").focus();
-							
 						}
+						
 					}
 				});
 			}
@@ -46,10 +49,10 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/includes/G_header.jsp" />
-    	<form id="frm" name="frm" method="post" action="myinfoLogin.do">
+    	<form id="frm" name="frm" method="post" action="myinfoModify.do">
             <div class="sub">
             	<div class="size">
-                    <h1 class="sub_title">내정보 관리</h1>
+                    <h1 class="sub_title">내정보관리</h1>
                         <p class="sub_a">GUEST</p>
                         <table class="bordersize">
                         	<tr>

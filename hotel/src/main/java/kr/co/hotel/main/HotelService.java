@@ -7,13 +7,15 @@ import org.springframework.ui.Model;
 
 
 public interface HotelService {
-	//목록
-	public Map<String, Object> getList(HotelVO vo);
 	
 	public Model hotelTopFive(HotelVO vo, Model model);
 	
 	public List<HotelVO> searchList(HotelVO vo);
 	
-	public List<HotelVO> LocationInfo(HotelVO vo);
+	public List<HotelVO> getDistrict(HotelVO vo);
+	
+	public List<HotelVO> stateInfo(HotelVO vo);
+	
+	public int searchCount(HotelVO vo);
 	
 }

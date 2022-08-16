@@ -16,110 +16,114 @@
     />
     <!-- Demo styles -->
     <style>
-<
-style>html, body {
-	align-content: center;
-	position: relative;
-	height: auto;
-	width: auto;
-}
+	style>html, body {
+		align-content: center;
+		position: relative;
+		height: auto;
+		width: auto;
+	}
+	
+	body {
+		background: #eee;
+		font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+		font-size: 14px;
+		color: #000;
+		margin: 0;
+		padding-top: 60px;
+	}
+	
+	.swiper {
+		width: 50%;
+		height: 30%;
+	}
+	
+	.swiper-slide {
+		text-align: center;
+		font-size: 18px;
+		background: #fff;
+		/* Center slide text vertically */
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		-webkit-align-items: center;
+		align-items: center;
+	}
+	
+	.swiper-slide img {
+		display: block;
+		width: 50%;
+		height: 50%;
+		object-fit: cover;
+	}
+	
+	.search_box {
+		text-align: center;
+	}
+	
+	#searchWord {
+		color: inherit;
+		text-decoration: none;
+		font-size: 1.4rem;
+		font-weight: 400;
+		height: 3.6rem;
+		padding-left: 1.6rem;
+		margin-left: auto;
+		border-radius: 0.4rem;
+		border: 1px solid #e6e6e6;
+		background-color: #f8f8f8;
+		color: #919191;
+		line-height: 3.6rem;
+	}
+	
+	.hotel01 {
+		background-size: 150px;
+		height: 150px;
+	}
+	</style>
 
-body {
-	background: #eee;
-	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	color: #000;
-	margin: 0;
-	padding-top: 60px;
-}
-
-.swiper {
-	width: 50%;
-	height: 30%;
-}
-
-.swiper-slide {
-	text-align: center;
-	font-size: 18px;
-	background: #fff;
-	/* Center slide text vertically */
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	-webkit-justify-content: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
-}
-
-.swiper-slide img {
-	display: block;
-	width: 50%;
-	height: 50%;
-	object-fit: cover;
-}
-
-.search_box {
-	text-align: center;
-}
-
-#searchWord {
-	color: inherit;
-	text-decoration: none;
-	font-size: 1.4rem;
-	font-weight: 400;
-	height: 3.6rem;
-	padding-left: 1.6rem;
-	margin-left: auto;
-	border-radius: 0.4rem;
-	border: 1px solid #e6e6e6;
-	background-color: #f8f8f8;
-	color: #919191;
-	line-height: 3.6rem;
-}
-
-.hotel01 {
-	background-size: 150px;
-	height: 150px;
-}
-</style>
+    <script type="text/javascript">
+    	function goSubmit() {
+    		if($("#searchWord").val()=='' && $("#selectbox_state").val()=='0'){
+				alert('찾으시고자하는 호텔의 이름 작성 또는 지역을 선택해주세요.');
+				return false;
+    		}
+    		else{
+					location.href='search.do';
+    		}
+    	}
+    </script>
 
   </head>
 
   <body>
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <div class="search_box">
-	<form class="search_box_form" action="/hotel/search.do">
-		<input type="text" size="50%" height="40px" id="searchWord" name="searchWord" value="호텔이름을 입력하세요" ><br>
+	<form class="search_box_form" action="/hotel/main/search.do" method="get" onsubmit="return goSubmit();">
+		<input type="text" size="50%" height="40px" id="searchWord" name="searchWord" value="" placeholder="호텔이름을 입력하세요" ><br>
 		
 		<div class ="location_box">
 			<div class ="location_box_select">
+				<span style="align-items: flex-end;">지역 카테고리를 선택하세요.</span>
 				<select name ="selectbox_state" id="selectbox_state" onchange="optionChange()">
-					<option value ="1" selected>시/도</option>
-					<option value ="11" >서울</option>
-					<option value ="23" >인천</option>
-					<option value ="31" >경기</option>
+					<option value ="0" selected>시/도</option>
+					<c:forEach var ="state" items="${list}">
+					<option value ="${state.state_code}" >${state.state_name}</option>
+					</c:forEach>
 				</select>
 				
 				<select name ="selectbox_district" id="selectbox_district" >
-					<option value ="2" selected>시/군/구</option>
+					<option value ="0" selected>시/군/구</option>
 				</select>
 				
-				<select name ="soltType" id="soltType" onchange="soltList()" >
-					<option value ="" selected>---</option>
-					<option value ="score" >평점순</option>
-					<option value ="balance" >낮은 가격순</option>
-					<option value ="review" >리뷰순</option>
-					<option value ="like" >좋아요순</option>
-				</select>
-				<input type="submit" value="검색">
+				<input type="submit" value="검색" id="searchBtn"> <%-- <c:if test="gosubmit().val() == 'false'">retrun false;</c:if> "> --%>
 				</div>
-	
 			</div>
 	</form><br>
 	</div>
@@ -188,34 +192,22 @@ body {
 	<!-- 동적셀렉트 -->
 	<script>
 	function optionChange() {
-		
-		var type = $("#selectbox_state").val();
-		var submitObj = new Object();
-		
 		$.ajax({
 			url : "district.do",
 			type : "POST",
 			data : {
-					state_code : type
+					state_code : $("#selectbox_state").val()
 				},
 			success : function(result) {
-				//console.log(typeof(result));
-				console.log(result.length);
-				//셀렉트박스에 값을 뿌려줌
-				//for (var i=0; i<result.length; i++){
-					//type.val(result[i].district_name);				
-					//console.log(result[i].district_name);
-					
-					
-					var str = "<option value =" + 2 + " selected>시/군/구</option>";
-					if($("#selectbox_state").val() != "1"){
-						$.each(result, function(i){
-	                        str += "<option value = ";
-	                        str +=  + result[i].district_code +""; 
-	                        str +=  ">" +result[i].district_name+"</option>"
-	                    });
-					} else {
-						str = "<option value =" + 2 + " selected>시/군/구</option>";
+				var str = "<option value =" + 0 + " selected>시/군/구</option>";
+				if($("#selectbox_state").val() != 0){
+					$.each(result, function(i){
+	                   str += "<option value = ";
+	                   str +=  + result[i].district_code +""; 
+	                   str +=  ">" +result[i].district_name+"</option>"
+	                });
+				} else {
+						str = "<option value =" + 0 + " selected>시/군/구</option>";
 					}
 					$("#selectbox_district").empty($("#selectbox_district").val());
                     $("#selectbox_district").append(str);
@@ -245,5 +237,6 @@ body {
       });
    });
     </script>
+
   </body>
 </html>

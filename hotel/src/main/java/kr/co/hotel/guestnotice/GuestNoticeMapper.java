@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface GuestNoticeMapper {
-	int insert(GuestNoticeVO  vo);
+	int insert(GuestNoticeVO vo);
 	int count(int gnotice_no);
 	List<GuestNoticeVO> list(GuestNoticeVO vo);
 	GuestNoticeVO view(GuestNoticeVO vo);

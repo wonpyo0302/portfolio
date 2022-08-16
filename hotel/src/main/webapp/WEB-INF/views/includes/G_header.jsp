@@ -28,7 +28,7 @@
 
     <nav class="navbar bg-light fixed-top" style="background-color: pink!important">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">둘이놀까</a>
+          <a class="navbar-brand" href="/hotel/main/main.do">둘이놀까</a>
           
           <c:if test="${!empty loginInfo}"> 
           <div style="width:60%">
@@ -50,7 +50,7 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/hotel/guest/myinfo.do">마이페이지</a>
+                  <a class="nav-link active" aria-current="page" href="/hotel/guest/mypage.do">마이페이지</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">예약내역</a>
@@ -60,9 +60,9 @@
                     고객센터
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">공지사항</a></li>
-                    <li><a class="dropdown-item" href="#">FAQ</a></li>
-                    <li><a class="dropdown-item" href="#">QnA</a></li>
+                    <li><a class="dropdown-item" href="/hotel/notice/list.do">공지사항</a></li>
+                    <li><a class="dropdown-item" href="/hotel/faq/view.do">FAQ</a></li>
+                    <li><a class="dropdown-item" href="/hotel/board/list.do">QnA</a></li>
                     <li>
                       <hr class="dropdown-divider">
                     </li>
