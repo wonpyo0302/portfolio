@@ -63,11 +63,25 @@
 				</if>
 			</if>
 		</where>
-		<if test="soltType != 3 | soltType != null">
-		ORDER BY #{soltType} DESC
+		<if test="sortType != ''">
+			<if test="sortType =='scoreList'">
+				ORDER BY avgScore DESC
+			</if>
+			
+			<if test="sortType =='lowPrice'">
+				ORDER BY lowPrice ASC
+			</if>
+			
+			<if test="sortType =='review'">
+				ORDER BY totalReview DESC
+			</if>
+			
+			<if test="sortType =='like'">
+				ORDER BY totalLike DESC
+			</if>
 		</if>
 	</select>
-	
+
 	<!-- 검색 count -->
 	<select id="searchCount" parameterType ="kr.co.hotel.main.HotelVO" resultType="int">
 		SELECT COUNT(*) 
