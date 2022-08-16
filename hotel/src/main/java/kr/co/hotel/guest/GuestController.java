@@ -112,7 +112,7 @@ public class GuestController {
 	public String findGuestPwd(Model model, GuestVO param) {
 		GuestVO gvo = gservice.findGuestPwd(param);
 		if (gvo != null) {
-			model.addAttribute("result", gvo.getGuest_email());
+			model.addAttribute("result", gvo.getGuest_pwd());
 		}
 		return "common/return";
 	}
@@ -153,5 +153,32 @@ public class GuestController {
 	public String myinfoModify() {
 		return "/guest/myinfoModify";//내정보 수정하는 jsp
 	}
-	
+	@GetMapping("/guest/pwdChangePopup.do")
+	public String hpChangePopup() {
+		return "/guest/pwdChangePopup";
+	}
+	 
+	@PostMapping("/guest/updatePwd.do") 
+	public void updateHp(HttpSession sess, GuestVO gvo, HttpServletResponse res) throws IOException { 
+		GuestVO myinfo=(GuestVO)sess.getAttribute("loginInfo");
+		myinfo.setGuest_pwd(gvo.getGuest_pwd());
+		boolean r=false;
+		if (gservice.updatePwd(myinfo) > 0) {
+			r=true;
+			PrintWriter out = res.getWriter();
+			out.print(r);
+			out.flush();
+		}
+	}
+	 @PostMapping("/guest/update.do")
+	 public String update(GuestVO gvo, Model model) {
+		 if(gservice.totalUpdate(gvo)) {
+			 model.addAttribute("msg", "자동 로그아웃됩니다.다시 로그인해주세요");
+			 model.addAttribute("url", "/hotel/guest/logout.do");
+			 return "common/alert";
+		 }else {
+			 model.addAttribute("msg","수정실패");
+			 return "common/alert";
+		 }
+	 }
 }

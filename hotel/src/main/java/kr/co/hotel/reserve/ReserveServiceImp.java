@@ -9,8 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import kr.co.hotel.coupon.CouponVO;
-import kr.co.hotel.HRRegister.RoomVO;
 import kr.co.hotel.guest.GuestVO;
+import kr.co.hotel.room.RoomVO;
 
 @Service
 public class ReserveServiceImp implements ReserveService {

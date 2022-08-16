@@ -14,4 +14,6 @@ public interface GuestService {
 	GuestVO findGuestEmail(GuestVO gvo);
 	GuestVO findGuestPwd(GuestVO gvo);
 	GuestVO myinfoLogin(GuestVO gvo);
+	int updatePwd(GuestVO gvo);
+	boolean totalUpdate(GuestVO gvo);
 }

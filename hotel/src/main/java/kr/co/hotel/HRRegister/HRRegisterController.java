@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.hotel.host.HostVO;
 import kr.co.hotel.main.HotelVO;
+import kr.co.hotel.room.RoomVO;
 import util.ImgHandling;
 
 @Controller

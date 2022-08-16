@@ -40,4 +40,13 @@
 		SELECT * FROM guest 
 		WHERE guest_pwd = md5(#{guest_pwd}) AND guest_no = #{guest_no}
 	</select>
+	<update id="updatePwd" parameterType="kr.co.hotel.guest.GuestVO">
+		UPDATE guest SET guest_pwd = md5(#{guest_pwd}) WHERE guest_id=#{guest_id}
+	</update>
+	<update id="totalUpdate" parameterType="kr.co.hotel.guest.GuestVO">
+		UPDATE guest SET guest_email=#{guest_email}, guest_hp=#{guest_hp}, 
+		g_bank=#{g_bank}, g_accountno=#{g_accountno},guest_birth=#{guest_birth},
+		guest_addr1=#{guest_addr1},guest_addr2=#{guest_addr2}
+		WHERE guest_no=#{guest_no}
+	</update>
 </mapper>
