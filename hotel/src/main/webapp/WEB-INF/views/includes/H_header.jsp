@@ -60,9 +60,9 @@
                     고객센터
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">공지사항</a></li>
-                    <li><a class="dropdown-item" href="#">FAQ</a></li>
-                    <li><a class="dropdown-item" href="#">QnA</a></li>
+                    <li><a class="dropdown-item" href="/hotel/hostnotice/list.do">공지사항</a></li>
+                    <li><a class="dropdown-item" href="/hotel/hostfaq/view.do">FAQ</a></li>
+                    <li><a class="dropdown-item" href="/hotel/hostboard/list.do">QnA</a></li>
                     <li>
                       <hr class="dropdown-divider">
                     </li>

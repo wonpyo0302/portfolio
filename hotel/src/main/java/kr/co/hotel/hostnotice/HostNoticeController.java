@@ -1,4 +1,4 @@
-package kr.co.hotel.guestnotice;
+package kr.co.hotel.hostnotice;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,28 +9,28 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import kr.co.hotel.guest.GuestVO;
+import kr.co.hotel.host.HostVO;
 
 @Controller
-public class GuestNoticeController {
+public class HostNoticeController {
 
 	@Autowired
-	GuestNoticeService service;
+	HostNoticeService service;
 	
 	// 목록
-	@GetMapping("/guestnotice/list.do")
-	public String index(Model model, GuestNoticeVO vo) {
+	@GetMapping("/hostnotice/list.do")
+	public String index(Model model, HostNoticeVO vo) {
 		model.addAttribute("data", service.index(vo));
-		return "guestnotice/list";
+		return "hostnotice/list";
 	}
 	
 	// 조회
-	@GetMapping("/guestnotice/view.do")
-	public String view(Model model, GuestNoticeVO vo) {
-		service.updateViewcount(vo.getGnotice_no());
+	@GetMapping("/hostnotice/view.do")
+	public String view(Model model, HostNoticeVO vo) {
+		service.updateViewcount(vo.getHnotice_no());
 		model.addAttribute("data", service.view(vo));
 	
-		return "guestnotice/view";
+		return "hostnotice/view";
 	}
 
 	

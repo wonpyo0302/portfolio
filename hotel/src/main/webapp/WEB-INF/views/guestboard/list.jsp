@@ -108,7 +108,7 @@
 										</c:if>
 										<td class="txt_l">
 										
-										<a href="/hotel/board/view.do?gboard_no=${vo.gboard_no}">${vo.gboard_title}</a></td>								
+										<a href="/hotel/guestboard/view.do?gboard_no=${vo.gboard_no}">${vo.gboard_title}</a></td>								
 										
 										<td>${vo.gboard_viewcount}</td>
 										
@@ -158,7 +158,7 @@
 								<option value="contents">내용</option>
 						</select>
 						</span> 
-						<span class="searchWord"> <input type="text" id="sword" name="sword" value="" title="검색어 입력"> 
+						<span class="searchWord"> <input type="text" id="sword" name="sword" placeholder="검색어를 입력하세요." title="검색어 입력"> 
 						<input type="button" id="" value="검색" title="검색">
 						</span>
 					</form>

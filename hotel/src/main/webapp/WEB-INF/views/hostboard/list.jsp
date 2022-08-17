@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@include file="/WEB-INF/views/includes/G_header.jsp" %>
+<%@include file="/WEB-INF/views/includes/H_header.jsp"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -50,7 +50,7 @@
 		<br>
 			<h6 class="sub_content" style="text-align: left"> Q&A</h6>
 			<br>
-			<h8 class="sub_content" style="text-align:left"> <img src="/hotel/image/qna.png" width="40px">  게스트 전용 문의 게시판입니다. 문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
+			<h8 class="sub_content" style="text-align:left"> <img src="/hotel/image/qna.png" width="40px">  호스트 전용 문의 게시판입니다. 문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
 			<br><br><br><br>
 			<div class="bbs">
 				<table class="list">
@@ -91,28 +91,26 @@
 									 <tr>
 										<td>${data.totalCount - status.index - ((hostBoardVO.page - 1) * hostBoardVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										
-										<c:if test="${vo.hboard_type == 1 }">
-											<td>예약</td>
+										<c:if test="${vo.hboard_type == 6 }">
+											<td>입점</td>
 										</c:if>
-										<c:if test="${vo.hboard_type == 2 }">
-											<td>결제</td>
+										<c:if test="${vo.hboard_type == 7 }">
+											<td>광고/제휴</td>
 										</c:if>
-										<c:if test="${vo.hboard_type == 3 }">
-											<td>숙소</td>
+										<c:if test="${vo.hboard_type == 8 }">
+											<td>이용회원</td>
 										</c:if>
-										<c:if test="${vo.hboard_type == 4 }">
-											<td>포인트/쿠폰</td>
-										</c:if>
-										<c:if test="${vo.hboard_type == 5 }">
+										<c:if test="${vo.hboard_type == 9 }">
 											<td>이용/기타</td>
 										</c:if>
+									
 										<td class="txt_l">
 										
 										<a href="/hotel/board/view.do?hboard_no=${vo.hboard_no}">${vo.hboard_title}</a></td>								
 										
 										<td>${vo.hboard_viewcount}</td>
 										
-										<td class="writer">${vo.guest_name}</td>
+										<td class="writer">${vo.host_name}</td>
 										
 										<td class="date"> <fmt:formatDate value="${vo.hboard_regdate}" pattern="yyyy-MM-dd"/></td>
 										
@@ -158,7 +156,7 @@
 								<option value="contents">내용</option>
 						</select>
 						</span> 
-						<span class="searchWord"> <input type="text" id="sword" name="sword" value="" title="검색어 입력"> 
+						<span class="searchWord"> <input type="text" id="sword" name="sword" placeholder="검색어를 입력하세요." title="검색어 입력"> 
 						<input type="button" id="" value="검색" title="검색">
 						</span>
 					</form>
