@@ -25,30 +25,30 @@ public class HostBoardController extends ImgHandling{
 	HostBoardService service;
 
 	// 목록
-	@GetMapping("/board/list.do")
+	@GetMapping("/hostboard/list.do")
 	public String index(Model model, HostBoardVO vo) {
 		model.addAttribute("data", service.index(vo));
-		return "board/list";
+		return "hostboard/list";
 	}
 
 	// 조회
-	@GetMapping("/board/view.do")
+	@GetMapping("/hostboard/view.do")
 	public String view(Model model, HostBoardVO vo) {
 		//System.out.println(vo.get);
 		service.viewCount(vo.getHboard_no());
 		HostBoardVO gvo = service.view(vo.getHboard_no());
 		model.addAttribute("data", gvo);
-		return "board/view";
+		return "hostboard/view";
 	}
 
 	// 등록 폼
-	@GetMapping("/board/write.do")
+	@GetMapping("/hostboard/write.do")
 	public String write(Model model) {
-		return "board/write";
+		return "hostboard/write";
 	}
 
 	// 등록처리
-	@PostMapping("/board/insert.do")
+	@PostMapping("/hostboard/insert.do")
 	public String insert(Model model, HostBoardVO vo, @RequestParam MultipartFile filename, HttpServletRequest req) {
 		if(!filename.isEmpty()) {
 			String org = filename.getOriginalFilename();
@@ -81,15 +81,15 @@ public class HostBoardController extends ImgHandling{
 	}
 
 	// 수정 폼
-	@GetMapping("/board/edit.do")
+	@GetMapping("/hostboard/edit.do")
 	public String editForm(Model model, HostBoardVO vo) {
 		model.addAttribute("data", service.edit(vo.getHboard_no()));
 		System.out.println("======================================"+model.getAttribute("data"));
-		return "board/edit";
+		return "hostboard/edit";
 	}
 	
 	// 수정처리
-	@PostMapping("/board/edit.do")
+	@PostMapping("/hostboard/edit.do")
 	public String update(HostBoardVO vo, Model model) {
 		System.out.println("=============================vo 확인" + vo.getHboard_no());
 		System.out.println("뭐라는거야 : " + vo.getHboard_type());
@@ -106,7 +106,7 @@ public class HostBoardController extends ImgHandling{
 	}
 	
 	// 삭제처리
-	@GetMapping("/board/delete.do")
+	@GetMapping("/hostboard/delete.do")
 	public String delete(HostBoardVO vo, Model model) {
 		if(service.delete(vo.getHboard_no())) {
 			

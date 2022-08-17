@@ -67,7 +67,7 @@
 			<h3 class="sub_title" style="text-align: left">새 문의글 작성</h3>
 			<br>
 			<div class="bbs">
-				<form method="post" name="frm" id="frm" action="../board/insert.do" enctype="multipart/form-data">
+				<form method="post" name="frm" id="frm" action="../guestboard/insert.do" enctype="multipart/form-data">
 					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
 					<table class="board_write">
 						<tbody>

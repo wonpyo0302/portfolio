@@ -24,30 +24,30 @@ public class GuestBoardController extends ImgHandling{
 	GuestBoardService service;
 
 	// 목록
-	@GetMapping("/board/list.do")
+	@GetMapping("/guestboard/list.do")
 	public String index(Model model, GuestBoardVO vo) {
 		model.addAttribute("data", service.index(vo));
-		return "board/list";
+		return "guestboard/list";
 	}
 
 	// 조회
-	@GetMapping("/board/view.do")
+	@GetMapping("/guestboard/view.do")
 	public String view(Model model, GuestBoardVO vo) {
 		//System.out.println(vo.get);
 		service.viewCount(vo.getGboard_no());
 		GuestBoardVO gvo = service.view(vo.getGboard_no());
 		model.addAttribute("data", gvo);
-		return "board/view";
+		return "guestboard/view";
 	}
 
 	// 등록 폼
-	@GetMapping("/board/write.do")
+	@GetMapping("/guestboard/write.do")
 	public String write(Model model) {
-		return "board/write";
+		return "guestboard/write";
 	}
 
 	// 등록처리
-	@PostMapping("/board/insert.do")
+	@PostMapping("/guestboard/insert.do")
 	public String insert(Model model, GuestBoardVO vo, @RequestParam MultipartFile filename, HttpServletRequest req) {
 		if(!filename.isEmpty()) {
 			String org = filename.getOriginalFilename();
@@ -80,15 +80,15 @@ public class GuestBoardController extends ImgHandling{
 	}
 
 	// 수정 폼
-	@GetMapping("/board/edit.do")
+	@GetMapping("/guestboard/edit.do")
 	public String editForm(Model model, GuestBoardVO vo) {
 		model.addAttribute("data", service.edit(vo.getGboard_no()));
 		System.out.println("======================================"+model.getAttribute("data"));
-		return "board/edit";
+		return "guestboard/edit";
 	}
 	
 	// 수정처리
-	@PostMapping("/board/edit.do")
+	@PostMapping("/guestboard/edit.do")
 	public String update(GuestBoardVO vo, Model model) {
 		System.out.println("=============================vo 확인" + vo.getGboard_no());
 		System.out.println("뭐라는거야 : " + vo.getGboard_type());
@@ -105,7 +105,7 @@ public class GuestBoardController extends ImgHandling{
 	}
 	
 	// 삭제처리
-	@GetMapping("/board/delete.do")
+	@GetMapping("/guestboard/delete.do")
 	public String delete(GuestBoardVO vo, Model model) {
 		if(service.delete(vo.getGboard_no())) {
 			
