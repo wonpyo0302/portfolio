@@ -135,13 +135,12 @@
 				<div class="container list" style="table-layout: fixed; float: left; width: 300px;">
 					<div>
 						<div class="list_hotel" style="border: 1px;">
-							<a href="/hotel/main/hotelView.do">
+							<a href="/hotel/main/hotelView.do?hotel_no=${list.hotel_no }">
 								<div class="hotel_img"><img alt="이미지오류" src="/hotel/image/hotel/${list.filename}" width="200" height="200"></div>
 								<div>
 								<!-- <div id="v-line"></div> -->
 								<span><p>${list.hotel_name}</p></span>
 								<span>최저가:  ${list.lowPrice } ~</span>
-								<input type="hidden" name="hotel_no">${list.hotel_no}
 								</div>
 							</a>
 						</div>

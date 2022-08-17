@@ -35,14 +35,18 @@ public class HostController {
 		}
 	}
 	@GetMapping("/host/login.do")
-	public String login() {
+	public String login(HttpSession sess, Model model) {
+		if(sess.getAttribute("loginInfo2")!=null) {
+			model.addAttribute("msg", "중복로그인입니다. 로그아웃해주세요");
+			return "common/alert";
+		}
 		return "host/login";
 	}
 	
 	@PostMapping("/host/login.do")
 	public String login(HostVO hvo, HttpSession sess, Model model) {
 		if (hservice.HostloginCheck(hvo, sess)) {
-			return "redirect:/host/myinfo.do";
+			return "redirect:/host/mypage.do";
 		} else {
 			model.addAttribute("msg", "비밀번호를 확인해 주세요");
 			return "common/alert";
@@ -106,13 +110,7 @@ public class HostController {
 	public String findHostPwd() {
 		return "host/findPwd";
 	}
-	@GetMapping("/host/myinfo.do")
-	public String myinfo(HttpSession sess, Model model) {
-		if(sess.getAttribute("loginInfo2")==null) {
-			model.addAttribute("msg","로그인이 필요한 기능입니다.");
-			return "common/alert";
-		}else {return "/host/myinfoLogin";}
-	}
+	
 	@PostMapping("/host/findHostPwd.do")
 	public String findHostPwd(Model model, HostVO param) {
 		HostVO hvo = hservice.findHostPwd(param);
@@ -120,6 +118,24 @@ public class HostController {
 			model.addAttribute("result", hvo.getHost_email());
 		}
 		return "common/return";
+	}
+	@GetMapping("/host/mypage.do")
+	public String mypage(HttpSession sess, Model model) {
+		if(sess.getAttribute("loginInfo2")==null) {
+			model.addAttribute("msg","로그인해야 합니다");
+			return "common/aleret";
+		}else {
+			return "/host/myPage";
+		}
+	}
+	@GetMapping("/host/myinfo.do")
+	public String myinfo(HttpSession sess, Model model) {
+		if(sess.getAttribute("loginInfo2")==null) {
+			model.addAttribute("msg","로그인이 필요한 기능입니다.");
+			return "common/alert";
+		}else {
+			return "/host/myinfoLogin";
+		}
 	}
 	@PostMapping("/host/myinfoLogin.do")
 	public void myinfoLogin(HostVO hvo, HttpServletResponse res, HttpSession sess) throws IOException {
@@ -134,5 +150,32 @@ public class HostController {
 	@PostMapping("/host/myinfoModify.do")
 	public String myinfoModify() {
 		return "/host/myinfoModify";
+	}
+	@GetMapping("/host/pwdChangePopup")
+	public String pwdChangePopup() {
+		return "/host/pwdChangePopup";
+	}
+	@PostMapping("/host/updatePwd.do")
+	public void updatePwd(HttpSession sess, HostVO hvo, HttpServletResponse res) throws IOException {
+		HostVO myinfo=(HostVO)sess.getAttribute("loginInfo2");
+		myinfo.setHost_pwd(hvo.getHost_pwd());
+		boolean r=false;
+		if(hservice.updatePwd(myinfo) > 0) {
+			r=true;
+			PrintWriter out = res.getWriter();
+			out.print(r);
+			out.flush();
+		}
+	}
+	@PostMapping("/host/update.do")
+	public String update(HostVO hvo, Model model) {
+		if(hservice.totalUpdate(hvo)) {
+			model.addAttribute("msg","자동 로그아웃 됩니다. 다시 로그인해주세요");
+			model.addAttribute("url","/hotel/host/logout.do");
+			return "common/alert";
+		} else {
+			model.addAttribute("msg", "수정실패");
+			return "common/alert";
+		}
 	}
 }

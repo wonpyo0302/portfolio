@@ -1,7 +1,8 @@
 package kr.co.hotel.main;
 
-import java.sql.Timestamp;
+import java.util.List;
 
+import kr.co.hotel.HRRegister.ImageVO;
 import lombok.Data;
 
 @Data
@@ -21,14 +22,15 @@ public class HotelVO {
 	private String district_name;
 	private String lat;
 	private String lot;
-	private int lowPrice;
 	
 	private int avgScore;
 	private int totalReview;
 	private int totalLike;
 	
+	private List<ImageVO> imageList;
+	private String image_type;
+	private int lowPrice;
 	private String filename;
-	
 	
 	private int page;
 	private String searchField;

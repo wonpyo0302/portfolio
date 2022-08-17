@@ -1,11 +1,9 @@
 package kr.co.hotel.main;
 
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.hotel.room.RoomVO;
 import lombok.AllArgsConstructor;
 
 @Controller
@@ -56,9 +55,18 @@ public class HotelController {
 	}
 	
 	@GetMapping("/main/hotelView.do")
-	public String hotelView(HotelVO vo, Model model) {
-		service.hotelView(vo.getHotel_no());
-		model.addAttribute("detail",service.hotelView(vo.getHotel_no()));
+	public String hotelView(HotelVO vo, Model model, RoomVO rv) {
+		//호텔이미지 목록 불러오기
+		model.addAttribute("hotelImage", service.getHotelImage(vo.getHotel_no()));
+		
+		//
+//		List<RoomVO> list = service.roomList(vo.getHotel_no());
+//		for (RoomVO v : list) {
+//			v.setImageList(service.(v.getRoom_no()));
+//		}
+		
+		
+		
 		return "/main/hotelView";
 	}
 }

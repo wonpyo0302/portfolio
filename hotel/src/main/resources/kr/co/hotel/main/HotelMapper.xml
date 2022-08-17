@@ -31,7 +31,7 @@
 	 <![CDATA[
 	 	SELECT *, 
 	 		(SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice,
-	 		(SELECT filename_org FROM image i WHERE i.hotel_no = h.hotel_no limit 1) AS filename
+	 		(SELECT filename_org FROM image WHERE no = #{hotel_no} limit 1) AS filename
 	 	FROM hotel h
         where state_code = ${state_code}
 	 	LIMIT 5
@@ -42,7 +42,7 @@
 	<select id="searchList" parameterType ="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
 		SELECT * ,
 			(SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice,
-			(SELECT filename_org FROM image i WHERE i.hotel_no = h.hotel_no limit 1) AS filename
+			(SELECT filename_org FROM image WHERE no = #{hotel_no} limit 1) AS filename
 		FROM hotel h LEFT JOIN favorit f
 		ON h.hotel_no = f.hotel_no LEFT JOIN review r
 		ON f.hotel_no = r.hotel_no
@@ -118,21 +118,24 @@
 	</select>
 
 <!-- 호텔 상세보기 -->
-	<select id="hotelView" parameterType="int" resultType="java.util.LinkedHashMap">
+	<select id="roomList" parameterType="int" resultType="java.util.LinkedHashMap">
 		SELECT * FROM hotel h LEFT JOIN room r
 		ON h.hotel_no = r.hotel_no
     	WHERE h.hotel_no = #{hotel_no};
 	</select>
+	<select id="hotelView" parameterType="int" resultType="kr.co.hotel.main.HotelVO">
+		SELECT * FROM hotel WHERE hotel_no = #{hotel_no}
+	</select>
 
-
-
-
-
-<!-- 이미지 데이터 삽입 -->
-<insert id="insertImage">
-	INSERT INTO image ( hotel_no, filename_org) VALUES ( #{hotel_no}, #{filename_org})
-</insert>
-
-
-
+	<!-- hotel_no에 해당하는 이미지 셀렉 -->
+	<select id="getHotelImage" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
+		SELECT * FROM image
+		where no = #{hotel_no} AND image_type = #{image_type}
+	</select>
+	
+	<!-- room_no에 해당하는 이미지 셀렉 -->
+	<select id="getRoomImage" parameterType="kr.co.hotel.room.RoomVO" resultType="kr.co.hotel.room.RoomVO">
+		SELECT * FROM image
+		where no = #{room_no} AND image_type = #{image_type}
+	</select>
 </mapper>
