@@ -11,9 +11,8 @@ public class ImageVO {
 		private int Image_order;
 		private String Image_type;
 		
-		private int hotel_no;
-		private int room_no;
-		private int review_no;
+		private int no;
+		
 		  
 		
 }

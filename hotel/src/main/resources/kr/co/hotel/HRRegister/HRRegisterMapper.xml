@@ -11,9 +11,9 @@
 	
 	<insert id="img_insert" parameterType="kr.co.hotel.HRRegister.ImageVO" >
 		INSERT INTO image
-			( hotel_no,room_no,review_no, filename_org, filename_real, image_order, image_type)
+			( no, filename_org, filename_real, image_order, image_type)
 		VALUES
-			(#{hotel_no},#{room_no},#{review_no} ,#{filename_org},#{filename_real},#{image_order},#{image_type})
+			(#{no} ,#{filename_org},#{filename_real},#{image_order},#{image_type})
 	</insert>
 	
 	<select id="img_get" parameterType="int" resultType="kr.co.hotel.room.RoomVO">
@@ -87,7 +87,6 @@
 	
 		UPDATE hotel 
 		SET
-			
 			 state_code  = #{state_code},
 			 district_code  = #{district_code},
 			 hotel_name  = #{hotel_name},
@@ -115,15 +114,15 @@
 	
 	</delete>
 	
-	<delete id="delete_img" parameterType="int">
+	<delete id="delete_img" parameterType="kr.co.hotel.HRRegister.ImageVO">
 		
-		delete from image where room_no = #{room_no}
+		delete from image where no = #{no} and image_type=#{image_type}
 	
 	</delete>
 	
-	<delete id="H_delete_img" parameterType="int">
+	<delete id="H_delete_img" parameterType="kr.co.hotel.HRRegister.ImageVO">
 		
-		delete from image where hotel_no = #{hotel_no}
+		delete from image where no = #{no} and image_type=#{image_type}
 	
 	</delete>
 	
@@ -147,14 +146,7 @@
 	
 	<select id="get_imgList" parameterType="kr.co.hotel.HRRegister.ImageVO" resultType="kr.co.hotel.HRRegister.ImageVO">
 		select * from image 
-		<where>
-			<if test="image_type == 'ROOM'">
-				room_no = #{room_no}
-			</if>
-			<if test="image_type == 'HOTEL'">
-				hotel_no = #{hotel_no}
-			</if>
-		</where>
+		where no = #{no} and image_type=#{image_type}
 		order by image_order
 	</select>
 	
@@ -207,10 +199,19 @@
 	
 	
 	
-  
+	<update id="update_host_no" parameterType="kr.co.hotel.host.HostVO">
+		UPDATE host
+		SET
+		hotel_no =#{hotel_no}
+		where host_no = #{host_no}
+	</update>
 	
+	<select id="get_hostInfo" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
+		
+		select * from host where host_no =#{host_no}
 	
-
+	</select>
+	
 	
 	
 

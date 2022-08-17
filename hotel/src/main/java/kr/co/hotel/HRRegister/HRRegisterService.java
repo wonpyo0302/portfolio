@@ -3,6 +3,7 @@ package kr.co.hotel.HRRegister;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.hotel.host.HostVO;
 import kr.co.hotel.main.HotelVO;
 import kr.co.hotel.room.RoomVO;
 
@@ -23,10 +24,10 @@ public interface HRRegisterService {
 	boolean H_update (HotelVO vo);
 	
 	//객실등록정보 삭제 처리
-	boolean delete(int room_no);
+	boolean delete(ImageVO ivo);
 	
 	//호텔등록정보 삭제 처리
-	boolean H_delete(int room_no);
+	boolean H_delete(ImageVO ivo);
 	
 	//등록 처리
 	boolean insert(RoomVO vo);
@@ -51,4 +52,8 @@ public interface HRRegisterService {
 	
 	//호텔, 객실 신청 toAdmin
 	boolean toAdmin(RoomVO vo, HotelVO hvo);
+	
+	public int update_host_no(HostVO vo);
+	//host페이지에 hotel_no 업데이트 후, 세션 계정 업데이트
+	public HostVO get_hostInfo(HostVO vo);
 }

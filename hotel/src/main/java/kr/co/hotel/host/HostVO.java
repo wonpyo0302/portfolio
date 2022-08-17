@@ -18,4 +18,5 @@ public class HostVO {
 	private String host_accountno;
 	private String host_bank;
 	
+	private int hotel_no;
 }

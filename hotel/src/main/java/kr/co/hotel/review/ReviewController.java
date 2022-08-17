@@ -53,7 +53,7 @@ public class ReviewController {
 	
 	
 	@PostMapping("/review/insert.do")
-	public String insert(ReviewVO vo,ImageVO ivo, Model model, @RequestParam MultipartFile filename, HttpServletRequest req) {
+	public String insert(ReviewVO vo, ImageVO ivo, Model model, @RequestParam MultipartFile filename, HttpServletRequest req) {
 		System.out.println("reviewcontent확인 : "+vo.getReview_content());
 		System.out.println("reviewscore확인 : "+vo.getReview_score());
 		System.out.println("reserv_no확인 : "+vo.getReserv_no());
@@ -64,7 +64,7 @@ public class ReviewController {
 			System.out.println("review_no확인 : "+ vo.getReview_no());
 			System.out.println("filename확인 : "+filename.getSize());
 			if(filename.getSize()!=0) {
-				ivo.setReview_no(vo.getReview_no());
+				ivo.setNo(vo.getReview_no());
 				ivo.setImage_type("REVIEW");
 				Map map = ih.imghandle(filename, req);
 			

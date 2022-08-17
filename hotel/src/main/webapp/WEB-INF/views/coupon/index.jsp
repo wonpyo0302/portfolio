@@ -20,14 +20,6 @@
 
 
 	<script type="text/javascript">
-		function goWrite(){
-			<c:if test="${empty loginInfo}">
-				alert("로그인 후 작성 가능합니다.(목록에서)");
-			</c:if>
-			<c:if test="${!empty loginInfo}">
-				location.href="write.do";
-			</c:if>
-		}		
 	
 	
 	</script>
@@ -37,11 +29,11 @@
         <div class="sub">
             <div class="size">
                 <h3 class="sub_title"></h3>
-                <p class="sub_title">MY POINT :  ${pointVO.totalpoint }  P</p>
+                <p class="sub_title">MY COUPONS :  ${coupon.totalCount }  장</p>
     
                 <div class="bbs">
                     <table class="list">
-                    <p><span><strong>총 ${point.totalCount}개</strong>  |  ${pointVO.page}/${point.totalPage}페이지</span></p>
+                    <p><span><strong>총 ${coupon.totalCount}개</strong>  |  ${pointVO.page}/${point.totalPage}페이지</span></p>
                         <caption>게시판 목록</caption>
                         <colgroup>
                             <col width="80px" />
