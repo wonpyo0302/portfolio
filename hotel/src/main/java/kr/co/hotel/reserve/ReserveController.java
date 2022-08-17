@@ -10,9 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.main.HotelVO;
+import kr.co.hotel.room.RoomVO;
 
 @Controller
 
@@ -73,7 +73,7 @@ public class ReserveController {
 	
 	
 	//-----이하 빛찬-----------------------------------------------
-	
+	//-----게스트-----------------------------------------------
 	@GetMapping("/reserve/index.do")
 	public String index(Model model,HotelVO hvo, ReserveVO vo, HttpSession sess, HttpServletRequest req) {
 		GuestVO loginInfo1 = new GuestVO();// demo data
@@ -90,5 +90,5 @@ public class ReserveController {
 		return "reserve/index";
 	}
 	
-	
+
 }

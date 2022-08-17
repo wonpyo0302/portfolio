@@ -79,11 +79,13 @@
 			height: auto;
 			border: 1px solid #003458;
 		}
-		.container list {
-			flex: auto;
-		}
+
 		span {
 			font-weight: bolder;
+		}
+		#v-line{
+			border-left : thick solid;
+			height : 238px;
 		}
 		
 	</style>
@@ -94,7 +96,7 @@
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <div class="search_box">
 	<form class="search_box_form" action="/hotel/main/search.do">
-		<input type="text" size="50%" height="40px" id="searchWord" name="searchWord" value="" placeholder="${hotelVO.searchWord}" ><br>
+		<input type="text" size="50%" height="40px" id="searchWord" name="searchWord" value="${hotelVO.searchWord}" ><br>
 		
 		<div class ="location_box">
 			<div class ="location_box_select">
@@ -128,25 +130,29 @@
 		</select>
 	</div>
 	<div id="searchArea" class="container list_body" style="text-align: center;">
-		<div class="low">
+		<div class="low" style="display: inline-block; width: 650px;">
 			<c:forEach var="list" items="${hotelList }" varStatus="idx">
-				<table class="container list" style="table-layout: fixed;">
-					<tr>
-						<td class="list_hotel" style="border: 1px;">
-							<a href="">
-								<span class="hotel_img"><img alt="이미지오류" src="/hotel/image/hotel/${list.filename}" width="200" height="200"></span>
+				<div class="container list" style="table-layout: fixed; float: left; width: 300px;">
+					<div>
+						<div class="list_hotel" style="border: 1px;">
+							<a href="/hotel/main/hotelView.do">
+								<div class="hotel_img"><img alt="이미지오류" src="/hotel/image/hotel/${list.filename}" width="200" height="200"></div>
+								<div>
+								<!-- <div id="v-line"></div> -->
 								<span><p>${list.hotel_name}</p></span>
 								<span>최저가:  ${list.lowPrice } ~</span>
+								<input type="hidden" name="hotel_no">${list.hotel_no}
+								</div>
 							</a>
-						</td>
-					</tr>
-					<tr>
-						<td>${list.hotel_content}</td>
-					</tr>
-				</table>
+						</div>
+					</div>
+					<div>
+						<div>${list.hotel_content}</div>
+					</div>
+				</div>
 			<c:if test="${idx.count % 2 == 0 && !idx.last}">
 		</div>
-		<div class="low">
+		<div class="low" style="display: inline-block; width: 650px;">
 			</c:if>
 			</c:forEach>
 		</div>

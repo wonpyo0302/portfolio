@@ -79,4 +79,13 @@ public class GuestServiceImpl implements GuestService {
 		return gmapper.myinfoLogin(gvo);
 		
 	}
+
+	@Override
+	public int updatePwd(GuestVO gvo) {
+		return gmapper.updatePwd(gvo);
+	}
+	@Override
+	public boolean totalUpdate(GuestVO gvo) {
+		return gmapper.totalUpdate(gvo) >0 ?  true : false;
+	}
 }

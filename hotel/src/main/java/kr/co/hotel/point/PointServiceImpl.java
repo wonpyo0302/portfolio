@@ -7,7 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.hotel.HRRegister.RoomVO;
+import kr.co.hotel.room.RoomVO;
+
 import kr.co.hotel.reserve.ReserveVO;
 @Service
 public class PointServiceImpl implements PointService {

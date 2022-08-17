@@ -1,5 +1,6 @@
 package kr.co.hotel.main;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,5 +18,7 @@ public interface HotelService {
 	public List<HotelVO> stateInfo(HotelVO vo);
 	
 	public int searchCount(HotelVO vo);
+	
+	public List<LinkedHashMap>hotelView(int hotel_no);
 	
 }

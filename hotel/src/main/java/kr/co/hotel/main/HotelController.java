@@ -55,4 +55,10 @@ public class HotelController {
 		return "/main/sortType";
 	}
 	
+	@GetMapping("/main/hotelView.do")
+	public String hotelView(HotelVO vo, Model model) {
+		service.hotelView(vo.getHotel_no());
+		model.addAttribute("detail",service.hotelView(vo.getHotel_no()));
+		return "/main/hotelView";
+	}
 }

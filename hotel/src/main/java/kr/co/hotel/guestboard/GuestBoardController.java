@@ -83,13 +83,14 @@ public class GuestBoardController extends ImgHandling{
 	@GetMapping("/board/edit.do")
 	public String editForm(Model model, GuestBoardVO vo) {
 		model.addAttribute("data", service.edit(vo.getGboard_no()));
+		System.out.println("======================================"+model.getAttribute("data"));
 		return "board/edit";
 	}
 	
 	// 수정처리
-	@PostMapping("/board/update.do")
+	@PostMapping("/board/edit.do")
 	public String update(GuestBoardVO vo, Model model) {
-		System.out.println("=============================" + vo.getGuest_no());
+		System.out.println("=============================vo 확인" + vo.getGboard_no());
 		System.out.println("뭐라는거야 : " + vo.getGboard_type());
 
 		if (service.update(vo)) {
@@ -102,10 +103,12 @@ public class GuestBoardController extends ImgHandling{
 			return "common/alert";
 		}
 	}
-
+	
+	// 삭제처리
 	@GetMapping("/board/delete.do")
 	public String delete(GuestBoardVO vo, Model model) {
 		if(service.delete(vo.getGboard_no())) {
+			
 			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
 			model.addAttribute("url", "list.do");
 			return "common/alert";
@@ -113,7 +116,7 @@ public class GuestBoardController extends ImgHandling{
 			model.addAttribute("msg", "삭제 실패했습니다.");
 			return "common/alert";
 		}
-	
+		
 	}
 	
 	

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.hotel.HRRegister.HRRegisterMapper;
-import kr.co.hotel.HRRegister.RoomVO;
+import kr.co.hotel.room.RoomVO;
 
 public class ImgHandling {
 		

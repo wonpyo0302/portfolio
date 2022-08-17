@@ -67,27 +67,10 @@
 		location.href = "/hotel/board/list.do";
 	}
 	// 삭제하기
-	function goDel(gboard_no) {
-		
-		var pwd = ${loginInfo.guest_pwd};
-		
-		if (confirm('정말 삭제하시겠습니까?')) {
-			if(!pwd){
-				alert("본인확인을 위해 비밀번호를 입력하세요.");
-			} else if(pwd){
-				location.href = "delete.do?gboard_no=" + gboard_no;
-			}
-		
-		}
-		
-		
-		/* if(${loginInfo.guest_pwd}) {
-			if (confirm('정말 삭제하시겠습니까?')) {
-				location.href = "delete.do?gboard_no=" + gboard_no;
-			}
-		} else if(!${loginInfo.guest_pwd}) {
-			alert("본인확인을 위해 비밀번호를 입력하세요.");
-		} */
+	function goDel(gboard_no){
+		if (confirm ('정말 삭제하시겠습니까?')){
+			location.href='delete.do?gboard_no='+gboard_no;
+		}	
 	}
 </script>
 
@@ -114,10 +97,10 @@
 					<table class="board_write">
 						<div class="title">
 							<tr>
-								<th>제목</th>
+								<th style="width: 5%">제목</th>
 								<td>${data.gboard_title }</td>
 								
-								<th>문의유형</th>
+								<th style="width: 5%">문의유형</th>
 								<td style="text-align:left" colspan='2'>
 									<c:if test="${data.gboard_type==1 }">[예약]</c:if>
 									<c:if test="${data.gboard_type==2 }">[결제]</c:if>
@@ -128,9 +111,9 @@
 							</tr>
 						<tr>
 							<th>등록일자</th>
-							<td  class="date" style="width: 35%"><fmt:formatDate value="${data.gboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+							<td  class="date" style="width: 30%"><fmt:formatDate value="${data.gboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 							<th>수정일자</th>
-							<td colspan='2'  class="date" style="width: 35%"><fmt:formatDate value="${data.gboard_regdate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
+							<td colspan='2'  class="date" style="width: 30%"><fmt:formatDate value="${data.gboard_updatedate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
@@ -141,11 +124,7 @@
 						
 						<tr>
 							<th>내용</th>
-							<td colspan="2">${data.gboard_content}</td>
-						</tr>
-						<tr>
-							<th>비밀번호</th>
-							<td><input type="pwd" name="guest_pwd"></td>
+							<td colspan="3">${data.gboard_content}</td>
 						</tr>
 						</div>
 					</table>
@@ -154,7 +133,7 @@
 						<a href="javascript:goDel(${data.gboard_no});" class="btn">삭제</a>
 						<a href="javascript:goList();" class="btn" style="text-align:right">목록 </a>
 					</div>
-					
+					<!-- <a href="javascript:goDel(${data.gboard_no});" class="btn">삭제</a> -->
 				</form>
 			</div>
 			

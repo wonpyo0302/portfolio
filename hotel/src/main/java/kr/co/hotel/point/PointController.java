@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import kr.co.hotel.HRRegister.GuestMemberVO;
+
 import kr.co.hotel.reserve.ReserveVO;
 import kr.co.hotel.guest.GuestVO;
 

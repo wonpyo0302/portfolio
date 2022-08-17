@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.hotel.HRRegister.HRRegisterMapper">  
 
-	<insert id="insert" parameterType="kr.co.hotel.HRRegister.RoomVO" >
+	<insert id="insert" parameterType="kr.co.hotel.room.RoomVO" >
 		INSERT INTO room
 			( host_no, hotel_no, number, room_name, room_content, room_price, status)
 		VALUES
@@ -16,12 +16,12 @@
 			(#{hotel_no},#{room_no},#{review_no} ,#{filename_org},#{filename_real},#{image_order},#{image_type})
 	</insert>
 	
-	<select id="img_get" parameterType="int" resultType="kr.co.hotel.HRRegister.RoomVO">
+	<select id="img_get" parameterType="int" resultType="kr.co.hotel.room.RoomVO">
 		
 	</select>
 
 	
-	<select id="count" parameterType="kr.co.hotel.HRRegister.RoomVO" resultType="java.lang.Integer">
+	<select id="count" parameterType="kr.co.hotel.room.RoomVO" resultType="java.lang.Integer">
 	<!-- 테이블 명이 변수로 들어갈수 있음 -->
 		select count(*) from room
 		
@@ -40,7 +40,7 @@
 	</select>
 	
 	
-	<select id="list" parameterType="kr.co.hotel.HRRegister.RoomVO" resultType="kr.co.hotel.HRRegister.RoomVO">
+	<select id="list" parameterType="kr.co.hotel.room.RoomVO" resultType="kr.co.hotel.room.RoomVO">
 
 			select * from room
 				<where>
@@ -60,7 +60,7 @@
 	
 	</select>
 	
-	<select id="view" parameterType="java.lang.Integer" resultType="kr.co.hotel.HRRegister.RoomVO">
+	<select id="view" parameterType="java.lang.Integer" resultType="kr.co.hotel.room.RoomVO">
 		select * from room
 		where room_no = #{xx}
 		<!--#{xx}> #{아무 이름이나 써도 괜찮다} 정수 하나만 넘어오니까-->
@@ -68,7 +68,7 @@
 	
 		
 	
-	<update id="update" parameterType="kr.co.hotel.HRRegister.RoomVO">
+	<update id="update" parameterType="kr.co.hotel.room.RoomVO">
 	
 		UPDATE 	room
 		SET
@@ -139,7 +139,7 @@
 		
 	</select>
 	
-	<select id="get_roomInfo" parameterType="int" resultType="kr.co.hotel.HRRegister.RoomVO">
+	<select id="get_roomInfo" parameterType="int" resultType="kr.co.hotel.room.RoomVO">
 		
 		select * from room order by room_no desc limit 1
 		
@@ -187,7 +187,7 @@
 	
 	<!-- 호텔 객실 신청 toAdmin -->
 	
-	<update id="room_toAdmin" parameterType="kr.co.hotel.HRRegister.RoomVO">
+	<update id="room_toAdmin" parameterType="kr.co.hotel.room.RoomVO">
 		
 		UPDATE room
 		SET
