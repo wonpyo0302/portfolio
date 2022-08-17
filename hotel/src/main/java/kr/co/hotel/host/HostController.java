@@ -151,7 +151,7 @@ public class HostController {
 	public String myinfoModify() {
 		return "/host/myinfoModify";
 	}
-	@PostMapping("/host/pwdChangePopup")
+	@GetMapping("/host/pwdChangePopup")
 	public String pwdChangePopup() {
 		return "/host/pwdChangePopup";
 	}
