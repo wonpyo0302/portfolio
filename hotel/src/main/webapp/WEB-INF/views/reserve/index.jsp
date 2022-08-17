@@ -19,8 +19,28 @@
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
-
-
+<script>
+function cancel(imp){
+	console.log(imp);
+	$.ajax({
+		url : "/hotel/cancel/cancel.do",
+		type: "post",
+		data : {imp_uid : imp,
+				guest_no : ${loginInfo.guest_no},
+				totalpoint : ${loginInfo.totalpoint}
+		},
+		success : function(res){
+			console.log(res);
+			if(res.substring(8,9) !=0){
+				alert("실패했습니다.")
+			}
+			else{
+				alert("성공했습니다.");
+			}
+		}
+	});
+}
+</script>
 
 <body>  
     <!-- room 정보  -->
@@ -52,6 +72,7 @@
                                 <th>결제금액</th>
                                 <th>예약상태</th>
                                 <th>이용상태</th>
+                                <th>취소하기</th>
                                 <th>리뷰</th>
                             </tr>
                         </thead>
@@ -92,14 +113,22 @@
 		                                    ${row.total_price} 
 		                                </td>
 		                                <td >
-		                                	<c:if test="${row.rev_status ==0 }">예약완료</c:if>
+		                                	<c:if test="${row.rev_status ==0 }">예약완료 </c:if>
 		                                	<c:if test="${row.rev_status ==1 }">예약취소</c:if>
 		                                </td>
 		                                
 		                                <td>
-			                                 <c:if test="${row.use_status == 0}">이용전</c:if>
-			                                 <c:if test="${row.use_status == 1}">이용완료</c:if>
-			                                 <c:if test="${row.use_status == 2}">-</c:if>
+			                                 <c:if test="${row.rev_status ==1 && (row.use_status == 0 || row.use_status == 1)}">-</c:if>
+			                                 <c:if test="${row.rev_status == 0 && row.use_status == 0}">이용전</c:if>
+			                                 <c:if test="${row.use_status == 1 }">이용완료</c:if>
+			                                 <c:if test="${row.rev_status ==1 && row.use_status == 2}">규정위반(취소)</c:if>
+		                                </td>
+		                                
+		                                <td>
+		                                	<c:if test="${row.rev_status ==0 && row.use_status == 0}">
+		                                		<input type="button" onclick="cancel('${row.imp_uid}');" value="예약취소">
+		                                	</c:if>
+		                                	<c:if test="${row.rev_status !=0 || row.use_status != 0}">-</c:if>
 		                                </td>
 						
 										<td>

@@ -27,6 +27,12 @@ public class ReserveController {
 		return "/reserve/reserve";
 	}
 	
+	//테스트
+	@GetMapping("/reserve/reserve2.do")
+	public String reserve2() {
+		return "/reserve/reserve2";
+	}
+	
 	//보유 쿠폰 리스트
 	@GetMapping("/reserve/couponlist.do")
 	public String couponlist(GuestVO vo, Model model) {
@@ -63,6 +69,8 @@ public class ReserveController {
 		}
 		
     }
+	
+	
 	
 	//-----이하 빛찬-----------------------------------------------
 	
