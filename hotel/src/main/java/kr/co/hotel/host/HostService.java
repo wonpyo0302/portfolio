@@ -12,4 +12,6 @@ public interface HostService {
 	HostVO findHostEmail(HostVO hvo);
 	HostVO findHostPwd(HostVO hvo);
 	HostVO myinfoLogin(HostVO hvo);
+	int updatePwd(HostVO hvo);
+	boolean totalUpdate(HostVO hvo);
 }

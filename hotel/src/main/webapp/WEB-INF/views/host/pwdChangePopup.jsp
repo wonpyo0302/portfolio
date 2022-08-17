@@ -18,7 +18,7 @@
 			alert('새 번호를 입력하세요');
 			$("#nepwd").focus();
 			return false;
-		}if($("#xpwd").val() != '${loginInfo.guest_pwd}'){
+		}if($("#xpwd").val() != '${loginInfo2.host_pwd}'){
 			alert('이전 번호를 바르게 입력하세요');
 			$("#xpwd").focus();
 			return false;

@@ -117,7 +117,7 @@
 				<h1 class="sub_title">내정보수정</h1>
 				<p class="sub_a">GUEST</p>
 				<table class="board_write">
-					<caption>회원가입</caption>
+					<caption>회원수정</caption>
 					<tbody>
 						<tr>
 							<th>아이디</th>
@@ -131,7 +131,7 @@
 						</tr>
 						<tr>
 							<th>이메일</th>
-							<td><input type="text" name="guest_email" id="guest_id" value="${loginInfo.guest_email}" /></td>
+							<td><input type="text" name="guest_email" id="guest_email" value="${loginInfo.guest_email}" /></td>
 						</tr>
 						<tr>
 							<th>휴대폰번호</th>

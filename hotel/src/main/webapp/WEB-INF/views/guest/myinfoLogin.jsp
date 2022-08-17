@@ -47,14 +47,18 @@
 	
 	</script>
 </head>
+<style>
+</style>
 <body>
     <jsp:include page="/WEB-INF/views/includes/G_header.jsp" />
     	<form id="frm" name="frm" method="post" action="myinfoModify.do">
             <div class="sub">
             	<div class="size">
                     <h1 class="sub_title">내정보관리</h1>
-                        <p class="sub_a">GUEST</p>
-                        <table class="bordersize">
+                        <p class="sub_a" style="text-align:center;" >GUEST</p>
+                        <table class="board_write" border="1" solid="black" style="width:750px;  height:80px;  position:relative; left:18%;">
+                        	<caption>회원수정로그인</caption>
+                        	<tbody>
                         	<tr>
                         		<th>아이디</th>
                         		<td>${loginInfo.guest_id}</td>
@@ -63,8 +67,9 @@
                         	<tr>
                         		<th>비밀번호</th>
                         		<td><input type="password" id="guest_pwd" name="guest_pwd" /></td>
-                        		<td><input type="button" href="javascript:;" onclick="confirm();" value="비밀번호확인" /></td>
+                        		<td><input type="button" href="javascript:;" onclick="confirm();" value="비밀번호확인" style="background-color:gray; color:white;"/></td>
                         	</tr>
+                        	</tbody>
                         </table>
               		</div>
               </div>

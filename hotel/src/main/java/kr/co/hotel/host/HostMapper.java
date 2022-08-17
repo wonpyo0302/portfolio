@@ -13,4 +13,6 @@ public interface HostMapper {
 	HostVO findHostPwd(HostVO hvo);
 	int updateTempHostPwd(HostVO hvo);
 	HostVO myinfoLogin(HostVO hvo);
+	int updatePwd(HostVO hvo);
+	int totalUpdate(HostVO hvo);
 }

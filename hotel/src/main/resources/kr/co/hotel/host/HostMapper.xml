@@ -39,4 +39,13 @@
 		SELECT * FROM host 
 		WHERE host_pwd = md5(#{host_pwd}) AND host_no = #{host_no}
 	</select>
+	<update id="updatePwd" parameterType="kr.co.hotel.host.HostVO">
+		UPDATE host SET host_pwd = md5(#{host_pwd}) WHERE host_id=#{host_id}
+	</update>
+	<update id="totalUpdate" parameterType="kr.co.hotel.host.HostVO">
+		UPDATE host SET host_email=#{host_email}, host_hp=#{host_hp}, 
+		host_bank=#{host_bank}, host_accountno=#{host_accountno}
+		WHERE host_no=#{host_no}
+	</update>
+	
 </mapper>
