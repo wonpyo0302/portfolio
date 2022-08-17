@@ -1,0 +1,74 @@
+.swiper {
+	margin: initial;
+	width: 65rem;
+	height: 20%;
+}
+
+.swiper-slide {
+	margin-top: 5px;
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-slide img {
+	margin: initial;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+#infoBox div {
+	border: 1px solid black;
+	text-align: center;
+	padding: 5px 5px 5px 5px;
+	margin-top: 5px;
+}
+
+.detail_full_screen {
+	margin-top: 20px;
+}
+
+.detail_full_screen img {
+	margin: 20px 0px 20px 100px;
+	width: 400px;
+	height: 300px;
+}
+
+.middleBox {
+	border: 1px solid black;
+	margin: 0 100px 0 100px;
+}
+
+.hotelName {
+	text-align: center;
+	width: 400px;
+	border: 1px solid black;
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 100px;
+}
+
+#roomLow {
+	margin-left: 100px;
+	vertical-align: middle;
+	display: flex;
+}
+
+.lowDiv {
+	display: flex;
+}

@@ -1,7 +1,5 @@
 package kr.co.hotel.main;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import kr.co.hotel.HRRegister.ImageVO;
 import kr.co.hotel.room.RoomVO;
 
 @Service
@@ -65,8 +64,8 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public List<RoomVO> getRoomImage(RoomVO rvo) {
-		return mapper.getRoomImage(rvo);
+	public List<ImageVO> getRoomImage(int room_no) {
+		return mapper.getRoomImage(room_no);
 	}
 
 

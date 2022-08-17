@@ -34,6 +34,6 @@ public interface HotelMapper {
 	
 	//호텔,객실 이미지 가져오기
 	List<HotelVO> getHotelImage(int hotel_no);
-	List<RoomVO> getRoomImage(RoomVO rvo);
+	List<ImageVO> getRoomImage(int room_no);
 	
 }

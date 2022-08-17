@@ -1,11 +1,11 @@
 package kr.co.hotel.main;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.ui.Model;
 
+import kr.co.hotel.HRRegister.ImageVO;
 import kr.co.hotel.room.RoomVO;
 
 
@@ -26,7 +26,7 @@ public interface HotelService {
 	public HotelVO hotelView(int hotel_no);
 	
 	List<HotelVO> getHotelImage(int hotel_no);
-	List<RoomVO> getRoomImage(RoomVO rvo);
+	List<ImageVO> getRoomImage(int room_no);
 	
 	
 }

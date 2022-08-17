@@ -55,18 +55,21 @@ public class HotelController {
 	}
 	
 	@GetMapping("/main/hotelView.do")
-	public String hotelView(HotelVO vo, Model model, RoomVO rv) {
-		//호텔이미지 목록 불러오기
-		model.addAttribute("hotelImage", service.getHotelImage(vo.getHotel_no()));
+	public String hotelView(HotelVO vo, Model model) {
+		//service.roomList(vo.getHotel_no());
 		
-		//
-//		List<RoomVO> list = service.roomList(vo.getHotel_no());
-//		for (RoomVO v : list) {
-//			v.setImageList(service.(v.getRoom_no()));
-//		}
+		model.addAttribute("hotel",service.hotelView(vo.getHotel_no()));//호텔이름가져오
 		
-		
-		
+		List<RoomVO> roomList = service.roomList(vo.getHotel_no()); //a호텔의 객실들
+		for (RoomVO list : roomList) {
+			list.setImageList(service.getRoomImage(list.getRoom_no()));
+		}
+		model.addAttribute("room",roomList);
 		return "/main/hotelView";
+	}
+	
+	@GetMapping("/main/roomView.do")
+	public String roomView() {
+		return "/main/roomView";
 	}
 }
