@@ -32,9 +32,6 @@
 <script>
     	function goSave(){
     		frm.submit();
-    		/*
-    		location.href='view.do?gboard_no='+gboard_no;
-    		*/
     	};
     	</script>
 
@@ -70,7 +67,7 @@
 			<h3 class="sub_title" style="text-align: left">새 문의글 작성</h3>
 			<br>
 			<div class="bbs">
-				<form method="post" name="frm" id="frm" action="../board/insert.do" enctype="multipart/form-data">
+				<form method="post" name="frm" id="frm" action="../guestboard/insert.do" enctype="multipart/form-data">
 					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
 					<table class="board_write">
 						<tbody>
@@ -90,8 +87,7 @@
 									</li>
 									<tr>
 										<th>이메일</th>
-										<td><input type="text" id="" value=""
-											placeholder="선택사항입니다.">@<input type="text" id="" value=""></td>
+										<td><input type="text" id="" value="" placeholder="선택사항입니다.">@<input type="text" id="" value=""></td>
 									</tr>
 							<tr>
 								<th>제목</th>

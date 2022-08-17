@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.host.HostVO;
 import kr.co.hotel.main.HotelVO;
 import kr.co.hotel.reserve.ReserveVO;
@@ -37,6 +39,14 @@ public class HostReserveController {
 		
 		
 		return "hostReserve/index";
+	}
+	
+	@PostMapping("/hostReserve/rejectRev")
+	public @ResponseBody boolean rejectRev(ReserveVO vo) {
+		System.out.println("예약번호확인 : "+vo.getReserv_no());
+		boolean r = false;
+		r =service.rejectRev(vo.getReserv_no());
+		return r;
 	}
 	
 

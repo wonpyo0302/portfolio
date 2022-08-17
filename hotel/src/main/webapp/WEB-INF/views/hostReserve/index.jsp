@@ -17,7 +17,56 @@
     <title>예약내역</title>
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		function rejectRev(reserv_no){
+			if(confirm("예약을 반려하시겠습니까?")){
+			
+				$.ajax({
+					type:'post',
+					data: {reserv_no : reserv_no},
+					url:"../hostReserve/rejectRev",
+					error: function(er){
+						alert("error")
+					},
+					success:function(response, http){
+						$(".rejectBtn"+reserv_no).hide();
+						$("#rejected"+reserv_no).show();
+						alert("예약번호 "+reserv_no+"가 취소 처리되었습니다");
+						console.log(response);
+					}
+				});
+			}
+			
+		}
+	</script>
+	
+	<script type="text/javascript">
+		
+		$(function(){
+			$(".check").on("click", function(){
+				var id = $(this).attr("id")
+				id.split("?");
+				console.log(id.split("?")[1]);
+				var reserv_no = id.split("?")[1];
+				$.ajax({
+					type:'post',
+					data:{reserv_no : reserv_no},
+					url:"../hostReserve/"+id.split("?")[0],
+					error:function(er){
+						alert("ERROR")
+					},
+					success:function(response){
+						
+						alert("예약번호 "+reserv_no+"번 입실처리 완료");
+					}
+					
+				})
+			})
+		})
+	</script>
+
 </head>
 
 
@@ -28,7 +77,7 @@
             <div class="size">
     
                 <div class="bbs">
-	                <h3 class="sub_title">나의 예약 내역</h3>
+	                <h3 class="sub_title">마이 호텔 예약내역</h3>
                     <table class="list">
                     <p><span><strong>총 ${data.totalCount}개</strong>  |  ${roomVO.page}/${data.totalPage}페이지</span></p>
                         <caption>my rooms</caption>
@@ -41,18 +90,21 @@
                             <col width="*" />
                             <col width="*" />
                             <col width="*" />
+                            <col width="*" />
+                            <col width="*" />
                         </colgroup>
                         <thead style="text-align:center;">
                             <tr>
                                 <th>번호</th>
+                                <th>예약번호</th>
                                 <th>예약일자</th>
                                 <th>예약자</th>
-                               
                                 <th>객실</th>
                                 <th>결제금액</th>
                                 <th>예약상태</th>
                                 <th>이용상태</th>
-                                <th>리뷰</th>
+                                <th>체크인</th>
+                                <th>체크아웃</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,6 +122,10 @@
 		                                	${data.totalCount - loop.index -(roomVO.page-1)*roomVO.pageRow}
 		                                </td>
 		                                
+		                                <td>
+		                                	${row.reserv_no }
+		                                </td>
+		                                
 		                                <td class="txt_l">
 		                                	<fmt:formatDate value="" pattern=""/>
 		                                	<fmt:parseDate value=""  pattern="yy-MM-dd"/>
@@ -79,7 +135,6 @@
 		                                <td class="txt_l">
 		                                  ${row.rev_name }
 		                                </td>
-		                             
 		                                
 		                                <td>
 		                                	${row.number}
@@ -95,19 +150,18 @@
 		                                </td>
 		                                
 		                                <td>
-			                                 <c:if test="${row.use_status == 0}">이용전</c:if>
+		                                	<p id="rejected${row.reserv_no}" style="display:none;">"예약반려(규정위반)"</p>
+			                                 <div class="rejectBtn${row.reserv_no}"><c:if test="${row.use_status == 0 }">이용전 | <a id="rejectRev" href="javascript:rejectRev(${row.reserv_no});" >[예약 반려하기]</a></c:if></div>
 			                                 <c:if test="${row.use_status == 1}">이용완료</c:if>
-			                                 <c:if test="${row.use_status == 2}">-</c:if>
+			                                 <c:if test="${row.use_status == 2 }">'예약반려(규정위반)'</c:if>
 		                                </td>
-						
-										<td>
-											<c:if test="${row.use_status == 1 && row.review_status==0}">
-												<a onclick="location.href='../review/write.do?guest_no=${loginInfo.guest_no}&reserv_no=${row.reserv_no }&hotel_no=${row.hotel_no}&room_no=${row.room_no }'">[리뷰 작성하기]</a>
-											</c:if>
-											<c:if test="${row.review_status==1}">
-												<a onclick="location.href=''">[나의 리뷰(..ing)]</a>
-											</c:if>
-										</td>
+		                                
+		                                <td>
+		                                	<div id="in${row.reserv_no }" ><c:if test="${row.use_status == 0 }"><a class="check" id="checkin?${row.reserv_no }">[입실처리]</a></c:if></div> 
+		                                </td>
+		                                <td>
+		                                	<div ><c:if test="${row.use_status == 1 }"><a class="check" id="checkout?${row.reserv_no }">[퇴실처리]</a></c:if></div> 
+		                                </td>
 		                            </tr>
 		                          
 							</c:forEach>

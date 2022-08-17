@@ -61,6 +61,13 @@ public class HostReserveServiceImp implements HostReserveService {
 
 
 
+	@Override
+	public boolean rejectRev(int reserve_no) {
+		return mapper.rejectRev(reserve_no) > 0? true : false;
+	}
+
+
+
 	
 
 }

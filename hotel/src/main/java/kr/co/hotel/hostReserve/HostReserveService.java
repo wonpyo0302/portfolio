@@ -18,4 +18,6 @@ public interface HostReserveService {
 	
 	public HotelVO get_hotelInfo(int host_no);
 	
+	public boolean rejectRev (int reserve_no);
+	
 }
