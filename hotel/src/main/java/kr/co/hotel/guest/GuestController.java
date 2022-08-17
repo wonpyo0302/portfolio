@@ -154,12 +154,12 @@ public class GuestController {
 		return "/guest/myinfoModify";//내정보 수정하는 jsp
 	}
 	@GetMapping("/guest/pwdChangePopup.do")
-	public String hpChangePopup() {
+	public String pwdChangePopup() {
 		return "/guest/pwdChangePopup";
 	}
 	 
 	@PostMapping("/guest/updatePwd.do") 
-	public void updateHp(HttpSession sess, GuestVO gvo, HttpServletResponse res) throws IOException { 
+	public void updatePwd(HttpSession sess, GuestVO gvo, HttpServletResponse res) throws IOException { 
 		GuestVO myinfo=(GuestVO)sess.getAttribute("loginInfo");
 		myinfo.setGuest_pwd(gvo.getGuest_pwd());
 		boolean r=false;

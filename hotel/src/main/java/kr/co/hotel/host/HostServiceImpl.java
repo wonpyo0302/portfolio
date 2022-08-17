@@ -78,4 +78,14 @@ public class HostServiceImpl implements HostService {
 		return hmapper.myinfoLogin(hvo);
 	}
 
+	@Override
+	public int updatePwd(HostVO hvo) {
+		return hmapper.updatePwd(hvo);
+	}
+
+	@Override
+	public boolean totalUpdate(HostVO hvo) {
+		return hmapper.totalUpdate(hvo) >0? true:false;
+	}
+
 }
