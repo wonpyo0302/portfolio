@@ -14,4 +14,11 @@ public interface CouponMapper {
 	public GuestVO selectGuestNo(String guest_id);
 	public int couponNodup(CouponVO vo);
 	public int createCoupon(CouponVO vo);
+	
+	//---이하 빛찬-----------------------------------
+	public int count (CouponVO vo);
+	
+	public List<CouponVO> C_list(CouponVO vo);
+	
+	
 }

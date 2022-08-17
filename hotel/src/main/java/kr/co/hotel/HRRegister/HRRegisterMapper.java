@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import kr.co.hotel.host.HostVO;
 import kr.co.hotel.main.HotelVO;
 import kr.co.hotel.room.RoomVO;
 
@@ -27,9 +28,9 @@ public interface HRRegisterMapper {
 	
 	public int H_delete (int hotel_no);
 	
-	public int delete_img(int room_no);
+	public int delete_img(ImageVO ivo);
 
-	public int H_delete_img(int room_no);
+	public int H_delete_img(ImageVO ivo);
 		
 	public int img_insert(ImageVO ivo);
 	
@@ -53,6 +54,10 @@ public interface HRRegisterMapper {
 	
 	public int hotel_toAdmin(HotelVO hvo);
 	
+	//호텔 등록시 HOST테이블에 host_no 업데이트
+	public int update_host_no(HostVO vo);
+	//host페이지에 hotel_no 업데이트 후, 세션 계정 업데이트
+	public HostVO get_hostInfo(HostVO vo);
 	
 	
 }

@@ -12,6 +12,6 @@ public class ImageVO {
 		private String Image_type;
 		
 		private int no;
-		  
+  
 		
 }
