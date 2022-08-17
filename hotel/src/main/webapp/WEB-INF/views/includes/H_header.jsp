@@ -44,7 +44,14 @@
           <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
               <div class="offcanvas-header">
                   <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="/img/image_1.jpg" style="width:100px; height:100px;"> </h5>
-                  <a href="/hotel/host/login.do">LOGIN</a> <a href="/hotel/host/logout.do">LOGOUT</a>
+                  
+                  <c:if test="${empty loginInfo2 }">
+                  	<a href="/hotel/host/login.do">LOGIN</a> 
+                  </c:if>
+                  
+                  <c:if test="${!empty loginInfo2 }">
+	                  <a href="/hotel/host/logout.do">LOGOUT</a>
+    			  </c:if>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">

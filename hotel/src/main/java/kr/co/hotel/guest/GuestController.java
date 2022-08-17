@@ -36,7 +36,11 @@ public class GuestController {
 		}
 	}
 	@GetMapping("/guest/login.do")
-	public String login() {
+	public String login(HttpSession sess, Model model) {
+		if(sess.getAttribute("loginInfo")!=null) {
+			model.addAttribute("msg", "중복로그인입니다. 로그아웃해주세요");
+			return "common/alert";
+		}
 		return "guest/login";
 	}
 	
