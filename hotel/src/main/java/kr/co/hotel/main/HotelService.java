@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.ui.Model;
 
+import kr.co.hotel.room.RoomVO;
+
 
 public interface HotelService {
 	
@@ -19,6 +21,12 @@ public interface HotelService {
 	
 	public int searchCount(HotelVO vo);
 	
-	public List<LinkedHashMap>hotelView(int hotel_no);
+	public List<RoomVO> roomList(int hotel_no);
+	
+	public HotelVO hotelView(int hotel_no);
+	
+	List<HotelVO> getHotelImage(int hotel_no);
+	List<RoomVO> getRoomImage(RoomVO rvo);
+	
 	
 }
