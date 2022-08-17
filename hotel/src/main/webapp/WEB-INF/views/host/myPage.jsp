@@ -19,7 +19,7 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/includes/H_header.jsp" />
+<%@ include file="/WEB-INF/views/includes/H_header.jsp" %>
 
 		<div class="sub">
 			<div class="size">
