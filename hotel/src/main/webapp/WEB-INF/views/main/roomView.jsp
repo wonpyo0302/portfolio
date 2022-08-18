@@ -13,7 +13,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
-    <link href="/hotel/css/swiperView.css" rel="stylesheet" type="text/css">
+    <link href="/hotel/css/roomView.css" rel="stylesheet" type="text/css">
 
   </head>
 	
@@ -28,19 +28,36 @@
 	  		<div class="roomName">${roomInfo.room_name}</div>
 		  	<div class="swiper mySwiper" id="Low" style="display: inline-block; height: 350px">
 		  		<div class="swiper-wrapper" >
-				  	<c:forEach var="roomImage" items="${hotelImage}">
-				  		<div class="swiper-slide" id="imgBox"><img alt="사진없음" src="/hotel/image/hotel/${hotelImage.filename_org}"></div>
+				  	<c:forEach var="roomImage" items="${roomImage}">
+				  		<div class="swiper-slide" id="imgBox"><img alt="사진없음" src="/hotel/image/hotel/${roomImage.filename_org}"></div>
 				  	</c:forEach>
 		  		</div>
 		  		<div class="swiper-button-next"></div>
 			    <div class="swiper-button-prev"></div>
 			    <div class="swiper-pagination"></div>
 	  		</div>
-	  	<div class="middleBox" style="width: 80%; text-align: center;">
+	  	<div class="middleBox" style="text-align: center;">
 	  		<span>객실 안내/예약</span>
 	  	</div>
 		</div>
   	</div>
+  	<div class="roomInfoDiv">
+	  	<div class="contentBox" >
+	  		<pre>${roomInfo.room_content}</pre>
+	  	</div>
+	  	<div class="serviceBox" style="display: inline-block;">
+	  		<div id="roomInfoBox price">
+	  			가격 : ${roomInfo.room_price }
+	  		</div>
+	  		<div id="roomInfoBox review">
+	  			가격 : ${roomInfo.room_price }
+	  		</div>
+	  	</div>
+  	</div>
+  	
+  	
+  	
+  	
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 

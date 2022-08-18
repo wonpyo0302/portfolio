@@ -8,4 +8,5 @@ import org.springframework.ui.Model;
 
 public interface RoomService {
 	RoomVO roomView(int room_no);
+	List<RoomVO> getRoomImage(int room_no);
 }

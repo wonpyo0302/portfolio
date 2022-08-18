@@ -57,7 +57,7 @@
 							// 마커가 지도 위에 표시되도록 설정합니다
 							marker.setMap(map);
 					</script>
-	  		<div class="middleBox" style="width: 80%; text-align: center;">
+	  		<div class="middleBox" style="text-align: center;">
 	  			<span>객실 안내/예약</span>
 	  		</div>
   		</div>
@@ -83,7 +83,7 @@
 		    		<div id="infoContent"><span>객실명: </span><span style="font-weight: bold;">${roomList.room_name}</span></div>
 		    		<div id="infoContent"><span>객실비용: </span><span style="font-weight: bold;">${roomList.room_price}</span></div>
 		    		<div id="infoContent"><span>객실설명: </span><span style="font-weight: bold;">${roomList.room_content}</span></div>
-		    		<div id="reservBtn"><input type="button" onclick="location.href='/hotel/main/roomView.do?room_no=${roomList.room_no}'" value="객실정보 확인 및 예약" style="margin-left: 330px;"></div>
+		    		<div id="reservBtn"><input type="button" onclick="location.href='/hotel/main/roomView.do?room_no=${roomList.room_no}&hotel_no=${hotel.hotel_no }&room_price=${roomList.room_price }'" value="객실정보 확인 및 예약" style="margin-left: 330px;"></div>
 				</div>
 			</div>		
 			</c:forEach> 

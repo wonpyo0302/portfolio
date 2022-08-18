@@ -31,6 +31,8 @@ public class ReviewServiceImpl implements ReviewService {
 		}
 		return r ;
 	}
+	
+	//호텔 객실 전체 평점 업데이트
 
 
 }

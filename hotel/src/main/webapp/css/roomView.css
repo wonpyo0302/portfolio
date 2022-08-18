@@ -60,12 +60,12 @@
 	border: 1px solid black;
 	margin: 0 100px 0 100px;
 }
-#hotel_screen {
+#room_screen {
 	height: 300px;
 	display: contents;
 	
 }
-.hotelName {
+.roomName {
 	text-align: center;
 	width: 800px;
 	border: 2px solid black;
@@ -73,6 +73,25 @@
 	font-weight: bold;
 	margin-left: 100px;
 	margin-top: 60px;
+}
+.contentBox{
+	text-align: center;
+	display: inline-block;
+	margin: 5px 0 0 100px;
+	width: 640px;
+	border: 1px solid black;
+}
+.serviceBox{
+	display: inline-block;
+	width: 640px;
+	border: 1px solid black;
+}
+.roomInfoDiv{
+	display: inline-block;
+}
+#roomInfoBox{
+	margin-top: 5px;
+	border: 0.5px solid black;
 }
 
 #Low {

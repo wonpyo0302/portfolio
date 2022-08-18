@@ -10,5 +10,5 @@ import kr.co.hotel.HRRegister.ImageVO;
 @Mapper
 public interface RoomMapper {
 	RoomVO roomView(int room_no);
-	
+	List<RoomVO> getRoomImage(int room_no);
 }
