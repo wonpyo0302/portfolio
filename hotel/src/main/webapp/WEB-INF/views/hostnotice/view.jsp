@@ -40,7 +40,7 @@
 			<h3 class="sub_title" style="text-align: left">공지사항</h3>
 			<br>
 			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/notice.png" width="60px"> 호스트 전용 공지사항
+				<img src="/hotel/image/boardPic/notice.png" width="60px"> 호스트 전용 공지사항
 				게시판입니다.
 			</h6>
 			<br>
@@ -73,7 +73,12 @@
 						</tr>
 						<tr>
 							<th>첨부파일</th>
-							<td colspan="3">첨부파일 다운 받을 수 있게</td>
+							<td colspan="3">
+							<a href ="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}" target="_blank">
+									${data.filename_org }
+								</a>
+							
+							</td>
 						</tr>
 						</div>
 					</table>
