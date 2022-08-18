@@ -66,7 +66,27 @@ public class HostReserveServiceImp implements HostReserveService {
 		return mapper.rejectRev(reserve_no) > 0? true : false;
 	}
 
+	//--이하 마이페이지 포인트 적립_형욱--------------------
+	@Override
+	public int PointDeposit(ReserveVO vo, GuestVO gvo) {
+		vo = mapper.reservelist(vo);
+		mapper.UpdatePointDeposit(vo); //ok
+		gvo =mapper.gvolist(vo);
+		int point_depoist = (int)(vo.getTotal_price()*0.01);
+		System.out.println("================================"+vo.getTotal_price());
+		gvo.setTotalpoint(gvo.getTotalpoint()+point_depoist);
+		mapper.guestUsedPointUpdate(gvo);
+		vo.setUsed_point(point_depoist);
+		mapper.UpdatePointDeposit(vo);
+		return mapper.InsertPointDeposit(vo);
+	}
 
+
+
+	@Override
+	public int checkout(ReserveVO vo) {
+		return mapper.checkout(vo);
+	}
 
 	
 
