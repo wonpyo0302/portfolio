@@ -27,33 +27,19 @@
 	<div class ="detail_full_screen">
 		<div id="hotel_screen" style="vertical-align: middle;">
 	  		<div class="hotelName">${hotel.hotel_name}</div>
-	  			<div>
-		  			<img alt="사진없음" src="/hotel/image/hotel/${filename}">
-		  			<div id="map" style="width:400px;height:300px;display: inline-block;vertical-align: middle"></div>
-		  			
-		  		<script>
-		  			console.log(${hotel.lat})
-					var container = document.getElementById('map');
-					var options = {
-						center: new kakao.maps.LatLng(${hotel.lat}, ${hotel.lot}),
-						level: 3
-					};
-					var map = new kakao.maps.Map(container, options);
-					var markerPosition  = new kakao.maps.LatLng(${hotel.lat}, ${hotel.lot}); 
-					// 마커를 생성합니다
-					var marker = new kakao.maps.Marker({
-					    position: markerPosition
-					});
-			
-					// 마커가 지도 위에 표시되도록 설정합니다
-					marker.setMap(map);
-			</script>
-	</div>
+	  			<div class="swiper mySwiper" id="Low" style="height: 350px">
+	  				<div class="swiper-wrapper" style="display: inline-block;">
+	  					<c:forEach var="hotelImage" items="${hotelImage}">
+				  			<div class="swiper-slide" id="imgBox"><img alt="사진없음" src="/hotel/image/hotel/${hotelImage.filename_org}"></div>
+				  		</c:forEach>
+				  	</div>
+				  	<div class="swiper-button-next"></div>
+			      	<div class="swiper-button-prev"></div>
+			      	<div class="swiper-pagination"></div>
+			     </div>
 	  		<div class="middleBox" style="width: 80%; text-align: center;">
 	  			<span>객실 안내/예약</span>
 	  		</div>
-	  		
-	  		
   		</div>
   		
   		<!-- 객실리스트 1번 room -->
