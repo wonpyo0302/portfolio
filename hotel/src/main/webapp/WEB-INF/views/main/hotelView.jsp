@@ -13,12 +13,13 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
-    <link href="/hotel/css/swiperView.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5d133f411d7216df47f409d9f8b79bd"></script>
+    <link href="/hotel/css/hotelView.css" rel="stylesheet" type="text/css">
   </head>
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5d133f411d7216df47f409d9f8b79bd"></script>
+	
 
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   
@@ -27,26 +28,46 @@
 	<div class ="detail_full_screen">
 		<div id="hotel_screen" style="vertical-align: middle;">
 	  		<div class="hotelName">${hotel.hotel_name}</div>
-	  			<div class="swiper mySwiper" id="Low" style="height: 350px">
-	  				<div class="swiper-wrapper" style="display: inline-block;">
-	  					<c:forEach var="hotelImage" items="${hotelImage}">
-				  			<div class="swiper-slide" id="imgBox"><img alt="사진없음" src="/hotel/image/hotel/${hotelImage.filename_org}"></div>
-				  		</c:forEach>
-				  	</div>
-				  	<div class="swiper-button-next"></div>
-			      	<div class="swiper-button-prev"></div>
-			      	<div class="swiper-pagination"></div>
-			     </div>
+		  	<div class="swiper mySwiper" id="Low" style="display: inline-block; height: 350px">
+		  		<div class="swiper-wrapper" >
+				  	<c:forEach var="hotelImage" items="${hotelImage}">
+				  		<div class="swiper-slide" id="imgBox"><img alt="사진없음" src="/hotel/image/hotel/${hotelImage.filename_org}"></div>
+				  	</c:forEach>
+		  		</div>
+		  		<div class="swiper-button-next"></div>
+			    <div class="swiper-button-prev"></div>
+			    <div class="swiper-pagination"></div>
+			    
+			</div>
+			<div id="map" style="width:545px;height:250px;display: inline-block;vertical-align: middle"></div>
+				  		<script>
+				  			console.log(${hotel.lat})
+							var container = document.getElementById('map');
+							var options = {
+								center: new kakao.maps.LatLng(${hotel.lat}, ${hotel.lot}),
+								level: 3
+							};
+							var map = new kakao.maps.Map(container, options);
+							var markerPosition  = new kakao.maps.LatLng(${hotel.lat}, ${hotel.lot}); 
+							// 마커를 생성합니다
+							var marker = new kakao.maps.Marker({
+							    position: markerPosition
+							});
+					
+							// 마커가 지도 위에 표시되도록 설정합니다
+							marker.setMap(map);
+					</script>
 	  		<div class="middleBox" style="width: 80%; text-align: center;">
 	  			<span>객실 안내/예약</span>
 	  		</div>
   		</div>
+  	</div>
   		
   		<!-- 객실리스트 1번 room -->
   		<div class="room_Screen">
   			<c:forEach var="roomList" items="${room}">
   			<div class="lowDiv">
-		  		<div class="swiper mySwiper" id="roomLow" style="display: inline-block;">
+		  		<div class="swiper mySwiper" id="Low" style="display: inline-block;">
 	      			<div class="swiper-wrapper" >
 	      				<c:forEach var="roomImage" items="${roomList.imageList}">
 	        			<div class="swiper-slide" id="imgBox"><img alt="객실이미지" src="/hotel/image/hotel/${roomImage.filename_org }"></div>
@@ -55,7 +76,9 @@
 			      	<div class="swiper-button-next"></div>
 			      	<div class="swiper-button-prev"></div>
 			      	<div class="swiper-pagination"></div>
+			      	
 	    		</div> 
+	    		
 		    	<div id="infoBox" style="display: inline-block;">
 		    		<div id="infoContent"><span>객실명: </span><span style="font-weight: bold;">${roomList.room_name}</span></div>
 		    		<div id="infoContent"><span>객실비용: </span><span style="font-weight: bold;">${roomList.room_price}</span></div>

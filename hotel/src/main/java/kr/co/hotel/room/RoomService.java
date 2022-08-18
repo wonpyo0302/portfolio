@@ -7,6 +7,5 @@ import org.springframework.ui.Model;
 
 
 public interface RoomService {
-	Model getImage(RoomVO vo, Model model);
-	
+	RoomVO roomView(int room_no);
 }

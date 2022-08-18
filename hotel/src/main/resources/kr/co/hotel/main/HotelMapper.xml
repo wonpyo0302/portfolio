@@ -127,11 +127,12 @@
 	<select id="hotelView" parameterType="int" resultType="kr.co.hotel.main.HotelVO">
 		SELECT * FROM hotel WHERE hotel_no = #{hotel_no}
 	</select>
-
+	
 	<!-- hotel_no에 해당하는 이미지 셀렉 -->
-	<select id="getHotelImage" parameterType="int" resultType="kr.co.hotel.HRRegister.ImageVO">
-		SELECT * FROM image
-		where no = #{hotel_no} AND image_type = 'HOTEL';
+	<select id="getHotelImage" parameterType="int" resultType="kr.co.hotel.main.HotelVO">
+		SELECT * FROM hotel h, image im
+		where h.hotel_no = im.no
+		and im.no = #{hotel_no} AND image_type = 'HOTEL';
 	</select>
 	
 	<!-- room_no에 해당하는 이미지 리스트 -->
