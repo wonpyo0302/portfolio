@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hotel.admin.AdminMapper">
+
+<select id="adminLogin" parameterType="kr.co.hotel.admin.AdminVO" resultType="kr.co.hotel.admin.AdminVO">
+	SELECT * FROM admin WHERE admin_id=#{admin_id} ANd admin_pwd=#{admin_pwd} 
+</select>
+
+</mapper>

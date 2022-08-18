@@ -3,9 +3,6 @@ package kr.co.hotel.main;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.hotel.room.RoomVO;
 import lombok.AllArgsConstructor;
 
 @Controller
@@ -57,8 +55,18 @@ public class HotelController {
 	
 	@GetMapping("/main/hotelView.do")
 	public String hotelView(HotelVO vo, Model model) {
-		service.hotelView(vo.getHotel_no());
-		model.addAttribute("detail",service.hotelView(vo.getHotel_no()));
+		model.addAttribute("hotel",service.hotelView(vo.getHotel_no()));//호텔이름가져오기
+		List<HotelVO> hotelImage = service.getHotelImage(vo.getHotel_no());//호텔사진 가져오기
+		model.addAttribute("hotelImage",hotelImage);
+		
+		
+		List<RoomVO> roomList = service.roomList(vo.getHotel_no()); //a호텔의 객실들
+		for (RoomVO list : roomList) {
+			list.setImageList(service.getRoomImage(list.getRoom_no()));
+		}
+		model.addAttribute("room",roomList);
 		return "/main/hotelView";
 	}
+	
+
 }

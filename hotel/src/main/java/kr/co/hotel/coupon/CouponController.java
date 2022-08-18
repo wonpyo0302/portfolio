@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.hotel.guest.GuestVO;
+import kr.co.hotel.point.PointVO;
 
 
 @Controller
@@ -71,4 +72,38 @@ public class CouponController {
 				}
 			}
 	}
+	
+	//--------이하 빛찬--------------------------------------------------
+	
+	@GetMapping("/coupon/index.do")
+	public String list(CouponVO vo, Model model, HttpSession sess) {
+		try {
+			
+		//GuestMemberVO loginInfo = (GuestMemberVO)sess.getAttribute("loginInfo"); 		//세션에서 guest_no를 불러옵니다.
+		//GuestVO loginInfo1 = new GuestVO();//demo GuestMemberVO()
+		//loginInfo1.setGuest_no(25); //demo guest_no 
+		//loginInfo1.setGuest_name("호스트_빛찬");
+		//sess.setAttribute("loginInfo", loginInfo1);
+		
+		GuestVO loginInfo= (GuestVO)sess.getAttribute("loginInfo");
+		vo.setGuest_no(loginInfo.getGuest_no());
+		Map map = service.index(vo);
+		model.addAttribute("coupon", map);
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("pointController에서 예외발생!");
+		}
+		return "coupon/index";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

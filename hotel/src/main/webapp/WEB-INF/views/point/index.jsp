@@ -90,12 +90,7 @@
                         </tbody>
                     </table>
                     <!-- 로그인한 사람만 글쓰기 버튼을 눌를 수 있도록 -->
-                    
-                    <div class="btnSet"  style="text-align:right;">
-	                  
-	                        <a class="btn" href="javaScript:goWrite();">글작성 </a>
-	                 
-                    </div>
+               
                      <div class="pagenate clear">
 		               <ul class='paging'>
 			               <c:if test="${point.prev ==true }">

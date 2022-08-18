@@ -27,6 +27,12 @@ public class ReserveController {
 		return "/reserve/reserve";
 	}
 	
+	//테스트
+	@GetMapping("/reserve/reserve2.do")
+	public String reserve2() {
+		return "/reserve/reserve2";
+	}
+	
 	//보유 쿠폰 리스트
 	@GetMapping("/reserve/couponlist.do")
 	public String couponlist(GuestVO vo, Model model) {
@@ -64,14 +70,23 @@ public class ReserveController {
 		
     }
 	
+	@GetMapping("/reserve/paytransfer.do")
+	public String paytransfer(HotelVO vo, Model model) {
+		model.addAttribute("host",service.SelectHostNo(vo));
+		return "reserve/paytransfer";
+	}
+	
+	
+	
 	//-----이하 빛찬-----------------------------------------------
 	//-----게스트-----------------------------------------------
 	@GetMapping("/reserve/index.do")
 	public String index(Model model,HotelVO hvo, ReserveVO vo, HttpSession sess, HttpServletRequest req) {
-		GuestVO loginInfo1 = new GuestVO();// demo data
-		loginInfo1.setGuest_no(3);//demo data
-		loginInfo1.setGuest_name("게스트_빛찬");//demo data
-		sess.setAttribute("loginInfo", loginInfo1);
+		//GuestVO loginInfo1 = new GuestVO();// demo data
+		//loginInfo1.setGuest_no(3);//demo data
+		//loginInfo1.setGuest_name("게스트_빛찬");//demo data
+		//sess.setAttribute("loginInfo", loginInfo1);//demo data
+		
 		GuestVO Host_loginInfo = (GuestVO) sess.getAttribute("loginInfo");
 		
 		vo.setGuest_no(Host_loginInfo.getGuest_no());

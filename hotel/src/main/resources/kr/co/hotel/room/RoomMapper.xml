@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hotel.room.RoomMapper">
+	
+	<select id="roomView" parameterType="int" resultType="kr.co.hotel.room.RoomVO">
+		SELECT * FROM room WHERE room_no = #{room_no}
+	</select>
+
+</mapper>

@@ -1,7 +1,9 @@
 package kr.co.hotel.room;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import kr.co.hotel.HRRegister.ImageVO;
 import lombok.Data;
 
 @Data
@@ -18,9 +20,10 @@ public class RoomVO {
 	
 	private String filename_org;
 	private String filename_real;
-	private int Image_order;
-	private String Image_type;
+	private int image_order;
+	private String image_type;
 	
+	private List<ImageVO> imageList;
 	
 	
 	

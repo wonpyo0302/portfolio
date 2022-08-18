@@ -33,7 +33,7 @@ public class PointController {
 		sess.setAttribute("loginInfo", loginInfo1);
 		
 		GuestVO loginInfo= (GuestVO)sess.getAttribute("loginInfo");
-		
+		vo.setGuest_no(loginInfo.getGuest_no());
 		int totalpoint= service.total(loginInfo.getGuest_no());					//totalpoint를 구해 PointVO에 set합니다. PointVO는 jsp에 자동으로 전달됩니다.				
 		vo.setTotalpoint(totalpoint);
 		

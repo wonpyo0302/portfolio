@@ -23,5 +23,10 @@ public class RoomController {
 
 	RoomService service;
 	
+	@GetMapping("/main/roomView.do")
+	public String roomView(RoomVO vo, Model model) {
+		model.addAttribute("roomInfo", service.roomView(vo.getRoom_no()));
+		return "/main/roomView";
+	}
 
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.hotel.HRRegister.ImageVO;
+import kr.co.hotel.room.RoomVO;
 
 @Mapper
 public interface HotelMapper {
@@ -27,10 +28,12 @@ public interface HotelMapper {
 	List<HotelVO> getState(HotelVO vo);
 	
 	//호텔상세보기
-	List<LinkedHashMap> hotelView(int hotel_no);
-	
+	List<RoomVO> roomList(int hotel_no);
+	HotelVO hotelView(int hotel_no);
 	//ImageVO  insertImage(ImageVO vo);
 	
-	
+	//호텔,객실 이미지 가져오기
+	List<HotelVO> getHotelImage(int hotel_no);
+	List<ImageVO> getRoomImage(int room_no);
 	
 }

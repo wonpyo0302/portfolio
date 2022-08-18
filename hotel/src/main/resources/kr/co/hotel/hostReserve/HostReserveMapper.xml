@@ -58,5 +58,33 @@
 		WHERE reserv_no = #{reserv_no}
 	</update>
 
+	<!-- 이하 마이페이지 포인트 적립_형욱 -->
+	
+	<select id="reservelist" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.reserve.ReserveVO">
+		select * from reserv where reserv_no =#{reserv_no}
+	</select>
+	
+	<update id="UpdatePointDeposit" parameterType="kr.co.hotel.reserve.ReserveVO">
+		update reserv set point_deposit_status=1, use_status=1, check_in_out_status=1, checkin_date=now()  where reserv_no = #{reserv_no}
+	</update>
+	
+	<select id="gvolist" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="kr.co.hotel.guest.GuestVO">
+		select * from guest where guest_no = #{guest_no}
+	</select>
+	
+	<update id="guestUsedPointUpdate" parameterType="kr.co.hotel.guest.GuestVO">
+		update guest set totalpoint = #{totalpoint} where guest_no =#{guest_no}
+		
+	</update>
+	
+	<insert id="InsertPointDeposit" parameterType="kr.co.hotel.reserve.ReserveVO">
+		insert into point 
+			(guest_no, io_point, totalpoint, pointtype,date)
+		values (#{guest_no}, #{used_point},(select totalpoint from guest where guest_no = #{guest_no}),1, now())
+	</insert>
+	
+	<update id="checkout" parameterType="kr.co.hotel.reserve.ReserveVO">
+		update reserv set check_in_out_status=2, checkout_date =now() where reserv_no = #{reserv_no}
+	</update>
 	
 </mapper>
