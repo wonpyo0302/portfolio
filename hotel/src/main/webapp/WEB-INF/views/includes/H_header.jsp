@@ -2,10 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
         <!-- JavaScript Bundle with Popper -->
@@ -14,37 +12,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-    
-
     <style>
-
-       
     </style>
 </head>
-
 <body>
-
-
     <nav class="navbar bg-light fixed-top" style="background-color: pink!important">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">둘이놀까</a>
-          
-          <c:if test="${!empty loginInfo2}"> 
+          <c:if test="${!empty loginInfo2}">
           <div style="width:60%">
           	<div style="text-align:right;width:115%;">
           		<a>${loginInfo2.host_name }님 환영합니다</a>
           	</div>
           </div>
           </c:if>
-          
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
               <div class="offcanvas-header">
                   <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="/img/image_1.jpg" style="width:100px; height:100px;"> </h5>
-                  <a href="/hotel/host/login.do">LOGIN</a> <a href="/hotel/host/logout.do">LOGOUT</a>
+                  
+                  <c:if test="${empty loginInfo2 }">
+                  	<a href="/hotel/host/login.do">LOGIN</a>
+                  </c:if>
+                  
+                  <c:if test="${!empty loginInfo2 }">
+                  	<a href="/hotel/host/logout.do">LOGOUT</a>
+                  </c:if>
+                  
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -78,10 +74,5 @@
           </div>
         </div>
       </nav>
-
-
-      
-      
 </body>
-
 </html>

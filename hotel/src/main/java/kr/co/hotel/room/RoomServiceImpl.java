@@ -1,5 +1,6 @@
 package kr.co.hotel.room;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,40 +16,14 @@ public class RoomServiceImpl implements RoomService {
 	RoomMapper mapper;
 
 	@Override
-	public Model hotelTopFive(RoomVO vo, Model model) {
-		// TODO Auto-generated method stub
-		return null;
+	public Model getImage(RoomVO vo, Model model) {
+		vo.setRoom_no(1);
+		model.addAttribute("roomOne",mapper.getImageFirst(vo));
+		vo.setRoom_no(2);
+		model.addAttribute("roomTwo",mapper.getImageFirst(vo));
+		vo.setRoom_no(3);
+		model.addAttribute("roomThr",mapper.getImageFirst(vo));
+		return model;
 	}
-
-	@Override
-	public List<RoomVO> searchList(RoomVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<RoomVO> getDistrict(RoomVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<RoomVO> stateInfo(RoomVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int searchCount(RoomVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<RoomVO> hotelView(int hotel_no) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 }

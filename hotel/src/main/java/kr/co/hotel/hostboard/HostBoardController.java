@@ -72,7 +72,7 @@ public class HostBoardController extends ImgHandling{
 		
 		if(service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
-			model.addAttribute("url", "view.do?gboard_no="+vo.getHboard_no());
+			model.addAttribute("url", "view.do?hboard_no="+vo.getHboard_no());
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "저장 실패했습니다.");
@@ -97,7 +97,7 @@ public class HostBoardController extends ImgHandling{
 		if (service.update(vo)) {
 			model.addAttribute("data", service.update(vo));
 			model.addAttribute("msg", "정상적으로 수정되었습니다");
-			model.addAttribute("url", "view.do?gboard_no=" + vo.getHboard_no());
+			model.addAttribute("url", "view.do?hboard_no=" + vo.getHboard_no());
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "수정 실패했습니다.");

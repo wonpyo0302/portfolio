@@ -18,19 +18,19 @@ public class GuestNoticeController {
 	GuestNoticeService service;
 	
 	// 목록
-	@GetMapping("/notice/list.do")
+	@GetMapping("/guestnotice/list.do")
 	public String index(Model model, GuestNoticeVO vo) {
 		model.addAttribute("data", service.index(vo));
-		return "notice/list";
+		return "guestnotice/list";
 	}
 	
 	// 조회
-	@GetMapping("/notice/view.do")
+	@GetMapping("/guestnotice/view.do")
 	public String view(Model model, GuestNoticeVO vo) {
 		service.updateViewcount(vo.getGnotice_no());
 		model.addAttribute("data", service.view(vo));
 	
-		return "notice/view";
+		return "guestnotice/view";
 	}
 
 	

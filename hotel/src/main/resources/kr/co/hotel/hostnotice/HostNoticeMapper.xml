@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hotel.hostnotice.HostNoticeMapper">
+	
+	<!-- 등록하기 -->
+	<insert id="insert" parameterType="kr.co.hotel.hostnotice.HostNoticeVO" >
+		INSERT INTO hostnotice (
+			admin_no, hnotice_title, hnotice_content, hnotice_regdate, hnotice_viewcount
+		) VALUES (
+			#{admin_no}, #{hnotice_title}, #{hnotice_content}, now(), #{hnotice_viewcount}
+		)
+	</insert>
+	
+	<!-- 총 게시물 수 체크 -->
+	<select id="count" parameterType="kr.co.hotel.hostnotice.HostNoticeVO" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM hostnotice 
+		<where>
+			<if test="stype != null and stype != ''">
+				<if test="stype !='all'">
+					${stype} LIKE '%${sword}%'
+				</if>
+				<if test="stype == 'all'">
+					hboard_title LIKE '%${sword}%' or hboard_content LIKE '%${sword}%'
+				</if>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 목록보기 -->
+	<select id="list" parameterType="kr.co.hotel.hostnotice.HostNoticeVO" resultType="kr.co.hotel.hostnotice.HostNoticeVO">
+		SELECT * FROM hostnotice
+			<where>
+				<if test="stype != null and sword != ''">
+					<if test="stype != 'all'">
+						${stype} LIKE '%${sword}%'
+					</if>
+					<if test="stype == 'all'">
+						hboard_title LIKE '%${sword}%' or hboard_content LIKE '%${sword}%' 
+					</if>
+				</if>
+			</where>
+			ORDER BY fix DESC, hnotice_regdate DESC
+			LIMIT ${startIdx} , ${pageRow}
+	</select>
+	
+	<!-- 조회하기 -->
+	<select id="view" parameterType="kr.co.hotel.hostnotice.HostNoticeVO" resultType="kr.co.hotel.hostnotice.HostNoticeVO">
+		SELECT * FROM hostnotice WHERE hnotice_no = #{hnotice_no}
+	</select>
+	
+	<!-- 조회수 1 증가 처리 -->
+	<update id="updateViewcount" parameterType="int">
+		UPDATE hostnotice SET hnotice_viewcount = hnotice_viewcount + 1 WHERE hnotice_no = #{hnotice_no}
+	</update>
+	
+	<!-- 수정하기 -->
+	<update id="update" parameterType="int">
+		UPDATE hostnotice SET 
+			hnotice_title = #{hnotice_title}, hnotice_content = #{hnotice_content}
+			WHERE hnotice_no = #{hnotice_no}
+	</update>
+	
+	<!-- 삭제하기 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM hostnotice WHERE hnotice_no = #{hnotice_no}
+	</delete>
+	
+	
+</mapper>

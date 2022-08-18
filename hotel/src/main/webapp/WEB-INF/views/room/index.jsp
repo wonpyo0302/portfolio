@@ -185,10 +185,11 @@
                         </tbody>
                     </table>
                     <!-- 로그인한 사람만 글쓰기 버튼을 눌를 수 있도록 -->
-                    
-                    <div class="btnSet"  style="text-align:right;">
+                    <c:if test="${!empty loginInfo2.host_no}">
+	                    <div class="btnSet"  style="text-align:right;">
 	                        <a class="btn" href="write.do"> 객실 등록 + </a>
-                    </div>
+    	                </div>
+                    </c:if>
                     
                      <div class="pagenate clear">
 		               <ul class='paging'>

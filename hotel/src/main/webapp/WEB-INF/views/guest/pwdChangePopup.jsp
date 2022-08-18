@@ -42,7 +42,7 @@
 </head>
 <body>
 <body onload="window.resizeTo(600,400)">
-<h1>휴대폰번호 바꾸기</h1>
+<h1>비밀번호 바꾸기</h1>
 <br><br>
 이전PW<input type="password" id="xpwd" />
 <div class="new" rowspan="2">

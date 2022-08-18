@@ -133,10 +133,8 @@
 						<a href="javascript:goDel(${data.gboard_no});" class="btn">삭제</a>
 						<a href="javascript:goList();" class="btn" style="text-align:right">목록 </a>
 					</div>
-					<!-- <a href="javascript:goDel(${data.gboard_no});" class="btn">삭제</a> -->
 				</form>
 			</div>
-			
 		</div>
 	</div>
 </head>

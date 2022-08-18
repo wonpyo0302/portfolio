@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.hotel.host.HostVO;
 import kr.co.hotel.main.HotelVO;
 import kr.co.hotel.room.RoomVO;
 @Service
@@ -68,11 +69,11 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 	}
 
 	@Override
-	public boolean delete(int room_no) {
+	public boolean delete(ImageVO ivo) {
 		//회원 삭제시, 회원테이블만 인스턴스만 지우는 것이 아니라 relation이 걸려있는 테이블을 모두 찾아서 delete해야한다.
 		boolean r = false;
-		if(mapper.delete(room_no)>0) {
-			int a = mapper.delete_img(room_no);
+		if(mapper.delete(ivo.getNo())>0) {
+			int a = mapper.delete_img(ivo);
 			if(a>=0) {
 				r = true;
 			}
@@ -80,11 +81,11 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 	}
 	
 	@Override
-	public boolean H_delete(int hotel_no) {
+	public boolean H_delete(ImageVO ivo) {
 		//회원 삭제시, 회원테이블만 인스턴스만 지우는 것이 아니라 relation이 걸려있는 테이블을 모두 찾아서 delete해야한다.
 		boolean r = false;
-		if(mapper.H_delete(hotel_no)>0) {
-			int a = mapper.H_delete_img(hotel_no);
+		if(mapper.H_delete(ivo.getNo())>0) {
+			int a = mapper.H_delete_img(ivo);
 			if(a>=0) {
 				r = true;
 			}
@@ -143,6 +144,16 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public int update_host_no(HostVO vo) {
+		return mapper.update_host_no(vo);
+	}
+
+	@Override
+	public HostVO get_hostInfo(HostVO vo) {
+		return mapper.get_hostInfo(vo);
 	}
 
 

@@ -14,54 +14,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
+    <link href="/hotel/css/swiperHotel.css" rel="stylesheet" type="text/css">
     <!-- Demo styles -->
     <style>
-	style>html, body {
-		align-content: center;
-		position: relative;
-		height: auto;
-		width: auto;
-	}
 	
-	body {
-		background: #eee;
-		font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-		font-size: 14px;
-		color: #000;
-		margin: 0;
-		padding-top: 60px;
-	}
-	
-	.swiper {
-		width: 50%;
-		height: 30%;
-	}
-	
-	.swiper-slide {
-		text-align: center;
-		font-size: 18px;
-		background: #fff;
-		/* Center slide text vertically */
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-pack: center;
-		-ms-flex-pack: center;
-		-webkit-justify-content: center;
-		justify-content: center;
-		-webkit-box-align: center;
-		-ms-flex-align: center;
-		-webkit-align-items: center;
-		align-items: center;
-	}
-	
-	.swiper-slide img {
-		display: block;
-		width: 50%;
-		height: 50%;
-		object-fit: cover;
-	}
 	
 	.search_box {
 		text-align: center;
@@ -81,11 +37,10 @@
 		color: #919191;
 		line-height: 3.6rem;
 	}
-	
-	.hotel01 {
-		background-size: 150px;
-		height: 150px;
+	#hotel01 {
+		text-align: center;
 	}
+	
 	</style>
 
     <script type="text/javascript">
@@ -122,7 +77,7 @@
 					<option value ="0" selected>시/군/구</option>
 				</select>
 				
-				<input type="submit" value="검색" id="searchBtn"> <%-- <c:if test="gosubmit().val() == 'false'">retrun false;</c:if> "> --%>
+				<input type="submit" value="검색" id="searchBtn">
 				</div>
 			</div>
 	</form><br>
@@ -135,11 +90,11 @@
 			<c:forEach var="SH" items="${data.listSeoul }">
 			<div class="swiper-slide" >
 				<a href="/hotel/main/hotelView.do?hotel_no=${SH.hotel_no}">
-						<div class="hotel01" style="background-image: url(/hotel/image/hotel/${SH.filename}.jpg);">
+						<div class="hotel01"><img alt="서울이미지오류" src="/hotel/image/hotel/${SH.filename}" width="100px" height="100px">
 						</div>
 					<div><p>${SH.hotel_name}</p></div>
 					<span>최저가:  ${SH.lowPrice } ~</span>
-					<input type="hidden" name="hotel_no">${SH.hotel_no}
+					<input type="hidden" name="hotel_no" value="${SH.hotel_no}">
 				</a>
 			</div>
 			</c:forEach>
@@ -154,12 +109,11 @@
 		<div class="swiper-wrapper">
 			<c:forEach var="IH" items="${data.listIncheon }">
 			<div class="swiper-slide">
-				<a href="/hotel/main/hotelView.do?hotel_no=">
-						<div class="hotel01" style="background-image: url(/hotel/image/hotel/${IH.filename}.jpg);">
+				<a href="/hotel/main/hotelView.do?hotel_no=${IH.hotel_no}">
+						<div id="hotel01"><img alt="인천이미지오류" src="/hotel/image/hotel/${IH.filename}" width="200px" height="200px">
 						</div>
 					<div><p>${IH.hotel_name}</p></div>
 					<span>최저가:  ${IH.lowPrice } ~</span>
-					<input type="hidden" name="hotel_no">${IH.hotel_no}
 				</a>
 			</div>
 			</c:forEach>
@@ -174,12 +128,11 @@
 		<div class="swiper-wrapper">
 			<c:forEach var="KH" items="${data.listKyeonggi }">
 			<div class="swiper-slide">
-				<a href="/hotel/main/hotelView.do?hotel_no=">
-						<div class="hotel01" style="background-image: url(/hotel/image/hotel/${KH.filename}.jpg);">
+				<a href="/hotel/main/hotelView.do?hotel_no=${KH.hotel_no}">
+						<div class="hotel01"><img alt="경기이미지오류" src="/hotel/image/hotel/${KH.filename}" width="200px" height="200px">
 						</div>
 					<div><p>${KH.hotel_name}</p></div>
 					<span>최저가:  ${KH.lowPrice } ~</span>
-					<input type="hidden" name="hotel_no">${KH.hotel_no}
 				</a>
 			</div>
 			</c:forEach>

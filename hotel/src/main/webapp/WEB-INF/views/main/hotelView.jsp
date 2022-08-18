@@ -9,18 +9,75 @@
       name="viewport"
       content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
     />
+	<link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
+    <link href="/hotel/css/swiperView.css" rel="stylesheet" type="text/css">
+
   </head>
+	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <body>
+
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
-	
-  <table style="margin-top: 50px">
-  	<tr>
-  	<c:forEach var="data" items="${detail}">
-  		<th>${data.hotel_name}</th>
-  	</c:forEach>
-  	</tr>
-  </table>
+  <body>
+
+	<div class ="detail_full_screen">
+		<div class="hotel_screen">
+	  		<div class="hotelName">${hotel.hotel_name}</div>
+	  			<img alt="사진없음" src="/hotel/image/hotel/${filename}">
+	  		<div class="middleBox" style="width: 80%; text-align: center;">
+	  			<span>객실 안내/예약</span>
+	  		</div>
+  		</div>
+  		
+  		<!-- 객실리스트 1번 room -->
+  		<div class="room_Screen">
+  			<c:forEach var="roomList" items="${room}">
+  			<div class="lowDiv">
+	  		<div class="swiper mySwiper" id="roomLow" style="display: inline-block;">
+      			<div class="swiper-wrapper" >
+      				<c:forEach var="roomImage" items="${roomList.imageList}">
+        			<div class="swiper-slide" id="imgBox"><img alt="객실이미지" src="/hotel/image/hotel/${roomImage.filename_org }"></div>
+        			</c:forEach>
+      			</div>
+		      	<div class="swiper-button-next"></div>
+		      	<div class="swiper-button-prev"></div>
+		      	<div class="swiper-pagination"></div>
+    		</div> 
+	    	<div id="infoBox" style="display: inline-block;">
+	    		<div>객실명: ${roomList.room_name}</div>
+	    		<div>객실비용: ${roomList.room_price}</div>
+	    		<div>객실설명: ${roomList.room_content}</div>
+			</div>
+			<div id="roomViewBtn">
+				<input type="button" onclick="location.href='/hotel/main/roomView.do?room_no=${roomList.room_no}'" value="객실정보 확인 및 예약" style="margin-left: 330px;">
+			</div>
+			</div>		
+			</c:forEach> 
+		</div>
+	</div>
+
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        cssMode: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          loop: true,
+          el: ".swiper-pagination",
+        },
+        mousewheel: true,
+        keyboard: true,
+      });
+    </script>
 
   </body>

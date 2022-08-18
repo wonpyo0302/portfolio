@@ -82,10 +82,11 @@ public class ReserveController {
 	//-----게스트-----------------------------------------------
 	@GetMapping("/reserve/index.do")
 	public String index(Model model,HotelVO hvo, ReserveVO vo, HttpSession sess, HttpServletRequest req) {
-		GuestVO loginInfo1 = new GuestVO();// demo data
-		loginInfo1.setGuest_no(3);//demo data
-		loginInfo1.setGuest_name("게스트_빛찬");//demo data
-		sess.setAttribute("loginInfo", loginInfo1);
+		//GuestVO loginInfo1 = new GuestVO();// demo data
+		//loginInfo1.setGuest_no(3);//demo data
+		//loginInfo1.setGuest_name("게스트_빛찬");//demo data
+		//sess.setAttribute("loginInfo", loginInfo1);//demo data
+		
 		GuestVO Host_loginInfo = (GuestVO) sess.getAttribute("loginInfo");
 		
 		vo.setGuest_no(Host_loginInfo.getGuest_no());
