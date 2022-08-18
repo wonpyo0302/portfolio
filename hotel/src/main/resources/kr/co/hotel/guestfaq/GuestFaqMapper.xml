@@ -20,5 +20,19 @@
 		SELECT * FROM guestfaq WHERE gfaq_no = #{gfaq_no}
 	</select>
 	
+	<!-- 수정하기 -->
+	<update id="update" parameterType="int">
+		UPDATE guestfaq SET 
+			gfaq_title = #{gfaq_title}, gfaq_content = #{gfaq_content}
+			WHERE gfaq_no = #{gfaq_no}
+	</update>
+	
+	<!-- 삭제하기 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM guestfaq WHERE gfaq_no = #{gfaq_no}
+	</delete>
+	
+	
+	
 
 </mapper>

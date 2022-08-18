@@ -18,7 +18,6 @@ public class GuestNoticeController {
 	
 	// 목록
 	@GetMapping("/guestnotice/list.do")
-	
 	public String index(Model model, GuestNoticeVO vo) {
 		model.addAttribute("data", service.index(vo));
 		return "guestnotice/list";
@@ -35,15 +34,16 @@ public class GuestNoticeController {
 	}
 	
 	// 등록폼(관리자용)
-	@GetMapping("/guestnotice/write.do")
+	@GetMapping("/hostnotice/write.do")
 	public String write() {
 		return "guestnotice/write";
 	}
 	
 	// 등록처리(관리자용)
-	@PostMapping("/guestnotice/write.do")
+	@PostMapping("/hostnotice/write.do")
 	public String insert(Model model, GuestNoticeVO vo) {
-		return null;
+		model.addAttribute("data", service.insert(vo));
+		return "guestnotice/write";
 	}
 	
 	

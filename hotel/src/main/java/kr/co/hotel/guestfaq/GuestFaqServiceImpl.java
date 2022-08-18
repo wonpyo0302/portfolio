@@ -28,5 +28,21 @@ public class GuestFaqServiceImpl implements GuestFaqService {
 		return mapper.insert(vo) > 0 ? true : false;
 	}
 
+	@Override
+	public boolean update(GuestFaqVO vo) {
+		return mapper.update(vo) > 0 ? true : false;
+	
+	}
+
+	@Override
+	public GuestFaqVO edit(int gfaq_no) {
+		return mapper.view(gfaq_no);
+	}
+
+	@Override
+	public boolean delete(int gfaq_no) {
+		return mapper.delete(gfaq_no) > 0 ? true : false;
+	}
+
 	
 }
