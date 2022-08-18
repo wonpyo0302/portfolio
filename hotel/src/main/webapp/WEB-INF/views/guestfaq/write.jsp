@@ -76,12 +76,7 @@
                                 <textarea name="content" id="content" style="width:90%"></textarea>
                             </td>
                         </tr>
-                        <tr>
-                        	<th>첨부파일</th>
-                        	<td>
-                        		<input type="file" name="filename">
-                        	</td>
-                        </tr>
+                       
                         </tbody>
                     </table>
                     <div class="btnSet"  style="text-align:right;">
