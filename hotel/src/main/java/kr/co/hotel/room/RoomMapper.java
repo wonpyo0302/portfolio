@@ -9,8 +9,6 @@ import kr.co.hotel.HRRegister.ImageVO;
 
 @Mapper
 public interface RoomMapper {
-	List getImageFirst(RoomVO vo);
-	List getImageSec(RoomVO vo);
-	List getImageThird(RoomVO vo);
+	RoomVO roomView(int room_no);
 	
 }

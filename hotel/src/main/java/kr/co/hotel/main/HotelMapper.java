@@ -33,7 +33,7 @@ public interface HotelMapper {
 	//ImageVO  insertImage(ImageVO vo);
 	
 	//호텔,객실 이미지 가져오기
-	List<ImageVO> getHotelImage(int hotel_no);
+	List<HotelVO> getHotelImage(int hotel_no);
 	List<ImageVO> getRoomImage(int room_no);
 	
 }

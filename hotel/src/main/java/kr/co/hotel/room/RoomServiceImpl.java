@@ -16,14 +16,7 @@ public class RoomServiceImpl implements RoomService {
 	RoomMapper mapper;
 
 	@Override
-	public Model getImage(RoomVO vo, Model model) {
-		vo.setRoom_no(1);
-		model.addAttribute("roomOne",mapper.getImageFirst(vo));
-		vo.setRoom_no(2);
-		model.addAttribute("roomTwo",mapper.getImageFirst(vo));
-		vo.setRoom_no(3);
-		model.addAttribute("roomThr",mapper.getImageFirst(vo));
-		return model;
+	public RoomVO roomView(int room_no) {
+		return mapper.roomView(room_no);
 	}
-
 }

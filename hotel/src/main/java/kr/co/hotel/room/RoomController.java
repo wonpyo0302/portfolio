@@ -23,10 +23,10 @@ public class RoomController {
 
 	RoomService service;
 	
-	@GetMapping("/main/hotelView2.do")
+	@GetMapping("/main/roomView.do")
 	public String roomView(RoomVO vo, Model model) {
-		model.addAttribute("data",service.getImage(vo, model));
-		return "/main/hotelView";
+		model.addAttribute("roomInfo", service.roomView(vo.getRoom_no()));
+		return "/main/roomView";
 	}
 
 }

@@ -13,7 +13,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
-    <link href="/hotel/css/swiperView.css" rel="stylesheet" type="text/css">
+    <link href="/hotel/css/hotelView.css" rel="stylesheet" type="text/css">
 
   </head>
 	
@@ -26,17 +26,27 @@
 	<div class ="detail_full_screen">
 		<div id="hotel_screen" style="vertical-align: middle;">
 	  		<div class="hotelName">${hotel.hotel_name}</div>
-	  			<img alt="사진없음" src="/hotel/image/hotel/${hotelVO.filename}">
-	  		<div class="middleBox" style="width: 80%; text-align: center;">
-	  			<span>객실 안내/예약</span>
+		  	<div class="swiper mySwiper" id="Low" style="display: inline-block; height: 350px">
+		  		<div class="swiper-wrapper" >
+				  	<c:forEach var="hotelImage" items="${hotelImage}">
+				  		<div class="swiper-slide" id="imgBox"><img alt="사진없음" src="/hotel/image/hotel/${hotelImage.filename_org}"></div>
+				  	</c:forEach>
+		  		</div>
+		  		<div class="swiper-button-next"></div>
+			    <div class="swiper-button-prev"></div>
+			    <div class="swiper-pagination"></div>
 	  		</div>
-  		</div>
+		</div>
+	  	<div class="middleBox" style="width: 80%; text-align: center;">
+	  		<span>객실 안내/예약</span>
+	  	</div>
+  	</div>
   		
   		<!-- 객실리스트 1번 room -->
   		<div class="room_Screen">
   			<c:forEach var="roomList" items="${room}">
   			<div class="lowDiv">
-		  		<div class="swiper mySwiper" id="roomLow" style="display: inline-block;">
+		  		<div class="swiper mySwiper" id="Low" style="display: inline-block;">
 	      			<div class="swiper-wrapper" >
 	      				<c:forEach var="roomImage" items="${roomList.imageList}">
 	        			<div class="swiper-slide" id="imgBox"><img alt="객실이미지" src="/hotel/image/hotel/${roomImage.filename_org }"></div>
