@@ -1,16 +1,16 @@
 package kr.co.hotel.reserve;
 
 
-import java.util.List;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import kr.co.hotel.coupon.CouponVO;
+
 import kr.co.hotel.guest.GuestVO;
-import kr.co.hotel.room.RoomVO;
+import kr.co.hotel.host.HostVO;
+import kr.co.hotel.main.HotelVO;
 
 @Service
 public class ReserveServiceImp implements ReserveService {
@@ -81,12 +81,19 @@ public class ReserveServiceImp implements ReserveService {
 	}
 
 	@Override
-	public void PointDeposit(ReserveVO vo, GuestVO gvo) {
+	public int PointDeposit(ReserveVO vo, GuestVO gvo) {
 		mapper.UpdatePointDeposit(vo);
 		int point_depoist = (int)(vo.getTotal_price()*0.09);
 		gvo.setTotalpoint(gvo.getTotalpoint()+point_depoist);
 		mapper.guestUsedPointUpdate(gvo);
 		vo.setUsed_point(point_depoist);
 		mapper.UpdatePointDeposit(vo);
+		return mapper.InsertPointDeposit(vo);
+	}
+
+	@Override
+	public HostVO SelectHostNo(HotelVO vo) {
+		vo.setHost_no(mapper.SelectHostNo(vo).getHost_no());
+		return mapper.SelectHostAccount(vo);
 	}
 }

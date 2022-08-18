@@ -24,7 +24,7 @@ public class BoardMapperTests {
 		ImageVO vo = new ImageVO();
 		for(int i=0; i<300; i++) {
 			vo.setFilename_org("h1");
-			vo.setHotel_no(i);
+			//vo.setHotel_no(i);
 			mapper.img_insert(vo);
 			System.out.println(vo);
 		}

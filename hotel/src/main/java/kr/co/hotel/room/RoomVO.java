@@ -22,6 +22,7 @@ public class RoomVO {
 	private String filename_real;
 	private int image_order;
 	private String image_type;
+	
 	private List<ImageVO> imageList;
 	
 	

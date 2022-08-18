@@ -57,6 +57,15 @@
 		values (#{guest_no}, #{used_point},(select totalpoint from guest where guest_no = #{guest_no}),1)
 	</insert>
 	
+	<select id="SelectHostNo" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
+		select * from hotel where hotel_no=#{hotel_no}
+	</select>
+	
+	<select id="SelectHostAccount" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.host.HostVO">
+		select * from host where host_no=#{host_no}
+	</select>
+	
+	
 	
 	
 	
