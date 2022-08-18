@@ -56,10 +56,9 @@
                         <tr>
                             <th>문의유형</th>
                             <td>
-                                <input type="radio" name="type" id="type" value="예약 문의"/> 예약 문의 <br>
-                                <input type="radio" name="type" id="type" value="결제 문의"/> 결제 문의 <br>
-                                <input type="radio" name="type" id="type" value="숙소 문의"/> 숙소 문의 <br>
-                                <input type="radio" name="type" id="type" value="포인트/쿠폰 문의"/> 포인트/쿠폰 문의 <br>
+                                <input type="radio" name="type" id="type" value="입점 문의"/> 입점 문의 <br>
+                                <input type="radio" name="type" id="type" value="광고/제휴 문의"/> 광고/제휴 문의 <br>
+                                <input type="radio" name="type" id="type" value="이용회원 문의"/> 이용회원 문의 <br>
                                 <input type="radio" name="type" id="type" value="이용/기타 문의"/> 이용/기타 문의
                             </td>
                         </tr>

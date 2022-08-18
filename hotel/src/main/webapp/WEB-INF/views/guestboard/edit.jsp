@@ -64,7 +64,7 @@
 			<h3 class="sub_title" style="text-align: left">Q&A</h3>
 			<br>
 			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/qna.png" width="40px"> 게스트 전용 문의사항
+				<img src="/hotel/image/boardPic/qna.png" width="40px"> 게스트 전용 문의사항
 				게시판입니다.
 			</h6>
 			<br>

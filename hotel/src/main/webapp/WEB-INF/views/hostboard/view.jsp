@@ -82,7 +82,7 @@
 			<h3 class="sub_title" style="text-align: left">Q&A</h3>
 			<br>
 			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/qna.png" width="40px"> 게스트 전용 문의사항
+				<img src="/hotel/image/boardPic/qna.png" width="40px"> 게스트 전용 문의사항
 				게시판입니다.
 			</h6>
 			<br> 
@@ -119,7 +119,12 @@
 							<th>작성자</th>
 							<td>${loginInfo.host_name}</td>
 							<th>첨부파일</th>
-							<td colspan="2">첨부파일 다운 받을 수 있게</td>
+							<td colspan="2">
+								<a href ="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}" target="_blank">
+									${data.filename_org }
+								</a>
+							
+							</td>
 						</tr>
 						
 						<tr>

@@ -41,11 +41,11 @@
     			if ($(this).find(".type").css('display') == 'none') {
     				$(".type").slideUp("fast");
     				$(this).find(".type").slideDown("fast");  
-    				$(".downbtn").attr("src", "/hotel/image/down.png"); 
-    				$(this).find(".downbtn").attr("src", "/hotel/image/up.png");
+    				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png"); 
+    				$(this).find(".downbtn").attr("src", "/hotel/image/boardPic/up.png");
     			} else {
     				$(this).find(".type").slideUp("fast"); 
-    				$(".downbtn").attr("src", "/hotel/image/down.png"); 
+    				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png"); 
     			}
     		})
     	});
@@ -60,7 +60,7 @@
 			<h3 class="sub_title" style="text-align: left">Q&A</h3>
 			<br>
 			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/qna.png" width="40px"> 게스트 전용 문의사항
+				<img src="/hotel/image/boardPic/qna.png" width="40px"> 게스트 전용 문의사항
 				게시판입니다.
 			</h6>
 			<br>

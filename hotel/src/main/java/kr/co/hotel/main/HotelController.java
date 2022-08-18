@@ -56,14 +56,10 @@ public class HotelController {
 	@GetMapping("/main/hotelView.do")
 	public String hotelView(HotelVO vo, Model model) {
 		model.addAttribute("hotel",service.hotelView(vo.getHotel_no()));//호텔이름가져오기
-		model.addAttribute("hotelList",service.getHotelImage(vo.getHotel_no()));//호텔사진 가져오기
+		List<HotelVO> hotelImage = service.getHotelImage(vo.getHotel_no());//호텔사진 가져오기
+		model.addAttribute("hotelImage",hotelImage);
 		
-//		for (HotelVO list : hotelList) {
-//			list.setImageList(service.getHotelImage(list.getHotel_no()));
-//		}
-//		model.addAttribute("hotelList",hotelList);
-		//객실이미지 가져오기
-		model.addAttribute("hotelImage",service.getHotelImage(vo.getHotel_no()));
+		
 		List<RoomVO> roomList = service.roomList(vo.getHotel_no()); //a호텔의 객실들
 		for (RoomVO list : roomList) {
 			list.setImageList(service.getRoomImage(list.getRoom_no()));
@@ -72,8 +68,5 @@ public class HotelController {
 		return "/main/hotelView";
 	}
 	
-	@GetMapping("/main/roomView.do")
-	public String roomView() {
-		return "/main/roomView";
-	}
+
 }

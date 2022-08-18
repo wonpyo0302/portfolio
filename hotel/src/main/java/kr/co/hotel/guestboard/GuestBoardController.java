@@ -49,11 +49,13 @@ public class GuestBoardController extends ImgHandling{
 	// 등록처리
 	@PostMapping("/guestboard/insert.do")
 	public String insert(Model model, GuestBoardVO vo, @RequestParam MultipartFile filename, HttpServletRequest req) {
+		// 첨부파일 처리
 		if(!filename.isEmpty()) {
 			String org = filename.getOriginalFilename();
 			String ext = org.substring(org.lastIndexOf("."));
 			String real = new Date().getTime()+ext;
-			
+		
+		// 첨부파일 저장처리
 			String path = req.getRealPath("/upload/");
 			try {
 				filename.transferTo(new File(path+real));
@@ -65,9 +67,7 @@ public class GuestBoardController extends ImgHandling{
 		HttpSession sess = req.getSession();
 		GuestVO gvo = (GuestVO)sess.getAttribute("loginInfo");
 		vo.setGuest_no(gvo.getGuest_no());
-		
-		System.out.println("========================="+vo.getGboard_type());
-		System.out.println("========================="+vo.getGboard_writer());
+
 		
 		if(service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");

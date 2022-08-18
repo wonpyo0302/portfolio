@@ -21,25 +21,25 @@ public class GuestFaqController {
 	 */
 	
 	// 조회
-	@GetMapping("/faq/view.do")
+	@GetMapping("/guestfaq/view.do")
 	public String view(Model model, GuestFaqVO vo) {
 		GuestFaqVO r = service.view(vo.getGfaq_no());
 		System.out.println("=================================="+r);
 		model.addAttribute("data",service.list(vo));
-		return "faq/view";
+		return "guestfaq/view";
 	}
 	
 	// 등록폼
-	@GetMapping("/faq/write.do")
+	@GetMapping("/guestfaq/write.do")
 	public String write() {
-		return "faq/write";
+		return "guestfaq/write";
 	}
 	
 	// 등록처리
-	@PostMapping("/faq/write.do")
+	@PostMapping("/guestfaq/write.do")
 	public String insert(Model model, GuestFaqVO vo) {
 		model.addAttribute("data", service.insert(vo));
-		return "faq/write";
+		return "guestfaq/write";
 	}
 
 	

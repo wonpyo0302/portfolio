@@ -19,19 +19,18 @@ public class HostBoardVO {
 	private Timestamp hboard_updatedate; // 수정일
 	private int hboard_status; // 답변상태
 	
-	private String host_name;//스칼라서브쿼리로 host_name를 가져옴
+	private String host_name;// 스칼라서브쿼리로 host_name를 가져옴
 	
 	private String filename_org;
 	private String filename_real;
 	
-	
 	private int page; // 현재 페이지
 	private int pageRow; // 한 페이지당 행(게시물)의 개수
+	private int startIdx; // 페이지별 시작 인덱스
 	
 	private String sword; // 검색어
 	private String stype; // 검색유형
 	
-	private int startIdx; // 페이지별 시작 인덱스
 
 	public HostBoardVO () {
 		this.page = 1;

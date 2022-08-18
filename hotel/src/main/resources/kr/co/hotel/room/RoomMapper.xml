@@ -1,29 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.hotel.room.RoomMapper">
+	
+	<select id="roomView" parameterType="int" resultType="kr.co.hotel.room.RoomVO">
+		SELECT * FROM room WHERE room_no = #{room_no}
+	</select>
 
-	<!-- room_no에 해당하는 이미지 셀렉 -->
-	<select id="getImageFirst" parameterType="kr.co.hotel.room.RoomVO" resultType="int">
-		SELECT * FROM room r LEFT JOIN hotel h
-		ON r.hotel_no = h.hotel_no LEFT JOIN image im
-		ON h.hotel_no = im.hotel_no
-		where i.hotel_no = #{hotel_no} AND i.room_no = #{room_no}
-	</select>
-	<!-- room_no에 해당하는 room_name 한줄 조회 -->
-	<select id="getRoom">
-		SELECT * FROM room
-		WHERE room_no = #{room_no}
-	</select>
-	<!-- <select id="getImageSec" parameterType="int" resultType="int">
-		SELECT * FROM room r LEFT JOIN hotel h
-		ON r.hotel_no = h.hotel_no LEFT JOIN image im
-		ON h.hotel_no = im.hotel_no
-		where i.hotel_no = #{hotel_no} AND i.room_no = 2
-	</select>
-	<select id="getImageThird" parameterType="int" resultType="int">
-		SELECT * FROM room r LEFT JOIN hotel h
-		ON r.hotel_no = h.hotel_no LEFT JOIN image im
-		ON h.hotel_no = im.hotel_no
-		where i.hotel_no = #{hotel_no} AND i.room_no = 3
-	</select> -->
 </mapper>
