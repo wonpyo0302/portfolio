@@ -59,7 +59,7 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public List<HotelVO> getHotelImage(int hotel_no) {
+	public List<ImageVO> getHotelImage(int hotel_no) {
 		return mapper.getHotelImage(hotel_no);
 	}
 

@@ -1,6 +1,6 @@
 .swiper {
 	margin: initial;
-	width: 65rem;
+	width: 56.82rem;
 	height: 20%;
 }
 
@@ -30,12 +30,19 @@
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	padding: 0 100px 10px 0;
 }
-
-#infoBox div {
+#infoBox {
+	align-self: center;
+	margin-left: 100px;
+}
+#infoBox #infoContent {
 	border: 1px solid black;
 	text-align: center;
 	padding: 5px 5px 5px 5px;
+	margin-top: 5px;
+}
+#reservBtn {
 	margin-top: 5px;
 }
 
@@ -45,7 +52,7 @@
 
 .detail_full_screen img {
 	margin: 20px 0px 20px 100px;
-	width: 400px;
+	width: 40rem;
 	height: 300px;
 }
 
@@ -56,11 +63,12 @@
 
 .hotelName {
 	text-align: center;
-	width: 400px;
-	border: 1px solid black;
+	width: 40rem;
+	border: 2px solid black;
 	font-size: 20px;
 	font-weight: bold;
 	margin-left: 100px;
+	margin-top: 60px;
 }
 
 #roomLow {
@@ -70,5 +78,5 @@
 }
 
 .lowDiv {
-	display: flex;
+	display: flex;	
 }

@@ -129,9 +129,9 @@
 	</select>
 
 	<!-- hotel_no에 해당하는 이미지 셀렉 -->
-	<select id="getHotelImage" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
+	<select id="getHotelImage" parameterType="int" resultType="kr.co.hotel.HRRegister.ImageVO">
 		SELECT * FROM image
-		where no = #{hotel_no} AND image_type = 'HOTEL'
+		where no = #{hotel_no} AND image_type = 'HOTEL';
 	</select>
 	
 	<!-- room_no에 해당하는 이미지 리스트 -->
