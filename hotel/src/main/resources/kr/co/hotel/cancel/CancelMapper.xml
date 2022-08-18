@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hotel.cancel.CancelMapper">
+	
+	<select id="list" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="java.util.LinkedHashMap"> 
+		select * from reserv join hotel on reserv.guest_no=${guest_no} and reserv.hotel_no = hotel.hotel_no join room on reserv.room_no = room.room_no
+	</select>
+	
+	<update id="cancelReserve" parameterType="kr.co.hotel.reserve.ReserveVO">
+		update reserv set rev_status = 1, canceldate = now(), pay_status = 2 where guest_no =#{guest_no} and imp_uid =#{imp_uid}
+	</update>
+	
+	<update id="cancelGuestPoint" parameterType="kr.co.hotel.guest.GuestVO">
+		update guest set totalpoint = #{totalpoint} where guest_no = ${guest_no}
+	</update>
+	
+	<insert id="cancelPoint" parameterType="kr.co.hotel.reserve.ReserveVO">
+		insert into point (
+			guest_no, io_point, totalpoint, pointtype, date)
+		values (#{guest_no}, (select used_point from reserv where guest_no = #{guest_no} and imp_uid = #{imp_uid}), (select totalpoint from guest where guest_no=#{guest_no}), 0, now())
+	</insert>
+	
+	<update id="cancelCoupon" parameterType="kr.co.hotel.reserve.ReserveVO">
+		update coupon set usedate = null, use_status = 0 where coupon_no = (select coupon_no from reserv where imp_uid = #{imp_uid})
+	</update>
+	
+	
+
+</mapper>

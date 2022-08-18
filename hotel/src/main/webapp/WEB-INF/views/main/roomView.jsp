@@ -36,10 +36,10 @@
 			    <div class="swiper-button-prev"></div>
 			    <div class="swiper-pagination"></div>
 	  		</div>
-		</div>
 	  	<div class="middleBox" style="width: 80%; text-align: center;">
 	  		<span>객실 안내/예약</span>
 	  	</div>
+		</div>
   	</div>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

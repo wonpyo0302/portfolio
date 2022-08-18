@@ -14,13 +14,13 @@
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
     <link href="/hotel/css/hotelView.css" rel="stylesheet" type="text/css">
-
   </head>
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
+  
   <body>
 
 	<div class ="detail_full_screen">
@@ -35,11 +35,11 @@
 		  		<div class="swiper-button-next"></div>
 			    <div class="swiper-button-prev"></div>
 			    <div class="swiper-pagination"></div>
+			</div>
+	  		<div class="middleBox" style="width: 80%; text-align: center;">
+	  			<span>객실 안내/예약</span>
 	  		</div>
-		</div>
-	  	<div class="middleBox" style="width: 80%; text-align: center;">
-	  		<span>객실 안내/예약</span>
-	  	</div>
+  		</div>
   	</div>
   		
   		<!-- 객실리스트 1번 room -->
