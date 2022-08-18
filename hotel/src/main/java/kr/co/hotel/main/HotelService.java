@@ -25,7 +25,7 @@ public interface HotelService {
 	
 	public HotelVO hotelView(int hotel_no);
 	
-	List<HotelVO> getHotelImage(int hotel_no);
+	List<ImageVO> getHotelImage(int hotel_no);
 	List<ImageVO> getRoomImage(int room_no);
 	
 	

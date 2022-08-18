@@ -25,30 +25,30 @@
   <body>
 
 	<div class ="detail_full_screen">
-		<div class="hotel_screen">
+		<div id="hotel_screen" style="vertical-align: middle;">
 	  		<div class="hotelName">${hotel.hotel_name}</div>
 	  			<div>
 		  			<img alt="사진없음" src="/hotel/image/hotel/${filename}">
 		  			<div id="map" style="width:400px;height:300px;display: inline-block;vertical-align: middle"></div>
-		  			<script>
-				var container = document.getElementById('map');
-				var options = {
-					center: new kakao.maps.LatLng(37.5125720000, 127.1026060000),
-					level: 3
-				};
-		
-				var map = new kakao.maps.Map(container, options);
-				var markerPosition  = new kakao.maps.LatLng(37.5125720000, 127.1026060000); 
-		
-				// 마커를 생성합니다
-				var marker = new kakao.maps.Marker({
-				    position: markerPosition
-				});
-		
-				// 마커가 지도 위에 표시되도록 설정합니다
-				marker.setMap(map);
+		  			
+		  		<script>
+		  			console.log(${hotel.lat})
+					var container = document.getElementById('map');
+					var options = {
+						center: new kakao.maps.LatLng(${hotel.lat}, ${hotel.lot}),
+						level: 3
+					};
+					var map = new kakao.maps.Map(container, options);
+					var markerPosition  = new kakao.maps.LatLng(${hotel.lat}, ${hotel.lot}); 
+					// 마커를 생성합니다
+					var marker = new kakao.maps.Marker({
+					    position: markerPosition
+					});
+			
+					// 마커가 지도 위에 표시되도록 설정합니다
+					marker.setMap(map);
 			</script>
-		  		</div>
+	</div>
 	  		<div class="middleBox" style="width: 80%; text-align: center;">
 	  			<span>객실 안내/예약</span>
 	  		</div>
@@ -60,24 +60,22 @@
   		<div class="room_Screen">
   			<c:forEach var="roomList" items="${room}">
   			<div class="lowDiv">
-	  		<div class="swiper mySwiper" id="roomLow" style="display: inline-block;">
-      			<div class="swiper-wrapper" >
-      				<c:forEach var="roomImage" items="${roomList.imageList}">
-        			<div class="swiper-slide" id="imgBox"><img alt="객실이미지" src="/hotel/image/hotel/${roomImage.filename_org }"></div>
-        			</c:forEach>
-      			</div>
-		      	<div class="swiper-button-next"></div>
-		      	<div class="swiper-button-prev"></div>
-		      	<div class="swiper-pagination"></div>
-    		</div> 
-	    	<div id="infoBox" style="display: inline-block;">
-	    		<div>객실명: ${roomList.room_name}</div>
-	    		<div>객실비용: ${roomList.room_price}</div>
-	    		<div>객실설명: ${roomList.room_content}</div>
-			</div>
-			<div id="roomViewBtn">
-				<input type="button" onclick="location.href='/hotel/main/roomView.do?room_no=${roomList.room_no}'" value="객실정보 확인 및 예약" style="margin-left: 330px;">
-			</div>
+		  		<div class="swiper mySwiper" id="roomLow" style="display: inline-block;">
+	      			<div class="swiper-wrapper" >
+	      				<c:forEach var="roomImage" items="${roomList.imageList}">
+	        			<div class="swiper-slide" id="imgBox"><img alt="객실이미지" src="/hotel/image/hotel/${roomImage.filename_org }"></div>
+	        			</c:forEach>
+	      			</div>
+			      	<div class="swiper-button-next"></div>
+			      	<div class="swiper-button-prev"></div>
+			      	<div class="swiper-pagination"></div>
+	    		</div> 
+		    	<div id="infoBox" style="display: inline-block;">
+		    		<div id="infoContent"><span>객실명: </span><span style="font-weight: bold;">${roomList.room_name}</span></div>
+		    		<div id="infoContent"><span>객실비용: </span><span style="font-weight: bold;">${roomList.room_price}</span></div>
+		    		<div id="infoContent"><span>객실설명: </span><span style="font-weight: bold;">${roomList.room_content}</span></div>
+		    		<div id="reservBtn"><input type="button" onclick="location.href='/hotel/main/roomView.do?room_no=${roomList.room_no}'" value="객실정보 확인 및 예약" style="margin-left: 330px;"></div>
+				</div>
 			</div>		
 			</c:forEach> 
 		</div>
