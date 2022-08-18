@@ -26,6 +26,9 @@ public class RoomController {
 	@GetMapping("/main/roomView.do")
 	public String roomView(RoomVO vo, Model model) {
 		model.addAttribute("roomInfo", service.roomView(vo.getRoom_no()));
+		System.out.println("==================="+model.getAttribute("roomInfo"));
+		List<RoomVO> roomList = service.getRoomImage(vo.getRoom_no());
+		model.addAttribute("roomImage",roomList);
 		return "/main/roomView";
 	}
 
