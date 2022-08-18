@@ -33,23 +33,31 @@
 	
 	<select id="count" parameterType="kr.co.hotel.coupon.CouponVO" resultType="java.lang.Integer">
 	<!-- 테이블 명이 변수로 들어갈수 있음 --><!-- comment테이블은 하나, 여기에 각 페이지의 table_name 구분, 페이지의 게시판 마다 boar_no구분 -->
+		<![CDATA[
 		SELECT count(*) from coupon
 		WHERE
 		guest_no=#{guest_no} 
+		AND use_status = 0
+		AND expdate > now()  
 		
 		
-		
+		]]>
 	</select>
 	
-		<select id="C_list" parameterType="kr.co.hotel.coupon.CouponVO" resultType="kr.co.hotel.coupon.CouponVO">
-
+	<select id="C_list" parameterType="kr.co.hotel.coupon.CouponVO" resultType="kr.co.hotel.coupon.CouponVO">
+		<![CDATA[
+		
 			select * from coupon
 				
 			where guest_no = #{guest_no}
+			
+			AND use_status = 0
+			AND expdate > now()
 					
 			order by coupon_date desc
 			limit ${startIdx}, ${pageRow}
-	
+			
+			]]>
 	</select>
 	
 	
