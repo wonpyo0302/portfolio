@@ -70,6 +70,12 @@ public class ReserveController {
 		
     }
 	
+	@GetMapping("/reserve/paytransfer.do")
+	public String paytransfer(HotelVO vo, Model model) {
+		model.addAttribute("host",service.SelectHostNo(vo));
+		return "reserve/paytransfer";
+	}
+	
 	
 	
 	//-----이하 빛찬-----------------------------------------------

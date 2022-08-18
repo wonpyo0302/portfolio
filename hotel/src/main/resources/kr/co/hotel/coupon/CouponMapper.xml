@@ -13,11 +13,11 @@
 		select * from guest where guest_id=#{guest_id}
 	</select>
 	
-	<select id="couponNodup" parameterType="kr.co.hotel.coupon.CouponMapper" resultType="int">
+	<select id="couponNodup" parameterType="kr.co.hotel.coupon.CouponVO" resultType="int">
 		select count(*) from coupon where coupon_no=#{coupon_no}
 	</select>	
 	
-	<insert id="createCoupon" parameterType="kr.co.hotel.coupon.CouponMapper">
+	<insert id="createCoupon" parameterType="kr.co.hotel.coupon.CouponVO">
 		insert into coupon (
 			coupon_no, guest_no, coupon_price, coupon_date, expdate, use_status) 
 		values (

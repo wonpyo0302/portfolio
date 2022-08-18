@@ -49,20 +49,40 @@
 				var id = $(this).attr("id")
 				id.split("?");
 				console.log(id.split("?")[1]);
+				var type = id.split("?")[0];
+				console.log(type);
 				var reserv_no = id.split("?")[1];
-				$.ajax({
-					type:'post',
-					data:{reserv_no : reserv_no},
-					url:"../hostReserve/"+id.split("?")[0],
-					error:function(er){
-						alert("ERROR")
-					},
-					success:function(response){
+				if(type =="checkin"){
+					$.ajax({
+						type:'post',
+						data:{reserv_no : reserv_no},
+						url:"../hostReserve/"+id.split("?")[0],
+						error:function(er){
+							alert("ERROR")
+						},
+						success:function(response){
+							alert("예약번호 "+reserv_no+"번 입실처리 완료");
+							window.location.reload();
+						}
 						
-						alert("예약번호 "+reserv_no+"번 입실처리 완료");
-					}
+					})
+				}
+				else{
+					$.ajax({
+						type:'post',
+						data:{reserv_no : reserv_no},
+						url:"../hostReserve/"+id.split("?")[0],
+						error:function(er){
+							alert("ERROR")
+						},
+						success:function(response){
+							alert("예약번호 "+reserv_no+"번 퇴실처리 완료");
+							window.location.reload();
+						}
+						
+					})
 					
-				})
+				}
 			})
 		})
 	</script>
@@ -157,10 +177,24 @@
 		                                </td>
 		                                
 		                                <td>
-		                                	<div id="in${row.reserv_no }" ><c:if test="${row.use_status == 0 }"><a class="check" id="checkin?${row.reserv_no }">[입실처리]</a></c:if></div> 
+		                                	<div id="in${row.reserv_no }" >
+			                                	<c:if test="${row.check_in_out_status == 0 }">
+			                                		<a class="check" id="checkin?${row.reserv_no }">[입실처리]</a>
+			                                	</c:if>
+			                                	<c:if test="${row.check_in_out_status == 1 || row.check_in_out_status ==2  }">
+			                                		${row.checkin_date}
+			                                	</c:if>
+		                                	</div> 
 		                                </td>
 		                                <td>
-		                                	<div ><c:if test="${row.use_status == 1 }"><a class="check" id="checkout?${row.reserv_no }">[퇴실처리]</a></c:if></div> 
+		                                	<div >
+		                                		<c:if test="${row.check_in_out_status == 1 }">
+		                                			<a class="check" id="checkout?${row.reserv_no}">[퇴실처리]</a>
+		                                		</c:if>
+		                                		<c:if test="${row.check_in_out_status == 2 || row.check_in_out_status == 1 }">
+			                                		${row.checkout_date}
+			                                	</c:if>
+		                                	</div> 
 		                                </td>
 		                            </tr>
 		                          

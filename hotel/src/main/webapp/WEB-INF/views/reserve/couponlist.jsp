@@ -20,6 +20,7 @@ function couponset(){
 		console.log(coupon_no);
 		opener.coupon_price.value = coupon_price; 
 		opener.coupon_no.value = coupon_no;
+		opener.coupon_price.focus();
 		}
 		window.close();
 }
