@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="/WEB-INF/views/includes/G_header.jsp"%>
+<%@ page import="java.net.*" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -82,7 +83,7 @@
 			<h3 class="sub_title" style="text-align: left">Q&A</h3>
 			<br>
 			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/qna.png" width="40px"> 게스트 전용 문의사항
+				<img src="/hotel/image/boardPic/qna.png" width="40px"> 게스트 전용 문의사항
 				게시판입니다.
 			</h6>
 			<br> 
@@ -90,8 +91,7 @@
 			<br> 
 			<br>
 			<div class="bbs">
-				<form method="get" name="frm" id="frm" action="view.do"
-					enctype="multipart/form-data">
+				<form method="get" name="frm" id="frm" action="view.do" enctype="multipart/form-data">
 					<input type="hidden" name="gboard_no" value="${data.gboard_no}">
 					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
 					<table class="board_write">
@@ -119,7 +119,12 @@
 							<th>작성자</th>
 							<td>${loginInfo.guest_name}</td>
 							<th>첨부파일</th>
-							<td colspan="2">첨부파일 다운 받을 수 있게</td>
+							<td colspan="2">
+								<a href ="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}" target="_blank">
+									${data.filename_org }
+								</a>
+							
+							</td>
 						</tr>
 						
 						<tr>

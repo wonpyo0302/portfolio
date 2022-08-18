@@ -35,7 +35,8 @@
 	<select id="list" parameterType="kr.co.hotel.guestboard.GuestBoardVO" resultType="kr.co.hotel.guestboard.GuestBoardVO">
 		SELECT *,
 			( SELECT guest_name FROM guest 
-				WHERE guest_no = guestboard.guest_no ) AS guest_name
+				WHERE guest_no = guestboard.guest_no ) AS guest_name, 
+					datediff(now(), gboard_regdate) as diff
 		FROM guestboard
 			<where>
 				<if test="stype != null and sword != ''">
@@ -55,6 +56,7 @@
 	<select id="view" parameterType="int" resultType="kr.co.hotel.guestboard.GuestBoardVO">
 		SELECT * FROM guestboard WHERE gboard_no = #{gboard_no}
 	</select>
+
 	
 	<!-- 조회수 1 증가 처리 -->
 	<update id="updateViewcount" parameterType="int">
@@ -65,7 +67,9 @@
 	<update id="update" parameterType="kr.co.hotel.guestboard.GuestBoardVO">
 		UPDATE guestboard SET 
 			gboard_title = #{gboard_title}, gboard_content = #{gboard_content}, gboard_updatedate = now()
-			
+			<if test="filename_org != null">
+			, filename_org = #{filename_org}, filename_real = #{filename_real}
+			</if>
 			WHERE gboard_no = #{gboard_no}
 	</update>
 	

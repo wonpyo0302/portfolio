@@ -28,7 +28,7 @@
 			<h3 class="sub_title" style="text-align: left">공지사항</h3>
 			<br>
 			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/notice.png" width="60px"> 게스트 전용 공지사항
+				<img src="/hotel/image/boardPic/notice.png" width="60px"> 게스트 전용 공지사항
 				게시판입니다.
 			</h6>
 			<br>
@@ -72,9 +72,9 @@
 									<tr style="background-color: pink" style="font-weight" :bold" >
 										<td>${data.totalCount - status.index - ((guestNoticeVO.page - 1) * guestNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l"><a
-											href="/hotel/notice/view.do?gnotice_no=${vo.gnotice_no}">
-												<img src="/hotel/image/느낌2.png" width="20px"> <b>${vo.gnotice_title}</b>
-												<img src="/hotel/image/new2.png" width="30px">
+											href="/hotel/guestnotice/view.do?gnotice_no=${vo.gnotice_no}">
+												<img src="/hotel/image/boardPic/느낌2.png" width="20px"> <b>${vo.gnotice_title}</b>
+												<img src="/hotel/image/boardPic/new2.png" width="30px">
 										</a></td>
 										<td class="writer">관리자</td>
 										<td class="date"><fmt:formatDate
@@ -86,11 +86,14 @@
 								<c:if test="${vo.fix != 1}">
 									<tr>
 										<td>${data.totalCount - status.index - ((guestNoticeVO.page - 1) * guestNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
-										<td class="txt_l"><a
-											href="/hotel/notice/view.do?gnotice_no=${vo.gnotice_no}">
-												${vo.gnotice_title} <img src="/hotel/image/new2.png"
-												width="30px">
-										</a></td>
+										<td class="txt_l">
+									
+										<a href="/hotel/guestnotice/view.do?gnotice_no=${vo.gnotice_no}">${vo.gnotice_title} 
+										<c:if test="${vo.diff <= 3 }">
+										<img src="/hotel/image/boardPic/new (4).png" width="30px">
+										</c:if></a>
+									
+										</td>
 										<td class="writer">관리자</td>
 										<td class="date"><fmt:formatDate
 												value="${vo.gnotice_regdate}" pattern="yyyy-MM-dd" /></td>

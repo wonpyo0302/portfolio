@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="/WEB-INF/views/includes/G_header.jsp" %>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -50,7 +51,7 @@
 		<br>
 			<h6 class="sub_content" style="text-align: left"> Q&A</h6>
 			<br>
-			<h8 class="sub_content" style="text-align:left"> <img src="/hotel/image/qna.png" width="40px">  게스트 전용 문의 게시판입니다. 문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
+			<h8 class="sub_content" style="text-align:left"> <img src="/hotel/image/boardPic/qna.png" width="40px">  게스트 전용 문의 게시판입니다. 문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
 			<br><br><br><br>
 			<div class="bbs">
 				<table class="list">
@@ -79,7 +80,7 @@
 						</tr>
 					</thead>
 							<tbody>
-						
+					
 						<c:if test="${empty data}">
 							<tr>
 								<td class="first" colspan="8">등록된 글이 없습니다.</td>
@@ -108,7 +109,11 @@
 										</c:if>
 										<td class="txt_l">
 										
-										<a href="/hotel/guestboard/view.do?gboard_no=${vo.gboard_no}">${vo.gboard_title}</a></td>								
+										<a href="/hotel/guestboard/view.do?gboard_no=${vo.gboard_no}">${vo.gboard_title}
+										<c:if test="${vo.diff <= 3 }">
+										<img src="/hotel/image/boardPic/new (1).png" width="30px">
+										</c:if>
+										</a></td>								
 										
 										<td>${vo.gboard_viewcount}</td>
 										

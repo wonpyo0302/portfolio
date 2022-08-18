@@ -34,7 +34,7 @@
 .container {
 	background-color: light grey;
 	padding: 50px;
-	border: 20px solid purple;
+	border: 15px solid lightpink;
 	margin: 20px;
 }
 
@@ -95,7 +95,7 @@
 			<br>
 			<form method="get" name="frm" id="frm" action="view.do">
 				<h6 class="sub_content" style="text-align: left">
-					<img src="/hotel/image/faq2.png" width="40px"> 게스트 전용 자주 묻는 질문
+					<img src="/hotel/image/faq2.png" width="40px"> 자주 묻는 질문
 					게시판입니다.
 				</h6>
 				<br> <br> <br> <br>
@@ -103,11 +103,12 @@
 					<div class="container">
 						<ul class="list">
 							<c:forEach items="${data }" var="faq" varStatus="status">
-							<!-- [예약 문의] -->
-								<c:if test="${faq.hfaq_type == 1}">
+							
+							<!-- [입점 문의] -->
+								<c:if test="${faq.hfaq_type == 6}">
 									<li class="item">
 										<h5 class="Title">
-											[예약] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[입점] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
 											<div class="text" id="text">${faq.hfaq_content}</div>
@@ -115,11 +116,11 @@
 									</li>
 								</c:if>
 								
-								<!-- [결제 문의] -->
-								<c:if test="${faq.hfaq_type == 2}">
+								<!-- [광고/제휴 문의] -->
+								<c:if test="${faq.hfaq_type == 7}">
 									<li class="item">
 										<h5 class="Title">
-											[결제] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[광고/제휴] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
 											<div class="text" id="text">${faq.hfaq_content}</div>
@@ -127,23 +128,11 @@
 									</li>
 								</c:if>
 								
-								<!-- [숙소 문의] -->
-								<c:if test="${faq.hfaq_type == 3}">
+								<!-- [이용회원 문의] -->
+								<c:if test="${faq.hfaq_type == 8}">
 									<li class="item">
 										<h5 class="Title">
-											[숙소] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
-										</h5> <br>
-										<div>
-											<div class="text" id="text">${faq.hfaq_content}</div>
-										</div>
-									</li>
-								</c:if>
-								
-								<!-- [포인트/쿠폰 문의] -->
-								<c:if test="${faq.hfaq_type == 4}">
-									<li class="item">
-										<h5 class="Title">
-											[포인트/쿠폰] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[이용회원] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
 											<div class="text" id="text">${faq.hfaq_content}</div>
@@ -152,7 +141,7 @@
 								</c:if>
 								
 								<!-- [이용/기타 문의] -->
-								<c:if test="${faq.hfaq_type == 5}">
+								<c:if test="${faq.hfaq_type == 9}">
 									<li class="item">
 										<h5 class="Title">
 											[이용/기타] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>

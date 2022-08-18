@@ -34,7 +34,7 @@
 .container {
 	background-color: light grey;
 	padding: 50px;
-	border: 20px solid purple;
+	border: 15px solid mistyrose;
 	margin: 20px;
 }
 

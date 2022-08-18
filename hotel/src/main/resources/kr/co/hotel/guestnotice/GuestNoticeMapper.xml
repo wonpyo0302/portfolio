@@ -28,7 +28,9 @@
 	
 	<!-- 목록보기 -->
 	<select id="list" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" resultType="kr.co.hotel.guestnotice.GuestNoticeVO">
-		SELECT * FROM guestnotice
+		SELECT *,
+			datediff(now(), gnotice_regdate) as diff
+		 FROM guestnotice
 			<where>
 				<if test="stype != null and sword != ''">
 					<if test="stype != 'all'">

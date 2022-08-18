@@ -1,4 +1,4 @@
-package kr.co.hotel.guestfaq;
+package kr.co.hotel.hostfaq;
 
 import java.util.Map;
 
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class GuestFaqController {
+public class HostFaqController {
 	
 	@Autowired
-	GuestFaqService service;
+	HostFaqService service;
 	/*
 	 * // 목록
 	 * 
@@ -21,25 +21,25 @@ public class GuestFaqController {
 	 */
 	
 	// 조회
-	@GetMapping("/guestfaq/view.do")
-	public String view(Model model, GuestFaqVO vo) {
-		GuestFaqVO r = service.view(vo.getGfaq_no());
+	@GetMapping("/hostfaq/view.do")
+	public String view(Model model, HostFaqVO vo) {
+		HostFaqVO r = service.view(vo.getHfaq_no());
 		System.out.println("=================================="+r);
 		model.addAttribute("data",service.list(vo));
-		return "guestfaq/view";
+		return "hostfaq/view";
 	}
 	
 	// 등록폼
-	@GetMapping("/guestfaq/write.do")
+	@GetMapping("/hostfaq/write.do")
 	public String write() {
-		return "guestfaq/write";
+		return "hostfaq/write";
 	}
 	
 	// 등록처리
-	@PostMapping("/guestfaq/write.do")
-	public String insert(Model model, GuestFaqVO vo) {
+	@PostMapping("/hostfaq/write.do")
+	public String insert(Model model, HostFaqVO vo) {
 		model.addAttribute("data", service.insert(vo));
-		return "guestfaq/write";
+		return "hostfaq/write";
 	}
 
 	

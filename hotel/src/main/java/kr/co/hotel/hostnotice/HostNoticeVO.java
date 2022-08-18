@@ -13,17 +13,18 @@ public class HostNoticeVO {
 	Timestamp hnotice_regdate;
 	int hnotice_viewcount;
 	
-	
 	int fix; // 게시물 고정 1=고정
 	
+	private String filename_org;
+	private String filename_real;
 
 	private int page; // 현재 페이지
 	private int pageRow; // 한 페이지당 행(게시물)의 개수
+	private int startIdx; // 페이지별 시작 인덱스
 	
 	private String sword; //검색어
 	private String stype; //검색타입
 	
-	private int startIdx; // 페이지별 시작 인덱스
 	
 	public HostNoticeVO () {
 		this.page = 1;
