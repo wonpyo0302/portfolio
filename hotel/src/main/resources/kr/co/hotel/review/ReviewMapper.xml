@@ -63,6 +63,20 @@
 		</selectKey>
 	</insert>
 	
+	<!-- 룸평균 
+	UPDATE room SET avgScore = (SELECT avg(reviewScore) FROM review WHERE room_no=#{room_no})
+	
+	
+	호텔평균
+	UPDATE room SET avgScore = (SELECT avg(reviewScore) FROM review WHERE hotel_no=#{hotel_no}) -->
+	
+	
+	
+	
+	
+	
+	
+	<!--  -->
 	<update id="update_review_status" parameterType="kr.co.hotel.review.ReviewVO">
 		UPDATE reserv
 		SET

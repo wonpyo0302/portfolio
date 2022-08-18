@@ -14,7 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.hotel.HRRegister.HRRegisterService;
 import kr.co.hotel.HRRegister.ImageVO;
+import kr.co.hotel.main.HotelVO;
 import kr.co.hotel.reserve.ReserveVO;
+import kr.co.hotel.room.RoomVO;
 import util.ImgHandling;
 
 @Controller
@@ -54,15 +56,9 @@ public class ReviewController {
 	
 	@PostMapping("/review/insert.do")
 	public String insert(ReviewVO vo, ImageVO ivo, Model model, @RequestParam MultipartFile filename, HttpServletRequest req) {
-		System.out.println("reviewcontent확인 : "+vo.getReview_content());
-		System.out.println("reviewscore확인 : "+vo.getReview_score());
-		System.out.println("reserv_no확인 : "+vo.getReserv_no());
 		ImgHandling ih = new ImgHandling();
-		
 		boolean r= false;
 		if(service.insert(vo)) {
-			System.out.println("review_no확인 : "+ vo.getReview_no());
-			System.out.println("filename확인 : "+filename.getSize());
 			if(filename.getSize()!=0) {
 				ivo.setNo(vo.getReview_no());
 				ivo.setImage_type("REVIEW");
@@ -77,6 +73,15 @@ public class ReviewController {
 			r=true;
 		}
 		
+		//
+		/*if(service.호텔 전체평균 true) {
+			
+			r=true
+		}else {
+			r=false
+		}
+		*/
+		
 		// 리뷰, 예약테이블의 review_status업데이트 여부, 이미지 등록 여부가 모두 완료되면 
 		if(r) {
 			model.addAttribute("msg", "리뷰가 정상등록되었습니다.");
@@ -86,7 +91,8 @@ public class ReviewController {
 			model.addAttribute("msg", "리뷰 등록 실패");
 			return "common/alert";
 		}
-		
-		
+
 	}
+	
+	
 }
