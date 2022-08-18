@@ -16,7 +16,7 @@ public class AdminServiceImpl implements AdminService{
 		AdminVO loginInfo = amapper.adminLogin(avo);
 		if(loginInfo != null) {
 			r = true;
-			sess.setAttribute("loginInfo1", loginInfo);
+			sess.setAttribute("loginInfo_admin", loginInfo);
 		}
 		return r;
 	}
