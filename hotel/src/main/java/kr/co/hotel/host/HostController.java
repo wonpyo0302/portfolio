@@ -179,8 +179,14 @@ public class HostController {
 		}
 	}
 	@GetMapping("/host/deleteHostInfo.do")
-	public String deleteHost() {
-		return "host/deleteHost";
+	public String deleteHost(HttpSession sess,Model model) {
+		if(sess.getAttribute("loginInfo2") == null) {
+			model.addAttribute("msg","로그인이 필요한 기능입니다");
+			return "common/alert";
+		}else { 
+			return"/host/deleteHost";
+			//로그인이 되어 있어야 deleteHost.jsp로 넘어갈수 있음
+		}
 	}
 	@PostMapping("/host/deleteHostInfo.do")
 	public void deleteHostInfo(HttpSession sess, HostVO hvo, HttpServletResponse res) throws IOException{
