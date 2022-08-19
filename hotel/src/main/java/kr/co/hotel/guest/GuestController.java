@@ -186,8 +186,14 @@ public class GuestController {
 		 }
 	 }
 	 @GetMapping("/guest/deleteGuestInfo.do")
-	 public String deleteGuest() {
-		 return "guest/deleteGuest";
+	 public String deleteGuest(HttpSession sess, Model model) {
+		 if(sess.getAttribute("loginInfo") == null) {
+				model.addAttribute("msg","로그인이 필요한 기능입니다");
+				return "common/alert";
+			}else { 
+				return"/guest/deleteGuest";
+				//로그인이 되어 있어야 deleteGuest.jsp로 넘어갈수 있음
+			}
 	 }
 	 @PostMapping("/guest/deleteGuestInfo.do")
 	 public void deleteGuestInfo(HttpSession sess , GuestVO gvo, HttpServletResponse res) throws IOException {
