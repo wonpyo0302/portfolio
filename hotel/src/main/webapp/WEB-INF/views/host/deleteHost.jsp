@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,24 +14,27 @@
     <title>내정보로그인</title>
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
+    
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<script>
-		function confirm() {
+		function deleteConfirm1() {
 			if($("#host_pwd").val().trim() == ''){
 				alert('비밀번호를 입력해주세요');
 				$("#host_pwd").focus();
 				return;
 			} else{
+				var result=confirm('정말 탈퇴하시겠습니까?');
+				if(result==true){	
 				$.ajax({
 					type: "post",
-					url : "myinfoLogin.do",
+					url : "deleteHostInfo.do",
 					data : {host_pwd:$("#host_pwd").val()},
 					success:function(res){
 						if(res=='true') {
-							alert('환영합니다');
+							alert('회원탈퇴 되었습니다');
 							console.log(res);
-							$("#frm").submit();
+							$("#delete").submit();
 						}else{
 							alert('다시 입력하세요');
 							console.log(res);
@@ -39,20 +44,25 @@
 						
 					}
 				});
+			}else{
+				alert('취소하였습니다');
 			}
 		};
-	
+	};
 	</script>
 </head>
+<style>
+</style>
 <body>
-    <jsp:include page="/WEB-INF/views/includes/H_header.jsp" />
-    	<form id="frm" name="frm" method="post" action="myinfoModify.do">
+     <%@ include file="/WEB-INF/views/includes/H_header.jsp"  %>
+    	<form id="delete" name="delete" action="logout.do">
+    		<input type="hidden" name="host_no" id="host_no" value="${loginInfo2.host_no }" />
             <div class="sub">
             	<div class="size">
-                    <h1 class="sub_title">내정보 관리</h1>
-                        <p class="sub_a" style="text-align:center;">HOST</p>
+                    <h1 class="sub_title">회원탈퇴</h1>
+                        <p class="sub_a" style="text-align:center;" >HOST</p>
                         <table class="board_write" border="1" solid="black" style="width:750px;  height:80px;  position:relative; left:18%;">
-                        	<caption>회원수정로그인</caption>
+                        	<caption>회원탈퇴</caption>
                         	<tbody>
                         	<tr>
                         		<th>아이디</th>
@@ -62,7 +72,7 @@
                         	<tr>
                         		<th>비밀번호</th>
                         		<td><input type="password" id="host_pwd" name="host_pwd" /></td>
-                        		<td><input type="button" href="javascript:;" onclick="confirm();" value="비밀번호확인" style="background-color:gray; color:white;" /></td>
+                        		<td><input type="button" href="javascript:;" onclick="deleteConfirm1();" value="비밀번호확인" style="background-color:gray; color:white;"/></td>
                         	</tr>
                         	</tbody>
                         </table>

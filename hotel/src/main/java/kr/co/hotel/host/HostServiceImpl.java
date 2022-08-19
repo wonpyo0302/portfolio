@@ -4,6 +4,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.host.HostVO;
 import util.SendMail;
 @Service
@@ -87,5 +89,28 @@ public class HostServiceImpl implements HostService {
 	public boolean totalUpdate(HostVO hvo) {
 		return hmapper.totalUpdate(hvo) >0? true:false;
 	}
-
+	@Override
+	public HostVO deleteHostInfo(HostVO hvo) {
+		// update
+				HostVO mv = hmapper.deleteHostInfo(hvo);
+				if (mv != null) {
+					// 임시비밀번호 생성
+					// 영문두자리, 숫자두자리
+					String temp = "";
+					for (int i=0; i<2; i++) {
+						temp += (char)(Math.random()*26+65);
+					}
+					for (int i=0; i<3; i++) {
+						temp += (int)(Math.random()*9);
+					}
+					
+					// 임시비밀번호 update
+					hvo.setHost_pwd(temp);
+					hmapper.fakeDelete(hvo);
+					
+					return mv;
+				} else {
+					return null;
+				}
+			}
 }

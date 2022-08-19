@@ -47,5 +47,10 @@
 		host_bank=#{host_bank}, host_accountno=#{host_accountno}
 		WHERE host_no=#{host_no}
 	</update>
-	
+	<select id="deleteHostInfo" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
+		SELECT * FROM host WHERE host_no=#{host_no} AND host_id=#{host_id} AND host_pwd=md5(#{host_pwd})
+	</select>
+	<update id="fakeDelete" parameterType="kr.co.hotel.host.HostVO">
+		UPDATE host SET host_pwd=md5(#{host_pwd}) WHERE host_no=#{host_no}
+	</update>
 </mapper>

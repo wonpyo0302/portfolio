@@ -15,4 +15,6 @@ public interface HostMapper {
 	HostVO myinfoLogin(HostVO hvo);
 	int updatePwd(HostVO hvo);
 	int totalUpdate(HostVO hvo);
+	HostVO deleteHostInfo(HostVO hvo);
+	int fakeDelete (HostVO hvo);
 }

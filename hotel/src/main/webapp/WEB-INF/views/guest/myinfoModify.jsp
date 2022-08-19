@@ -180,7 +180,7 @@
 				</table>
 				<div class="btnSet" style="positon:relative; reft:50%;">
 					<input type="submit" class="bgGrayBtn" href="jacascript:;" value="수정" onclick="updateSave();" />
-					<input type="button" href="javascript:;" value="회원탈퇴" onclick="deleteGuestInfo();" />
+					<input type="button" onclick="location.href='deleteGuestInfo.do'" value="회원탈퇴" />
 				</div>
 			</div>
 		</div>

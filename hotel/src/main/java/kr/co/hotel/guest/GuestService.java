@@ -16,4 +16,5 @@ public interface GuestService {
 	GuestVO myinfoLogin(GuestVO gvo);
 	int updatePwd(GuestVO gvo);
 	boolean totalUpdate(GuestVO gvo);
+	GuestVO deleteGuestInfo(GuestVO gvo);
 }

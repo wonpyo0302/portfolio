@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class GuestNoticeController {
@@ -17,7 +18,6 @@ public class GuestNoticeController {
 	
 	// 목록
 	@GetMapping("/guestnotice/list.do")
-	
 	public String index(Model model, GuestNoticeVO vo) {
 		model.addAttribute("data", service.index(vo));
 		return "guestnotice/list";
@@ -32,6 +32,20 @@ public class GuestNoticeController {
 	
 		return "guestnotice/view";
 	}
+	
+	// 등록폼(관리자용)
+	@GetMapping("/hostnotice/write.do")
+	public String write() {
+		return "guestnotice/write";
+	}
+	
+	// 등록처리(관리자용)
+	@PostMapping("/hostnotice/write.do")
+	public String insert(Model model, GuestNoticeVO vo) {
+		model.addAttribute("data", service.insert(vo));
+		return "guestnotice/write";
+	}
+	
 	
 	
 } 

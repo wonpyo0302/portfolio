@@ -18,8 +18,6 @@
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
     
-
-    
 <script>
 	function goWrite(){
 		<c:if test="${empty loginInfo}">
@@ -40,7 +38,6 @@
 		<c:if test="${!empty data}">
 			location.href='list.do';
 		</c:if>
-		
 	}
 </script>
 
