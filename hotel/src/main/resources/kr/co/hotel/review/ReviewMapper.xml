@@ -62,16 +62,31 @@
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>
+<!-- 작성자 이원표 -->
+
+	 <!--객실평점평균 -->
+	<update id="roomUpdate" parameterType="int" >
+		UPDATE room 
+		SET 
+		avgScore = (SELECT ROUND(avg(review_score),1) FROM review WHERE room_no=#{room_no}) 
+		where room_no=#{room_no};
+	</update>
 	
-	<!-- 룸평균 
-	UPDATE room SET avgScore = (SELECT avg(reviewScore) FROM review WHERE room_no=#{room_no})
+	<!--호텔평점평균 -->
+	<update id="hotelUpdate" parameterType="int" >
+		UPDATE hotel SET avgScore = (SELECT ROUND(avg(avgScore),1) FROM room WHERE hotel_no=#{hotel_no}) 
+	</update>
 	
+	<!-- 객실 리뷰 카운트 -->
+	<update id="roomReviewCount">
+		UPDATE room SET totalReview = (SELECT COUNT(*) FROM review where room_no=#{room_no})
+	</update>
+	<!-- 호텔 리뷰 카운트 -->
+	<update id="hotelReviewCount">
+		UPDATE hotel SET totalReview = (SELECT COUNT(*) FROM review where hotel_no=#{hotel_no})
+	</update>
 	
-	호텔평균
-	UPDATE room SET avgScore = (SELECT avg(reviewScore) FROM review WHERE hotel_no=#{hotel_no}) -->
-	
-	
-	
+<!-- 작성자 이원표 -->	
 	
 	
 	

@@ -73,14 +73,19 @@ public class ReviewController {
 			r=true;
 		}
 		
-		//
-		/*if(service.호텔 전체평균 true) {
+		
+		if(service.avgScroe(vo.getRoom_no(), vo.getHotel_no())) {
 			
-			r=true
+			r=true;
 		}else {
-			r=false
+			r=false;
 		}
-		*/
+		if(service.reviewTotalCount(vo.getRoom_no(),vo.getHotel_no())) {
+			r=true;
+		}else {
+			r=false;
+		}
+		
 		
 		// 리뷰, 예약테이블의 review_status업데이트 여부, 이미지 등록 여부가 모두 완료되면 
 		if(r) {

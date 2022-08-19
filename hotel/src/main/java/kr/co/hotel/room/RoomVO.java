@@ -18,6 +18,9 @@ public class RoomVO {
 	private int room_price;
 	private int status;
 	
+	private double avgScore;
+	private int totalReview;
+	
 	private String filename_org;
 	private String filename_real;
 	private int image_order;
