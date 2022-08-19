@@ -88,4 +88,29 @@ public class GuestServiceImpl implements GuestService {
 	public boolean totalUpdate(GuestVO gvo) {
 		return gmapper.totalUpdate(gvo) >0 ?  true : false;
 	}
+	
+	@Override
+	public GuestVO deleteGuestInfo(GuestVO gvo) {
+		// update
+				GuestVO mv = gmapper.deleteGuestInfo(gvo);
+				if (mv != null) {
+					// 임시비밀번호 생성
+					// 영문두자리, 숫자두자리
+					String temp = "";
+					for (int i=0; i<2; i++) {
+						temp += (char)(Math.random()*26+65);
+					}
+					for (int i=0; i<3; i++) {
+						temp += (int)(Math.random()*9);
+					}
+					
+					// 임시비밀번호 update
+					gvo.setGuest_pwd(temp);
+					gmapper.fakeDelete(gvo);
+					
+					return mv;
+				} else {
+					return null;
+				}
+			}
 }
