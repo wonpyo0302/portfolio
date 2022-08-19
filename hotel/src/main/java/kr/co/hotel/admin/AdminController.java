@@ -1,13 +1,18 @@
 package kr.co.hotel.admin;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminController {
@@ -36,5 +41,24 @@ public class AdminController {
 		model.addAttribute("url", "/hotel/admin/login.do");
 		return "common/alert";
 	}
+	
+	@GetMapping("/admin/main/guestlist.do")
+	public String guestlist(AdminVO avo,HttpSession sess, Model model) {
+		System.out.println("=====================" + avo.getSword());
+		model.addAttribute("guestlist", aservice.guestListPaging(avo));
+		return "/admin/main/guestlist";
+	}
 
+	@GetMapping("/admin/main/couponcreate.do")
+	public String couponcreate(AdminVO avo,HttpSession sess, Model model) {
+		return "/admin/main/couponcreate";
+	}
+	
+	@GetMapping("/admin/main/idList.do")
+	public String idList(AdminVO avo, Model model ) {
+		Map map = new HashMap();
+		map.put("idsearch", avo.getSword());
+		model.addAttribute("data",aservice.guestList(avo));
+		return "/admin/main/idList";
+	}
 }

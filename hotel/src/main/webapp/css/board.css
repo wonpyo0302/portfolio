@@ -118,6 +118,56 @@ textarea{border:1px solid #cccccc;}
 #bbs .minW85{min-width:85px !important;}
 #bbs .minW95{min-width:95px !important;}
 
+/*게시판 폰트*/
+#bbs2 .w1{width:1% !important; min-width:10px;}
+#bbs2 .w2{width:2% !important; min-width:20px;}
+#bbs2 .w3{width:3% !important; min-width:50px;}
+#bbs2 .w4{width:4% !important;}
+#bbs2 .w5{width:5% !important;}
+#bbs2 .w6{width:6% !important;}
+#bbs2 .w7{width:7% !important; min-width:70px;}
+#bbs2 .w8{width:8% !important; min-width:80px;}
+#bbs2 .w9{width:9% !important;}
+#bbs2 .w10{width:10% !important; }
+#bbs2 .w11{width:11% !important; }
+#bbs2 .w12{width:12% !important;}
+#bbs2 .w13{width:13% !important;}
+#bbs2 .w14{width:14% !important;}
+#bbs2 .w15{width:15% !important;}
+#bbs2 .w17{width:17% !important;}
+#bbs2 .w18{width:18% !important;}
+#bbs2 .w19{width:19% !important;}
+#bbs2 .w20{width:20% !important;}
+#bbs2 .w23{width:23% !important;}
+#bbs2 .w24{width:24% !important;}
+#bbs2 .w25{width:25% !important;}
+#bbs2 .w27{width:27% !important;}
+#bbs2 .w28{width:28% !important;}
+#bbs2 .w30{width:30% !important;}
+#bbs2 .w32{width:32% !important;}
+#bbs2 .w35{width:35% !important;}
+#bbs2 .w40{width:40% !important;}
+#bbs2 .w41{width:41% !important;}
+#bbs2 .w43{width:43% !important;}
+#bbs2 .w47{width:47% !important;}
+#bbs2 .w49{width:49% !important;}
+#bbs2 .w50{width:50% !important;}
+#bbs2 .w50{width:52% !important;}
+#bbs2 .w55{width:55% !important;}
+#bbs2 .w60{width:60% !important;}
+#bbs2 .w70{width:70% !important;}
+#bbs2 .w80{width:80% !important;}
+#bbs2 .w85{width:85% !important;}
+#bbs2 .w90{width:90% !important;}
+#bbs2 .w98{width:98% !important;}
+#bbs2 .w100{width:100% !important;} 
+
+#bbs2 .minW60{min-width:60px !important;}
+#bbs2 .minW80{min-width:80px !important;}
+#bbs2 .minW85{min-width:85px !important;}
+#bbs2 .minW95{min-width:95px !important;}
+
+
 /* 버튼 */
 .btn_in,
 .btn_in *{display:inline-block;overflow:visible;position:relative;margin:0;padding:0;border:0;background:url(/hotel/image/admin/btn_bg.gif) no-repeat;font-size:11px; color:#797979;text-decoration:none !important;vertical-align:top;white-space:nowrap; font-weight:bold;}
@@ -138,6 +188,29 @@ textarea{border:1px solid #cccccc;}
 #bbs #blist .top_search table tbody th{background:#e7ecf2;  border-bottom:1px solid #a9aaaf; color:#255182;}
 #bbs #blist .top_search table tbody td{padding:5px 10px; background:none; border-bottom:1px solid #a9aaaf;}
 
+/*쿠폰게시판 시작 */
+#bbs2{position:relative; margin-bottom:50px; padding:0; width:70%;  color:#5e5e5e; float: left;}
+
+#bbs2 .entered_into{width:57.6%; margin:0 0 20px 0; padding:5px 1%; border:1px solid #c3c7ce; background:#f2f4f5;}
+
+#bbs2 #blist .top_search table{margin:0 0 20px 0;}
+#bbs2 #blist .top_search table{position:relative; width:50%; height:30%; border:1px solid #a9aaaf !important; color:#53728b; font-size:11px;}
+#bbs2 #blist .top_search table tbody td{text-align:left;}
+#bbs2 #blist .top_search table tbody th{background:#e7ecf2;  border-bottom:1px solid #a9aaaf; color:#255182;}
+#bbs2 #blist .top_search table tbody td{padding:5px 10px; background:none; border-bottom:1px solid #a9aaaf;}
+
+/*쿠폰게시판 시작 */
+#bbs3{position:relative;  margin-left:100px;  padding:0; width:70%;  color:#5e5e5e; float: left;}
+
+#bbs3 .entered_into{width:57.6%; margin:0 0 20px 0; padding:5px 1%; border:1px solid #c3c7ce; background:#f2f4f5;}
+
+#bbs3 #blist .top_search table{margin:0 0 20px 0;}
+#bbs3 #blist .top_search table{position:relative; width:50%; height:100%; border:1px solid #a9aaaf !important; color:#53728b; font-size:11px;}
+#bbs3 #blist .top_search table tbody td{text-align:left;}
+#bbs3 #blist .top_search table tbody th{background:#e7ecf2;  border-bottom:1px solid #a9aaaf; color:#255182;}
+#bbs3 #blist .top_search table tbody td{padding:5px 10px; background:none; border-bottom:1px solid #a9aaaf;}
+
+
 /*list ------------------------------------------------------------------------------------------------------------------------------------------------- */
 #bbs #blist{width:100%; margin:10px 0; padding:0; overflow:hidden;}
 #bbs #blist h3{margin:0 0 14px 0; padding:0 0 0 13px; background:url(/hotel/image/admin/h3_bullet.gif) no-repeat left center; color:#255182; font-size:16px; font-weight:bold;}
@@ -152,6 +225,22 @@ textarea{border:1px solid #cccccc;}
 #bbs #blist table tbody td{padding:13px 2px; text-align:center; /* font-weight:bold;  */background:url(/hotel/image/admin/blist_td_line.gif) repeat-y left top; border-bottom:1px solid #cccdd0;}
 #bbs #blist table tbody td.tdLine_l{padding:13px 2px; text-align:center;/*  font-weight:bold; */ background:url(/hotel/image/admin/blist_td_line.gif) repeat-y left top; border-bottom:1px solid #cccdd0;}
 #bbs #blist table tbody td.title{ text-align: left; padding-left:10px;  }
+
+/*쿠폰list ------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+#bbs2 #blist{width:50%; margin:10px 0; padding:0; overflow:hidden;}
+#bbs2 #blist h3{margin:0 0 14px 0; padding:0 0 0 13px; background:url(/hotel/image/admin/h3_bullet.gif) no-repeat left center; color:#255182; font-size:16px; font-weight:bold;}
+
+#bbs2 #blist table{position:relative; width:100%; border-top:#4a4b4f 2px solid; color:#53728b; font-size:11px;}
+
+#bbs2 #blist table thead{width:50%; color:#797979; background:#eeeff0;}
+#bbs2 #blist table thead th{position:relative;  padding:13px 2px; border-bottom:1px solid #ccced0; font-size:12px; background:url(/hotel/image/admin/blist_td_line.gif) repeat-y;}
+#bbs2 #blist table .frist{background-image:none !important;}
+#bbs2 #blist table .first{background-image:none !important;}
+
+#bbs2 #blist table tbody td{padding:13px 2px; text-align:center; /* font-weight:bold;  */background:url(/hotel/image/admin/blist_td_line.gif) repeat-y left top; border-bottom:1px solid #cccdd0;}
+#bbs2 #blist table tbody td.tdLine_l{padding:13px 2px; text-align:center;/*  font-weight:bold; */ background:url(/hotel/image/admin/blist_td_line.gif) repeat-y left top; border-bottom:1px solid #cccdd0;}
+#bbs2 #blist table tbody td.title{ text-align: left; padding-left:10px;  }
 
 /*공지*/
 #blist .point{ background:#f9f9f9;}
@@ -203,6 +292,13 @@ textarea{border:1px solid #cccccc;}
 #bbs #blist table.branchDayTable .blue{color:#0f24c4;}
 #bbs #blist table.branchDayTable .sky{color:#00a2dd;}
 #bbs #blist table.branchDayTable .red{color:#ff0000;}
+
+/* 쿠폰==색 ==*/
+#bbs2 #blist table.branchDayTable .black{color:#000;}
+#bbs2 #blist table.branchDayTable .green{color:#02530c;}
+#bbs2 #blist table.branchDayTable .blue{color:#0f24c4;}
+#bbs2 #blist table.branchDayTable .sky{color:#00a2dd;}
+#bbs2 #blist table.branchDayTable .red{color:#ff0000;}
 
 .bgBlack{display:inline-block; margin:0 1px; padding:0 1px; background:#000; color:#fff;}
 .bgGreen{display:inline-block; margin:0 1px; padding:0 1px; background:#02530c; color:#fff;}

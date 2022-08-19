@@ -2,8 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.hotel.admin.AdminMapper">
 
-<select id="adminLogin" parameterType="kr.co.hotel.admin.AdminVO" resultType="kr.co.hotel.admin.AdminVO">
-	SELECT * FROM admin WHERE admin_id=#{admin_id} ANd admin_pwd=#{admin_pwd} 
-</select>
+	<select id="adminLogin" parameterType="kr.co.hotel.admin.AdminVO" resultType="kr.co.hotel.admin.AdminVO">
+		SELECT * FROM admin WHERE admin_id=#{admin_id} ANd admin_pwd=#{admin_pwd} 
+	</select>
+	
+	<!-- 총 게시물 수 체크 -->
+	<select id="count" parameterType="kr.co.hotel.admin.AdminVO" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM guest 
+		<where>
+			guest_id like '%${sword}%'
+		</where>
+	</select>
+	
+	<!-- 목록보기페이징 -->
+	<select id="listPaging" parameterType="kr.co.hotel.admin.AdminVO" resultType="kr.co.hotel.guest.GuestVO">
+		select * from guest
+		<where>
+			guest_id like '%${sword}%'
+		</where>
+		LIMIT ${startIdx} , ${pageRow}
+	</select>
 
+	<!-- 목록보기 -->
+	<select id="list" parameterType="kr.co.hotel.admin.AdminVO" resultType="kr.co.hotel.guest.GuestVO">
+		select * from guest
+		<where>
+			guest_id like '%${sword}%'
+		</where>
+	</select>
+	
 </mapper>

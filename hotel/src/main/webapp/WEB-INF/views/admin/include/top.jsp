@@ -69,10 +69,10 @@ $(window).load(function(){
 		
 		<div id="menu">
   			<ul class="menu">
-  				<li><a href="<%=request.getContextPath()%>/admin/member/index.do" class="parent"><span>게스트관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>사용자관리</span></a></li>
+  				<li><a href="<%=request.getContextPath()%>/admin/main/guestlist.do" class="parent"><span>게스트관리</span></a></li>
+				<li><a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>호스트관리</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>승인신청리스트</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/board/create.do" class="parent"><span>쿠폰발급</span></a></li>
+				<li><a href="<%=request.getContextPath()%>/admin/main/couponcreate.do" class="parent"><span>쿠폰발급</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/board/index.do" class="parent"><span>게시판</span></a>
 					<div class="standard_left">
 					<ul>
