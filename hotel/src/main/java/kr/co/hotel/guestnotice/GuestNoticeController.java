@@ -34,13 +34,13 @@ public class GuestNoticeController {
 	}
 	
 	// 등록폼(관리자용)
-	@GetMapping("/hostnotice/write.do")
+	@GetMapping("/guestnotice/write.do")
 	public String write() {
 		return "guestnotice/write";
 	}
 	
 	// 등록처리(관리자용)
-	@PostMapping("/hostnotice/write.do")
+	@PostMapping("/guestnotice/write.do")
 	public String insert(Model model, GuestNoticeVO vo) {
 		model.addAttribute("data", service.insert(vo));
 		return "guestnotice/write";
