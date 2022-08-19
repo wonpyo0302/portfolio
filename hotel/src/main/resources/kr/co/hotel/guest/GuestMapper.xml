@@ -5,11 +5,11 @@
 <insert id="insert" parameterType="kr.co.hotel.guest.GuestVO">
 		INSERT INTO guest (
 		guest_id, guest_pwd, guest_email, guest_name, guest_hp,
-		guest_addr1, guest_addr2, guest_birth, g_joindate, g_accountno, g_bank, totalpoint, g_gender
+		guest_addr1, guest_addr2, guest_birth, g_joindate, g_accountno, g_bank, totalpoint, g_gender, guest_status
 		) VALUES (
 		#{guest_id},
 		md5(#{guest_pwd}),#{guest_email},#{guest_name},#{guest_hp},#{guest_addr1}, #{guest_addr2}, 
-		#{guest_birth},NOW(),#{g_accountno},#{g_bank}, #{totalpoint} , #{g_gender}
+		#{guest_birth},NOW(),#{g_accountno},#{g_bank}, #{totalpoint} , #{g_gender}, 0
 		)
 	</insert>
 	<select id="emailDupCheck" parameterType="string" resultType="int">	
@@ -23,30 +23,36 @@
 		SELECT COUNT(*) FROM guest WHERE guest_hp = #{guest_hp}
 	</select>
 	<select id="guestloginCheck" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
-		SELECT * FROM guest WHERE guest_id = #{guest_id} AND guest_pwd = md5(#{guest_pwd})
+		SELECT * FROM guest WHERE guest_id = #{guest_id} AND guest_pwd = md5(#{guest_pwd}) AND guest_status=0
 	</select>
 	<select id="findGuestEmail" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
-		SELECT * FROM guest WHERE guest_name=#{guest_name} AND guest_hp=#{guest_hp}
+		SELECT * FROM guest WHERE guest_name=#{guest_name} AND guest_hp=#{guest_hp} AND guest_status=0
 	</select>
 	
 	<select id="findGuestPwd" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
-		SELECT * FROM guest WHERE guest_id=#{guest_id} AND guest_hp=#{guest_hp} AND guest_email = #{guest_email}
+		SELECT * FROM guest WHERE guest_id=#{guest_id} AND guest_hp=#{guest_hp} AND guest_email = #{guest_email} AND guest_status=0
 	</select>
 	
 	<update id="updateTempGuestPwd" parameterType="kr.co.hotel.guest.GuestVO">
-		UPDATE guest SET guest_pwd = md5(#{guest_pwd}) WHERE guest_id=#{guest_id} AND guest_hp=#{guest_hp} AND guest_email = #{guest_email}
+		UPDATE guest SET guest_pwd = md5(#{guest_pwd}) WHERE guest_id=#{guest_id} AND guest_hp=#{guest_hp} AND guest_email = #{guest_email}  AND guest_status=0
 	</update>
 	<select id="myinfoLogin" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
 		SELECT * FROM guest 
-		WHERE guest_pwd = md5(#{guest_pwd}) AND guest_no = #{guest_no}
+		WHERE guest_pwd = md5(#{guest_pwd}) AND guest_no = #{guest_no}  AND guest_status=0
 	</select>
 	<update id="updatePwd" parameterType="kr.co.hotel.guest.GuestVO">
-		UPDATE guest SET guest_pwd = md5(#{guest_pwd}) WHERE guest_id=#{guest_id}
+		UPDATE guest SET guest_pwd = md5(#{guest_pwd}) WHERE guest_id=#{guest_id} AND guest_status=0
 	</update>
 	<update id="totalUpdate" parameterType="kr.co.hotel.guest.GuestVO">
 		UPDATE guest SET guest_email=#{guest_email}, guest_hp=#{guest_hp}, 
 		g_bank=#{g_bank}, g_accountno=#{g_accountno},guest_birth=#{guest_birth},
 		guest_addr1=#{guest_addr1},guest_addr2=#{guest_addr2}
-		WHERE guest_no=#{guest_no}
+		WHERE guest_no=#{guest_no} AND guest_status=0
+	</update>
+	<select id="deleteGuestInfo" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
+		SELECT * FROM guest WHERE guest_no=#{guest_no} AND guest_id=#{guest_id} AND guest_pwd=md5(#{guest_pwd}) AND guest_status=0
+	</select>
+	<update id="fakeDelete" parameterType="kr.co.hotel.guest.GuestVO">
+		UPDATE guest SET guest_pwd=md5(#{guest_pwd}) , guest_status=1 WHERE guest_no=#{guest_no}
 	</update>
 </mapper>

@@ -59,12 +59,12 @@ public class HotelController {
 		List<HotelVO> hotelImage = service.getHotelImage(vo.getHotel_no());//호텔사진 가져오기
 		model.addAttribute("hotelImage",hotelImage);
 		
-		
 		List<RoomVO> roomList = service.roomList(vo.getHotel_no()); //a호텔의 객실들
 		for (RoomVO list : roomList) {
 			list.setImageList(service.getRoomImage(list.getRoom_no()));
 		}
 		model.addAttribute("room",roomList);
+		System.out.println("===================="+roomList);
 		return "/main/hotelView";
 	}
 	

@@ -14,5 +14,10 @@ public interface ReviewMapper {
 	//예약테이블의 리뷰상태 업데이트
 	public int update_review_status(ReviewVO vo);
 	
-
+//이원표작성
+	boolean roomUpdate(int room_no);
+	boolean hotelUpdate(int hotel_no);
+	boolean roomReviewCount(int room_no);
+	boolean hotelReviewCount(int hotel_no);
+//--------------------------------------------------
 }

@@ -15,7 +15,7 @@
 	content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>게시판 등록</title>
+<title>FAQ</title>
 
 <!-- 아래부분 공통이니까 include -->
 <link rel="stylesheet" href="/hotel/css/reset.css" />
@@ -74,11 +74,11 @@
 			if ($(this).find(".text").css('display') == 'none') {
 				$(".text").slideUp("fast");
 				$(this).find(".text").slideDown("fast");  
-				$(".downbtn").attr("src", "/hotel/image/down.png"); 
-				$(this).find(".downbtn").attr("src", "/hotel/image/up.png");
+				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png"); 
+				$(this).find(".downbtn").attr("src", "/hotel/image/boardPic/up.png");
 			} else {
 				$(this).find(".text").slideUp("fast"); 
-				$(".downbtn").attr("src", "/hotel/image/down.png"); 
+				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png"); 
 			}
 		})
 	});
@@ -95,7 +95,7 @@
 			<br>
 			<form method="get" name="frm" id="frm" action="view.do">
 				<h6 class="sub_content" style="text-align: left">
-					<img src="/hotel/image/faq2.png" width="40px"> 자주 묻는 질문
+					<img src="/hotel/image/boardPic/faq2.png" width="40px"> 자주 묻는 질문
 					게시판입니다.
 				</h6>
 				<br> <br> <br> <br>
@@ -108,7 +108,7 @@
 								<c:if test="${faq.hfaq_type == 6}">
 									<li class="item">
 										<h5 class="Title">
-											[입점] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[입점] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/boardPic/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
 											<div class="text" id="text">${faq.hfaq_content}</div>
@@ -120,7 +120,7 @@
 								<c:if test="${faq.hfaq_type == 7}">
 									<li class="item">
 										<h5 class="Title">
-											[광고/제휴] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[광고/제휴] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/boardPic/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
 											<div class="text" id="text">${faq.hfaq_content}</div>
@@ -132,7 +132,7 @@
 								<c:if test="${faq.hfaq_type == 8}">
 									<li class="item">
 										<h5 class="Title">
-											[이용회원] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[이용회원] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/boardPic/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
 											<div class="text" id="text">${faq.hfaq_content}</div>
@@ -144,7 +144,7 @@
 								<c:if test="${faq.hfaq_type == 9}">
 									<li class="item">
 										<h5 class="Title">
-											[이용/기타] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/down.png" class="downbtn"> <span class="accIcon"></span>
+											[이용/기타] &nbsp; ${faq.hfaq_title } <img src="/hotel/image/boardPic/down.png" class="downbtn"> <span class="accIcon"></span>
 										</h5> <br>
 										<div>
 											<div class="text" id="text">${faq.hfaq_content}</div>

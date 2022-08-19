@@ -15,7 +15,7 @@
 	content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>게시판목록</title>
+<title>NOTICE</title>
 <link rel="stylesheet" href="/hotel/css/reset.css" />
 <link rel="stylesheet" href="/hotel/css/contents.css" />
 
@@ -38,8 +38,7 @@
 			<div class="bbs">
 				<table class="list">
 					<p>
-						<span><strong>총 ${data.totalCount}개</strong> |
-							${hostNoticeVO.page}/${data.totalPage}페이지</span>
+						<span><strong>총 ${data.totalCount}개</strong> |${hostNoticeVO.page}/${data.totalPage}페이지</span>
 					</p>
 					<caption>게시판 목록</caption>
 					<colgroup>

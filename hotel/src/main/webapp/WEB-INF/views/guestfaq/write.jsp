@@ -10,7 +10,7 @@
     <meta name="format-detection" content="telephone=no, address=no, email=no">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>게시판 등록</title>
+    <title>FAQ</title>
     
     <!-- 아래부분 공통이니까 include -->
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
@@ -76,12 +76,7 @@
                                 <textarea name="content" id="content" style="width:90%"></textarea>
                             </td>
                         </tr>
-                        <tr>
-                        	<th>첨부파일</th>
-                        	<td>
-                        		<input type="file" name="filename">
-                        	</td>
-                        </tr>
+                       
                         </tbody>
                     </table>
                     <div class="btnSet"  style="text-align:right;">

@@ -16,7 +16,7 @@
 	content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>게시판 등록</title>
+<title>Q&A</title>
 
 <!-- 아래부분 공통이니까 include -->
 <link rel="stylesheet" href="/hotel/css/reset.css" />
@@ -137,6 +137,22 @@
 						<a href="edit.do?gboard_no=${data.gboard_no }" class="btn">수정</a>
 						<a href="javascript:goDel(${data.gboard_no});" class="btn">삭제</a>
 						<a href="javascript:goList();" class="btn" style="text-align:right">목록 </a>
+					</div>
+					<div class="pagebox">
+						<div>
+							<p>이전글</p>
+							<p>
+								<a href="">${data.gboard_no}</a>
+							</p>							
+						
+						</div>
+						<div>
+							<p>다음글</p>
+							<p>
+								<a href=""></a>
+							</p>							
+						
+						</div>
 					</div>
 				</form>
 			</div>

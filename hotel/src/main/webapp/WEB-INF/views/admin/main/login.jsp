@@ -1,20 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page import="util.*" %>
 <html>
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
-    <meta name="format-detection" content="telephone=no, address=no, email=no">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <title>로그인</title>
-    <link rel="stylesheet" href="/hotel/css/reset.css"/>
-    <link rel="stylesheet" href="/hotel/css/contents.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <script>
+<script>
     	function adminLoginCheck() {
     		if($("#admin_id").val() == '') {
     			alert('아이디를 입력해 주세요');
@@ -87,29 +81,54 @@
     		return unescape(cookieValue);
     	}
     });
-    </script>
+</script>
 </head>
-<body>
-		<form action="login.do" method="post" id="adminlogin" name="adminlogin" onsubmit="return adminLoginCheck();">
-            <div class="sub">
-                <div class="size">
-                    <h3 class="sub_title">ADMIN 로그인</h3>
-                    
-                    <div class="member">
-                        <div class="box">
-                            <fieldset class="login_form">
-                                <ul>
-                                    <li><input type="text" id="admin_id" name="admin_id" placeholder="아이디"></li>
-                                    <li><input type="password" id="admin_pwd" name="admin_pwd" placeholder="비밀번호"></li>
-                                    <li><label><input type="checkbox" name="checkId" id="checkId"/> 아이디저장</label></li>
-                                </ul>
-                                <div class="login_btn"><input type="submit" value="로그인" alt="로그인" /></div>
-                            </fieldset>
-                        </div>
-                    </div>
-        
-                </div>
-            </div>
-        </form>
+<body >
+<div id="login">
+	<div class="title">
+		<h1>둘이놀까 <span>관리자모드</span></h1>
+		<p>관리자 로그인 후 이용가능합니다.</p>
+	</div>
+	<div class="login"> 
+	<form name="board" id="board" method="post" action="" onsubmit="return loginCheck();">
+		<fieldset>
+			<legend>관리자모드 로그인</legend>
+			<div class="bgBox">
+				<div class="infoBox">
+					<dl>
+						<dt>
+							<label for="id"><strong>아이디</strong></label>
+						</dt>
+						<dd>
+							<input type="text" id="admin_id" name="admin_id" value="" title="아이디를 입력해주세요." style="ime-mode:inactive"/>
+						</dd>
+					</dl>
+					<dl>
+						<dt>
+							<label for="password"><strong>비밀번호</strong></label>
+						</dt>
+						<dd>
+							<input type="password" id="admin_pwd" name="admin_pwd" value="" title="비밀번호를 입력해주세요." />
+						</dd>
+					</dl>
+				</div>
+				<!-- //infoBox -->
+				<input type="image" src="<%=request.getContextPath()%>/image/admin/member_login_btn.gif" alt="로그인" class="loginBtn" title="" />
+			</div>
+			<!-- //bgBox -->
+			<div class="joinList">
+				<input type="checkbox" name="checkId" id="checkId"/> <label for="reg">아이디 저장</label>
+			</div>
+			<!-- //joinList -->
+			<input type="hidden" name="url" id="url" value="<%//=url%>"/>
+			<input type="hidden" name="param" id="param" value="<%//=param%>"/>
+			<input type="hidden" name="ip" id="ip" value="<%=request.getRemoteAddr()%>"/>
+		</fieldset>
+	</form>
+	</div>
+	<div class="footer">
+		Copyrights (c) 2020 <a href="#" target="_blank">SAMPLE</a>. All Rights Reserved.  
+	</div>
+</div>
 </body>
 </html>

@@ -69,7 +69,7 @@
 					<ul class='paging'>
 					<!-- 이전페이지 -->
 					<c:if test="${data.prev == true }">
-						<li><a href="list.do?page=${data.startPage - 1 }&stype=${param.stype}&sword=${param.sword}"><</a></li>
+						<li><a href="list.do?page=${data.startPage - 1 }&stype=${param.stype}&sword=${param.sword}"></a></li>
 					</c:if>
 					<!-- 페이지별 -->
 						<c:forEach var="p" begin="${data.startPage}" end="${data.endPage }">

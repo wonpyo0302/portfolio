@@ -14,7 +14,7 @@
 	content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>게시판 등록</title>
+<title>NOTICE</title>
 
 <!-- 아래부분 공통이니까 include -->
 <link rel="stylesheet" href="/hotel/css/reset.css" />
@@ -50,7 +50,7 @@
 			<div class="bbs">
 				<form method="get" name="frm" id="frm" action="edit.do" enctype="multipart/form-data">
 					<input type="hidden" name="hnotice_no" value="${data.hnotice_no}">
-					<input type="hidden" name="host_no" value="${loginInfo.host_no}">
+					<input type="hidden" name="host_no" value="${loginInfo2.host_no}">
 					<table class="board_write">
 						<div class="title">
 						<tr>
