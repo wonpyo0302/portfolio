@@ -36,10 +36,19 @@
 			    <div class="swiper-button-prev"></div>
 			    <div class="swiper-pagination"></div>
 	  		</div>
+	  		<div id="room_infoScreen" style="vertical-align: middle; display: inline-block;">
+				<div id="roomAvgScroe" style="border: 1px solid black; display: inline-block;">
+					객실평점 : ${roomInfo.avgScore }
+				</div></br>
+				<div id="reserveBtn" style="border: 1px solid black; display: inline-block;">
+	  				<input type="button" value="이 객실 예약하러가기" onclick="location.href='/hotel/reserve/reserve2.do?=room_no=${roomInfo.room_no}&hotel_no=${roomInfo.hotel_no }&room_price=${roomInfo.room_price }'">
+	  			</div>
+			</div>
 	  	<div class="middleBox" style="text-align: center;">
 	  		<span>객실 안내/예약</span>
 	  	</div>
 		</div>
+
   	</div>
   	<div class="roomInfoDiv">
 	  	<div class="contentBox" >
@@ -53,6 +62,22 @@
 	  			가격 : ${roomInfo.room_price }
 	  		</div>
 	  	</div>
+  	</div>
+  	<div class="reviewDiv">
+  		<div id="reviewInfo" style="border: 1px solid black; text-align: center;">
+  			<span style="border: 1px solid #d3d3d3;">총 리뷰 수: ${roomInfo.totalReview}</span>
+  			<span>해당객실의 리뷰입니다.</span>
+  		</div>
+  		<c:forEach var="review" items="${review }">
+  		<div class="reviewBox">
+  			<div id="review_Title" style="display: inline-block; border: 1px solid #d3d3d3;">
+  				제목 : ${review.review_title }
+  			</div>
+  			<div id="review_Content" style="display: inline-block; border: 1px solid #d3d3d3;">
+  				내용 : ${review.review_content}
+  			</div>
+  		</div>
+  		</c:forEach>
   	</div>
   	
   	

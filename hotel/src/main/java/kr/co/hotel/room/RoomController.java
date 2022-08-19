@@ -29,6 +29,7 @@ public class RoomController {
 		System.out.println("==================="+model.getAttribute("roomInfo"));
 		List<RoomVO> roomList = service.getRoomImage(vo.getRoom_no());
 		model.addAttribute("roomImage",roomList);
+		model.addAttribute("review",service.getReviewList(vo.getRoom_no()));
 		return "/main/roomView";
 	}
 

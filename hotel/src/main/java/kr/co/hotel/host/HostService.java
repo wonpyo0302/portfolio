@@ -14,4 +14,5 @@ public interface HostService {
 	HostVO myinfoLogin(HostVO hvo);
 	int updatePwd(HostVO hvo);
 	boolean totalUpdate(HostVO hvo);
+	HostVO deleteHostInfo(HostVO hvo);
 }

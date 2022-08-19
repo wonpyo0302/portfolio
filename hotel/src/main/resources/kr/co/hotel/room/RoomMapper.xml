@@ -12,4 +12,9 @@
 		where r.room_no = im.no
 		and im.no = #{room_no} AND image_type = 'ROOM';
 	</select>
+	
+	<!-- 리뷰리스트 가져오기 -->
+	<select id="getReviewList" parameterType="int" resultType="kr.co.hotel.review.ReviewVO">
+		SELECT * FROM review WHERE room_no = #{room_no}
+	</select>
 </mapper>

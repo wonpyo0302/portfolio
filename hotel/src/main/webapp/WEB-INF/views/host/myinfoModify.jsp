@@ -77,6 +77,7 @@
 						</table>
                         <div class="btnSet" style="positon:relative; reft:50%;">
 							<input type="submit" class="bgGrayBtn" href="jacascript:;" onclick="updateSave();" />
+							<input type="button" onclick="location.href='deleteHostInfo.do'" value="회원탈퇴" />
 						</div>
               		</div>
               </div>

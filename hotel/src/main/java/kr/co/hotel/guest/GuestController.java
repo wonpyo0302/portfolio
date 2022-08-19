@@ -49,7 +49,7 @@ public class GuestController {
 		if (gservice.guestloginCheck(gvo, sess)) {
 			return "redirect:/main/main.do";
 		} else {
-			model.addAttribute("msg", "비밀번호를 확인해 주세요");
+			model.addAttribute("msg", "로그인정보를 확인해 주세요");
 			return "common/alert";
 		}
 	}
@@ -184,5 +184,21 @@ public class GuestController {
 			 model.addAttribute("msg","수정실패");
 			 return "common/alert";
 		 }
+	 }
+	 @GetMapping("/guest/deleteGuestInfo.do")
+	 public String deleteGuest() {
+		 return "guest/deleteGuest";
+	 }
+	 @PostMapping("/guest/deleteGuestInfo.do")
+	 public void deleteGuestInfo(HttpSession sess , GuestVO gvo, HttpServletResponse res) throws IOException {
+		 GuestVO myinfo =(GuestVO)sess.getAttribute("loginInfo");
+		 myinfo.setGuest_pwd(gvo.getGuest_pwd());
+		 boolean r=false;
+		 if(gservice.deleteGuestInfo(myinfo) != null) 
+			 r=true;
+			 PrintWriter out = res.getWriter();
+			 out.print(r);
+			 out.flush();
+		 		 
 	 }
 }

@@ -48,7 +48,7 @@ public class HostController {
 		if (hservice.HostloginCheck(hvo, sess)) {
 			return "redirect:/host/mypage.do";
 		} else {
-			model.addAttribute("msg", "비밀번호를 확인해 주세요");
+			model.addAttribute("msg", "로그인정보를 확인해 주세요");
 			return "common/alert";
 		}
 	}
@@ -177,5 +177,20 @@ public class HostController {
 			model.addAttribute("msg", "수정실패");
 			return "common/alert";
 		}
+	}
+	@GetMapping("/host/deleteHostInfo.do")
+	public String deleteHost() {
+		return "host/deleteHost";
+	}
+	@PostMapping("/host/deleteHostInfo.do")
+	public void deleteHostInfo(HttpSession sess, HostVO hvo, HttpServletResponse res) throws IOException{
+		HostVO myinfo = (HostVO)sess.getAttribute("loginInfo2");
+		myinfo.setHost_pwd(hvo.getHost_pwd());
+		boolean r=false;
+		if(hservice.deleteHostInfo(myinfo) != null)
+			r=true;
+			PrintWriter out = res.getWriter();
+			out.print(r);
+			out.flush();
 	}
 }
