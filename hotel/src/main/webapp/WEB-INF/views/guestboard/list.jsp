@@ -14,10 +14,25 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>게시판목록</title>
+<title>Q&A</title>
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
-    
+
+<style>
+
+#pagecount{
+	width: 300px;
+	padding : 10px;
+	text-align : left;	
+}
+
+#searchForm {
+	width: 300px;
+	padding : 10px;
+	text-align : right;
+}
+</style>
+
 <script>
 	function goWrite(){
 		<c:if test="${empty loginInfo}">
@@ -52,9 +67,21 @@
 			<br><br><br><br>
 			<div class="bbs">
 				<table class="list">
-					<p>
+					<div id="pagecount">
 						<span><strong>총 ${data.totalCount}개</strong> | ${guestBoardVO.page}/${data.totalPage}페이지</span> 
-					</p>
+					</div>
+					<div>
+					<form method="get" name="searchForm" id="searchForm" action="">
+						<span class="srchSelect"> <select id="stype" name="stype" class="dSelect" title="검색분류 선택">
+								<option value="all">전체</option>
+								<option value="title">제목</option>
+								<option value="contents">내용</option>
+						</select>
+						</span> 
+						<span class="searchWord"> <input type="text" id="sword" name="sword" placeholder="검색어를 입력하세요." title="검색어 입력"> 
+						<input type="button" id="" value="검색" title="검색">
+						</span>
+					</form>
 					<caption>게시판 목록</caption>
 					<colgroup>
 						<col width="80px" />
@@ -152,19 +179,7 @@
 				</div>
 				<!-- 페이지처리 -->
 
-				<div class="bbsSearch">
-					<form method="get" name="searchForm" id="searchForm" action="">
-						<span class="srchSelect"> <select id="stype" name="stype" class="dSelect" title="검색분류 선택">
-								<option value="all">전체</option>
-								<option value="title">제목</option>
-								<option value="contents">내용</option>
-						</select>
-						</span> 
-						<span class="searchWord"> <input type="text" id="sword" name="sword" placeholder="검색어를 입력하세요." title="검색어 입력"> 
-						<input type="button" id="" value="검색" title="검색">
-						</span>
-					</form>
-				</div>
+				
 			</div>
 		</div>
 	</div>

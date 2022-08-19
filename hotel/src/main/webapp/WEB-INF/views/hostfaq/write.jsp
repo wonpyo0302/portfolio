@@ -10,7 +10,7 @@
     <meta name="format-detection" content="telephone=no, address=no, email=no">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>게시판 등록</title>
+    <title>FAQ</title>
     
     <!-- 아래부분 공통이니까 include -->
     <link rel="stylesheet" href="/hotel/css/reset.css"/>

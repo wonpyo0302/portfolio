@@ -12,7 +12,7 @@
 	content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>게시판 등록</title>
+<title>Q&A</title>
 
 <!-- 아래부분 공통이니까 include -->
 <link rel="stylesheet" href="/hotel/css/reset.css" />
@@ -68,7 +68,7 @@
 			<br>
 			<div class="bbs">
 				<form method="post" name="frm" id="frm" action="../board/insert.do" enctype="multipart/form-data">
-					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
+					<input type="hidden" name="host_no" value="${loginInfo2.host_no}">
 					<table class="board_write">
 						<tbody>
 							<div class="container">
