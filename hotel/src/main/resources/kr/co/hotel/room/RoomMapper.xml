@@ -6,4 +6,15 @@
 		SELECT * FROM room WHERE room_no = #{room_no}
 	</select>
 
+	<!-- room_no에 해당하는 이미지 셀렉 -->
+	<select id="getRoomImage" parameterType="int" resultType="kr.co.hotel.room.RoomVO">
+		SELECT * FROM room r, image im
+		where r.room_no = im.no
+		and im.no = #{room_no} AND image_type = 'ROOM';
+	</select>
+	
+	<!-- 리뷰리스트 가져오기 -->
+	<select id="getReviewList" parameterType="int" resultType="kr.co.hotel.review.ReviewVO">
+		SELECT * FROM review WHERE room_no = #{room_no}
+	</select>
 </mapper>

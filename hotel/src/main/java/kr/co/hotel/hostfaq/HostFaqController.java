@@ -13,13 +13,7 @@ public class HostFaqController {
 	
 	@Autowired
 	HostFaqService service;
-	/*
-	 * // 목록
-	 * 
-	 * @GetMapping("/faq/list.do") public String list(Model model, GuestFaqVO vo) {
-	 * model.addAttribute("data", service.list(vo)); return "faq/list"; }
-	 */
-	
+
 	// 조회
 	@GetMapping("/hostfaq/view.do")
 	public String view(Model model, HostFaqVO vo) {
@@ -29,18 +23,18 @@ public class HostFaqController {
 		return "hostfaq/view";
 	}
 	
-	// 등록폼
+	// 등록폼(관리자용)
 	@GetMapping("/hostfaq/write.do")
 	public String write() {
 		return "hostfaq/write";
 	}
 	
-	// 등록처리
+	// 등록처리(관리자용)
 	@PostMapping("/hostfaq/write.do")
 	public String insert(Model model, HostFaqVO vo) {
 		model.addAttribute("data", service.insert(vo));
 		return "hostfaq/write";
 	}
-
+	
 	
 }

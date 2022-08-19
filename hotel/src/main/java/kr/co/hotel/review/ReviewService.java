@@ -11,4 +11,9 @@ public interface ReviewService {
 	
 	//리뷰 작성
 	public boolean insert(ReviewVO vo);
+
+	//이원표작성 /평점평균 및 리뷰 총 갯수 구하기
+	boolean avgScroe(int room_no, int hotel_no);
+	boolean reviewTotalCount(int room_no, int hotel_no);
+	//--------------------------------------------------
 }

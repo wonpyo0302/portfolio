@@ -138,6 +138,22 @@
 						<a href="javascript:goDel(${data.gboard_no});" class="btn">삭제</a>
 						<a href="javascript:goList();" class="btn" style="text-align:right">목록 </a>
 					</div>
+					<div class="pagebox">
+						<div>
+							<p>이전글</p>
+							<p>
+								<a href="">${data.gboard_no}</a>
+							</p>							
+						
+						</div>
+						<div>
+							<p>다음글</p>
+							<p>
+								<a href=""></a>
+							</p>							
+						
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>

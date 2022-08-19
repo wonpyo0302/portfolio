@@ -32,5 +32,28 @@ public class ReviewServiceImpl implements ReviewService {
 		return r ;
 	}
 
+	//이원표작성
+	//호텔 객실 전체 평점 업데이트
+	@Override
+	public boolean avgScroe(int room_no, int hotel_no) {
+		boolean r= false;
+		if(mapper.roomUpdate(room_no)&&mapper.hotelUpdate(hotel_no)) {
+			r=true;
+		}
+		return r;
+	}
+
+
+	@Override
+	public boolean reviewTotalCount(int room_no, int hotel_no) {
+		boolean r = false;
+		if(mapper.hotelReviewCount(hotel_no)&&mapper.roomReviewCount(room_no)) {
+			r=true;
+		}
+		return r;
+	}
+//---------------------------------------------------------------------	
+
+	
 
 }

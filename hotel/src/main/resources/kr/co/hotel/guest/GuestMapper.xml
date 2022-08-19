@@ -49,4 +49,10 @@
 		guest_addr1=#{guest_addr1},guest_addr2=#{guest_addr2}
 		WHERE guest_no=#{guest_no}
 	</update>
+	<select id="deleteGuestInfo" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
+		SELECT * FROM guest WHERE guest_no=#{guest_no} AND guest_id=#{guest_id} AND guest_pwd=md5(#{guest_pwd})
+	</select>
+	<update id="fakeDelete" parameterType="kr.co.hotel.guest.GuestVO">
+		UPDATE guest SET guest_pwd=md5(#{guest_pwd}) WHERE guest_no=#{guest_no}
+	</update>
 </mapper>

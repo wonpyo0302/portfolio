@@ -15,4 +15,6 @@ public interface GuestMapper {
 	GuestVO myinfoLogin(GuestVO gvo);
 	int updatePwd(GuestVO gvo);
 	int totalUpdate(GuestVO gvo);
+	GuestVO deleteGuestInfo(GuestVO gvo);
+	int fakeDelete(GuestVO gvo);
 }
