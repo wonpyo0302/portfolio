@@ -43,7 +43,7 @@
 		SELECT * ,
 			(SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice,
 			(SELECT filename_org FROM image WHERE no = #{hotel_no} limit 1) AS filename
-		FROM hotel h LEFT JOIN favorit f
+		FROM hotel h LEFT JOIN favorite f
 		ON h.hotel_no = f.hotel_no LEFT JOIN review r
 		ON f.hotel_no = r.hotel_no
 		<where>
@@ -85,7 +85,7 @@
 	<!-- 검색 count -->
 	<select id="searchCount" parameterType ="kr.co.hotel.main.HotelVO" resultType="int">
 		SELECT COUNT(*) 
-		FROM hotel h LEFT JOIN favorit f
+		FROM hotel h LEFT JOIN favorite f
 		ON h.hotel_no = f.hotel_no LEFT JOIN review r
 		ON f.hotel_no = r.hotel_no
 		<where>

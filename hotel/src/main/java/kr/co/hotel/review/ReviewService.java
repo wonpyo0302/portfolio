@@ -16,4 +16,6 @@ public interface ReviewService {
 	boolean avgScroe(int room_no, int hotel_no);
 	boolean reviewTotalCount(int room_no, int hotel_no);
 	//--------------------------------------------------
+	
+	public Map index(ReviewVO vo);
 }

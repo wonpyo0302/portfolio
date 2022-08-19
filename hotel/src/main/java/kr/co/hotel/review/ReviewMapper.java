@@ -1,7 +1,10 @@
 package kr.co.hotel.review;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
+import kr.co.hotel.HRRegister.ImageVO;
 import kr.co.hotel.reserve.ReserveVO;
 
 @Mapper
@@ -14,10 +17,18 @@ public interface ReviewMapper {
 	//예약테이블의 리뷰상태 업데이트
 	public int update_review_status(ReviewVO vo);
 	
-//이원표작성
+//이원표작성(평점 관련 메소드, 리뷰카운트)
 	boolean roomUpdate(int room_no);
 	boolean hotelUpdate(int hotel_no);
 	boolean roomReviewCount(int room_no);
 	boolean hotelReviewCount(int hotel_no);
 //--------------------------------------------------
+	
+	public int count(ReviewVO vo);
+	
+	public List<ReviewVO> list(ReviewVO vo);
+	
+	public ImageVO get_review_img (int review_no);
+	
+	
 }
