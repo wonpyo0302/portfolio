@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@include file="/WEB-INF/views/includes/H_header.jsp"%>
+<%@include file="/WEB-INF/views/includes/G_header.jsp"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -14,7 +14,7 @@
 	content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>NOTICE</title>
+<title>게시판 등록</title>
 
 <!-- 아래부분 공통이니까 include -->
 <link rel="stylesheet" href="/hotel/css/reset.css" />
@@ -40,41 +40,45 @@
 			<h3 class="sub_title" style="text-align: left">공지사항</h3>
 			<br>
 			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/boardPic/notice.png" width="60px"> 호스트
-				전용 공지사항 게시판입니다.
+				<img src="/hotel/image/boardPic/notice.png" width="60px"> 게스트 전용 공지사항
+				게시판입니다.
 			</h6>
-			<br> <br> <br> <br>
+			<br>
+			<br>
+			<br>
+			<br>
 			<div class="bbs">
-				<form method="get" name="frm" id="frm" action="edit.do"
-					enctype="multipart/form-data">
-					<input type="hidden" name="hnotice_no" value="${data.hnotice_no}">
-					<input type="hidden" name="host_no" value="${loginInfo2.host_no}">
+				<form method="get" name="frm" id="frm" action="edit.do" enctype="multipart/form-data">
+					<input type="hidden" name="gnotice_no" value="${data.gnotice_no}">
+					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
 					<table class="board_write">
 						<div class="title">
-							<tr>
-								<th>제목</th>
-								<td>${data.hnotice_title }</td>
-								<th>등록일자</th>
-								<td class="date" style="width: 35%"><fmt:formatDate
-										value="${data.hnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
-							</tr>
-							<tr>
-								<th>작성자</th>
-								<td>관리자</td>
-								<th>수정일자</th>
-								<td class="date" style="width: 150px"><fmt:formatDate
-										value="${data.hnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
-							</tr>
-							<tr>
-								<th>내용</th>
-								<td colspan="3" style="width: 600px">${data.hnotice_content}</td>
-							</tr>
-							<tr>
-								<th>첨부파일</th>
-								<td colspan="3"><a
-									href="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}"
-									target="_blank"> ${data.filename_org } </a></td>
-							</tr>
+						<tr>
+							<th>제목</th>
+							<td>${data.gnotice_title }</td>
+							<th>등록일자</th>
+							<td class="date"  style="width: 35%"><fmt:formatDate
+									value="${data.gnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+						</tr>
+						<tr>
+							<th>작성자</th>
+							<td>관리자</td>
+							<th>수정일자</th>
+							<td class="date" style="width: 150px"><fmt:formatDate
+									value="${data.gnotice_regdate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td colspan="3" style="width: 600px">${data.gnotice_content}</td>
+						</tr>
+						<tr>
+							<th>첨부파일</th>
+							<td colspan="3">
+							<a href ="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}" target="_blank">
+									${data.filename_org }
+								</a>
+								</td>
+						</tr>
 						</div>
 					</table>
 					<div class="btnSet" style="text-align: right;">
@@ -82,16 +86,10 @@
 					</div>
 					<div class="pagebox">
 						<div>
-							<p>
-								<a href="view.do?hnotice_no=${prev.hnotice_no}">이전글 |
-									${prev.hnotice_title }</a>
-							</p>
+							<p><a href="view.do?gnotice_no=${prev.rownum}">이전글 | ${prev.gnotice_title }</a></p>							
 						</div>
 						<div>
-							<p>
-								<a href="view.do?hnotice_no=${next.hnotice_no}">다음글 |
-									${next.hnotice_title }</a>
-							</p>
+							<p><a href="view.do?gnotice_no=${next.rownum}">다음글 | ${next.gnotice_title }</a></p>
 						</div>
 					</div>
 				</form>

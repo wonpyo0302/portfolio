@@ -48,6 +48,32 @@
 		SELECT * FROM hostnotice WHERE hnotice_no = #{hnotice_no}
 	</select>
 	
+	<!-- 현재글 rownum -->
+	<select id="nowRownum" parameterType="kr.co.hotel.hostnotice.HostNoticeVO" resultType="kr.co.hotel.hostnotice.HostNoticeVO">
+		SELECT * FROM (
+			SELECT row_number() OVER (ORDER BY fix DESC, hnotice_regdate DESC) AS rownum, hnotice_no, hnotice_title FROM hostnotice
+			) AS now 
+			WHERE hnotice_no = #{hnotice_no};
+	</select>
+	
+	<!-- 이전글 rownum -->
+	<select id="prevRownum" parameterType="kr.co.hotel.hostnotice.HostNoticeVO" resultType="kr.co.hotel.hostnotice.HostNoticeVO">
+		SELECT * FROM (
+			SELECT row_number() OVER (ORDER BY fix DESC, hnotice_regdate DESC) AS rownum, hnotice_no, hnotice_title FROM hostnotice
+			) AS prev 
+			WHERE rownum = #{rownum}-1;
+	</select>
+	
+	<!-- 다음글 rownum -->
+	<select id="nextRownum" parameterType="kr.co.hotel.hostnotice.HostNoticeVO" resultType="kr.co.hotel.hostnotice.HostNoticeVO">
+		SELECT * FROM (
+			SELECT row_number() OVER (ORDER BY fix DESC, hnotice_regdate DESC) AS rownum, hnotice_no, hnotice_title FROM hostnotice
+			) AS next 
+			WHERE rownum = #{rownum}+1;
+	</select>
+
+	
+	
 	<!-- 조회수 1 증가 처리 -->
 	<update id="updateViewcount" parameterType="int">
 		UPDATE hostnotice SET hnotice_viewcount = hnotice_viewcount + 1 WHERE hnotice_no = #{hnotice_no}

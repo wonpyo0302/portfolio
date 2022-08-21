@@ -61,4 +61,8 @@ public class AdminController {
 		model.addAttribute("data",aservice.guestList(avo));
 		return "/admin/main/idList";
 	}
+	
+	
+	
+	
 }

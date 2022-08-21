@@ -65,7 +65,7 @@
 							<td>관리자</td>
 							<th>수정일자</th>
 							<td class="date" style="width: 150px"><fmt:formatDate
-									value="${data.gnotice_regdate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
+									value="${data.gnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 						</tr>
 						<tr>
 							<th>내용</th>
@@ -83,6 +83,15 @@
 					</table>
 					<div class="btnSet" style="text-align: right;">
 						<a class="btn" href="javascript:goList();">목록 </a>
+					</div>
+					<div class="pagebox">
+						<div>
+							<p><a href="view.do?gnotice_no=${prev.gnotice_no}">이전글 | ${prev.gnotice_title }</a></p>							
+						</div>
+						<div>
+							<p><a href="view.do?gnotice_no=${next.gnotice_no}">다음글 | ${next.gnotice_title }</a></p>
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>

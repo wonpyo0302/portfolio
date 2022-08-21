@@ -14,6 +14,8 @@ public class HostNoticeVO {
 	int hnotice_viewcount;
 	
 	int fix; // 게시물 고정 1=고정
+	int rownum;
+	
 	
 	private String filename_org;
 	private String filename_real;
@@ -24,6 +26,8 @@ public class HostNoticeVO {
 	
 	private String sword; //검색어
 	private String stype; //검색타입
+	
+	
 	
 	
 	public HostNoticeVO () {
