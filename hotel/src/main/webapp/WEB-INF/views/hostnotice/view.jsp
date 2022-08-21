@@ -30,6 +30,25 @@
 	function goList() {
 		location.href = "list.do";
 	}
+	
+
+	// 카카오톡 공유
+	Kakao.init('7316461b564393db0543f1e130e426e9'); // 앱 키
+	function share() {
+		Kakao.Share.createDefaultButton({
+					container : '#create-kakaotalk-sharing-btn',
+					objectType : 'feed',
+					content : {
+						title : '${hnotice_title}',
+						description : '${hnotice_content}',
+						imageUrl : 'http://localhost:8080/hotel/image/boardPic/notice.png',
+						link : {
+							mobileWebUrl : 'http://localhost:8080/hotel/hostboard/view.do?hnotice_no=${hnotice_no}',
+							webUrl : 'http://localhost:8080/hotel/hostboard/view.do?hnotice_no=${hnotice_no}',
+						},
+					}
+				})
+	}
 </script>
 
 </head>
@@ -48,7 +67,7 @@
 				<form method="get" name="frm" id="frm" action="edit.do"
 					enctype="multipart/form-data">
 					<input type="hidden" name="hnotice_no" value="${data.hnotice_no}">
-					<input type="hidden" name="host_no" value="${loginInfo2.host_no}">
+					<input type="hidden" name="host_no" value="${loginInfo.host_no}">
 					<table class="board_write">
 						<div class="title">
 							<tr>
@@ -58,6 +77,12 @@
 								<td class="date" style="width: 35%"><fmt:formatDate
 										value="${data.hnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 							</tr>
+							<!-- 카카오톡 공유 버튼 -->
+							<div class="btnSet" style="text-align: right;">
+								<a id="create-kakaotalk-sharing-btn" href="javascript:share();">
+									<img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" width="30px" alt="카카오톡 공유 보내기 버튼" />
+								</a>
+							</div>
 							<tr>
 								<th>작성자</th>
 								<td>관리자</td>
@@ -80,19 +105,26 @@
 					<div class="btnSet" style="text-align: right;">
 						<a class="btn" href="javascript:goList();">목록 </a>
 					</div>
+
+
+					<br>
+					<br>
+					<br>
+					<br>
+					<hr>
 					<div class="pagebox">
 						<div>
 							<p>
-								<a href="view.do?hnotice_no=${prev.hnotice_no}">이전글 |
-									${prev.hnotice_title }</a>
+								<a href="view.do?hnotice_no=${next.hnotice_no}"><img src="/hotel/image/boardPic/up.png" width="20px"> 다음글 | ${next.hnotice_title }</a>
 							</p>
 						</div>
+						<hr>
 						<div>
 							<p>
-								<a href="view.do?hnotice_no=${next.hnotice_no}">다음글 |
-									${next.hnotice_title }</a>
+								<a href="view.do?hnotice_no=${prev.hnotice_no}"><img src="/hotel/image/boardPic/down.png" width="20px"> 이전글 | ${prev.hnotice_title }</a>
 							</p>
 						</div>
+						<hr>
 					</div>
 				</form>
 			</div>
