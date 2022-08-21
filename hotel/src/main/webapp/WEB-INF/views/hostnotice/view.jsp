@@ -24,6 +24,18 @@
 <script src="/hotel/js/function.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- 카카오톡 공유하기 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+
+<style>
+.link-icon { position: relative; display: inline-block; width: auto;  font-size: 14px; font-weight: 500; color: #333; margin-right: 10px; padding-top: 50px; }
+.link-icon.twitter { background-image: url(/hotel/image/boardPic/icon-twitter.png); background-repeat: no-repeat; }
+.link-icon.facebook { background-image: url(/hotel/image/boardPic/icon-facebook.png); background-repeat: no-repeat; } 
+.link-icon.kakao { background-image: url(/hotel/image/boardPic/icon-kakao.png); background-repeat: no-repeat; }
+
+</style>
+
 
 <script>
 	// 목록가기
@@ -34,13 +46,13 @@
 
 	// 카카오톡 공유
 	Kakao.init('7316461b564393db0543f1e130e426e9'); // 앱 키
-	function share() {
+	function shareKakao() {
 		Kakao.Share.createDefaultButton({
-					container : '#create-kakaotalk-sharing-btn',
+					container : '#btnKakao',
 					objectType : 'feed',
 					content : {
-						title : '${hnotice_title}',
-						description : '${hnotice_content}',
+						title : '나와라 타이틀 ${hnotice_title}',
+						description : '나와라 내용 ${hnotice_content}',
 						imageUrl : 'http://localhost:8080/hotel/image/boardPic/notice.png',
 						link : {
 							mobileWebUrl : 'http://localhost:8080/hotel/hostboard/view.do?hnotice_no=${hnotice_no}',
@@ -49,7 +61,27 @@
 					}
 				})
 	}
+	
+	// 트위터, 페이스북 공유
+	function shareTwitter() {
+	    var sendText = "둘이놀까"; // 전달할 텍스트
+	    var sendUrl = "http://localhost:8080/hotel/hostboard/view.do?hnotice_no=${hnotice_no}"; // 전달할 URL
+	    window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
+	}
+	
+	
+	function shareFacebook() {
+	    var sendUrl = "http://localhost:8080/hotel/hostboard/view.do?hnotice_no=${hnotice_no}"; // 전달할 URL
+	    window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+	}
+
+	
 </script>
+
+
+
+
+
 
 </head>
 <body>
@@ -77,12 +109,16 @@
 								<td class="date" style="width: 35%"><fmt:formatDate
 										value="${data.hnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 							</tr>
-							<!-- 카카오톡 공유 버튼 -->
+							
+							<!-- 카카오톡, 트위터, 페이스북 공유 버튼 -->
 							<div class="btnSet" style="text-align: right;">
-								<a id="create-kakaotalk-sharing-btn" href="javascript:share();">
-									<img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" width="30px" alt="카카오톡 공유 보내기 버튼" />
-								</a>
+							<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();">카카오톡</a>    
+								<!-- <a id="create-kakaotalk-sharing-btn" href="javascript:share();"> <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" width="30px" alt="카카오톡 공유 보내기 버튼" /> </a>  -->
+								<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">트위터</a> 
+								<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">페이스북</a>
+
 							</div>
+
 							<tr>
 								<th>작성자</th>
 								<td>관리자</td>
@@ -115,13 +151,13 @@
 					<div class="pagebox">
 						<div>
 							<p>
-								<a href="view.do?hnotice_no=${next.hnotice_no}"><img src="/hotel/image/boardPic/up.png" width="20px"> 다음글 | ${next.hnotice_title }</a>
+								<a href="view.do?hnotice_no=${next.hnotice_no}"><img src="/hotel/image/boardPic/up.png" width="20px"> 다음글  | ${next.hnotice_title }</a>
 							</p>
 						</div>
 						<hr>
 						<div>
 							<p>
-								<a href="view.do?hnotice_no=${prev.hnotice_no}"><img src="/hotel/image/boardPic/down.png" width="20px"> 이전글 | ${prev.hnotice_title }</a>
+								<a href="view.do?hnotice_no=${prev.hnotice_no}"><img src="/hotel/image/boardPic/down.png" width="20px"> 이전글  | ${prev.hnotice_title }</a>
 							</p>
 						</div>
 						<hr>
