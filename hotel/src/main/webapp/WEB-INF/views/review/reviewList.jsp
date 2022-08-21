@@ -30,15 +30,42 @@
 	$(function() {
 		getReview();
 		
-		
 	})//$(function(){})-end
+	
+	function del(review_no){
+		$.ajax({
+			type:"post",
+			url:"../review/del.do",
+			data:{review_no:review_no},
+			error:function(er){
+				alert("ERROR");
+			},
+			success:function(){
+				alert(review_no+"가 삭제되었습니다");
+				window.location.reload();
+			}
+		})
+	}
+	
+	function modi(review_no){
+		$("#"+review_no).hide();
+		$("#modi"+review_no).show();
+		
+		temp_html="<div>수정 area </div>"
+		
+	$("#html"+review_no).html(temp_html);
+	}
 
 </script>
 <body style="padding:50px;">
-	<div style="text-align: center; padding:75px;">
+	<div class="container"style="text-align: center; padding:75px;">
 		<h1>내가 쓴 리뷰s</h1>
-	</div>
-	<div id="reviewArea"></div>
+	</div>	
+		<div >
+			<div id="reviewArea"></div>
+		</div>
+
+	
 	
 
 </body>
