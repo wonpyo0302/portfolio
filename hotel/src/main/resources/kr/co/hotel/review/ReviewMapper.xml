@@ -2,12 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.hotel.review.ReviewMapper">  
 
-	<select id="count" parameterType="kr.co.hotel.room.RoomVO" resultType="java.lang.Integer">
+	<select id="count" parameterType="kr.co.hotel.review.ReviewVO" resultType="java.lang.Integer">
 	<!-- 테이블 명이 변수로 들어갈수 있음 -->
-		select count(*) from room
-		
+		select count(*) from review
 		<where>
-			host_no = #{host_no}
+			guest_no = #{guest_no}
 			<if test="stype != null and stype !='' ">
 				<if test="stype != 'all' ">
 					${stype} like '%${sword}%'
@@ -21,11 +20,11 @@
 	</select>
 	
 	
-	<select id="list" parameterType="kr.co.hotel.room.RoomVO" resultType="kr.co.hotel.room.RoomVO">
+	<select id="list" parameterType="kr.co.hotel.review.ReviewVO" resultType="kr.co.hotel.review.ReviewVO">
 
-			select * from room
+			select * from review
 				<where>
-					host_no = #{host_no}
+					guest_no = #{guest_no}
 					<if test="stype != null and stype !='' ">
 						<if test="stype != 'all' ">
 							${stype} like '%${sword}%'
@@ -36,7 +35,7 @@
 				    	</if>
 					</if>
 				</where>
-			order by room_no desc
+			order by review_no desc
 			limit ${startIdx}, ${pageRow}
 	
 	</select>
@@ -88,9 +87,6 @@
 	
 <!-- 작성자 이원표 -->	
 	
-	
-	
-	
 	<!--  -->
 	<update id="update_review_status" parameterType="kr.co.hotel.review.ReviewVO">
 		UPDATE reserv
@@ -98,6 +94,12 @@
 		review_status = 1
 		WHERE reserv_no = #{reserv_no}
 	</update>
+	
+	<select id="get_review_img" parameterType="int" resultType="kr.co.hotel.HRRegister.ImageVO">
+		select * from image 
+		where no=#{no} 
+		and image_type='REVIEW'
+	</select>
 	 
 
 </mapper>

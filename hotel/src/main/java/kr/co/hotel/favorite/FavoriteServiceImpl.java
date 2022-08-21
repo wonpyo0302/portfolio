@@ -1,4 +1,4 @@
-package kr.co.hotel.review;
+package kr.co.hotel.favorite;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,57 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.hotel.HRRegister.ImageVO;
-import kr.co.hotel.favorite.FavoriteVO;
-import kr.co.hotel.reserve.ReserveVO;
 
 @Service
-public class ReviewServiceImpl implements ReviewService {
+public class FavoriteServiceImpl implements FavoriteService {
 	@Autowired 
-	ReviewMapper mapper;
-
+	FavoriteMapper mapper;
 	
 	@Override
-	public ReserveVO get_reserve(ReviewVO vo) {
-		return mapper.get_reserve(vo);
-	}
-
-
-	@Override
-	public boolean insert(ReviewVO vo) {
-		boolean r = false;
-		if(mapper.insert(vo)>0 ? true:false) {
-			if(mapper.update_review_status(vo)>0) {
-				r = true;
-			}
-		}
-		return r ;
-	}
-
-	//이원표작성
-	//호텔 객실 전체 평점 업데이트
-	@Override
-	public boolean avgScroe(int room_no, int hotel_no) {
-		boolean r= false;
-		if(mapper.roomUpdate(room_no)&&mapper.hotelUpdate(hotel_no)) {
-			r=true;
-		}
-		return r;
-	}
-
-
-	@Override
-	public boolean reviewTotalCount(int room_no, int hotel_no) {
-		boolean r = false;
-		if(mapper.hotelReviewCount(hotel_no)&&mapper.roomReviewCount(room_no)) {
-			r=true;
-		}
-		return r;
-	}
-//---------------------------------------------------------------------	
-
-
-	@Override
-	public Map index(ReviewVO vo) {
+	public Map index(FavoriteVO vo) {
 		int totalCount = mapper.count(vo);//총개시물 수
 		//총 페이지 수
 		int totalPage = totalCount / vo.getPageRow();
@@ -68,15 +25,18 @@ public class ReviewServiceImpl implements ReviewService {
 		int startIdx = (vo.getPage()-1)*vo.getPageRow();
 		vo.setStartIdx(startIdx);
 		
-		List<ReviewVO> list = mapper.list(vo);
-		//FavoriteVO 안에 ImageVO가 있음, 
+		List<FavoriteVO> list = mapper.list(vo);
+		//FavoriteVO 안에 List<ImageVO>가 있음, 
 		
 		
 		for(int i=0; i<list.size(); i++) {
 			//해당 호텔의 이미지 리스트를 가져옴
-			ImageVO img = mapper.get_review_img(list.get(i).getReview_no());
-			list.get(i).setImg(img);
+			List<ImageVO> imgList = mapper.get_hotel_img(list.get(i).getHotel_no());
+			list.get(i).setImageList(imgList);
 			//해당 호텔의 총 리뷰 개수를 가져옴
+			int totalRevCnt = mapper.get_Review_Count(list.get(i).getHotel_no());
+			System.out.println("리뷰카운트 : "+ totalRevCnt);
+			list.get(i).setTotalReview(totalRevCnt);
 		}
 		 
 		
@@ -99,6 +59,16 @@ public class ReviewServiceImpl implements ReviewService {
 		return map;
 	}
 
-	
+	@Override
+	public int insert(FavoriteVO vo) {
+		
+		return mapper.insert(vo);
+	}
+
+	@Override
+	public int delete(FavoriteVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.delete(vo);
+	}
 
 }
