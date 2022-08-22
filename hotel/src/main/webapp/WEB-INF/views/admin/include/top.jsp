@@ -73,7 +73,7 @@ $(window).load(function(){
   				<li><a href="<%=request.getContextPath()%>/admin/main/guestlist.do" class="parent"><span>게스트관리</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/main/hostList.do" class="parent"><span>호스트관리</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/main/couponcreate.do" class="parent"><span>쿠폰발급</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/main/guestboard/notice/list.do" class="parent"><span>게시판</span></a>
+				<li><a href="<%=request.getContextPath()%>/admin/main/guestboard/notice/list.do" class="parent"><span>고객센터</span></a>
 					<div class="standard_left">
 					<ul>
 						<li><span>GUEST</span></li>
