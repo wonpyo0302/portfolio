@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 
 import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.guestboard.GuestBoardVO;
+import kr.co.hotel.host.HostVO;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -81,6 +82,11 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("guestInfo",amapper.guestCount());
 		model.addAttribute("hostInfo",amapper.hostCount());
 		return model;
+	}
+
+	@Override
+	public List<HostVO> getHostList() {
+		return amapper.getHostList();
 	}
 
 }

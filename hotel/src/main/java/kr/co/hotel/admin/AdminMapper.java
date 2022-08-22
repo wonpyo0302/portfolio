@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.hotel.guest.GuestVO;
-import kr.co.hotel.guestboard.GuestBoardVO;
+import kr.co.hotel.host.HostVO;
 
 @Mapper
 public interface AdminMapper {
@@ -18,4 +18,5 @@ public interface AdminMapper {
 	List<AdminVO> salesMonth();
 	List<AdminVO> guestCount();
 	List<AdminVO> hostCount();
+	List<HostVO> getHostList();
 }

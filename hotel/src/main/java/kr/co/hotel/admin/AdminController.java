@@ -70,6 +70,12 @@ public class AdminController {
 		return "/admin/main/adminMain";
 	}
 	
+	@GetMapping("/admin/main/hostList.do")
+	public String confirm(Model model) {
+		model.addAttribute("host",aservice.getHostList());
+		return "/admin/main/host/hostList";
+	}
+//===========================이원표 부분 끝============================
 	
 	
 }
