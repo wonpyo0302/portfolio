@@ -11,7 +11,8 @@ import kr.co.hotel.host.HostVO;
 public interface AdminMapper {
 	AdminVO adminLogin(AdminVO avo);
 	
-	List<GuestVO> listPaging(AdminVO vo);
+	List<GuestVO> guestListPaging(AdminVO vo);
+	List<HostVO> hostListPaging();
 	List<GuestVO> list(AdminVO vo);
 	int count(AdminVO vo);
 	
