@@ -81,6 +81,21 @@ public class HostNoticeServiceImpl implements HostNoticeService {
 		return null;
 	}
 
+	@Override
+	public HostNoticeVO nowRownum(HostNoticeVO vo) {
+		return mapper.nowRownum(vo);
+	}
+
+	@Override
+	public HostNoticeVO prevRownum(HostNoticeVO vo) {
+		return mapper.prevRownum(vo);
+	}
+
+	@Override
+	public HostNoticeVO nextRownum(HostNoticeVO vo) {
+		return mapper.nextRownum(vo);
+	}
+
 
 
 

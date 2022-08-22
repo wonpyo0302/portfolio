@@ -9,7 +9,10 @@ public interface GuestNoticeService {
 	int updateViewcount(int gnotice_no);
 	boolean update(GuestNoticeVO vo);
 	boolean delete(int gnotice_no);
-	GuestNoticeVO view(GuestNoticeVO vo);
+	GuestNoticeVO view(int gnotice_no);
 	
+	GuestNoticeVO nowRownum(GuestNoticeVO vo);
+	GuestNoticeVO prevRownum(GuestNoticeVO vo);
+	GuestNoticeVO nextRownum(GuestNoticeVO vo);
 
 }

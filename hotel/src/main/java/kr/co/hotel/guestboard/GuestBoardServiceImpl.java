@@ -66,6 +66,9 @@ public class GuestBoardServiceImpl implements GuestBoardService {
 		return mapper.view(gboard_no);
 	}
 	
+	
+	
+	
 	//수정폼
 	@Override
 	public GuestBoardVO edit(int gboard_no) {

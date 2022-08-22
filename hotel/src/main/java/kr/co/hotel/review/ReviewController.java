@@ -3,6 +3,7 @@ package kr.co.hotel.review;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.hotel.HRRegister.HRRegisterService;
 import kr.co.hotel.HRRegister.ImageVO;
+import kr.co.hotel.favorite.FavoriteVO;
+import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.main.HotelVO;
 import kr.co.hotel.reserve.ReserveVO;
 import kr.co.hotel.room.RoomVO;
@@ -38,7 +41,6 @@ public class ReviewController {
 	
 	}
 	*/
-	
 	
 	//마이페이지.예약내역 > 리뷰작성하기
 	@GetMapping("/review/write.do")
@@ -98,6 +100,38 @@ public class ReviewController {
 		}
 
 	}
+	
+	@GetMapping("/review/index.do")
+	public String index(ReviewVO vo, Model model, HttpServletRequest req) {
+		return"review/reviewList";
+	}
+	
+	//빛찬, 리뷰리스트
+	@GetMapping("/review/list.do")
+	public String list(ReviewVO vo, Model model, HttpServletRequest req) {
+		HttpSession sess = req.getSession();
+		GuestVO guestInfo = (GuestVO)sess.getAttribute("loginInfo");
+		System.out.println("세션guest_no확인 : "+ guestInfo.getGuest_no());
+		vo.setGuest_no(guestInfo.getGuest_no());
+		
+		Map map = service.index(vo);
+		model.addAttribute("rv", map);
+		return "common/review";
+	}
+	
+	@PostMapping("/review/del.do")
+	public String delete(ReviewVO vo, Model model) {
+		boolean r= service.delete(vo.getReview_no());
+		return "common/return";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

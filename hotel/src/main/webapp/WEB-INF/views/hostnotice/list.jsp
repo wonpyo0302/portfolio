@@ -15,7 +15,7 @@
 	content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>게시판목록</title>
+<title>NOTICE</title>
 <link rel="stylesheet" href="/hotel/css/reset.css" />
 <link rel="stylesheet" href="/hotel/css/contents.css" />
 
@@ -28,7 +28,7 @@
 			<h3 class="sub_title" style="text-align: left">공지사항</h3>
 			<br>
 			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/notice.png" width="60px"> 호스트 전용 공지사항
+				<img src="/hotel/image/boardPic/notice.png" width="60px"> 호스트 전용 공지사항
 				게시판입니다.
 			</h6>
 			<br>
@@ -38,8 +38,7 @@
 			<div class="bbs">
 				<table class="list">
 					<p>
-						<span><strong>총 ${data.totalCount}개</strong> |
-							${hostNoticeVO.page}/${data.totalPage}페이지</span>
+						<span><strong>총 ${data.totalCount}개</strong> |${hostNoticeVO.page}/${data.totalPage}페이지</span>
 					</p>
 					<caption>게시판 목록</caption>
 					<colgroup>
@@ -73,8 +72,8 @@
 										<td>${data.totalCount - status.index - ((hostNoticeVO.page - 1) * hostNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l"><a
 											href="/hotel/hostnotice/view.do?hnotice_no=${vo.hnotice_no}">
-												<img src="/hotel/image/느낌2.png" width="20px"> <b>${vo.hnotice_title}</b>
-												<img src="/hotel/image/new2.png" width="30px">
+												<img src="/hotel/image/boardPic/느낌2.png" width="20px"> <b>${vo.hnotice_title}</b>
+												<img src="/hotel/image/boardPic/new2.png" width="30px">
 										</a></td>
 										<td class="writer">관리자</td>
 										<td class="date"><fmt:formatDate
@@ -88,7 +87,7 @@
 										<td>${data.totalCount - status.index - ((hostNoticeVO.page - 1) * hostNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l"><a
 											href="/hotel/hostnotice/view.do?hnotice_no=${vo.hnotice_no}">
-												${vo.hnotice_title} <img src="/hotel/image/new2.png"
+												${vo.hnotice_title} <img src="/hotel/image/boardPic/new2.png"
 												width="30px">
 										</a></td>
 										<td class="writer">관리자</td>

@@ -37,6 +37,8 @@
                 <div class="bbs">
                 	<form method="get" name="frm" id="frm" action="update.do" enctype="multipart/form-data" > <!-- enctype="multipart/form-data" -->
 	                   <input type="hidden" name = "room_no" value="${data.room_no }"/>
+	                   <input type="hidden" name = "hotel_no" value="${data.hotel_no }"/>
+	                   <input type="hidden" name = "host_no" value="${data.host_no }"/>
 	                    <table class="board_write">
 	                        <tbody>
 	                        <tr>

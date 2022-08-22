@@ -2,6 +2,7 @@ package kr.co.hotel.review;
 
 import java.sql.Timestamp;
 
+import kr.co.hotel.HRRegister.ImageVO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,8 @@ public class ReviewVO {
 	private Timestamp review_regdate;
 	private int review_score;
 	
+	private ImageVO img;
+	
 	
 	
 	//스칼라 서브쿼리로 호텔명과, 객실번호를 가져옴
@@ -26,10 +29,15 @@ public class ReviewVO {
 	private int number;
 	
 	
+	//페이지 및 검색
+	private int page;
+	private String stype;
+	private String sword;
+	
+	
 	//페이징
 	private int startIdx; //페이지의 row시작 번호
 	private int pageRow; //페이지당 row갯수 //기본 10의로 설정
-	private int page;
 	
 	
 	

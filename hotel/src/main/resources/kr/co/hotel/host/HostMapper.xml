@@ -5,10 +5,10 @@
 	<insert id="insert" parameterType="kr.co.hotel.host.HostVO">
 		INSERT INTO host (
 		host_id, host_pwd, host_email, host_name, host_hp,
-		host_joindate, host_accountno, host_bank
+		host_joindate, host_accountno, host_bank, host_status
 		) VALUES (
 		#{host_id},
-		md5(#{host_pwd}),#{host_email},#{host_name},#{host_hp},NOW(),#{host_accountno},#{host_bank}
+		md5(#{host_pwd}),#{host_email},#{host_name},#{host_hp},NOW(),#{host_accountno},#{host_bank},0
 		)
 	</insert>
 	<select id="emailDupCheck" parameterType="string" resultType="int">	
@@ -22,35 +22,35 @@
 		SELECT COUNT(*) FROM host WHERE host_hp = #{host_hp}
 	</select>
 	<select id="hostloginCheck" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
-		SELECT * FROM host WHERE host_id = #{host_id} AND host_pwd = md5(#{host_pwd})
+		SELECT * FROM host WHERE host_id = #{host_id} AND host_pwd = md5(#{host_pwd}) AND host_status=0
 	</select>
 	<select id="findHostEmail" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
-		SELECT * FROM host WHERE host_name=#{host_name} AND host_hp=#{host_hp}
+		SELECT * FROM host WHERE host_name=#{host_name} AND host_hp=#{host_hp} AND host_status=0
 	</select>
 	
 	<select id="findHostPwd" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
-		SELECT * FROM host WHERE host_id=#{host_id} AND host_hp=#{host_hp} AND host_email = #{host_email}
+		SELECT * FROM host WHERE host_id=#{host_id} AND host_hp=#{host_hp} AND host_email = #{host_email} AND host_status=0
 	</select>
 	
 	<update id="updateTempHostPwd" parameterType="kr.co.hotel.host.HostVO">
-		UPDATE host SET host_pwd = md5(#{host_pwd}) WHERE host_id=#{host_id} AND host_hp=#{host_hp} AND host_email = #{host_email}
+		UPDATE host SET host_pwd = md5(#{host_pwd}) WHERE host_id=#{host_id} AND host_hp=#{host_hp} AND host_email = #{host_email} AND host_status=0
 	</update>
 	<select id="myinfoLogin" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
 		SELECT * FROM host 
-		WHERE host_pwd = md5(#{host_pwd}) AND host_no = #{host_no}
+		WHERE host_pwd = md5(#{host_pwd}) AND host_no = #{host_no} AND host_status=0
 	</select>
 	<update id="updatePwd" parameterType="kr.co.hotel.host.HostVO">
-		UPDATE host SET host_pwd = md5(#{host_pwd}) WHERE host_id=#{host_id}
+		UPDATE host SET host_pwd = md5(#{host_pwd}) WHERE host_id=#{host_id} AND host_status=0
 	</update>
 	<update id="totalUpdate" parameterType="kr.co.hotel.host.HostVO">
 		UPDATE host SET host_email=#{host_email}, host_hp=#{host_hp}, 
 		host_bank=#{host_bank}, host_accountno=#{host_accountno}
-		WHERE host_no=#{host_no}
+		WHERE host_no=#{host_no} AND host_status=0
 	</update>
 	<select id="deleteHostInfo" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
-		SELECT * FROM host WHERE host_no=#{host_no} AND host_id=#{host_id} AND host_pwd=md5(#{host_pwd})
+		SELECT * FROM host WHERE host_no=#{host_no} AND host_id=#{host_id} AND host_pwd=md5(#{host_pwd}) AND host_status=0
 	</select>
 	<update id="fakeDelete" parameterType="kr.co.hotel.host.HostVO">
-		UPDATE host SET host_pwd=md5(#{host_pwd}) WHERE host_no=#{host_no}
+		UPDATE host SET host_pwd=md5(#{host_pwd}) , host_status=1 WHERE host_no=#{host_no}
 	</update>
 </mapper>

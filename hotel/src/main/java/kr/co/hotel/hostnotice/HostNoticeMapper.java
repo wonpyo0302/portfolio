@@ -14,5 +14,9 @@ public interface HostNoticeMapper {
 	int update(HostNoticeVO vo);
 	int delete(int hnotice_no);
 	
+	HostNoticeVO nowRownum(HostNoticeVO vo);
+	HostNoticeVO prevRownum(HostNoticeVO vo);
+	HostNoticeVO nextRownum(HostNoticeVO vo);
+	
 	
 }
