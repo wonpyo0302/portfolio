@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:forEach var ="list" items="${data}">
-<input type='checkbox' name='guest_id' value= '${list.guest_id}'>${list.guest_id}<br>
+<input type='checkbox' id="guest_id" name='guest_id' value= '${list.guest_id}'>${list.guest_id}<br>
 </c:forEach>

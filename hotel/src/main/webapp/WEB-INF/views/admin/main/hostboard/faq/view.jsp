@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/views/includes/G_header.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -85,20 +85,15 @@
 </script>
 </head>
 <body>
-	<br>
-	<br>
-	<br>
+	<div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>호스트 관리 ▶ 공지사항 ▶ 상세보기</h2>
+				</div>
+			</div>
+	</div>
 	<div class="sub">
 		<div class="size">
-			<br>
-			<h3 class="sub_title" style="text-align: left">FAQ</h3>
-			<br>
-			<form method="get" name="frm" id="frm" action="view.do">
-				<h6 class="sub_content" style="text-align: left">
-					<img src="/hotel/image/boardPic/faq2.png" width="40px"> 게스트 전용 자주 묻는 질문
-					게시판입니다.
-				</h6>
-				<br> <br> <br> <br>
 				<section id="wrapper">
 					<div class="container">
 						<ul class="list">

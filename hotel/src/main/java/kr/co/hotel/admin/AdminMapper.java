@@ -11,10 +11,6 @@ import kr.co.hotel.host.HostVO;
 public interface AdminMapper {
 	AdminVO adminLogin(AdminVO avo);
 	
-	List<GuestVO> listPaging(AdminVO vo);
-	List<GuestVO> list(AdminVO vo);
-	int count(AdminVO vo);
-	
 	List<AdminVO> salesMonth();
 	List<AdminVO> guestCount();
 	List<AdminVO> hostCount();

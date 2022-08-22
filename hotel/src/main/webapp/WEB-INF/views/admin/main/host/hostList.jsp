@@ -41,9 +41,9 @@
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach var="list" items="${host }" varStatus="status">
+								<c:forEach var="list" items="${hostList }" varStatus="status">
 									<tr>	
-										<td>${hostList.totalCount - status.index - ((adminVO.page - 1) * adminVO.pageRow)}</td>
+										<td>${list.totalCount - status.index - ((adminVO.page - 1) * adminVO.pageRow)}</td>
 										<td>${list.host_id}</td>
 										<td>${list.host_name}</td>
 										<td>${list.host_birth}</td>
@@ -59,22 +59,23 @@
 							<div class="page">
 								<!-- 이전페이지 -->
 								<c:if test="${hostList.prev == true }">
-									<a href="hostList.do?page=${hostList.startPage - 1 }&stype=${param.stype}&sword=${param.sword}"><</a>
+									<a href="host/hostList.do?page=${hostList.startPage - 1 }&stype=${param.stype}&sword=${param.sword}"><</a>
 								</c:if>
 								<!-- 페이지별 -->
 									<c:forEach var="p" begin="${hostList.startPage}" end="${hostList.endPage }">
-										<a href='hostList.do?page=${p }' <c:if test="${hostBoardVO.page == p }"> class='current'</c:if>>${p }</a>
+										<a href="host/hostList.do?page=${p }&stype=${param.stype}&sword=${param.sword}" <c:if test="${hostBoardVO.page == p }"> class='current'</c:if>>${p }</a>
 									</c:forEach>
 								<!-- 다음페이지 -->
 								<c:if test="${hostList.next == true }">
-									<a href="hostList.do?page=${hostList.endPage + 1 }&stype=${param.stype}&sword=${param.sword}">></a>
+									<a href="host/hostList.do?page=${hostList.endPage + 1 }&stype=${param.stype}&sword=${param.sword}">></a>
 								</c:if>
 							</div>
 							<!-- 페이지처리 -->
 							<form name="searchForm" id="searchForm" action="hostList.do"  method="get">
 								<div class="search">
 									<select name="stype" title="검색을 선택해주세요">
-										<option value="all">아이디 검색</option>
+										<option value="id" selected="">아이디 검색</option>
+										<option value="name">이름 검색</option>
 									</select>
 									<input type="text" id="sword" name="sword" value="" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/image/admin/btn_search.gif" class="sbtn" alt="검색" />

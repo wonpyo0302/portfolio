@@ -1,13 +1,12 @@
 package kr.co.hotel.guestfaq;
 
-import java.sql.Timestamp;
-
+import kr.co.hotel.guest.GuestVO;
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString
-public class GuestFaqVO {
+public class GuestFaqVO extends GuestVO{
 	private int gfaq_no; // 문의번호
 	private int gfaq_type; // 문의유형
 	private String gfaq_title; // 문의제목

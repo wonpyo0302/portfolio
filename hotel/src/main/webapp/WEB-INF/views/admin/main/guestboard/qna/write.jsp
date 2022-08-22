@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/views/includes/G_header.jsp"%>
+<%@ page language="java"  	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -53,19 +54,15 @@
 
 </head>
 <body>
-	<br>
-	<br>
+  <div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>게스트 관리 ▶ Q&A ▶ 등록</h2>
+				</div>
+			</div>
+	</div>
 	<div class="sub">
 		<div class="size">
-			<h3 class="sub_title" style="text-align: left">Q&A</h3>
-			<br>
-			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/boardPic/qna.png" width="40px"> 게스트 전용 문의사항
-				게시판입니다.
-			</h6>
-			<br>
-			<h3 class="sub_title" style="text-align: left">새 문의글 작성</h3>
-			<br>
 			<div class="bbs">
 				<form method="post" name="frm" id="frm" action="../guestboard/insert.do" enctype="multipart/form-data">
 					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">

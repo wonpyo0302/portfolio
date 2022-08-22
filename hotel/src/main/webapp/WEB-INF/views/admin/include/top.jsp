@@ -13,14 +13,14 @@ function OpenWinCount(URL,width,height) {
 	window.open(URL,'remote',str);
 }
 
-$(window).load(function(){
+$(function(){
 	// 1depth 메뉴들
 	var parent = $(".parent");
 	
 	//현재 주소
 	// 주소중 manage이후 폴더 경로 자르기 ex) /admin/board/index.jsp -> board
 	var curUrl = document.location.pathname;
-	curUrl = curUrl.substring(curUrl.indexOf("manage")+12,curUrl.length);
+	curUrl = curUrl.substring(curUrl.indexOf("admin")+12,curUrl.length);
 	if (curUrl.indexOf("/") > 0) {
 		curUrl = curUrl.substring(curUrl,curUrl.indexOf("/"));
 	}
@@ -62,7 +62,7 @@ $(window).load(function(){
 		<!-- util : s -->
 		<div class="util">
 			<ul>
-				<li class="frist"><a href="../main/adminMain.do" onclick="">Home</a></li>
+				<li class="frist"><a href="/hotel/admin/main/adminMain.do" onclick="">Home</a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/logout.do">LogOut</a></li>
 			</ul>
 		</div>
@@ -73,7 +73,7 @@ $(window).load(function(){
   				<li><a href="<%=request.getContextPath()%>/admin/main/guestlist.do" class="parent"><span>게스트관리</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/main/hostList.do" class="parent"><span>호스트관리</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/main/couponcreate.do" class="parent"><span>쿠폰발급</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/board/index.do" class="parent"><span>게시판</span></a>
+				<li><a href="<%=request.getContextPath()%>/admin/main/guestboard/notice/list.do" class="parent"><span>게시판</span></a>
 					<div class="standard_left">
 					<ul>
 						<li><span>GUEST</span></li>

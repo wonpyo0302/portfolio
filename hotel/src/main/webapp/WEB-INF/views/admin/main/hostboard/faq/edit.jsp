@@ -1,6 +1,7 @@
-<%@ page language="java" 	pageEncoding="UTF-8"%>
+<%@ page language="java"	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
 <%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
+
 
 
 <!DOCTYPE html>
@@ -59,10 +60,11 @@
 
 </head>
 <body>
-   <div id="container">
+
+ <div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>게스트 관리 ▶ Q&A ▶ 수정</h2>
+					<h2>호스트 관리 ▶ FAQ ▶ 수정</h2>
 				</div>
 			</div>
 	</div>
@@ -77,20 +79,25 @@
 							<div class="container">
 								<ul class="list">
 									<li class="item">
-									<th>문의유형</th>
+									<th>분류</th>
 									</span>
-									<td class="choose"><span class="srchSelect"> 
-									<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
+									<td class="choose"><span class="srchSelect"> <select
+											id="stype" name="stype" class="dSelect" title="검색분류 선택">
 												<option value="reservation"
-													<c:if test="${data.gboard_type==1}">selected</c:if>>예약</option>
+													<c:if test="${data.gboard_type==1 }">selected</c:if>>
+													예약</option>
 												<option value="pay"
-													<c:if test="${data.gboard_type==2}">selected</c:if>>결제</option>
+													<c:if test="${data.gboard_type==2 }"> selected</c:if>>
+													결제</option>
 												<option value="hotel"
-													<c:if test="${data.gboard_type==3}">selected</c:if>>숙소</option>
+													<c:if test="${data.gboard_type==3 }"> selected</c:if>>
+													숙소</option>
 												<option value="pointAndCoupon"
-													<c:if test="${data.gboard_type==4}">selected</c:if>>포인트/쿠폰</option>
+													<c:if test="${data.gboard_type==4 }"> selected</c:if>>
+													포인트/쿠폰</option>
 												<option value="etc"
-													<c:if test="${data.gboard_type==5}">selected</c:if>>이용/기타</option>
+													<c:if test="${data.gboard_type==5 }"> selected</c:if>>
+													이용/기타</option>
 										</select>
 											</li>
 							<tr>
@@ -107,7 +114,7 @@
 							</tr>
 							<tr>
 								<th>문의내용</th>
-								<td><textarea name="gboard_content" id="content" style="width: 90%" >${data.gboard_content}</textarea></td>
+								<td><textarea name="gboard_content" id="content" style="width: 90%" value="${data.gboard_content}"></textarea></td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>

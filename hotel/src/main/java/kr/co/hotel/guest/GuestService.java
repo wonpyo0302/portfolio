@@ -1,8 +1,11 @@
 package kr.co.hotel.guest;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
-import org.springframework.ui.Model;
+import kr.co.hotel.admin.AdminVO;
 
 public interface GuestService {
 
@@ -17,4 +20,9 @@ public interface GuestService {
 	int updatePwd(GuestVO gvo);
 	boolean totalUpdate(GuestVO gvo);
 	GuestVO deleteGuestInfo(GuestVO gvo);
+
+	//=========admin guestlist 추가===================
+	public Map guestListPaging(AdminVO vo);
+
 }
+

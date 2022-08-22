@@ -1,23 +1,21 @@
 package kr.co.hotel.admin;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import kr.co.hotel.guest.GuestService;
 
 @Controller
 public class AdminController {
 	@Autowired
 	AdminService aservice;
+
 	
 	@GetMapping("/admin/login.do")
 	 public String adminLogin() {
@@ -26,7 +24,7 @@ public class AdminController {
 	@PostMapping("/admin/login.do")
 	public String adminLogin(AdminVO avo,HttpSession sess, Model model) {
 		if(aservice.adminLogin(avo, sess)) {
-			return "/admin/main/adminMain";
+			return "redirect:/admin/main/adminMain.do";
 		}else {
 			model.addAttribute("msg", "로그인정보를 다시 확인해주세요");
 			return "common/alert";
@@ -42,13 +40,16 @@ public class AdminController {
 		return "common/alert";
 	}
 	
-	@GetMapping("/admin/main/guestlist.do")
-	public String guestlist(AdminVO avo,HttpSession sess, Model model) {
-		System.out.println("=====================" + avo.getSword());
-		model.addAttribute("guestlist", aservice.guestListPaging(avo));
-		return "/admin/main/guestlist";
+	
+
+//-========================추가는 아래로 해주세요========================	
+	@GetMapping("/admin/main/adminMain.do")
+	public String adminMain(AdminVO avo, Model model ) {
+		model.addAttribute("sales", aservice.salesMonth());
+		aservice.memberCount(model);
+		return "/admin/main/adminMain";
 	}
 
-	
+
 	
 }
