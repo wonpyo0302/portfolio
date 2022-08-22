@@ -18,7 +18,9 @@
 	<select id="listPaging" parameterType="kr.co.hotel.admin.AdminVO" resultType="kr.co.hotel.guest.GuestVO">
 		select * from guest
 		<where>
-			guest_id like '%${sword}%'
+			<if test="stype != null and sword != ''">
+					${stype} LIKE '%${sword}%'
+			</if>
 		</where>
 		LIMIT ${startIdx} , ${pageRow}
 	</select>
@@ -27,7 +29,7 @@
 	<select id="list" parameterType="kr.co.hotel.admin.AdminVO" resultType="kr.co.hotel.guest.GuestVO">
 		select * from guest
 		<where>
-			guest_id like '%${sword}%'
+			guest_id LIKE '%${sword}%'
 		</where>
 	</select>
 	
