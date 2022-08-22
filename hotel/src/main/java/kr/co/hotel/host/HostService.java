@@ -1,6 +1,10 @@
 package kr.co.hotel.host;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
+
+import kr.co.hotel.admin.AdminVO;
 
 public interface HostService {
 
@@ -15,4 +19,9 @@ public interface HostService {
 	int updatePwd(HostVO hvo);
 	boolean totalUpdate(HostVO hvo);
 	HostVO deleteHostInfo(HostVO hvo);
+	
+	//============이하 이원표 작성=============
+	Map getHostList(AdminVO vo);
+	int getHostCount(AdminVO vo);
+	HostVO getView(HostVO vo);
 }

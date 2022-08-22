@@ -102,10 +102,19 @@
 		where no=#{no} 
 		and image_type='REVIEW'
 	</select>
-	
+	<!-- 빛찬 -->
 	<delete id="delete" parameterType="int">
 		delete from review where review_no =#{review_no}
 	</delete>
+	
+	<update id="review_update" parameterType="kr.co.hotel.review.ReviewVO">
+		UPDATE review
+		SET
+		review_title=#{review_title},
+		review_content=#{review_content},
+		review_score=#{review_score}
+		WHERE review_no=#{review_no}
+	</update>
 	 
 
 </mapper>
