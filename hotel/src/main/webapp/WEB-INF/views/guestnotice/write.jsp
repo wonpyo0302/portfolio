@@ -22,6 +22,7 @@
     
     <script>
     	function goSave(){
+    		location.href="write.do";
     		frm.submit();
     	}
     	});

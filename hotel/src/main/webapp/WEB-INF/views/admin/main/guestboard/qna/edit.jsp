@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/views/includes/G_header.jsp"%>
+<%@ page language="java" 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -57,19 +60,15 @@
 
 </head>
 <body>
-	<br>
-	<br>
+   <div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>게스트 관리 ▶ Q&A ▶ 수정</h2>
+				</div>
+			</div>
+	</div>
 	<div class="sub">
 		<div class="size">
-			<h3 class="sub_title" style="text-align: left">Q&A</h3>
-			<br>
-			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/boardPic/qna.png" width="40px"> 게스트 전용 문의사항
-				게시판입니다.
-			</h6>
-			<br>
-			<h3 class="sub_title" style="text-align: left">문의글 수정</h3>
-			<br>
 			<div class="bbs">
 				<form method="post" name="frm" id="frm" action="edit.do"
 					enctype="multipart/form-data">
@@ -81,23 +80,18 @@
 									<li class="item">
 									<th>문의유형</th>
 									</span>
-									<td class="choose"><span class="srchSelect"> <select
-											id="stype" name="stype" class="dSelect" title="검색분류 선택">
+									<td class="choose"><span class="srchSelect"> 
+									<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 												<option value="reservation"
-													<c:if test="${data.gboard_type==1 }">selected</c:if>>
-													예약문의</option>
+													<c:if test="${data.gboard_type==1}">selected</c:if>>예약</option>
 												<option value="pay"
-													<c:if test="${data.gboard_type==2 }"> selected</c:if>>
-													결제 문의</option>
+													<c:if test="${data.gboard_type==2}">selected</c:if>>결제</option>
 												<option value="hotel"
-													<c:if test="${data.gboard_type==3 }"> selected</c:if>>
-													숙소 문의</option>
+													<c:if test="${data.gboard_type==3}">selected</c:if>>숙소</option>
 												<option value="pointAndCoupon"
-													<c:if test="${data.gboard_type==4 }"> selected</c:if>>
-													포인트/쿠폰 문의</option>
+													<c:if test="${data.gboard_type==4}">selected</c:if>>포인트/쿠폰</option>
 												<option value="etc"
-													<c:if test="${data.gboard_type==5 }"> selected</c:if>>
-													이용/기타 문의</option>
+													<c:if test="${data.gboard_type==5}">selected</c:if>>이용/기타</option>
 										</select>
 											</li>
 							<tr>

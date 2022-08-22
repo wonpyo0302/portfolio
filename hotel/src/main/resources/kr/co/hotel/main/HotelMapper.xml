@@ -140,4 +140,11 @@
 		SELECT * FROM image
 		where no = #{room_no} AND image_type = 'ROOM'
 	</select>
+	
+	<select id="get_favorite" parameterType="kr.co.hotel.favorite.FavoriteVO" resultType="kr.co.hotel.favorite.FavoriteVO">
+		SELECT * FROM favorite
+		WHERE guest_no= #{guest_no} and hotel_no=#{hotel_no}
+	</select>
+	
+	
 </mapper>

@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import kr.co.hotel.admin.AdminVO;
+
+
 @Controller
 public class GuestController {
 	@Autowired
@@ -207,11 +210,13 @@ public class GuestController {
 			 out.flush();
 		 		 
 	 }
-	 @PostMapping(
-			  	path = "/v2.0/inquiry/real_name", 
-			  	consumes = "application/x-www-form-urlencoded", 
-			  	produces = "application/json")
-	 public void bankCheck(){
-			  
-	 };
+
+	 
+	 @GetMapping("/admin/main/guestlist.do")
+		public String guestlist(AdminVO avo, Model model) {
+			System.out.println("=====================" + avo.getSword());
+			model.addAttribute("guestlist", gservice.guestListPaging(avo));
+			return "/admin/main/guestlist";
+		}
+
 }

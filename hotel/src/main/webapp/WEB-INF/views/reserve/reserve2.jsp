@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/includes/G_header.jsp" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -66,9 +67,12 @@
 
 </style>
 <script>
+
 $(function(){
+	var startdate=${param.startdate};
+	
 	$("#coupon_price").on("focusout",function(){
-		$("#totalprice").val(${param.price}-$("#point").val()-$("#coupon_price").val());
+		$("#totalprice").val(${param.total_price}-$("#point").val()-$("#coupon_price").val());
 		if($("#totalprice").val()<0){
 			$("#totalprice").val(0);
 		}
@@ -80,8 +84,7 @@ $(function(){
 			$("#point").val('');
 		}	
 		
-		$("#totalprice").val(${param.price}-$("#point").val()-$("#coupon_price").val());
-		
+		$("#totalprice").val(${param.total_price}-$("#point").val()-$("#coupon_price").val());
 		if($("#totalprice").val()<0){
 			$("#totalprice").val(0);
 		}
@@ -179,16 +182,18 @@ function reserve(){
 	</div>
 	
 	<div class="div1" style="margin:30px 0 0 400px" >
-		<div>구매총액
+		<div>
+			구매 총액
 			<div class="insertdiv">
 		</div>
-			<b>총금액적기</b><br>
-			<button type="button" id="btn" onclick="showPopup(${loginInfo.guest_no});">보유 쿠폰 보기</button>
+			<b>총 금액적기</b><br><br>
+			<button type="button" style="margin-bottom: 20px;" id="btn" onclick="showPopup(${loginInfo.guest_no});">보유 쿠폰 보기</button>
 			<div class="insertdiv2"></div>
 			<input type="text" name="coupon_price" style="width:130px;" id="coupon_price" readonly="readonly" value="">
+			<br>
 			<input type="button" id="reset" onclick="resetcoupon();" value="쿠폰취소">
 			<input type="hidden" name="coupon_no" id="coupon_no" value=""><br><br>
-			포인트 사용 ${loginInfo.totalpoint}P
+			포인트 사용 <fmt:formatNumber value="${loginInfo.totalpoint}" pattern="#,###" />P
 			<input type="text" id="point" name="point" style="width: 153.55px">
 		</div>
 	</div>
@@ -204,19 +209,20 @@ function reserve(){
 	</div>
 </div>
 <div class="rightdiv">
-	숙소이름
-	<h4>숙소이름 가져오기</h4><br>
+	호텔이름
+	<h4>${hotelinfo.hotel_name}</h4><br>
 	객실이름
-	<h4>객실이름 가져오기</h4><br>
+	<h4>${roominfo.room_name}</h4><br>
 	체크인
-	<h4>날짜 15:00</h4><br>
+	<h4>${param.startdate} 15:00</h4><br>
 	체크아웃
-	<h4>날짜 12:00</h4><br>
+	<h4>${param.enddate} 12:00</h4><br>
 	
 	<hr class="hr2">
 	
 	<h3>총 결제 금액</h3><br>
-	<b>총가격</b> &nbsp;<input type="text" id="totalprice" style="border:none" readonly="readonly" value="${param.price }">
+	<b>총가격</b> &nbsp;<input type="text" id="totalprice" style="border:none" readonly="readonly" 
+	value="<fmt:formatNumber value="${param.total_price}" pattern="#,###" />">
 	<br>
 	<input type="button" id="submit" value="예약" onclick="reserve();">
 </div>

@@ -20,4 +20,6 @@ public interface ReviewService {
 	public Map index(ReviewVO vo);
 	
 	public boolean delete(int review_no);
+	
+	public boolean review_update(ReviewVO vo);
 }

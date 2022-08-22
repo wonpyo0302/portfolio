@@ -49,27 +49,27 @@
 			<br>
 			<div class="bbs">
 				<form method="get" name="frm" id="frm" action="edit.do" enctype="multipart/form-data">
-					<input type="hidden" name="gnotice_no" value="${data.gnotice_no}">
-					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
+					<input type="hidden" name="gnotice_no" value="${data.hnotice_no}">
+				
 					<table class="board_write">
 						<div class="title">
 						<tr>
 							<th>제목</th>
-							<td>${data.gnotice_title }</td>
+							<td>${data.hnotice_title }</td>
 							<th>등록일자</th>
 							<td class="date"  style="width: 35%"><fmt:formatDate
-									value="${data.gnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+									value="${data.hnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
 							<td>관리자</td>
 							<th>수정일자</th>
 							<td class="date" style="width: 150px"><fmt:formatDate
-									value="${data.gnotice_regdate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
+									value="${data.hnotice_regdate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td colspan="3" style="width: 600px">${data.gnotice_content}</td>
+							<td colspan="3" style="width: 600px">${data.hnotice_content}</td>
 						</tr>
 						<tr>
 							<th>첨부파일</th>
@@ -84,13 +84,18 @@
 					<div class="btnSet" style="text-align: right;">
 						<a class="btn" href="javascript:goList();">목록 </a>
 					</div>
+					
+					<br><br><br>
+					<hr style="display: block; margin:1rem 0; color: inherit; opacity:.25;">
 					<div class="pagebox">
 						<div>
-							<p><a href="view.do?gnotice_no=${prev.rownum}">이전글 | ${prev.gnotice_title }</a></p>							
+							<p><a href="view.do?hnotice_no=${prev.hnotice_no}">이전글 | ${prev.hnotice_title }</a></p>							
 						</div>
+					<hr style="display: block; margin:1rem 0; color: inherit; opacity:.25;">
 						<div>
-							<p><a href="view.do?gnotice_no=${next.rownum}">다음글 | ${next.gnotice_title }</a></p>
+							<p><a href="view.do?hnotice_no=${next.hnotice_no}">다음글 | ${next.hnotice_title }</a></p>
 						</div>
+					<hr style="display: block; margin:1rem 0; color: inherit; opacity:.25;">
 					</div>
 				</form>
 			</div>

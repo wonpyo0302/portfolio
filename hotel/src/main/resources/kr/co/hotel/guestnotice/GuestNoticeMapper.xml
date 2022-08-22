@@ -5,9 +5,9 @@
 	<!-- 등록하기 -->
 	<insert id="insert" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" >
 		INSERT INTO guestnotice (
-			admin_no, gnotice_title, gnotice_content, gnotice_regdate, gnotice_viewcount
+			admin_no, gnotice_type, gnotice_title, gnotice_content, gnotice_regdate, gnotice_viewcount
 		) VALUES (
-			#{admin_no}, #{gnotice_title}, #{gnotice_content}, now(), #{gnotice_viewcount}
+			#{admin_no}, #{gnotice_type}, #{gnotice_title}, #{gnotice_content}, now(), #{gnotice_viewcount}
 		)
 	</insert>
 	
@@ -29,7 +29,7 @@
 	<!-- 목록보기 -->
 	<select id="list" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" resultType="kr.co.hotel.guestnotice.GuestNoticeVO">
 		SELECT *,
-			datediff(now(), gnotice_regdate) as diff
+			datediff (now(), gnotice_regdate) as diff
 		 FROM guestnotice
 			<where>
 				<if test="stype != null and sword != ''">
@@ -61,7 +61,7 @@
 	<!-- 이전글 rownum -->
 	<select id="prevRownum" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" resultType="kr.co.hotel.guestnotice.GuestNoticeVO">
 		SELECT * FROM (
-			SELECT row_number() OVER (ORDER BY fix DESC, gnotice_regdate DESC) AS rownum, gnotice_no, gnotice_title FROM guestnotice
+			SELECT row_number() OVER (ORDER BY fix DESC, gnotice_regdate DESC) AS rownum, gnotice_no, gnotice_title, gnotice_type FROM guestnotice
 			) AS prev 
 			WHERE rownum = #{rownum}-1;
 	</select>
@@ -69,7 +69,7 @@
 	<!-- 다음글 rownum -->
 	<select id="nextRownum" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" resultType="kr.co.hotel.guestnotice.GuestNoticeVO">
 		SELECT * FROM (
-			SELECT row_number() OVER (ORDER BY fix DESC, gnotice_regdate DESC) AS rownum, gnotice_no, gnotice_title FROM guestnotice
+			SELECT row_number() OVER (ORDER BY fix DESC, gnotice_regdate DESC) AS rownum, gnotice_no, gnotice_title, gnotice_type FROM guestnotice
 			) AS next 
 			WHERE rownum = #{rownum}+1;
 	</select>
@@ -83,7 +83,7 @@
 	<!-- 수정하기 -->
 	<update id="update" parameterType="int">
 		UPDATE guestnotice SET 
-			gnotice_title = #{gnotice_title}, gnotice_content = #{gnotice_content}
+			gnotice_type = #{gnotice_type}, gnotice_title = #{gnotice_title}, gnotice_content = #{gnotice_content}
 			WHERE gnotice_no = #{gnotice_no}
 	</update>
 	

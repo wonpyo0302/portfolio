@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.hotel.admin.AdminVO;
+
 
 @Controller
 public class HostController {
@@ -199,4 +201,32 @@ public class HostController {
 			out.print(r);
 			out.flush();
 	}
+	
+	
+	
+	//==================================이하 원표작성=======================================
+	@GetMapping("/admin/main/hostList.do")
+	public String hostList(AdminVO vo, Model model) {
+		model.addAttribute("hostList",hservice.getHostList(vo));
+		return "/admin/main/hostList";
+	}
+	
+	@GetMapping("/admin/main/hostView.do")
+	public String hostView(AdminVO avo, HostVO hvo, Model model) {
+		model.addAttribute("host", hservice.getView(hvo));
+		return "/admin/main/hostView";
+	}
+	
+	@GetMapping("/admin/main/confirm.do")
+	public String confirm(AdminVO avo, HostVO hvo, Model model) {
+		return "/admin/main/confirm";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -1,116 +1,222 @@
 package kr.co.hotel.guest;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import util.SendMail;
-@Service
-public class GuestServiceImpl implements GuestService {
 
+import kr.co.hotel.admin.AdminVO;
+
+
+@Controller
+public class GuestController {
 	@Autowired
-	GuestMapper gmapper;
-
-	@Override
-	public int insert(GuestVO gvo) {
-		return gmapper.insert(gvo);
-	}
-
-	@Override
-	public int emailDupCheck(String guest_email) {
-		return gmapper.emailDupCheck(guest_email);
-	}
-
-	@Override
-	public int idDupCheck(String guest_id) {
-		return gmapper.idDupCheck(guest_id);
-	}
-	@Override
-	public int hpDupCheck(String guest_hp) {
-		return gmapper.hpDupCheck(guest_hp);
-	}
-	@Override
-	public boolean guestloginCheck(GuestVO gvo, HttpSession sess) {
-		boolean r = false;
-		GuestVO loginInfo = gmapper.guestloginCheck(gvo);
-		if (loginInfo != null) {
-			r = true;
-			// 로그인 성공시 세션에 저장
-			sess.setAttribute("loginInfo", loginInfo);
-		}
-		return r;
-	}
-
-	@Override
-	public GuestVO findGuestId(GuestVO gvo) {
-		return gmapper.findGuestId(gvo);
-	}
-	@Override
-	public GuestVO findGuestPwd(GuestVO gvo) {
-		// update
-		GuestVO mv = gmapper.findGuestPwd(gvo);
-		if (mv != null) {
-			// 임시비밀번호 생성
-			// 영문두자리, 숫자두자리
-			String temp = "";
-			for (int i=0; i<2; i++) {
-				temp += (char)(Math.random()*26+65);
-			}
-			for (int i=0; i<3; i++) {
-				temp += (int)(Math.random()*9);
-			}
-			
-			// 임시비밀번호 update
-			gvo.setGuest_pwd(temp);
-			gmapper.updateTempGuestPwd(gvo);
-			
-			// email발송
-			SendMail.sendMail("gdbebe@naver.com", gvo.getGuest_email(), "[둘이놀까]Guest임시비밀번호", "임시비밀번호:"+temp);
-			
-			return mv;
-		} else {
-			return null;
-		}
-	}
-	@Override
-	public GuestVO myinfoLogin(GuestVO gvo) {
-		return gmapper.myinfoLogin(gvo);
-		
-	}
-
-	@Override
-	public int updatePwd(GuestVO gvo) {
-		return gmapper.updatePwd(gvo);
-	}
-	@Override
-	public boolean totalUpdate(GuestVO gvo) {
-		return gmapper.totalUpdate(gvo) >0 ?  true : false;
+	GuestService gservice;
+	@GetMapping("/guest/join.do")
+	public String join() {
+		return "guest/join";
 	}
 	
-	@Override
-	public GuestVO deleteGuestInfo(GuestVO gvo) {
-		// update
-				GuestVO mv = gmapper.deleteGuestInfo(gvo);
-				if (mv != null) {
-					// 임시비밀번호 생성
-					// 영문두자리, 숫자두자리
-					String temp = "";
-					for (int i=0; i<2; i++) {
-						temp += (char)(Math.random()*26+65);
-					}
-					for (int i=0; i<3; i++) {
-						temp += (int)(Math.random()*9);
-					}
-					
-					// 임시비밀번호 update
-					gvo.setGuest_pwd(temp);
-					gmapper.fakeDelete(gvo);
-					
-					return mv;
-				} else {
-					return null;
-				}
+	@PostMapping("/guest/join.do")
+	public String join(GuestVO gvo, Model model) {
+		if (gservice.insert(gvo) > 0) {
+			model.addAttribute("msg", "정상적으로 회원가입되었습니다.");
+			model.addAttribute("url", "login.do");
+			return "common/alert";
+		} else {
+			model.addAttribute("msg", "회원가입오류");
+			return "common/alert";
+		}
+	}
+	@GetMapping("/guest/login.do")
+	public String login(HttpSession sess, Model model) {
+		if(sess.getAttribute("loginInfo")!=null) {
+			model.addAttribute("msg", "중복로그인입니다. 로그아웃해주세요");
+			return "common/alert";
+		}
+		return "guest/login";
+	}
+	
+	@PostMapping("/guest/login.do")
+	public String login(GuestVO gvo, HttpSession sess, Model model) {
+		if (gservice.guestloginCheck(gvo, sess)) {
+			return "redirect:/main/main.do";
+		} else {
+			model.addAttribute("msg", "로그인정보를 확인해 주세요");
+			return "common/alert";
+		}
+	}
+	
+	
+	@GetMapping("/guest/emailDupCheck.do")
+	public void emailDupCheck(@RequestParam String guest_email, HttpServletResponse res) throws IOException {
+		int count = gservice.emailDupCheck(guest_email);
+		boolean r = false;
+		if (count == 1) r = true;
+		PrintWriter out = res.getWriter();
+		out.print(r);
+		out.flush();
+	}
+	@GetMapping("/guest/idDupCheck.do")
+	public void idDupCheck(@RequestParam String guest_id, HttpServletResponse res) throws IOException {
+		int count = gservice.idDupCheck(guest_id);
+		boolean r = false;
+		if (count == 1) r = true;
+		PrintWriter out = res.getWriter();
+		out.print(r);
+		out.flush();
+	}
+	@GetMapping("/guest/hpDupCheck.do")
+	public void hpDupCheck(@RequestParam String guest_hp, HttpServletResponse res) throws IOException {
+		int count = gservice.hpDupCheck(guest_hp);
+		boolean r= false;
+		if (count == 1) r = true;
+		PrintWriter out = res.getWriter();
+		out.print(r);
+		out.flush();
+	}
+	
+	@GetMapping("/guest/logout.do")
+	public String logout(Model model, HttpServletRequest req) {
+		HttpSession sess = req.getSession();
+		sess.invalidate(); // 세션초기화(세션객체에있는 모든 값들이 삭제)
+		//sess.removeAttribute("loginInfo"); // 세션객체의 해당값만 삭제
+		model.addAttribute("msg", "로그아웃되었습니다.");
+		model.addAttribute("url", "/hotel/guest/login.do");
+		return "common/alert";
+	}
+	
+	@GetMapping("/guest/findGuestId.do")
+	public String findGuestId() {
+		return "guest/findId";
+	}
+	
+	@PostMapping("/guest/findGuestId.do")
+	public String findGuestEmail(Model model, GuestVO param) {
+		GuestVO gvo = gservice.findGuestId(param);
+		if (gvo != null) {
+			model.addAttribute("result", gvo.getGuest_id());
+		}
+		return "common/return";
+	}
+	
+	@GetMapping("/guest/findGuestPwd.do")
+	public String findGuestPwd() {
+		return "guest/findPwd";
+	}
+	
+	@PostMapping("/guest/findGuestPwd.do")
+	public String findGuestPwd(Model model, GuestVO param) {
+		GuestVO gvo = gservice.findGuestPwd(param);
+		if (gvo != null) {
+			model.addAttribute("result", gvo.getGuest_pwd());
+		}
+		return "common/return";
+	}
+	@GetMapping("/guest/mypage.do")
+	public String mypage(HttpSession sess, Model model) {
+		if(sess.getAttribute("loginInfo")==null) {
+			//loginInfo는 게스트 전용 호스트는 lgoinInfo2
+			//게스트가 로그아웃하면 null 로그인하면 not null
+			//로그인해야 myPage.jsp로 넘어갈수 있음 
+			model.addAttribute("msg","로그인 해야합니다");
+			return "common/alert";
+		}else {
+			return "/guest/myPage";//myPage는 포인트, 예약내역등을 볼수 있는 곳, 이페이지에서 '내정보관리'로 넘어갈수 있음
+		}
+	}
+	@GetMapping("/guest/myinfo.do")
+	public String myinfo(HttpSession sess, Model model) {
+		if(sess.getAttribute("loginInfo") == null) {
+			model.addAttribute("msg","로그인이 필요한 기능입니다");
+			return "common/alert";
+		}else { 
+			return"/guest/myinfoLogin";
+			//로그인이 되어 있어야 myinfoLogin.jsp로 넘어갈수 있음
+		}
+	}
+	@PostMapping("/guest/myinfoLogin.do")
+	public void myinfoLogin(GuestVO gvo, HttpServletResponse res, HttpSession sess) throws IOException {
+		GuestVO myinfo=(GuestVO)sess.getAttribute("loginInfo");
+		myinfo.setGuest_pwd(gvo.getGuest_pwd());
+		boolean r=false;
+		if(gservice.myinfoLogin(myinfo)!=null) r=true;
+		PrintWriter out = res.getWriter();
+		out.print(r);
+		out.flush();
+		//한번더 패스워드를 체크하는 행위 그래야 '내정보수정이 가능'하게끔 다음 페이지(myinfoModify.jsp)로 넘어감
+	}
+	@PostMapping("/guest/myinfoModify.do")//비밀번호등 민감한 정보가 있어서 Post방식
+	public String myinfoModify() {
+		return "/guest/myinfoModify";//내정보 수정하는 jsp
+	}
+	@GetMapping("/guest/pwdChangePopup.do")
+	public String pwdChangePopup() {
+		return "/guest/pwdChangePopup";
+	}
+	 
+	@PostMapping("/guest/updatePwd.do") 
+	public void updatePwd(HttpSession sess, GuestVO gvo, HttpServletResponse res) throws IOException { 
+		GuestVO myinfo=(GuestVO)sess.getAttribute("loginInfo");
+		myinfo.setGuest_pwd(gvo.getGuest_pwd());
+		boolean r=false;
+		if (gservice.updatePwd(myinfo) > 0) {
+			r=true;
+			PrintWriter out = res.getWriter();
+			out.print(r);
+			out.flush();
+		}
+	}
+	 @PostMapping("/guest/update.do")
+	 public String update(GuestVO gvo, Model model) {
+		 if(gservice.totalUpdate(gvo)) {
+			 model.addAttribute("msg", "자동 로그아웃됩니다.다시 로그인해주세요");
+			 model.addAttribute("url", "/hotel/guest/logout.do");
+			 return "common/alert";
+		 }else {
+			 model.addAttribute("msg","수정실패");
+			 return "common/alert";
+		 }
+	 }
+	 @GetMapping("/guest/deleteGuestInfo.do")
+	 public String deleteGuest(HttpSession sess, Model model) {
+		 if(sess.getAttribute("loginInfo") == null) {
+				model.addAttribute("msg","로그인이 필요한 기능입니다");
+				return "common/alert";
+			}else { 
+				return"/guest/deleteGuest";
+				//로그인이 되어 있어야 deleteGuest.jsp로 넘어갈수 있음
 			}
+	 }
+	 @PostMapping("/guest/deleteGuestInfo.do")
+	 public void deleteGuestInfo(HttpSession sess , GuestVO gvo, HttpServletResponse res) throws IOException {
+		 GuestVO myinfo =(GuestVO)sess.getAttribute("loginInfo");
+		 myinfo.setGuest_pwd(gvo.getGuest_pwd());
+		 boolean r=false;
+		 if(gservice.deleteGuestInfo(myinfo) != null) 
+			 r=true;
+			 PrintWriter out = res.getWriter();
+			 out.print(r);
+			 out.flush();
+		 		 
+	 }
+
+	 
+	 @GetMapping("/admin/main/guestlist.do")
+		public String guestlist(AdminVO avo, Model model) {
+			System.out.println("=====================" + avo.getSword());
+			model.addAttribute("guestlist", gservice.guestListPaging(avo));
+			return "/admin/main/guestlist";
+		}
+
 }

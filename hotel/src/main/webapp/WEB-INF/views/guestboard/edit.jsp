@@ -35,7 +35,6 @@
 	// 글작성 완료 후 내가 쓴글 상세보기 이동
 	function goSave() {
 		frm.submit();
-		
 	};
 </script>
 
@@ -80,12 +79,12 @@
 								<ul class="list">
 									<li class="item">
 									<th>문의유형</th>
-									</span>
-									<td class="choose"><span class="srchSelect"> <select
-											id="stype" name="stype" class="dSelect" title="검색분류 선택">
+								
+									<td class="choose"><span class="srchSelect"> 
+									<select	id="stype" name="stype" class="dSelect" title="검색분류 선택">
 												<option value="reservation"
 													<c:if test="${data.gboard_type==1 }">selected</c:if>>
-													예약문의</option>
+													예약 문의</option>
 												<option value="pay"
 													<c:if test="${data.gboard_type==2 }"> selected</c:if>>
 													결제 문의</option>

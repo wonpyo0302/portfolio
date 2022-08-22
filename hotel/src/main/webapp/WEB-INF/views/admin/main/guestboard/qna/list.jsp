@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@include file="/WEB-INF/views/includes/G_header.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
 
 
 <!DOCTYPE html>
@@ -20,22 +20,22 @@
     
 <script>
 	function goWrite(){
-		<c:if test="${empty loginInfo}">
+		<c:if test="${empty loginInfo2}">
 			alert('로그인 후 작성 가능합니다.');
-			location.href='/hotel/guest/login.do';
+			location.href='/hotel/admin/login.do';
 		</c:if>
-		<c:if test="${!empty loginInfo}">
+		<c:if test="${!empty loginInfo2}">
 			location.href='write.do';
 		</c:if>	
 	}
 </script>
 <script>
 	function login(){
-		<c:if test="${empty data}">
+		<c:if test="${empty loginInfo2}">
 			alert('로그인 후 작성 가능합니다.');
 		</c:if>
 		
-		<c:if test="${!empty data}">
+		<c:if test="${!empty loginInfo2}">
 			location.href='list.do';
 		</c:if>
 	}
@@ -43,13 +43,16 @@
 
 </head>
 <body>
+
+ <div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>게스트 관리 ▶ Q&A ▶ 목록조회</h2>
+				</div>
+			</div>
+	</div>
 	<div class="sub">
 		<div class="size">
-		<br>
-			<h6 class="sub_content" style="text-align: left"> Q&A</h6>
-			<br>
-			<h8 class="sub_content" style="text-align:left"> <img src="/hotel/image/boardPic/qna.png" width="40px">  게스트 전용 문의 게시판입니다. 문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
-			<br><br><br><br>
 			<div class="bbs">
 				<table class="list">
 					<p>
@@ -106,7 +109,7 @@
 										</c:if>
 										<td class="txt_l">
 										
-										<a href="/hotel/guestboard/view.do?gboard_no=${vo.gboard_no}">${vo.gboard_title}
+										<a href="/hotel/admin/main/guestboard/qna/view.do?gboard_no=${vo.gboard_no}">${vo.gboard_title}
 										<c:if test="${vo.diff <= 3 }">
 										<img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</c:if>
@@ -131,7 +134,7 @@
 				</table>
 				<div class="btnSet" style="text-align: right;">
 				
-					<a class="btn" href="javascript:goWrite();">글작성 </a>
+					<a class="btn" href="javascript:goWrite();">관리 </a>
 					
 				</div>
 				<div class="pagenate clear">
