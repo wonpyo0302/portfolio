@@ -12,6 +12,7 @@ import lombok.ToString;
 public class GuestNoticeVO extends Criteria {
 	private int gnotice_no; // 공지사항 번호
 	private int admin_no; // 관리자 번호
+	private int gnotice_type; // 공지사항 유형
 	private String gnotice_title; //제목
 	private String gnotice_content; //내용
 	private Timestamp gnotice_regdate; //작성일

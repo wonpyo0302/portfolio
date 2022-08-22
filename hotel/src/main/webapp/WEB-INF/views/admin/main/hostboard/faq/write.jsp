@@ -39,12 +39,15 @@
     
 </head>
 <body>
-    
+    	<div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>게스트 관리 ▶ 공지사항 ▶ 등록</h2>
+				</div>
+			</div>
+	</div>
         <div class="sub">
             <div class="size">
-           		<br><br>
-                <h3 class="sub_title" style="text-align:left">FAQ 새 글 작성</h3>
-    				<br><br>
                 <div class="bbs">
                 <form method="post" name="frm" id="frm" action="insert.do"  enctype="multipart/form-data" > 
                 <!--  <input type="hidden" name="member_no" value="${loginInfo.no}"> -->

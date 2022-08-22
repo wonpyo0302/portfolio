@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.host.HostVO;
 import kr.co.hotel.main.HotelVO;
+import kr.co.hotel.room.RoomVO;
 
 @Service
 public class ReserveServiceImp implements ReserveService {
@@ -95,5 +96,15 @@ public class ReserveServiceImp implements ReserveService {
 	public HostVO SelectHostNo(HotelVO vo) {
 		vo.setHost_no(mapper.SelectHostNo(vo).getHost_no());
 		return mapper.SelectHostAccount(vo);
+	}
+
+	@Override
+	public HotelVO SelectHotelInfo(HotelVO vo) {
+		return mapper.SelectHostNo(vo);
+	}
+
+	@Override
+	public RoomVO SelectRoomInfo(ReserveVO vo) {
+		return mapper.SelectRoominfo(vo);
 	}
 }

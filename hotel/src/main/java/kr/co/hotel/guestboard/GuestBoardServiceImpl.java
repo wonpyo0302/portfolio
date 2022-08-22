@@ -24,11 +24,7 @@ public class GuestBoardServiceImpl implements GuestBoardService {
 		
 		if (totalCount % vo.getPageRow() > 0 ) totalPage++;
 		
-		/*
-		 * 총 게시물 수 12개 총 페이지는 12 / 한 페이지에 표시되는 행(게시물개수) 수 10개 1페이지(10행), 2행 12 % 10 > 0
-		 */
-		
-		// 페이지별 시작 인덱스 mySQL 에서는 시작이 0부터니까 
+		// 페이지별 시작 인덱스 mySQL 에서는 시작이 0부터
 		int startIdx = (vo.getPage() - 1 ) * vo.getPageRow();
 		vo.setStartIdx(startIdx);
 		List<GuestBoardVO> list = mapper.list(vo);
@@ -54,7 +50,7 @@ public class GuestBoardServiceImpl implements GuestBoardService {
 		return map;
 	}
 	
-	//등록
+	//등록(관리자용)
 	@Override
 	public boolean insert(GuestBoardVO vo) {
 		return mapper.insert(vo) > 0? true : false;
@@ -69,19 +65,19 @@ public class GuestBoardServiceImpl implements GuestBoardService {
 	
 	
 	
-	//수정폼
+	//수정폼(관리자용)
 	@Override
 	public GuestBoardVO edit(int gboard_no) {
 		return mapper.view(gboard_no);
 	}
 	
-	//수정처리
+	//수정처리(관리자용)
 	@Override
 	public boolean update(GuestBoardVO vo) {
 		return mapper.update(vo) > 0 ? true : false;
 	}
 
-	//삭제
+	//삭제(관리자용)
 	@Override
 	public boolean delete(int gboard_no) {
 		return mapper.delete(gboard_no) > 0 ? true : false;

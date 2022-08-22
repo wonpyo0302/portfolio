@@ -21,7 +21,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>게스트관리 - [목록]</h2>
+					<h2>호스트관리 - [목록]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -38,16 +38,25 @@
 										<th scope="col">이름</th> 
 										<th scope="col">생일</th>
 										<th scope="col">전화번호</th> 
+										<th scope="col">승인여부</th> 
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach var="list" items="${host }" varStatus="status">
+								<c:forEach var="list" items="${hostList.list }" varStatus="status">
 									<tr>	
 										<td>${hostList.totalCount - status.index - ((adminVO.page - 1) * adminVO.pageRow)}</td>
-										<td>${list.host_id}</td>
-										<td>${list.host_name}</td>
+										<td><a href="hostView.do?host_no=${list.host_no}">${list.host_id}</a></td>
+										<td><a href="hostView.do?host_no=${list.host_no}">${list.host_name}</a></td>
 										<td>${list.host_birth}</td>
 										<td>${list.host_hp}</td>
+										
+										<td>
+										<c:if test="${list.isConfirm==0}"><a href="confirm.do?host_no=${list.host_no}">미등록</a></c:if>
+										<c:if test="${list.isConfirm==1}"><a href="confirm.do?host_no=${list.host_no}">승인요청</a></c:if>
+										<c:if test="${list.isConfirm==2}"><a href="confirm.do?host_no=${list.host_no}">승인완료</a></c:if>
+										<c:if test="${list.isConfirm==-1}"><a href="confirm.do?host_no=${list.host_no}">반려</a></c:if>
+										</td>
+										
 									</tr>
 								</c:forEach>
 								</tbody>
@@ -63,7 +72,7 @@
 								</c:if>
 								<!-- 페이지별 -->
 									<c:forEach var="p" begin="${hostList.startPage}" end="${hostList.endPage }">
-										<a href='hostList.do?page=${p }' <c:if test="${hostBoardVO.page == p }"> class='current'</c:if>>${p }</a>
+										<a href="hostList.do?page=${p }&stype=${param.stype}&sword=${param.sword}" <c:if test="${adminVO.page == p }"> class='current'</c:if>>${p }</a>
 									</c:forEach>
 								<!-- 다음페이지 -->
 								<c:if test="${hostList.next == true }">
@@ -74,7 +83,8 @@
 							<form name="searchForm" id="searchForm" action="hostList.do"  method="get">
 								<div class="search">
 									<select name="stype" title="검색을 선택해주세요">
-										<option value="all">아이디 검색</option>
+										<option value="host_id" selected="">아이디 검색</option>
+										<option value="host_name">이름 검색</option>
 									</select>
 									<input type="text" id="sword" name="sword" value="" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/image/admin/btn_search.gif" class="sbtn" alt="검색" />

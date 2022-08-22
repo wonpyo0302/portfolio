@@ -55,4 +55,27 @@
 	<update id="fakeDelete" parameterType="kr.co.hotel.guest.GuestVO">
 		UPDATE guest SET guest_pwd=md5(#{guest_pwd}) , guest_status=1 WHERE guest_no=#{guest_no}
 	</update>
+	
+	
+	<!-- 총 게시물 수 체크 -->
+	<select id="count" parameterType="kr.co.hotel.admin.AdminVO" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM guest 
+		<where>
+			<if test="stype != null and sword != ''">
+				${stype} LIKE '%${sword}%'
+			</if>
+		</where>
+	</select>
+	
+	<!-- 목록보기페이징 -->
+	<select id="listPaging" parameterType="kr.co.hotel.admin.AdminVO" resultType="kr.co.hotel.guest.GuestVO">
+		select * from guest
+		<where>
+			<if test="stype != null and sword != ''">
+				${stype} LIKE '%${sword}%'
+			</if>
+		</where>
+		LIMIT ${startIdx} , ${pageRow}
+	</select>
+	
 </mapper>

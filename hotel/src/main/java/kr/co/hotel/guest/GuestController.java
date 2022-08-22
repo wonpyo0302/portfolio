@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.hotel.admin.AdminVO;
+
 @Controller
 public class GuestController {
 	@Autowired
@@ -207,4 +209,13 @@ public class GuestController {
 			 out.flush();
 		 		 
 	 }
+	 
+	 //=====================AdminController 추가=======================
+	 
+	 @GetMapping("/admin/main/guestlist.do")
+		public String guestlist(AdminVO avo, Model model) {
+			System.out.println("=====================" + avo.getSword());
+			model.addAttribute("guestlist", gservice.guestListPaging(avo));
+			return "/admin/main/guestlist";
+		}
 }

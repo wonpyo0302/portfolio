@@ -28,8 +28,10 @@ public class ReserveController {
 	}
 	
 	//테스트
-	@GetMapping("/reserve/reserve2.do")
-	public String reserve2() {
+	@PostMapping("/reserve/reserve2.do")
+	public String reserve2(ReserveVO vo, HotelVO hvo, Model model) {
+		model.addAttribute("hotelinfo",service.SelectHotelInfo(hvo) );
+		model.addAttribute("roominfo", service.SelectRoomInfo(vo));
 		return "/reserve/reserve2";
 	}
 	
@@ -44,6 +46,7 @@ public class ReserveController {
 	@PostMapping("/reserve/reserveinsert.do")
 	@ResponseBody
 	public void reserveinsert(ReserveVO vo,GuestVO gvo, Model model) {
+		System.out.println("===================================="+vo.getTotal_price());
 		service.insert(vo, gvo);
 	}
 	

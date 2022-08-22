@@ -80,9 +80,9 @@
 								<ul class="list">
 									<li class="item">
 									<th>문의유형</th>
-									</span>
-									<td class="choose"><span class="srchSelect"> <select
-											id="stype" name="stype" class="dSelect" title="검색분류 선택">
+								
+									<td class="choose"><span class="srchSelect"> 
+									<select	id="stype" name="stype" class="dSelect" title="검색분류 선택">
 												<option value="reservation"
 													<c:if test="${data.gboard_type==1 }">selected</c:if>>
 													예약문의</option>

@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@include file="/WEB-INF/views/includes/G_header.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -21,19 +21,23 @@
 
 
 </head>
+<script>
+
+function goWrite(){
+	location.href= "write.do";
+}
+</script>
+
 <body>
+    <div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>게스트 관리 ▶ NOTICE ▶ 목록조회</h2>
+				</div>
+			</div>
+	</div>
 	<div class="sub">
 		<div class="size">
-			<br> <br> <br>
-			<h3 class="sub_title" style="text-align: left">공지사항</h3>
-			<br>
-			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/boardPic/notice.png" width="60px"> 공지사항(게스트)
-			</h6>
-			<br>
-			<br>
-			<br>
-			<br>
 			<div class="bbs">
 				<table class="list">
 					<p>
@@ -67,18 +71,24 @@
 						<c:if test="${not empty data.list}">
 							<c:forEach items="${data.list }" var="vo" varStatus="status">
 								<c:if test="${vo.fix == 1}">
-									<tr style="background-color: pink" style="font-weight" :bold" >
+									<tr style="background-color: F7C1C2" style="font-weight" :bold" >
 										<td>${data.totalCount - status.index - ((guestNoticeVO.page - 1) * guestNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l"><a
-											href="/hotel/guestnotice/view.do?gnotice_no=${vo.gnotice_no}">
-												<img src="/hotel/image/boardPic/느낌2.png" width="20px"> <b>${vo.gnotice_title}</b>
-												<img src="/hotel/image/boardPic/new2.png" width="30px">
+											href="/hotel/admin/main/guestboard/notice/view.do?gnotice_no=${vo.gnotice_no}">
+										<b> <c:if test="${vo.gnotice_type == 1 }">
+											[안내] ${vo.gnotice_title} 
+										</c:if> <c:if test="${vo.gnotice_type == 2 }">
+											[공지] ${vo.gnotice_title} 
+										</c:if> <c:if test="${vo.gnotice_type == 3 }">
+											[이벤트] ${vo.gnotice_title} 
+										</c:if> <c:if test="${vo.gnotice_type == 4 }">
+											[발표] ${vo.gnotice_title} 
+										</c:if>
+											</b> <img src="/hotel/image/boardPic/new2.png" width="30px">
 										</a></td>
-										<td class="writer">관리자</td>
-										<td class="date"><fmt:formatDate
-												value="${vo.gnotice_regdate}" pattern="yyyy-MM-dd" /></td>
+											<td class="writer">관리자</td>
+										<td class="date"><fmt:formatDate value="${vo.gnotice_regdate}" pattern="yyyy-MM-dd" /></td>
 										<td>${vo.gnotice_viewcount}</td>
-
 									</tr>
 								</c:if>
 								<c:if test="${vo.fix != 1}">
@@ -86,7 +96,7 @@
 										<td>${data.totalCount - status.index - ((guestNoticeVO.page - 1) * guestNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l">
 									
-										<a href="/hotel/guestnotice/view.do?gnotice_no=${vo.gnotice_no}">${vo.gnotice_title} 
+										<a href="/hotel/admin/main/guestboard/notice/view.do?gnotice_no=${vo.gnotice_no}">${vo.gnotice_title} 
 										<c:if test="${vo.diff <= 3 }">
 										<img src="/hotel/image/boardPic/new (4).png" width="30px">
 										</c:if></a>
@@ -128,6 +138,10 @@
 					</ul>
 				</div>
 
+				<div class="btnSet" style="text-align: right;">
+						<a class="btn" href="javascript:goWrite();">등록 </a>
+				</div>
+				
 				<!-- 페이지처리 -->
 				<div class="bbsSearch">
 					<form method="get" name="searchForm" id="searchForm" action="">

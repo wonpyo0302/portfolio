@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.hotel.admin.AdminVO;
 import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.point.PointVO;
 
@@ -24,13 +25,6 @@ public class CouponController {
 	
 	@Autowired
 	CouponService service;
-
-	@GetMapping("coupon/create.do")
-	public String create(Model model, HttpSession session) {
-		Map map = new HashMap();
-		model.addAttribute("data",service.list(map));
-		return "/coupon/create";
-	}
 	
 	@GetMapping("coupon/idList.do")
 	public String idList(Model model, @RequestParam(required = false) String idsearch) {
@@ -41,7 +35,7 @@ public class CouponController {
 	}
 	
 	@PostMapping("coupon/create.do")
-	public void createpro(GuestVO gvo, CouponVO cvo, 
+	public String createpro(GuestVO gvo, CouponVO cvo, 
 			@RequestParam List<String> guest_id, 
 			@RequestParam List<Integer>coupon_price,
 			@RequestParam List<Integer>amount) {
@@ -71,6 +65,7 @@ public class CouponController {
 					}
 				}
 			}
+			return "/admin/main/couponcreate";
 	}
 	
 	//--------이하 빛찬--------------------------------------------------
@@ -97,7 +92,12 @@ public class CouponController {
 		return "coupon/index";
 	}
 	
+	//=====================쿠폰 admin내용 추가=========================
 	
+	@GetMapping("/admin/main/couponcreate.do")
+	public String couponcreate(AdminVO avo,HttpSession sess, Model model) {
+		return "/admin/main/couponcreate";
+	}
 	
 	
 	
