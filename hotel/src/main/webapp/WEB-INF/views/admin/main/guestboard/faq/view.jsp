@@ -84,7 +84,7 @@
 </script>
 
 <script>
-	function goSave() {
+	function goWrite() {
 		frm.submit();
 	};
 </script>
@@ -182,7 +182,7 @@
 						</ul>
 					</div>
 					<div class="btnSet" style="text-align: right;">
-						<a class="btn" href="javascript:goSave();">등록 </a>
+						<a class="btn" href="javascript:goWrite();">등록 </a>
 					</div>
 				</section>
 			</form>

@@ -31,11 +31,11 @@
 </script>
 <script>
 	function login(){
-		<c:if test="${empty data}">
+		<c:if test="${empty loginInfo2}">
 			alert('로그인 후 작성 가능합니다.');
 		</c:if>
 		
-		<c:if test="${!empty data}">
+		<c:if test="${!empty loginInfo2}">
 			location.href='list.do';
 		</c:if>
 	}

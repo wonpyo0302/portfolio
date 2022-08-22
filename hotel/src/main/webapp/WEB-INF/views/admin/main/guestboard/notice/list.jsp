@@ -25,7 +25,6 @@
 
 function goWrite(){
 	location.href= "write.do";
-	
 }
 </script>
 
@@ -72,18 +71,24 @@ function goWrite(){
 						<c:if test="${not empty data.list}">
 							<c:forEach items="${data.list }" var="vo" varStatus="status">
 								<c:if test="${vo.fix == 1}">
-									<tr style="background-color: pink" style="font-weight" :bold" >
+									<tr style="background-color: F7C1C2" style="font-weight" :bold" >
 										<td>${data.totalCount - status.index - ((guestNoticeVO.page - 1) * guestNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l"><a
 											href="/hotel/admin/main/guestboard/notice/view.do?gnotice_no=${vo.gnotice_no}">
-												<img src="/hotel/image/boardPic/느낌2.png" width="20px"> <b>${vo.gnotice_title}</b>
-												<img src="/hotel/image/boardPic/new2.png" width="30px">
+										<b> <c:if test="${vo.gnotice_type == 1 }">
+											[안내] ${vo.gnotice_title} 
+										</c:if> <c:if test="${vo.gnotice_type == 2 }">
+											[공지] ${vo.gnotice_title} 
+										</c:if> <c:if test="${vo.gnotice_type == 3 }">
+											[이벤트] ${vo.gnotice_title} 
+										</c:if> <c:if test="${vo.gnotice_type == 4 }">
+											[발표] ${vo.gnotice_title} 
+										</c:if>
+											</b> <img src="/hotel/image/boardPic/new2.png" width="30px">
 										</a></td>
-										<td class="writer">관리자</td>
-										<td class="date"><fmt:formatDate
-												value="${vo.gnotice_regdate}" pattern="yyyy-MM-dd" /></td>
+											<td class="writer">관리자</td>
+										<td class="date"><fmt:formatDate value="${vo.gnotice_regdate}" pattern="yyyy-MM-dd" /></td>
 										<td>${vo.gnotice_viewcount}</td>
-
 									</tr>
 								</c:if>
 								<c:if test="${vo.fix != 1}">

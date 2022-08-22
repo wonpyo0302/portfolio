@@ -26,8 +26,8 @@
     <script>
     	function goSave(){
     		frm.submit();
-    	}
-    	});
+    	
+    	};
     </script>
 </head>
 <body>
@@ -41,7 +41,7 @@
         <div class="sub">
             <div class="size">
                 <div class="bbs">
-                <form method="post" name="frm" id="frm" action="insert.do"  enctype="multipart/form-data" > 
+                <form method="post" name="frm" id="frm" action="write.do"  enctype="multipart/form-data" > 
        		    <input type="hidden" name="admin_no" value="${loginInfo2.admin_no}"> 
                     <table class="board_write">
                     	<tbody>
@@ -80,7 +80,7 @@
 						</tbody>
                     </table>
                     <div class="btnSet"  style="text-align:right;">
-                        <input class="btn" type='reset'> </a>
+                      
                         <a class="btn" href="javascript:goSave();">작성완료 </a>
                     </div>
                     </form>

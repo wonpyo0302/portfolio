@@ -1,6 +1,6 @@
-<%@ page language="java"	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
-<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp"%>
 
 
 
@@ -34,11 +34,10 @@
 }
 </style>
 
-<script> 
+<script>
 	// 글작성 완료 후 내가 쓴글 상세보기 이동
 	function goSave() {
 		frm.submit();
-		
 	};
 </script>
 
@@ -61,55 +60,75 @@
 </head>
 <body>
 
- <div id="container">
-			<div id="content">
-				<div class="con_tit">
-					<h2>게스트 관리 ▶ FAQ ▶ 수정</h2>
-				</div>
+	<div id="container">
+		<div id="content">
+			<div class="con_tit">
+				<h2>게스트 관리 ▶ NOTICE ▶ 수정</h2>
 			</div>
+		</div>
 	</div>
-	       <div class="sub">
-            <div class="size">
-                <div class="bbs">
-                <form method="post" name="frm" id="frm" action="edit.do"  enctype="multipart/form-data" > 
-                <!--  <input type="hidden" name="member_no" value="${loginInfo.no}"> -->
-                <!-- 작성자가 누구인지 저장/전송하기 위한 처리
+	<div class="sub">
+		<div class="size">
+			<div class="bbs">
+				<form method="post" name="frm" id="frm" action="edit.do"
+					enctype="multipart/form-data">
+					<!--  <input type="hidden" name="member_no" value="${loginInfo.no}"> -->
+					<!-- 작성자가 누구인지 저장/전송하기 위한 처리
                 session에 loginInfo라는 이름으로 저장했기 때문에 loginInfo이름으로 꺼내야 한다. 
                 그리고 loginInfo안에 MemberVO vo객체가 들어있는 것이고 member테이블에서는 member_no가 아니라 no!!!-->
-                    <table class="board_write">
+					<table class="board_write">
 						<tbody>
-							<tr>
-								<th>분류</th>
-								<td class="choose"> <span class="srchSelect"> 
-									<select id="stype" name="gboard_type" class="dSelect" title="검색분류 선택">
-											<option name="gboard_type" value="1">예약</option>
-											<option name="gboard_type" value="2">결제</option>
-											<option name="gboard_type" value="3">숙소</option>
-											<option name="gboard_type" value="4">포인트/쿠폰</option>
-											<option name="gboard_type" value="5">이용/기타</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-							<tr>
-								<th>제목</th>
-								<td><input type="text" name="title" id="title" value="" style="width: 90%" value="${data.gnotice_title }"/>
-								</td>
+							<div class="container">
+								<ul class="list">
+									<li class="item">
+									<th>분류</th>
+								
+									<td class="choose"><span class="srchSelect"> 
+									<select	id="stype" name="stype" class="dSelect" title="검색분류 선택">
+										<option value="info1" 
+										 	<c:if test="${data.gnotice_type == 1}">selected</c:if>>
+										 	안내</option>
+										<option value="info2" 
+											<c:if test="${data.gnotice_type == 2}">selected</c:if>>
+											공지</option>
+										<option value="event" 
+											<c:if test="${data.gnotice_type == 3}">selected</c:if>>
+											이벤트</option>
+										<option value="event2" 
+											<c:if test="${data.gnotice_type == 4}">selected</c:if>>
+											발표</option>
+										</select>
+									<td>
+											</li>
+											<tr>
+												<th>제목</th>
+												<td>
+												<input type="text" name="gnotice_title" id="gnotice_title" style="width: 90%"
+													value="${data.gnotice_title}" /></td>
+											</tr>
+											<tr>
+								<th>작성자</th>
+								<td>관리자</td>
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td><textarea name="content" id="content" style="width: 90%" value="${data.gnotice_content}"></textarea></td>
+								<td><textarea name="gnotice_content" id="gnotice_content" style="width: 90%" >${data.gnotice_content}</textarea></td>
 							</tr>
-
+							<tr>
+								<th>첨부파일</th>
+								<td><input type="file" name="filename"></td>
+							</tr>
+							</ul>
+							</div>
 						</tbody>
 					</table>
-                    <div class="btnSet"  style="text-align:right;">
-                        <a class="btn" href="javascript:goSave();">저장 </a>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+					<div class="btnSet" style="text-align: right;">
+						<a class="btn" href="javascript:goSave();">저장 </a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>
