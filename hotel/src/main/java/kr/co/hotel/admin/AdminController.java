@@ -21,12 +21,12 @@ public class AdminController {
 	
 	@GetMapping("/admin/login.do")
 	 public String adminLogin() {
-		return "/admin/main/login";
+		return "admin/main/login";
 	}
 	@PostMapping("/admin/login.do")
 	public String adminLogin(AdminVO avo,HttpSession sess, Model model) {
 		if(aservice.adminLogin(avo, sess)) {
-			return "redirect:/admin/main/adminMain.do";
+			return "/admin/main/adminMain";
 		}else {
 			model.addAttribute("msg", "로그인정보를 다시 확인해주세요");
 			return "common/alert";
@@ -49,33 +49,6 @@ public class AdminController {
 		return "/admin/main/guestlist";
 	}
 
-	@GetMapping("/admin/main/couponcreate.do")
-	public String couponcreate(AdminVO avo,HttpSession sess, Model model) {
-		return "/admin/main/couponcreate";
-	}
-	
-	@GetMapping("/admin/main/idList.do")
-	public String idList(AdminVO avo, Model model ) {
-		Map map = new HashMap();
-		map.put("idsearch", avo.getSword());
-		model.addAttribute("data",aservice.guestList(avo));
-		return "/admin/main/idList";
-	}
-	
-//-========================추가는 아래로 해주세요========================	
-	@GetMapping("/admin/main/adminMain.do")
-	public String adminMain(AdminVO avo, Model model ) {
-		model.addAttribute("sales", aservice.salesMonth());
-		aservice.memberCount(model);
-		return "/admin/main/adminMain";
-	}
-	
-	@GetMapping("/admin/main/hostList.do")
-	public String confirm(Model model) {
-		model.addAttribute("host",aservice.getHostList());
-		return "/admin/main/host/hostList";
-	}
-//===========================이원표 부분 끝============================
 	
 	
 }

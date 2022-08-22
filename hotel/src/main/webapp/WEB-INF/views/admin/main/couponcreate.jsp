@@ -45,7 +45,7 @@ $(function() {
 function search(){
 	var data=$('#sword').val();
 	$.ajax({
-		url : "/hotel/admin/main/idList.do?sword="+data,
+		url : "/hotel/coupon/idList.do?sword="+data,
 		cache:false,
 		success: function(res){
 			$("#test").empty();
@@ -67,7 +67,7 @@ function search(){
 				</div>
 				
 				<div style="padding: 0 0 0 20%">
-				<form id="frm" method="post" action="create.do" >
+				<form id="frm" method="post" action="/hotel/coupon/create.do" >
 					<table border="1" class="list" style="float:left;">
 						<tr>
 							<th style="width: 450px;height: 30px">ID</th>
