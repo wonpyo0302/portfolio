@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.ui.Model;
 
 import kr.co.hotel.HRRegister.ImageVO;
+import kr.co.hotel.favorite.FavoriteVO;
 import kr.co.hotel.room.RoomVO;
 
 
@@ -27,6 +28,8 @@ public interface HotelService {
 	
 	List<HotelVO> getHotelImage(int hotel_no);
 	List<ImageVO> getRoomImage(int room_no);
+	
+	public FavoriteVO get_favorite(FavoriteVO fvo);
 	
 	
 }

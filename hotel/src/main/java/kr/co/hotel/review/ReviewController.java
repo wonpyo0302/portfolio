@@ -15,11 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.hotel.HRRegister.HRRegisterService;
 import kr.co.hotel.HRRegister.ImageVO;
-import kr.co.hotel.favorite.FavoriteVO;
 import kr.co.hotel.guest.GuestVO;
-import kr.co.hotel.main.HotelVO;
 import kr.co.hotel.reserve.ReserveVO;
-import kr.co.hotel.room.RoomVO;
 import util.ImgHandling;
 
 @Controller
@@ -126,7 +123,38 @@ public class ReviewController {
 	}
 	
 	
-	
+	@PostMapping("/review/update.do")
+	public String update(ReviewVO vo, Model model) {
+		System.out.println("리뷰확인"+vo.getReview_no());
+		System.out.println(vo.getReview_title());
+		System.out.println(vo.getReview_content());
+		System.out.println("리뷰확인"+vo.getReview_score());
+		boolean r = service.review_update(vo);//review 테이블 평점 입력
+
+		//hotel, room 평점 업데이트
+		if(service.avgScroe(vo.getRoom_no(), vo.getHotel_no())) {
+			r=true;
+		}else {
+			r=false;
+		}
+		if(service.reviewTotalCount(vo.getRoom_no(),vo.getHotel_no())) {
+			r=true;
+		}else {
+			r=false;
+		}
+		
+		if(r) {
+			
+			model.addAttribute("msg","성공적으로 수정하였습니다.");
+			model.addAttribute("url","../review/index.do");
+		}else {
+			model.addAttribute("msg","삭제 실패하였습니다.");
+			model.addAttribute("url","../review/index.do");
+		}
+		
+		
+		return"common/alert";
+	}
 	
 	
 	
