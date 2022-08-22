@@ -30,5 +30,7 @@ public interface ReviewMapper {
 	
 	public ImageVO get_review_img (int review_no);
 	
+	public boolean delete(int review_no);
+	
 	
 }

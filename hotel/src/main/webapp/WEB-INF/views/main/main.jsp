@@ -93,7 +93,7 @@
 						<div class="hotel01"><img alt="서울이미지오류" src="/hotel/image/hotel/${SH.filename}" width="100px" height="100px">
 						</div>
 					<div><p>${SH.hotel_name}</p></div>
-					<span>최저가:  ${SH.lowPrice } ~</span>
+					<span>최저가:  <fmt:formatNumber value="${SH.lowPrice }" pattern="#,###"/> ~</span>
 					<input type="hidden" name="hotel_no" value="${SH.hotel_no}">
 				</a>
 			</div>
@@ -113,7 +113,7 @@
 						<div id="hotel01"><img alt="인천이미지오류" src="/hotel/image/hotel/${IH.filename}" width="200px" height="200px">
 						</div>
 					<div><p>${IH.hotel_name}</p></div>
-					<span>최저가:  ${IH.lowPrice } ~</span>
+					<span>최저가:  <fmt:formatNumber value="${IH.lowPrice }" pattern="#,###"/> ~</span>
 				</a>
 			</div>
 			</c:forEach>
@@ -132,7 +132,7 @@
 						<div class="hotel01"><img alt="경기이미지오류" src="/hotel/image/hotel/${KH.filename}" width="200px" height="200px">
 						</div>
 					<div><p>${KH.hotel_name}</p></div>
-					<span>최저가:  ${KH.lowPrice } ~</span>
+					<span>최저가:  <fmt:formatNumber value="${KH.lowPrice }" pattern="#,###"/> ~</span>
 				</a>
 			</div>
 			</c:forEach>

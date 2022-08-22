@@ -119,6 +119,14 @@ public class ReviewController {
 		return "common/review";
 	}
 	
+	@PostMapping("/review/del.do")
+	public String delete(ReviewVO vo, Model model) {
+		boolean r= service.delete(vo.getReview_no());
+		return "common/return";
+	}
+	
+	
+	
 	
 	
 	

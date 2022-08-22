@@ -15,30 +15,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
-    	function findHostEmail() {
-    		if ($("#host_name").val() == '') {
+    	function findGuestId() {
+    		if ($("#guest_name").val() == '') {
     			alert('이름을 입력해 주세요');
-    			$("#host_name").focus();
+    			$("#guest_name").focus();
     			return false;
     		}
-    		if ($("#host_hp").val() == '') {
+    		if ($("#guest_hp").val() == '') {
     			alert('전화번호를 입력해 주세요');
-    			$("#host_hp").focus();
+    			$("#guest_hp").focus();
     			return false;
     		}
     		// ajax조회
     		$.ajax({
-    			url : 'findHostEmail.do',
+    			url : 'findGuestId.do',
     			method : 'post',
     			data : {
-    				host_name : $("#host_name").val(),
-    				host_hp : $("#host_hp").val()
+    				guest_name : $("#guest_name").val(),
+    				guest_hp : $("#guest_hp").val()
     			},
     			success : function(res) {
     				if (res.trim() == '') {
     					$("#msg").html('입력하신 정보는 존재하지 않습니다.');
     				} else {
-    					$("#msg").html('이메일은 "'+res.trim()+'" 입니다.');
+    					$("#msg").html('아이디는 "'+res.trim()+'" 입니다.');
     				}
     			}
     		});
@@ -47,28 +47,26 @@
     </script>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/views/includes/H_header.jsp"/>
-        <form action="findHostEmail.do" method="post" id="loginFrm1" name="loginFrm1" onsubmit="return findHostEmail();"><!-- header에서 id="board"이미 사용중이라서 board2로 함 -->
+    <jsp:include page="/WEB-INF/views/includes/G_header.jsp"/>
+        <form action="findGuestEmail.do" method="post" id="loginFrm1" name="loginFrm1" onsubmit="return findGuestId();"><!-- header에서 id="board"이미 사용중이라서 board2로 함 -->
             <div class="sub">
                 <div class="size">
-                    <h3 class="sub_title">이메일 찾기</h3>
+                    <h3 class="sub_title">GUEST 아이디 찾기</h3>
                     
                     <div class="member">
                         <div class="box">
                             <fieldset class="login_form">
                                 <ul>
-                                    <li><input type="text" id="host_name" name="host_name" placeholder="이름"></li>
-                                    <li><input type="text" id="host_hp" name="host_hp" placeholder="전화번호"></li>
+                                    <li><input type="text" id="guest_name" name="guest_name" placeholder="이름"></li>
+                                    <li><input type="text" id="guest_hp" name="guest_hp" placeholder="전화번호"></li>
                                     <li id="msg"></li>
                                 </ul>
-                                <div class="login_btn"><input type="submit" href="javascript:;" onclick="findHostEmail();" value="이메일 찾기" alt="이메일 찾기" /></div>
+                                <div class="login_btn"><input type="submit" href="javascript:;" onclick="findGuestId();" value="아이디 찾기" alt="아이디 찾기" /></div>
                             </fieldset>
-                            <div class="btnSet clear">
-                                <div>
-                                    <a href="join.do" class="btn">회원가입</a> 
-                                    <a href="findHostPwd.do" class="btn">비밀번호 찾기</a>
-                                    <a href="login.do" style="background-color:black; color:white;">로그인</a>
-                                </div>
+                            <div class="btnSet clear" style="display:inline-block; width:500px;">
+                                <a href="join.do" class="btn" style="width:160px;">회원가입</a> 
+                                <a href="findGuestPwd.do" class="btn" style="width:160px;">비밀번호 찾기</a> 
+                                <a href="login.do" class="btn" style="width:160px;">로그인</a>                                  
                             </div>
                         </div>
                     </div>

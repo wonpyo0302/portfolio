@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.host.HostVO;
 import kr.co.hotel.main.HotelVO;
+import kr.co.hotel.room.RoomVO;
 
 @Service
 public interface ReserveService {
@@ -19,6 +20,8 @@ public interface ReserveService {
 	public int CouponDelete();
 	public int PointDeposit(ReserveVO vo, GuestVO gvo);
 	public HostVO SelectHostNo(HotelVO vo);
+	public HotelVO SelectHotelInfo(HotelVO vo);
+	public RoomVO SelectRoomInfo(ReserveVO vo);
 	
 	
 	//--이하 마이페이지 예약내역리스트_빛찬--------------------

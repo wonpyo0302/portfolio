@@ -68,5 +68,12 @@ public class HotelController {
 		return "/main/hotelView";
 	}
 	
+	//=====================이하 형욱================================
+	
+	@GetMapping("/main/map.do")
+	public String map(HotelVO vo, Model model) {
+		model.addAttribute("hotel", service.hotelView(vo.getHotel_no()));
+		return "/main/map";
+	}
 
 }

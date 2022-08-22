@@ -70,18 +70,22 @@
 								</c:if>
 								<!-- 페이지별 -->
 									<c:forEach var="p" begin="${guestlist.startPage}" end="${guestlist.endPage }">
-										<a href='guestlist.do?page=${p }' <c:if test="${guestBoardVO.page == p }"> class='current'</c:if>>${p }</a>
+										<a href='guestlist.do?page=${p}&stype=${param.stype}&sword=${param.sword}&page=${param.page}' 
+										<c:if test="${guestBoardVO.page == p }"> 
+											class='current'
+										</c:if>>${p }</a>
 									</c:forEach>
 								<!-- 다음페이지 -->
 								<c:if test="${guestlist.next == true }">
-									<a href="guestlist.do?page=${guestlist.endPage + 1 }&stype=${param.stype}&sword=${param.sword}">></a>
+									<a href="guestlist.do?page=${guestlist.endPage + 1 }&stype=${param.stype}&sword=${param.sword}&page=${param.page}">></a>
 								</c:if>
 							</div>
 							<!-- 페이지처리 -->
 							<form name="searchForm" id="searchForm" action="guestlist.do"  method="get">
 								<div class="search">
 									<select name="stype" title="검색을 선택해주세요">
-										<option value="all">아이디 검색</option>
+										<option value="guest_id" selected="selected">아이디</option>
+										<option value="guest_name">이름</option>
 									</select>
 									<input type="text" id="sword" name="sword" value="" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/image/admin/btn_search.gif" class="sbtn" alt="검색" />

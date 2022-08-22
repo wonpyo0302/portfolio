@@ -45,8 +45,8 @@ public class HostServiceImpl implements HostService {
 	}
 
 	@Override
-	public HostVO findHostEmail(HostVO hvo) {
-		return hmapper.findHostEmail(hvo);
+	public HostVO findHostId(HostVO hvo) {
+		return hmapper.findHostId(hvo);
 	}
 	@Override
 	public HostVO findHostPwd(HostVO hvo) {

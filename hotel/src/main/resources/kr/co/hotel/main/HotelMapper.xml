@@ -41,7 +41,7 @@
 	 <!-- 2~6  -->
 	<select id="searchList" parameterType ="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
 		SELECT * ,
-			(SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice,
+			(SELECT  MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice,
 			(SELECT filename_org FROM image WHERE no = #{hotel_no} limit 1) AS filename
 		FROM hotel h LEFT JOIN favorite f
 		ON h.hotel_no = f.hotel_no LEFT JOIN review r

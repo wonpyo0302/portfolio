@@ -22,7 +22,9 @@
 	
 	<select id="list" parameterType="kr.co.hotel.review.ReviewVO" resultType="kr.co.hotel.review.ReviewVO">
 
-			select * from review
+			select * ,
+			(select hotel_name from hotel where hotel_no=review.hotel_no) as hotel_name		
+			from review
 				<where>
 					guest_no = #{guest_no}
 					<if test="stype != null and stype !='' ">
@@ -100,6 +102,10 @@
 		where no=#{no} 
 		and image_type='REVIEW'
 	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from review where review_no =#{review_no}
+	</delete>
 	 
 
 </mapper>

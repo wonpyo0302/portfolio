@@ -6,29 +6,19 @@
 		SELECT * FROM admin WHERE admin_id=#{admin_id} ANd admin_pwd=#{admin_pwd} 
 	</select>
 	
-	<!-- 총 게시물 수 체크 -->
-	<select id="count" parameterType="kr.co.hotel.admin.AdminVO" resultType="java.lang.Integer">
-		SELECT COUNT(*) FROM guest 
-		<where>
-			guest_id like '%${sword}%'
-		</where>
+	<!-- 이원표작성 시작 -->
+	<!-- 월별 매출 가져오기 -->
+	<select id="salesMonth" resultType="kr.co.hotel.admin.AdminVO">
+		select month(rev_date) as date, FLOOR(sum(total_price)*0.2) as totalPrice from reserv where use_status = 1 group by month(rev_date) order by date
 	</select>
-	
-	<!-- 목록보기페이징 -->
-	<select id="listPaging" parameterType="kr.co.hotel.admin.AdminVO" resultType="kr.co.hotel.guest.GuestVO">
-		select * from guest
-		<where>
-			guest_id like '%${sword}%'
-		</where>
-		LIMIT ${startIdx} , ${pageRow}
+	<!-- 월별 회원 가입 수 확인 -->
+	<select id="guestCount" resultType="kr.co.hotel.admin.AdminVO">
+		select month(g_joindate) as gdate, count(guest_id) as guestCount from guest group by month(g_joindate) order by gdate
+	</select>
+	<select id="hostCount" resultType="kr.co.hotel.admin.AdminVO">
+		select month(host_joindate) as hdate, count(host_id) as hostCount from host group by month(host_joindate) order by hdate
 	</select>
 
-	<!-- 목록보기 -->
-	<select id="list" parameterType="kr.co.hotel.admin.AdminVO" resultType="kr.co.hotel.guest.GuestVO">
-		select * from guest
-		<where>
-			guest_id like '%${sword}%'
-		</where>
-	</select>
+	<!-- 이원표작성 끝 -->
 	
 </mapper>

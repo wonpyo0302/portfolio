@@ -110,8 +110,8 @@
                             <div class="btnSet clear">
                                 <div>
                                     <a href="join.do" class="btn">회원가입</a> 
-                                    <a href="findGuestEmail.do" class="btn">이메일/비밀번호 찾기</a>
-                                </div>
+                                    <a href="findGuestId.do" class="btn">아이디/비밀번호 찾기</a>
+                                </div>                            
                             </div>
                         </div>
                     </div>

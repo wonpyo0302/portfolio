@@ -92,16 +92,16 @@ public class HostController {
 		return "common/alert";
 	}
 	
-	@GetMapping("/host/findHostEmail.do")
+	@GetMapping("/host/findHostId.do")
 	public String findHostEmail() {
-		return "host/findEmail";
+		return "host/findId";
 	}
 	
-	@PostMapping("/host/findHostEmail.do")
+	@PostMapping("/host/findHostId.do")
 	public String findHostEmail(Model model, HostVO param) {
-		HostVO hvo = hservice.findHostEmail(param);
+		HostVO hvo = hservice.findHostId(param);
 		if (hvo != null) {
-			model.addAttribute("result", hvo.getHost_email());
+			model.addAttribute("result", hvo.getHost_id());
 		}
 		return "common/return";
 	}

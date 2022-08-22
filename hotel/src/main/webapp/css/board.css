@@ -189,7 +189,7 @@ textarea{border:1px solid #cccccc;}
 #bbs #blist .top_search table tbody td{padding:5px 10px; background:none; border-bottom:1px solid #a9aaaf;}
 
 /*쿠폰게시판 시작 */
-#bbs2{position:relative; margin-bottom:50px; padding:0; width:70%;  color:#5e5e5e; float: left;}
+#bbs2{position:relative; margin-bottom:50px; padding:0; width:100%;  color:#5e5e5e; float: left;}
 
 #bbs2 .entered_into{width:57.6%; margin:0 0 20px 0; padding:5px 1%; border:1px solid #c3c7ce; background:#f2f4f5;}
 

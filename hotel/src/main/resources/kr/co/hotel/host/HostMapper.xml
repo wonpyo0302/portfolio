@@ -24,7 +24,7 @@
 	<select id="hostloginCheck" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
 		SELECT * FROM host WHERE host_id = #{host_id} AND host_pwd = md5(#{host_pwd}) AND host_status=0
 	</select>
-	<select id="findHostEmail" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
+	<select id="findHostId" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
 		SELECT * FROM host WHERE host_name=#{host_name} AND host_hp=#{host_hp} AND host_status=0
 	</select>
 	

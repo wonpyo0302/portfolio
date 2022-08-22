@@ -99,6 +99,13 @@ public class ReviewServiceImpl implements ReviewService {
 		return map;
 	}
 
+
+	@Override
+	public boolean delete(int review_no) {
+		
+		return mapper.delete(review_no);
+	}
+
 	
 
 }
