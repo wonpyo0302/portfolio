@@ -21,6 +21,17 @@ public class AdminServiceImpl implements AdminService{
 	AdminMapper amapper;
 
 	@Override
+	public boolean adminLogin(AdminVO avo, HttpSession sess) {
+		boolean r= false;
+		AdminVO loginInfo = amapper.adminLogin(avo);
+		if(loginInfo != null) {
+			r = true;
+			sess.setAttribute("loginInfo_admin", loginInfo);
+		}
+		return r;
+	}
+	
+	@Override
 	public List<AdminVO> salesMonth() {
 		return amapper.salesMonth();
 	}

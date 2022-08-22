@@ -1,6 +1,10 @@
 package kr.co.hotel.host;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+
+import kr.co.hotel.admin.AdminVO;
 
 @Mapper
 public interface HostMapper {
@@ -17,4 +21,9 @@ public interface HostMapper {
 	int totalUpdate(HostVO hvo);
 	HostVO deleteHostInfo(HostVO hvo);
 	int fakeDelete (HostVO hvo);
+	
+	//==========이하 이원표 작성============
+	List<HostVO> getHostList(AdminVO vo);
+	int getHostCount(AdminVO vo);
+	HostVO getView(HostVO vo);
 }

@@ -12,13 +12,7 @@
 </style>
 <script>
 window.onload = function () {
-/* 	$.ajax({
-		url : "sales.statistics",
-		type : "POST",
-		success : 
-	})
-	
-	 */
+
 var chart = new CanvasJS.Chart("chartContainer_sales", {
 	animationEnabled: true,
 	theme: "light2", // "light1", "light2", "dark1", "dark2"

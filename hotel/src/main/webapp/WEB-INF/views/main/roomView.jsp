@@ -57,12 +57,12 @@
 	                ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
 	                ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
 	                ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
-	                ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
-	                ,minDate: "+1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-	                ,maxDate: "+30Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
-	   	 });
-	   	 
-	   	 $('#enddate').datepicker('setDate', 'today+1');
+         ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
+         ,minDate: "+1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+         ,maxDate: "+30Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+ });
+ 
+ $('#enddate').datepicker('setDate', 'today+1');
 	   	 $('#enddate').val().replace("-","");
 	   	 //console.log(typeof((Number)($('#enddate').val().replace(/-/g,""))));
 	   	 var startdate=(Number)($('#startdate').val().replace(/-/g,""))
@@ -149,7 +149,7 @@
 		  			</div>
 		  			
 		  			<b>총 가격</b>&nbsp;
-		  			<input type="text" name="total_price" id="calcprice" style="outline: 0; border:none; font-size: 1.3em" readonly="readonly" value="10000">
+		  			<input type="text" name="total_price" id="calcprice" style="outline: 0; border:none; font-size: 1.3em" readonly="readonly" value="">
  		  			<br><br>
 					<div id="reserveBtn" style="display: inline-block; ">
 		  				<input type="submit" style="width:368px; border-radius:50px; color:white;  background-color: #FF3366;" id="reservebtn" value="">
@@ -158,9 +158,6 @@
 			</div>
 	  	<div class="middleBox" style="text-align: center;">
 	  		<span>객실 안내/예약</span>
-	  	</div>
-	  	<div class="middleBox" style="text-align: center;">
-	  		<input type="button" value="이곳을 누르면 지도를 띄워줍니다." onclick="openMap()">
 	  	</div>
 		</div>
 
