@@ -20,16 +20,6 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	AdminMapper amapper;
 
-	@Override
-	public boolean adminLogin(AdminVO avo, HttpSession sess) {
-		boolean r= false;
-		AdminVO loginInfo = amapper.adminLogin(avo);
-		if(loginInfo != null) {
-			r = true;
-			sess.setAttribute("loginInfo_admin", loginInfo);
-		}
-		return r;
-	}
 	
 	@Override
 	public List<AdminVO> salesMonth() {
@@ -41,6 +31,17 @@ public class AdminServiceImpl implements AdminService{
 		model.addAttribute("guestInfo",amapper.guestCount());
 		model.addAttribute("hostInfo",amapper.hostCount());
 		return model;
+	}
+
+	@Override
+	public boolean adminLogin(AdminVO avo, HttpSession sess) {
+		boolean r= false;
+		AdminVO loginInfo = amapper.adminLogin(avo);
+		if(loginInfo != null) {
+			r = true;
+			sess.setAttribute("loginInfo_admin", loginInfo);
+		}
+		return r;
 	}
 
 

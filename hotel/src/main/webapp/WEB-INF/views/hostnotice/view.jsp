@@ -99,7 +99,7 @@
 				<form method="get" name="frm" id="frm" action="edit.do"
 					enctype="multipart/form-data">
 					<input type="hidden" name="hnotice_no" value="${data.hnotice_no}">
-					<input type="hidden" name="host_no" value="${loginInfo.host_no}">
+					<input type="hidden" name="host_no" value="${loginInfo2.host_no}">
 					<table class="board_write">
 						<div class="title">
 							<tr>

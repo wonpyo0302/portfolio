@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@include file="/WEB-INF/views/includes/G_header.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -30,32 +32,47 @@
 	function goList() {
 		location.href = "list.do";
 	}
+	// 수정하기
+	function goEdit() {
+		location.href = "edit.do";
+		frm.submit();
+	}
 </script>
 
 </head>
 <body>
+    <div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>게스트 관리 ▶ NOTICE ▶ 상세보기</h2>
+				</div>
+			</div>
+	</div>
 	<div class="sub">
 		<div class="size">
-			<br> <br> <br>
-			<h3 class="sub_title" style="text-align: left">공지사항</h3>
-			<br>
-			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/boardPic/notice.png" width="60px"> 게스트 전용 공지사항
-				게시판입니다.
-			</h6>
-			<br>
-			<br>
-			<br>
-			<br>
+
 			<div class="bbs">
 				<form method="get" name="frm" id="frm" action="edit.do" enctype="multipart/form-data">
 					<input type="hidden" name="gnotice_no" value="${data.gnotice_no}">
-					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
+					
 					<table class="board_write">
 						<div class="title">
 						<tr>
 							<th>제목</th>
-							<td>${data.gnotice_title }</td>
+							<td>
+								<c:if test="${data.gnotice_type == 1}">
+									[안내] ${data.gnotice_title }
+								</c:if>
+								<c:if test="${data.gnotice_type == 2}">
+									[공지] ${data.gnotice_title }
+								</c:if>
+								<c:if test="${data.gnotice_type == 3}">
+									[이벤트] ${data.gnotice_title }
+								</c:if>
+								<c:if test="${data.gnotice_type == 4}">
+									[발표] ${data.gnotice_title }
+								</c:if>
+							</td>
 							<th>등록일자</th>
 							<td class="date"  style="width: 35%"><fmt:formatDate
 									value="${data.gnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
@@ -82,15 +99,21 @@
 						</div>
 					</table>
 					<div class="btnSet" style="text-align: right;">
+						<a class="btn" href="javascript:goEdit();">수정 </a>
 						<a class="btn" href="javascript:goList();">목록 </a>
 					</div>
+					
+					<br><br><br>
+					<hr style="display: block; margin:1rem 0; color: inherit; opacity:.25;">
 					<div class="pagebox">
 						<div>
-							<p><a href="view.do?gnotice_no=${prev.rownum}">이전글 | ${prev.gnotice_title }</a></p>							
+							<p><a href="view.do?gnotice_no=${prev.gnotice_no}">이전글 | ${prev.gnotice_title }</a></p>							
 						</div>
+					<hr style="display: block; margin:1rem 0; color: inherit; opacity:.25;">
 						<div>
-							<p><a href="view.do?gnotice_no=${next.rownum}">다음글 | ${next.gnotice_title }</a></p>
+							<p><a href="view.do?gnotice_no=${next.gnotice_no}">다음글 | ${next.gnotice_title }</a></p>
 						</div>
+					<hr style="display: block; margin:1rem 0; color: inherit; opacity:.25;">
 					</div>
 				</form>
 			</div>

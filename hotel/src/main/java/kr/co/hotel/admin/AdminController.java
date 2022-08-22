@@ -15,9 +15,12 @@ import kr.co.hotel.guest.GuestService;
 public class AdminController {
 	@Autowired
 	AdminService aservice;
+
+
+	
 	@GetMapping("/admin/login.do")
 	 public String adminLogin() {
-		return "/admin/main/login";
+		return "admin/main/login";
 	}
 	@PostMapping("/admin/login.do")
 	public String adminLogin(AdminVO avo,HttpSession sess, Model model) {
@@ -37,7 +40,8 @@ public class AdminController {
 		model.addAttribute("url", "/hotel/admin/login.do");
 		return "common/alert";
 	}
-
+	
+	
 //-========================추가는 아래로 해주세요========================	
 	@GetMapping("/admin/main/adminMain.do")
 	public String adminMain(AdminVO avo, Model model ) {
@@ -46,7 +50,6 @@ public class AdminController {
 		return "/admin/main/adminMain";
 	}
 
-//===========================이원표 부분 끝============================
-	
+
 	
 }

@@ -47,22 +47,22 @@
 
 
 	// 카카오톡 공유
-	Kakao.init('7316461b564393db0543f1e130e426e9'); // 앱 키
-	function shareKakao() {
+	$(function() {
+		Kakao.init('7316461b564393db0543f1e130e426e9'); // 앱 키
 		Kakao.Share.createDefaultButton({
 					container : '#btnKakao',
 					objectType : 'feed',
 					content : {
-						title : '나와라 타이틀 ${hnotice_title}',
-						description : '나와라 내용 ${hnotice_content}',
+						title : '${data.gnotice_title }',
+						description : '${data.gnotice_content}',
 						imageUrl : 'http://localhost:8080/hotel/image/boardPic/notice.png',
 						link : {
-							mobileWebUrl : 'http://localhost:8080/hotel/hostboard/view.do?hnotice_no=${hnotice_no}',
-							webUrl : 'http://localhost:8080/hotel/hostboard/view.do?hnotice_no=${hnotice_no}',
+							mobileWebUrl : 'http://localhost:8080/hotel/hostboard/view.do?hnotice_no=${data.gnotice_no}',
+							webUrl : 'http://localhost:8080/hotel/hostboard/view.do?hnotice_no=${data.gnotice_no}',
 						},
 					}
 				})
-	}
+	})
 	
 	// 트위터, 페이스북 공유 버튼
 	function shareTwitter() {
@@ -108,7 +108,7 @@
 							
 								<!-- 카카오톡, 트위터, 페이스북 공유 버튼 -->
 							<div class="btnSet" style="text-align: right;">
-								<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();">카카오톡</a>
+								<a id="btnKakao" class="link-icon kakao">카카오톡</a>
 								<!-- <a id="create-kakaotalk-sharing-btn" href="javascript:share();"> <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" width="30px" alt="카카오톡 공유 보내기 버튼" /> </a>  -->
 								<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">트위터</a> 
 								<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">페이스북</a>

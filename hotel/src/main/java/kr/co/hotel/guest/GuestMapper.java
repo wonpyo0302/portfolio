@@ -1,6 +1,10 @@
 package kr.co.hotel.guest;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+
+import kr.co.hotel.admin.AdminVO;
 
 @Mapper
 public interface GuestMapper {
@@ -17,4 +21,8 @@ public interface GuestMapper {
 	int totalUpdate(GuestVO gvo);
 	GuestVO deleteGuestInfo(GuestVO gvo);
 	int fakeDelete(GuestVO gvo);
+	
+	//=========admin guestlist 추가===================
+	List<GuestVO> listPaging(AdminVO vo);
+	int count(AdminVO vo);
 }

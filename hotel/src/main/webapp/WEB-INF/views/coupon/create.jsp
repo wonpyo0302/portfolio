@@ -42,6 +42,7 @@
 $(function() {
 	search();
 })
+
 function search(){
 	var data=$('#idsearch').val();
 	$.ajax({
@@ -54,11 +55,16 @@ function search(){
 		}
 	});
 }
+
+function submit2(){
+	console.log(".coupon_price").val();
+	return false;
+}
 </script>
 <body>
 <h1>쿠폰생성</h1>
 
-<form id="frm" method="post" action="create.do" >
+<form id="frm" method="post" action="create.do" onsubmit="return submit2();" >
 	<table border="1" class="list" style="float:left">
 		<tr>
 			<th>ID</th>
@@ -74,15 +80,15 @@ function search(){
 			</tr>
 			<tr >
 				<tr>
-					<td height="52px"><input type="checkbox" name="coupon_price" value="1000">1000원</td>
+					<td height="52px"><input type="checkbox" class="coupon_price" name="coupon_price" value="1000">1000원</td>
 					<td><input type="number" name="amount" >개</td>
 				</tr>
 				<tr>
-					<td height="52px"><input type="checkbox" name="coupon_price" value="5000">5000원</td>
+					<td height="52px"><input type="checkbox" class="coupon_price" name="coupon_price" value="5000">5000원</td>
 					<td><input type="number" name="amount" >개</td>
 				</tr>
 				<tr>
-					<td height="52px"><input type="checkbox" name="coupon_price" value="10000">10000원</td>
+					<td height="52px"><input type="checkbox" class="coupon_price" name="coupon_price" value="10000">10000원</td>
 					<td><input type="number" name="amount" >개</td>
 				</tr>
 			</tr>
