@@ -44,8 +44,8 @@ public class GuestServiceImpl implements GuestService {
 	}
 
 	@Override
-	public GuestVO findGuestEmail(GuestVO gvo) {
-		return gmapper.findGuestEmail(gvo);
+	public GuestVO findGuestId(GuestVO gvo) {
+		return gmapper.findGuestId(gvo);
 	}
 	@Override
 	public GuestVO findGuestPwd(GuestVO gvo) {

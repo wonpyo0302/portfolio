@@ -71,14 +71,28 @@ public class GuestNoticeServiceImpl implements GuestNoticeService {
 
 
 	@Override
-	public GuestNoticeVO view(GuestNoticeVO vo) {
-		return mapper.view(vo);
+	public GuestNoticeVO view(int gnotice_no) {
+		return mapper.view(gnotice_no);
 	}
 
 	@Override
 	public GuestNoticeVO edit(int gnotice_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.view(gnotice_no);
+	}
+
+	@Override
+	public GuestNoticeVO nowRownum(GuestNoticeVO vo) {
+		return mapper.nowRownum(vo);
+	}
+
+	@Override
+	public GuestNoticeVO prevRownum(GuestNoticeVO vo) {
+		return mapper.prevRownum(vo);
+	}
+
+	@Override
+	public GuestNoticeVO nextRownum(GuestNoticeVO vo) {
+		return mapper.nextRownum(vo);
 	}
 
 

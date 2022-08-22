@@ -10,10 +10,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 public class GuestController {
@@ -93,16 +93,16 @@ public class GuestController {
 		return "common/alert";
 	}
 	
-	@GetMapping("/guest/findGuestEmail.do")
-	public String findGuestEmail() {
-		return "guest/findEmail";
+	@GetMapping("/guest/findGuestId.do")
+	public String findGuestId() {
+		return "guest/findId";
 	}
 	
-	@PostMapping("/guest/findGuestEmail.do")
+	@PostMapping("/guest/findGuestId.do")
 	public String findGuestEmail(Model model, GuestVO param) {
-		GuestVO gvo = gservice.findGuestEmail(param);
+		GuestVO gvo = gservice.findGuestId(param);
 		if (gvo != null) {
-			model.addAttribute("result", gvo.getGuest_email());
+			model.addAttribute("result", gvo.getGuest_id());
 		}
 		return "common/return";
 	}
@@ -186,8 +186,14 @@ public class GuestController {
 		 }
 	 }
 	 @GetMapping("/guest/deleteGuestInfo.do")
-	 public String deleteGuest() {
-		 return "guest/deleteGuest";
+	 public String deleteGuest(HttpSession sess, Model model) {
+		 if(sess.getAttribute("loginInfo") == null) {
+				model.addAttribute("msg","로그인이 필요한 기능입니다");
+				return "common/alert";
+			}else { 
+				return"/guest/deleteGuest";
+				//로그인이 되어 있어야 deleteGuest.jsp로 넘어갈수 있음
+			}
 	 }
 	 @PostMapping("/guest/deleteGuestInfo.do")
 	 public void deleteGuestInfo(HttpSession sess , GuestVO gvo, HttpServletResponse res) throws IOException {

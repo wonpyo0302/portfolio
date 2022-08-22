@@ -34,6 +34,12 @@ public class HostNoticeController {
 	public String view(Model model, HostNoticeVO vo) {
 		service.updateViewcount(vo.getHnotice_no());
 		model.addAttribute("data", service.view(vo));
+
+		vo.setRownum(service.nowRownum(vo).rownum);
+		model.addAttribute("now", service.nowRownum(vo));
+		model.addAttribute("prev", service.prevRownum(vo));
+		model.addAttribute("next", service.nextRownum(vo));
+		
 		return "hostnotice/view";
 	}
 

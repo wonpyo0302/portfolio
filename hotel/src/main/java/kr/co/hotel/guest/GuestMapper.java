@@ -9,7 +9,7 @@ public interface GuestMapper {
 	int idDupCheck(String guest_id);
 	int hpDupCheck(String guest_hp);
 	GuestVO guestloginCheck(GuestVO gvo);
-	GuestVO findGuestEmail(GuestVO gvo);
+	GuestVO findGuestId(GuestVO gvo);
 	GuestVO findGuestPwd(GuestVO gvo);
 	int updateTempGuestPwd(GuestVO gvo);
 	GuestVO myinfoLogin(GuestVO gvo);

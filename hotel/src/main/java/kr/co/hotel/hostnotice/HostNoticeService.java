@@ -11,5 +11,9 @@ public interface HostNoticeService {
 	boolean delete(int hnotice_no);
 	HostNoticeVO view(HostNoticeVO vo);
 	
+	HostNoticeVO nowRownum(HostNoticeVO vo);
+	HostNoticeVO prevRownum(HostNoticeVO vo);
+	HostNoticeVO nextRownum(HostNoticeVO vo);
+	
 
 }

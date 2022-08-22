@@ -8,9 +8,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.guestboard.GuestBoardVO;
+import kr.co.hotel.host.HostVO;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -68,6 +70,23 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<GuestVO> guestList(AdminVO vo) {
 		return amapper.list(vo);
+	}
+
+	@Override
+	public List<AdminVO> salesMonth() {
+		return amapper.salesMonth();
+	}
+
+	@Override
+	public Model memberCount(Model model) {
+		model.addAttribute("guestInfo",amapper.guestCount());
+		model.addAttribute("hostInfo",amapper.hostCount());
+		return model;
+	}
+
+	@Override
+	public List<HostVO> getHostList() {
+		return amapper.getHostList();
 	}
 
 }

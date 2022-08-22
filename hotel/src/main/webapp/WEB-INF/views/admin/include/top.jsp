@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@page import="java.util.ArrayList"%>
+
 <script>
 
 function OpenWinCount(URL,width,height) {
@@ -57,11 +58,11 @@ $(window).load(function(){
 <div id="header">
 	<div class="header_inner">
 		<h1>둘이놀까</h1>
-		<p class="login_name">ㅁㅇㄴㄹ</p>
+		<p class="login_name">${loginInfo_admin.admin_id }</p>
 		<!-- util : s -->
 		<div class="util">
 			<ul>
-				<li class="frist"><a href="#" onclick="">Home</a></li>
+				<li class="frist"><a href="../main/adminMain.do" onclick="">Home</a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/logout.do">LogOut</a></li>
 			</ul>
 		</div>
@@ -70,19 +71,24 @@ $(window).load(function(){
 		<div id="menu">
   			<ul class="menu">
   				<li><a href="<%=request.getContextPath()%>/admin/main/guestlist.do" class="parent"><span>게스트관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>호스트관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/product/index.do" class="parent"><span>승인신청리스트</span></a></li>
+				<li><a href="<%=request.getContextPath()%>/admin/main/hostList.do" class="parent"><span>호스트관리</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/main/couponcreate.do" class="parent"><span>쿠폰발급</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/board/index.do" class="parent"><span>게시판</span></a>
 					<div class="standard_left">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>공지사항</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>Q&A</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/board/index.do"><span>FAQ</span></a></li>
+						<li><span>GUEST</span></li>
+						<li><a href="<%=request.getContextPath()%>/admin/main/guestboard/notice/list.do"><span>공지사항</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/main/guestboard/faq/view.do"><span>FAQ</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/main/guestboard/qna/list.do"><span>Q&A</span></a></li>
+					</ul>
+					<ul>
+						<li><span>HOST</span></li>
+						<li><a href="<%=request.getContextPath()%>/admin/main/hostboard/notice/list.do"><span>공지사항</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/main/hostboard/faq/view.do"><span>FAQ</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/main/hostboard/qna/list.do"><span>Q&A</span></a></li>
 					</ul>
 					</div>
 				</li>
-				<li><a href="<%=request.getContextPath()%>/admin/admin/index.do" class="parent"><span>관리자관리</span></a></li>
 			</ul>
 		</div>
 		<!--//gnb-->

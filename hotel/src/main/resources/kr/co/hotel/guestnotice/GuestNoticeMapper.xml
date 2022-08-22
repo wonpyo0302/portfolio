@@ -46,9 +46,34 @@
 	</select>
 	
 	<!-- 조회하기 -->
-	<select id="view" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" resultType="kr.co.hotel.guestnotice.GuestNoticeVO">
+	<select id="view" parameterType="int" resultType="kr.co.hotel.guestnotice.GuestNoticeVO">
 		SELECT * FROM guestnotice WHERE gnotice_no = #{gnotice_no}
 	</select>
+	
+	<!-- 현재글 rownum -->
+	<select id="nowRownum" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" resultType="kr.co.hotel.guestnotice.GuestNoticeVO">
+		SELECT * FROM (
+			SELECT row_number() OVER (ORDER BY fix DESC, gnotice_regdate DESC) AS rownum, gnotice_no, gnotice_title FROM guestnotice
+			) AS now 
+			WHERE gnotice_no = #{gnotice_no};
+	</select>
+	
+	<!-- 이전글 rownum -->
+	<select id="prevRownum" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" resultType="kr.co.hotel.guestnotice.GuestNoticeVO">
+		SELECT * FROM (
+			SELECT row_number() OVER (ORDER BY fix DESC, gnotice_regdate DESC) AS rownum, gnotice_no, gnotice_title FROM guestnotice
+			) AS prev 
+			WHERE rownum = #{rownum}-1;
+	</select>
+	
+	<!-- 다음글 rownum -->
+	<select id="nextRownum" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" resultType="kr.co.hotel.guestnotice.GuestNoticeVO">
+		SELECT * FROM (
+			SELECT row_number() OVER (ORDER BY fix DESC, gnotice_regdate DESC) AS rownum, gnotice_no, gnotice_title FROM guestnotice
+			) AS next 
+			WHERE rownum = #{rownum}+1;
+	</select>
+	   
 	
 	<!-- 조회수 1 증가 처리 -->
 	<update id="updateViewcount" parameterType="int">

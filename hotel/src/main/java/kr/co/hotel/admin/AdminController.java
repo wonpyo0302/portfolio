@@ -21,12 +21,12 @@ public class AdminController {
 	
 	@GetMapping("/admin/login.do")
 	 public String adminLogin() {
-		return "admin/main/login";
+		return "/admin/main/login";
 	}
 	@PostMapping("/admin/login.do")
 	public String adminLogin(AdminVO avo,HttpSession sess, Model model) {
 		if(aservice.adminLogin(avo, sess)) {
-			return "/admin/main/adminMain";
+			return "redirect:/admin/main/adminMain.do";
 		}else {
 			model.addAttribute("msg", "로그인정보를 다시 확인해주세요");
 			return "common/alert";
@@ -61,4 +61,21 @@ public class AdminController {
 		model.addAttribute("data",aservice.guestList(avo));
 		return "/admin/main/idList";
 	}
+	
+//-========================추가는 아래로 해주세요========================	
+	@GetMapping("/admin/main/adminMain.do")
+	public String adminMain(AdminVO avo, Model model ) {
+		model.addAttribute("sales", aservice.salesMonth());
+		aservice.memberCount(model);
+		return "/admin/main/adminMain";
+	}
+	
+	@GetMapping("/admin/main/hostList.do")
+	public String confirm(Model model) {
+		model.addAttribute("host",aservice.getHostList());
+		return "/admin/main/host/hostList";
+	}
+//===========================이원표 부분 끝============================
+	
+	
 }

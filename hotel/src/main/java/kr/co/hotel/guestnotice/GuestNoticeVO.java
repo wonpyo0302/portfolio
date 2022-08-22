@@ -30,6 +30,10 @@ public class GuestNoticeVO extends Criteria {
 	private String sword; //검색어
 	private String stype; //검색타입
 	
+
+	private int rownum; 
+	
+	
 	
 	public GuestNoticeVO () {
 		this.page = 1;

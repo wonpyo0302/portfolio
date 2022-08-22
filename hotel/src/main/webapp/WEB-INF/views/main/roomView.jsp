@@ -156,9 +156,12 @@
 		  			</div>
 	  			</form>
 			</div>
-		  	<div class="middleBox" style="text-align: center;">
-		  		<span>객실 안내/예약</span>
-		  	</div>
+	  	<div class="middleBox" style="text-align: center;">
+	  		<span>객실 안내/예약</span>
+	  	</div>
+	  	<div class="middleBox" style="text-align: center;">
+	  		<input type="button" value="이곳을 누르면 지도를 띄워줍니다." onclick="openMap()">
+	  	</div>
 		</div>
 
   	</div>
@@ -167,8 +170,8 @@
 	  		<pre>${roomInfo.room_content}</pre>
 	  	</div>
 	  	<div class="serviceBox" style="display: inline-block;">
-	  		<div id="roomInfoBox price">
-	  			1박가격 : ${roomInfo.room_price }
+	  		<div id="roomInfoBox price">1박 가격 : 
+	  			<fmt:formatNumber value="${roomInfo.room_price }" pattern="#,###"/> 
 	  		</div>
 	  	</div>
   	</div>
@@ -199,6 +202,7 @@
     <script>
       var swiper = new Swiper(".mySwiper", {
         cssMode: true,
+        loop: true,
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",

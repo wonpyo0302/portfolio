@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hotel.favorite.FavoriteMapper">
+
+	<insert id="insert" parameterType="kr.co.hotel.favorite.FavoriteVO" >
+		
+		insert into favorite (guest_no, hotel_no) 
+		values(#{guest_no}, #{hotel_no})
+	
+	</insert>
+	
+	<select id="count" parameterType="kr.co.hotel.favorite.FavoriteVO" resultType="java.lang.Integer">
+	<!-- 테이블 명이 변수로 들어갈수 있음 --><!-- comment테이블은 하나, 여기에 각 페이지의 table_name 구분, 페이지의 게시판 마다 boar_no구분 -->
+		SELECT COUNT(*) FROM favorite
+		WHERE guest_no = #{guest_no}
+		
+	</select>
+	
+	
+	<select id="list" parameterType="kr.co.hotel.favorite.FavoriteVO" resultType="kr.co.hotel.favorite.FavoriteVO">
+
+			SELECT * FROM favorite f
+			LEFT JOIN hotel h
+			ON f.hotel_no = h.hotel_no
+			WHERE guest_no = #{guest_no}
+			ORDER BY favorite_no
+			LIMIT ${startIdx}, ${pageRow}
+	
+	</select>
+	
+
+	
+	<delete id="delete" parameterType="kr.co.hotel.favorite.FavoriteVO">
+	
+		delete from favorite 
+		where guest_no = #{guest_no} 
+		and hotel_no = #{hotel_no} 
+	
+	</delete>
+	
+	
+	<select id="get_hotel_img" parameterType="int" resultType="kr.co.hotel.HRRegister.ImageVO">
+	
+		SELECT * FROM image
+		WHERE no=#{no}
+		and image_type='HOTEL'
+		
+	</select>
+	
+	
+	<select id="get_Review_Count" parameterType="int" resultType="int">
+		select count(*) from review
+		where hotel_no=#{hotel_no}
+	</select>
+	
+
+	
+	
+
+	
+	
+
+</mapper>

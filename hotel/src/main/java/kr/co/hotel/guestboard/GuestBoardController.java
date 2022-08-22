@@ -47,7 +47,7 @@ public class GuestBoardController extends ImgHandling {
 	}
 
 	// 등록처리
-	@PostMapping("/guestboard/insert.do")
+	@PostMapping("/guestboard/write.do")
 	public String insert(Model model, GuestBoardVO vo, @RequestParam MultipartFile filename, HttpServletRequest req) {
 		// 첨부파일 처리
 		if (!filename.isEmpty()) {
