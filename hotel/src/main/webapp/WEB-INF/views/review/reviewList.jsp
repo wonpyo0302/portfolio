@@ -30,6 +30,25 @@
 	$(function() {
 		getReview();
 		
+		
+		$(".score img").hover(function(){
+			var idx = $(this).index(".score img"); //오버한 객체의 인덱스값
+			for(var i=0; i<$(".score img").length;i++){
+				if(i<=idx){
+					$(".score img").attr("src","/hotel/image/mypage/star_icon.png")			
+				}else{
+					$(".score img")
+				}
+			}
+			
+			
+			
+			
+			var idxStar = $(".starVal").val(idx+1);
+			
+		})
+		
+		
 	})//$(function(){})-end
 	
 	function del(review_no){
@@ -48,13 +67,13 @@
 	}
 	
 	function modi(review_no){
-		$("#"+review_no).hide();
-		$("#modi"+review_no).show();
+		$(".outer-div").show();
+		$("#outer-div"+review_no).hide();
+		$(".outer-div-modi").hide();
+		$("#outer-div-modi"+review_no).show();
 		
-		temp_html="<div>수정 area </div>"
-		
-	$("#html"+review_no).html(temp_html);
 	}
+	
 
 </script>
 <body style="padding:50px;">
