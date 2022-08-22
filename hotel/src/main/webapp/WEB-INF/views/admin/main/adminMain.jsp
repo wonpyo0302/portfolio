@@ -85,37 +85,6 @@ var chart = new CanvasJS.Chart("chartContainer_host", {
 	}]
 });
 chart.render();
-var chart = new CanvasJS.Chart("chartContainer_abc", {
-	animationEnabled: true,
-	theme: "light2",
-	title:{
-		text: "Sales Of Month"
-	},
-	axisY: {
-		title: "Sales"
-	},
-	data: [{        
-		type: "column",  
-		showInLegend: true, 
-		legendMarkerColor: "grey",
-		legendText: "Month",
-		dataPoints: [      
-			{ y: 0, label: "Jan" },
-			{ y: 266455,  label: "Feb" },
-			{ y: 169709,  label: "Mar" },
-			{ y: 158400,  label: "Apr" },
-			{ y: 142503,  label: "May" },
-			{ y: 101500, label: "Jun" },
-			{ y: 97800,  label: "Jul" },
-			{ y: 80000,  label: "Aug" },
-			{ y: 80000,  label: "Sep" },
-			{ y: 80000,  label: "Oct" },
-			{ y: 80000,  label: "Nov" },
-			{ y: 80000,  label: "Dec" }
-		]
-	}]
-});
-chart.render();
 
 }
 </script>
@@ -128,7 +97,7 @@ chart.render();
 		margin: 0;
 	}
 	#tableArea table {
-		width: 500px;
+		width: 700px;
 		border: 2px solid #d3d3d3;
 	}
 	#tableArea th {
@@ -178,18 +147,10 @@ chart.render();
 					</div>
 					<div id="manageArea">
 						<div id="salesArea" style="display: inline-block;">
-							<table id="table sales" style="margin: 100px 10px 50px 100px;">
+							<table id="table sales" style="margin: 0; margin-bottom: 20px;">
 								<th>매출 현황</th>
 									<tr id="graph">
 										<td><div id="chartContainer_sales" style="height: 300px;"></div></td>
-									</tr>
-							</table>
-						</div>
-						<div id="abcArea" style="display: inline-block;">
-							<table id="table abc" style="margin: 100px 10px 50px 100px;">
-								<th>뭘넣을까?</th>
-									<tr id="graph">
-										<td><div id="chartContainer_abc" style="height: 300px;"></div></td>
 									</tr>
 							</table>
 						</div>

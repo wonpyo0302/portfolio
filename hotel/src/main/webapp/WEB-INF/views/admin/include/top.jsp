@@ -90,7 +90,6 @@ $(window).load(function(){
 					</ul>
 					</div>
 				</li>
-				<li><a href="<%=request.getContextPath()%>/admin/admin/index.do" class="parent"><span>관리자관리</span></a></li>
 			</ul>
 		</div>
 		<!--//gnb-->
