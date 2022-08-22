@@ -71,8 +71,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/main/hostList.do")
-	public String confirm(Model model) {
+	public String confirm(AdminVO vo, Model model) {
 		model.addAttribute("host",aservice.getHostList());
+		model.addAttribute("hostlist", aservice.guestListPaging(vo));
 		return "/admin/main/host/hostList";
 	}
 //===========================이원표 부분 끝============================
