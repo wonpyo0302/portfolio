@@ -11,7 +11,7 @@ public interface GuestService {
 	int idDupCheck(String guest_id);
 	int hpDupCheck(String guest_hp);
 	boolean guestloginCheck(GuestVO gvo, HttpSession sess);
-	GuestVO findGuestEmail(GuestVO gvo);
+	GuestVO findGuestId(GuestVO gvo);
 	GuestVO findGuestPwd(GuestVO gvo);
 	GuestVO myinfoLogin(GuestVO gvo);
 	int updatePwd(GuestVO gvo);

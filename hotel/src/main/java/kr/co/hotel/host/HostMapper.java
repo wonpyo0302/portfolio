@@ -9,7 +9,7 @@ public interface HostMapper {
 	int idDupCheck(String host_id);
 	int hpDupCheck(String host_hp);
 	HostVO hostloginCheck(HostVO hvo);
-	HostVO findHostEmail(HostVO hvo);
+	HostVO findHostId(HostVO hvo);
 	HostVO findHostPwd(HostVO hvo);
 	int updateTempHostPwd(HostVO hvo);
 	HostVO myinfoLogin(HostVO hvo);

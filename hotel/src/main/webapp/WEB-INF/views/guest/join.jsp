@@ -176,8 +176,28 @@
                     ,minDate: "-100Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
                     ,maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
                 });
+    		
+    		
     	});
     </script>
+    <!-- <script src="//developers.kftc.or.kr/proxy/oauth/2.0/token" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "client_id=69e9780d-b1fc-4f5e-b50c-530a83a724c4&client_secret=34b66771-f384-461a-9df1-daea6c6299d7&scope=oob&grant_type=client_credentials" ></script>
+    <script>
+    	function bankConfirm(){
+    		$.ajax({
+    			url:"https://openapi.openbanking.or.kr/v2.0/inquiry/real_name",
+    			type:"post",
+    			content_Type:"application/x-www-form-urlencoded; charset=UTF-8",
+    			access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNMjAyMjAxNTYwIiwic2NvcGUiOlsib29iIl0sImlzcyI6Imh0dHBzOi8vd3d3Lm9wZW5iYW5raW5nLm9yLmtyIiwiZXhwIjoxNjY4NjU4NDE5LCJqdGkiOiJkYzk2N2VhNi03ODcwLTRkMjctYjQ2MS00M2I2YTUyMDRlZjYifQ.PPx4NuMRzlYTBEpoECR6rV7VceEJ2VJxr8jk8cRJf8c",
+    			token_type: "Bearer",
+    			expires_in: 7775999,
+    			scope: "oob",
+    			client_use_code: "M202201560",
+    			success:function(res){
+    				alert('');
+    			}
+    		})
+    	}
+    </script> -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 	    function zipcode() {
@@ -298,7 +318,7 @@
                             <th>은행</th>
                             <td>
                                 <input type="text" name="g_bank" id="g_bank" value=""  maxlength="15" style="float:left;">
-                            	<span class="guest_bank_check"><a href="javascript:;"  class="btn bgGray" style="float:left; width:auto; clear:none;" id="dupCheckBtn">은행확인</a></span>
+                            	<span class="guest_bank_check"><a href="javascript:;"  class="btn bgGray" style="float:left; width:auto; clear:none;" id="bankDupCheckBtn">은행확인</a></span>
                             </td>
                         </tr>
                         <tr>
@@ -306,7 +326,7 @@
                             <td>
                                 <input type="text" name="g_accountno" id="g_accountno" value=""  maxlength="15" style="float:left;" />
                                 <span class="guest_accountno_check"><a href="javascript:;"  class="btn bgGray" style="float:left; width:auto; clear:none;" id=""
-                                href="">계좌확인</a></span>
+                                onclick="bankConfirm();">계좌확인</a></span>
                                
                             </td>
                         </tr>

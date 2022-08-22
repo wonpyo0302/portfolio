@@ -25,7 +25,7 @@
 	<select id="guestloginCheck" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
 		SELECT * FROM guest WHERE guest_id = #{guest_id} AND guest_pwd = md5(#{guest_pwd}) AND guest_status=0
 	</select>
-	<select id="findGuestEmail" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
+	<select id="findGuestId" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
 		SELECT * FROM guest WHERE guest_name=#{guest_name} AND guest_hp=#{guest_hp} AND guest_status=0
 	</select>
 	

@@ -70,12 +70,10 @@
                                 </ul>
                                 <div class="login_btn"><input type="submit" value="비밀번호 찾기" alt="비밀번호 찾기" /></div>
                             </fieldset>
-                            <div class="btnSet clear">
-                                <div>
-                                    <a href="join.do" class="btn">회원가입</a> 
-                                    <a href="findHostEmail.do" class="btn">이메일 찾기</a>
-                                    <a href="login.do" style="background-color:black; color:white;">로그인</a>
-                                </div>
+                            <div class="btnSet clear" style="display:inline-block; width:500px;">      
+                                    <a href="join.do" class="btn" style="width:160px;">회원가입</a> 
+                                    <a href="findHostId.do" class="btn" style="width:160px;">아이디 찾기</a>
+                                    <a href="login.do" class="btn" style="width:160px;">로그인</a>
                             </div>
                         </div>
                     </div>
