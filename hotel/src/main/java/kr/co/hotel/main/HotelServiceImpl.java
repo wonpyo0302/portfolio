@@ -1,5 +1,6 @@
 package kr.co.hotel.main;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -49,8 +50,7 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public List<RoomVO> roomList(int hotel_no) {
-		List<RoomVO> list = mapper.roomList(hotel_no);
-		return list;
+		return mapper.roomList(hotel_no);
 	}
 
 	@Override

@@ -15,4 +15,7 @@ public interface AdminMapper {
 	List<GuestVO> list(AdminVO vo);
 	int count(AdminVO vo);
 	
+	List<AdminVO> salesMonth();
+	List<AdminVO> guestCount();
+	List<AdminVO> hostCount();
 }

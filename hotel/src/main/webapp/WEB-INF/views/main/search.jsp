@@ -140,7 +140,7 @@
 								<div>
 								<!-- <div id="v-line"></div> -->
 								<span><p>${list.hotel_name}</p></span>
-								<span>최저가:  ${list.lowPrice } ~</span>
+								<span>최저가:  <fmt:formatNumber value="${list.lowPrice}" pattern="#,###"/> ~</span>
 								</div>
 							</a>
 						</div>
@@ -197,7 +197,6 @@
 					searchWord : $("#searchWord").val(),
 					selectbox_state : $("#selectbox_state").val(),
 					selectbox_district : $("#selectbox_district").val()
-					
 				},
 			success : function(result) {
 					$('#searchArea').html(result);

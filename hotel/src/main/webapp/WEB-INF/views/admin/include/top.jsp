@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@page import="java.util.ArrayList"%>
+
 <script>
 
 function OpenWinCount(URL,width,height) {
@@ -57,11 +58,11 @@ $(window).load(function(){
 <div id="header">
 	<div class="header_inner">
 		<h1>둘이놀까</h1>
-		<p class="login_name">ㅁㅇㄴㄹ</p>
+		<p class="login_name">${loginInfo_admin.admin_id }</p>
 		<!-- util : s -->
 		<div class="util">
 			<ul>
-				<li class="frist"><a href="#" onclick="">Home</a></li>
+				<li class="frist"><a href="../main/adminMain.do" onclick="">Home</a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/logout.do">LogOut</a></li>
 			</ul>
 		</div>

@@ -7,6 +7,13 @@ public class AdminVO {
 	private int admin_no;
 	private String admin_id;
 	private String admin_pwd;
+	
+	private int gdate;
+	private int guestCount;
+	private int hostCount;
+	private int hdate;
+	private int date;
+	private int totalPrice;
 
 	private int page; // 현재 페이지
 	private int pageRow; // 한 페이지당 행(게시물)의 개수

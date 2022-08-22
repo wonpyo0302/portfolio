@@ -60,7 +60,7 @@
 	    		</div> 
 		    	<div id="infoBox" style="display: inline-block;">
 		    		<div id="infoContent"><span>객실명: </span><span style="font-weight: bold;">${roomList.room_name}</span></div>
-		    		<div id="infoContent"><span>객실비용: </span><span style="font-weight: bold;">${roomList.room_price}</span></div>
+		    		<div id="infoContent"><span>객실비용: </span><span style="font-weight: bold;"><fmt:formatNumber value="${roomList.room_price}" pattern="#,###"/></span></div>
 		    		<div id="infoContent"><span style="font-weight: bold;">서비스 및 편의시설 </span><span><pre>${roomList.room_content}</pre></span></div>
 		    		<div id="reservBtn"><input type="button" onclick="location.href='/hotel/main/roomView.do?room_no=${roomList.room_no}&hotel_no=${hotel.hotel_no }&room_price=${roomList.room_price }'" value="객실정보 확인 및 예약" style="margin-left: 330px;"></div>
 				</div>

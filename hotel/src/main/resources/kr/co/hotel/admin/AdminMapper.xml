@@ -31,4 +31,18 @@
 		</where>
 	</select>
 	
+	<!-- 이원표작성 시작 -->
+	<!-- 월별 매출 가져오기 -->
+	<select id="salesMonth" resultType="kr.co.hotel.admin.AdminVO">
+		select month(rev_date) as date, FLOOR(sum(total_price)*0.2) as totalPrice from reserv where use_status = 1 group by month(rev_date) order by date
+	</select>
+	<!-- 월별 회원 가입 수 확인 -->
+	<select id="guestCount" resultType="kr.co.hotel.admin.AdminVO">
+		select month(g_joindate) as gdate, count(guest_id) as guestCount from guest group by month(g_joindate) order by gdate
+	</select>
+	<select id="hostCount" resultType="kr.co.hotel.admin.AdminVO">
+		select month(host_joindate) as hdate, count(host_id) as hostCount from host group by month(host_joindate) order by hdate
+	</select>
+	<!-- 이원표작성 끝 -->
+	
 </mapper>
