@@ -35,6 +35,7 @@
 	// 수정하기
 	function goEdit() {
 		location.href = "edit.do";
+		frm.submit();
 	}
 </script>
 
@@ -53,12 +54,25 @@
 			<div class="bbs">
 				<form method="get" name="frm" id="frm" action="edit.do" enctype="multipart/form-data">
 					<input type="hidden" name="gnotice_no" value="${data.gnotice_no}">
-					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
+					
 					<table class="board_write">
 						<div class="title">
 						<tr>
 							<th>제목</th>
-							<td>${data.gnotice_title }</td>
+							<td>
+								<c:if test="${data.gnotice_type == 1}">
+									[안내] ${data.gnotice_title }
+								</c:if>
+								<c:if test="${data.gnotice_type == 2}">
+									[공지] ${data.gnotice_title }
+								</c:if>
+								<c:if test="${data.gnotice_type == 3}">
+									[이벤트] ${data.gnotice_title }
+								</c:if>
+								<c:if test="${data.gnotice_type == 4}">
+									[발표] ${data.gnotice_title }
+								</c:if>
+							</td>
 							<th>등록일자</th>
 							<td class="date"  style="width: 35%"><fmt:formatDate
 									value="${data.gnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
@@ -88,13 +102,18 @@
 						<a class="btn" href="javascript:goEdit();">수정 </a>
 						<a class="btn" href="javascript:goList();">목록 </a>
 					</div>
+					
+					<br><br><br>
+					<hr style="display: block; margin:1rem 0; color: inherit; opacity:.25;">
 					<div class="pagebox">
 						<div>
-							<p><a href="view.do?gnotice_no=${prev.rownum}">이전글 | ${prev.gnotice_title }</a></p>							
+							<p><a href="view.do?gnotice_no=${prev.gnotice_no}">이전글 | ${prev.gnotice_title }</a></p>							
 						</div>
+					<hr style="display: block; margin:1rem 0; color: inherit; opacity:.25;">
 						<div>
-							<p><a href="view.do?gnotice_no=${next.rownum}">다음글 | ${next.gnotice_title }</a></p>
+							<p><a href="view.do?gnotice_no=${next.gnotice_no}">다음글 | ${next.gnotice_title }</a></p>
 						</div>
+					<hr style="display: block; margin:1rem 0; color: inherit; opacity:.25;">
 					</div>
 				</form>
 			</div>

@@ -5,9 +5,9 @@
 	<!-- 등록하기 -->
 	<insert id="insert" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO" >
 		INSERT INTO guestnotice (
-			admin_no, gnotice_title, gnotice_content, gnotice_regdate, gnotice_viewcount
+			admin_no, gnotice_type, gnotice_title, gnotice_content, gnotice_regdate, gnotice_viewcount
 		) VALUES (
-			#{admin_no}, #{gnotice_title}, #{gnotice_content}, now(), #{gnotice_viewcount}
+			#{admin_no}, #{gnotice_type}, #{gnotice_title}, #{gnotice_content}, now(), #{gnotice_viewcount}
 		)
 	</insert>
 	
