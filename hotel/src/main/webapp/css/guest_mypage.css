@@ -22,26 +22,30 @@ tr td {
 }
 
 .tr-head .btn {
-	margin-top: 10px;
-	color: balck !important;;
+	margin-top: 20px;
+	color: balck !important;
+	font-size: 20px;
 }
 
 .user-name {
-	font-size: 30px;
+	font-size: 40px;
 }
 
 .user-email {
-	font-size: 15px;
+	font-size: 20px;
 }
 
 .component {
-	font-size: 14px;
+	font-size: 35px;
 	cursor: pointer;
-	padding: 50px 100px;
+	width: 450px;
+	height: 220px;
+	padding-left: 15px;
 	border: 0px solid #221f1f;
 	margin: 50px 10px 10px 10px;
-	text-align: center;
+	text-align: left;
 	font-weight: bold;
 	border-radius: 25px;
 	background-color: #FAB3DB; 
 }
+

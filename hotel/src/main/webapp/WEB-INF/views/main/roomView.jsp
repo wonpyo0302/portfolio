@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="/hotel/script/roomView.js">
+	
 	<script>
 	$(function() {
 		$( "#startdate" ).datepicker({
@@ -116,8 +116,8 @@
 	
 	</script>
 	
+	<script src="/hotel/script/roomView.js"></script>
 
-</script>
 
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <body>

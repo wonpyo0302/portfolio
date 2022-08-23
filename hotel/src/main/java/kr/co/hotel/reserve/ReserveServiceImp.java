@@ -26,8 +26,7 @@ public class ReserveServiceImp implements ReserveService {
 	}
 
 	@Override
-	@Transactional(rollbackFor =Exception.class)
-	public int insert(ReserveVO vo,GuestVO gvo) {
+	public synchronized int insert(ReserveVO vo,GuestVO gvo) {
 		int data = mapper.reservecheck(vo);
 		if(data !=0) {
 			return data;
