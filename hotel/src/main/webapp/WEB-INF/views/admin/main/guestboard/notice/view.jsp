@@ -107,11 +107,37 @@
 					<hr style="display: block; margin:1rem 0; color: inherit; opacity:.25;">
 					<div class="pagebox">
 						<div>
-							<p><a href="view.do?gnotice_no=${prev.gnotice_no}">이전글 | ${prev.gnotice_title }</a></p>							
+							<p><a href="view.do?gnotice_no=${prev.gnotice_no}">이전글 | 
+							<c:if test="${prev.gnotice_type == 1}">
+								[안내] ${prev.gnotice_title }
+							</c:if>
+							<c:if test="${prev.gnotice_type == 2}">
+								[공지] ${prev.gnotice_title }
+							</c:if>
+							<c:if test="${prev.gnotice_type == 3}">
+								[이벤트] ${prev.gnotice_title }
+							</c:if>
+							<c:if test="${prev.gnotice_type == 4}">
+								[발표] ${prev.gnotice_title }
+							</c:if>
+							</a></p>							
 						</div>
 					<hr style="display: block; margin:1rem 0; color: inherit; opacity:.25;">
 						<div>
-							<p><a href="view.do?gnotice_no=${next.gnotice_no}">다음글 | ${next.gnotice_title }</a></p>
+							<p><a href="view.do?gnotice_no=${next.gnotice_no}">다음글 | 
+							<c:if test="${next.gnotice_type == 1}">
+								[안내] ${next.gnotice_title }
+							</c:if>
+							<c:if test="${next.gnotice_type == 2}">
+								[공지] ${next.gnotice_title }
+							</c:if>
+							<c:if test="${next.gnotice_type == 3}">
+								[이벤트] ${next.gnotice_title }
+							</c:if>
+							<c:if test="${next.gnotice_type == 4}">
+								[발표] ${next.gnotice_title }
+							</c:if>
+							</a></p>
 						</div>
 					<hr style="display: block; margin:1rem 0; color: inherit; opacity:.25;">
 					</div>

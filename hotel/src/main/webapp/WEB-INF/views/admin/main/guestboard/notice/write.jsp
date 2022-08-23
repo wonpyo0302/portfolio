@@ -42,7 +42,6 @@
             <div class="size">
                 <div class="bbs">
                 <form method="post" name="frm" id="frm" action="write.do"  enctype="multipart/form-data" > 
-       		    <input type="hidden" name="admin_no" value="${loginInfo2.admin_no}"> 
                     <table class="board_write">
                     	<tbody>
 							<div class="container">
