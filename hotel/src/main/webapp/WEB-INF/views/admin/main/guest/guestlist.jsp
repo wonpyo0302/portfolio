@@ -37,6 +37,7 @@
 									<col class="w2" />
 									<col class="w3" />
 									<col class="w3" />
+									<col class="w2" />
 								</colgroup>
 								<thead>
 									<tr>
@@ -45,6 +46,7 @@
 										<th scope="col">이름</th> 
 										<th scope="col">생일</th>
 										<th scope="col">전화번호</th> 
+										<th scope="col">상세정보</th> 
 									</tr>
 								</thead>
 								<tbody>
@@ -55,6 +57,7 @@
 										<td>${list.guest_name}</td>
 										<td>${list.guest_birth}</td>
 										<td>${list.guest_hp}</td>
+										<td><a href ="/hotel/amdin/main/gusetview.do?guest_no=${list.guest_no }">더보기</a></td>
 									</tr>
 								</c:forEach>
 								</tbody>
@@ -87,7 +90,7 @@
 										<option value="guest_id" selected="selected">아이디</option>
 										<option value="guest_name">이름</option>
 									</select>
-									<input type="text" id="sword" name="sword" value="" title="검색할 내용을 입력해주세요" />
+									<input type="text" id="sword" name="sword" value="${param.sword}" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/image/admin/btn_search.gif" class="sbtn" alt="검색" />
 								</div>
 							</form>

@@ -27,11 +27,12 @@ public class CouponController {
 	CouponService service;
 	
 	@GetMapping("coupon/idList.do")
-	public String idList(Model model, @RequestParam(required = false) String idsearch) {
+	public String idList(Model model, @RequestParam(required = false) String sword) {
 		Map map = new HashMap();
-		map.put("idsearch", idsearch);
+		System.out.println("========================================"+sword);
+		map.put("sword", sword);
 		model.addAttribute("data",service.list(map));
-		return "/coupon/idList";
+		return "/admin/main/coupon/idList";
 	}
 	
 	@PostMapping("coupon/create.do")
@@ -40,33 +41,18 @@ public class CouponController {
 			@RequestParam List<Integer>coupon_price,
 			@RequestParam List<Integer>amount) {
 		
-			for(String id : guest_id) {
-				for(int price : coupon_price) {
-					if (price == 1000) {
-						for(int i=0; i<amount.get(0); i++) {
-							cvo.setGuest_no((service.selectGuestNo(id)).getGuest_no());
-							cvo.setCoupon_price(price);
-							service.createCoupon(cvo);
-						}
-					}
-					if(price == 5000) {
-						for(int i=0; i<amount.get(1); i++) {
-							cvo.setGuest_no((service.selectGuestNo(id)).getGuest_no());
-							cvo.setCoupon_price(price);
-							service.createCoupon(cvo);
-						}
-					}
-					if(price == 10000) {
-						for(int i=0; i<amount.get(2); i++) {
-							cvo.setGuest_no((service.selectGuestNo(id)).getGuest_no());
-							cvo.setCoupon_price(price);
-							service.createCoupon(cvo);
-						}
-					}
+		for(String id : guest_id) {
+			for(int i=0; i<coupon_price.size(); i++) {
+				for(int j=0; j<amount.get(i); j++) {
+					cvo.setGuest_no((service.selectGuestNo(id)).getGuest_no());//1
+					cvo.setCoupon_price(coupon_price.get(i));
+					service.createCoupon(cvo);
 				}
 			}
+		}
 			return "/admin/main/couponcreate";
 	}
+	
 	
 	//--------이하 빛찬--------------------------------------------------
 	
@@ -94,9 +80,9 @@ public class CouponController {
 	
 	//=====================쿠폰 admin내용 추가=========================
 	
-	@GetMapping("/admin/main/couponcreate.do")
+	@GetMapping("/admin/main/coupon/couponcreate.do")
 	public String couponcreate(AdminVO avo,HttpSession sess, Model model) {
-		return "/admin/main/couponcreate";
+		return "/admin/main/coupon/couponcreate";
 	}
 	
 	

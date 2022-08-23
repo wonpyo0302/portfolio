@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.host.HostVO;
@@ -25,11 +26,17 @@ public class ReserveServiceImp implements ReserveService {
 	}
 
 	@Override
-	public void insert(ReserveVO vo,GuestVO gvo) {
-		mapper.insert(vo);
-		mapper.guestUsedPointUpdate(gvo);
-		mapper.pointinsert(vo);
-		mapper.updateCoupon(vo);
+	public synchronized int insert(ReserveVO vo,GuestVO gvo) {
+		int data = mapper.reservecheck(vo);
+		if(data !=0) {
+			return data;
+		}else {
+			mapper.insert(vo);
+			mapper.guestUsedPointUpdate(gvo);
+			mapper.pointinsert(vo);
+			mapper.updateCoupon(vo);
+			return data;
+		}
 	}
 
 	@Override
@@ -107,4 +114,5 @@ public class ReserveServiceImp implements ReserveService {
 	public RoomVO SelectRoomInfo(ReserveVO vo) {
 		return mapper.SelectRoominfo(vo);
 	}
+
 }
