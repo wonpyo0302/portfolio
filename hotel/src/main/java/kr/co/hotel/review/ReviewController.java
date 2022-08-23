@@ -125,7 +125,10 @@ public class ReviewController {
 	
 	@PostMapping("/review/update.do")
 	public String update(ReviewVO vo, Model model) {
+		System.out.println("업데이트합니다");
 		System.out.println("리뷰확인"+vo.getReview_no());
+		System.out.println("호텔확인"+vo.getHotel_no());
+		System.out.println("객실확인"+vo.getRoom_no());
 		System.out.println(vo.getReview_title());
 		System.out.println(vo.getReview_content());
 		System.out.println("리뷰확인"+vo.getReview_score());

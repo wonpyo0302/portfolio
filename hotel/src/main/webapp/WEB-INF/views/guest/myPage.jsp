@@ -26,7 +26,11 @@
 					<table class="board_write">
 						<tbody>
 							<tr>
-								<th> <a href="myinfo.do">내정보관리</a></th>
+								<th colspan="2" > <a href="myinfo.do">내정보관리</a></th>
+							</tr>
+							<tr>
+								<td>`1</td>
+								<td>`1</td>
 							</tr>
 						</tbody>
 					</table>

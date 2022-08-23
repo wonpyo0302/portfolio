@@ -63,6 +63,6 @@
    </bean>
    
     <mybatis-spring:scan base-package="kr.co.hotel" annotation="org.apache.ibatis.annotations.Mapper" />
-	    
+	
 </beans>
 

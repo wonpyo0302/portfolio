@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
+	<script src="/hotel/script/roomView.js">
 	<script>
 	$(function() {
 		$( "#startdate" ).datepicker({
@@ -115,6 +115,9 @@
 	}
 	
 	</script>
+	
+
+</script>
 
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <body>
@@ -133,9 +136,15 @@
 			    <div class="swiper-pagination"></div>
 	  		</div>
 	  		<div id="room_infoScreen" style="vertical-align: middle; display: inline-block;">
-				<div id="roomAvgScroe" style="border: 1px solid black; display: inline-block;">
+				
+				<div id="roomAvgScroe" style="border: 1px solid gray; display: inline-block;">
 					객실평점 : ${roomInfo.avgScore }
 				</div>
+				<div id="star_img">
+					<img src="/hotel/image/mypage/star_score_10.png" style="height:40px; width: 120px;">
+				</div>
+				<input type="hidden" id="roomScore" value="${roomInfo.avgScore *10}">
+				
 				<br><br>
 				<form action="/hotel/reserve/reserve2.do" method="post">
 					<h4>체크인 날짜 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;체크아웃 날짜</h4>
