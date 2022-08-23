@@ -75,6 +75,7 @@
 				$(this).find(".text").slideDown("fast");  
 				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png"); 
 				$(this).find(".downbtn").attr("src", "/hotel/image/boardPic/up.png");
+				
 			} else {
 				$(this).find(".text").slideUp("fast"); 
 				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png"); 
@@ -85,7 +86,14 @@
 
 <script>
 	function goWrite() {
-		frm.submit();
+		<c:if test="${!empty loginInfo_admin}">
+			frm.submit();
+			location.href= "write.do";
+		</c:if>
+		<c:if test="${empty loginInfo_admin}">
+			alert("관리자 로그인 바랍니다.");
+			location.href="/hotel/admin/login.do";
+		</c:if>
 	};
 </script>
 
@@ -154,11 +162,13 @@
 									<li class="item">
 										<h5 class="Title">
 											[포인트/쿠폰] &nbsp; ${faq.gfaq_title } <img
+												
+												
 												src="/hotel/image/boardPic/down.png" class="downbtn">
 											<span class="accIcon"></span>
 										</h5> <br>
 										<div>
-											<div class="text" id="text">${faq.gfaq_content}</div>
+											<pre><input type="text" class="text" id="text" value="${faq.gfaq_content}" readonly="readonly" style="width:100%;"></pre>
 										</div>
 									</li>
 								</c:if>

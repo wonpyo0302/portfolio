@@ -13,4 +13,6 @@ public class GuestFaqVO extends GuestVO{
 	private String gfaq_content; // 문의내용
 	private int admin_no; // 관리자번호
 	
+	// 관리자 로그인 확인용
+	private String admin_id; 
 }
