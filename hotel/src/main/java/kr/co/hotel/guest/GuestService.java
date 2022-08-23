@@ -23,6 +23,7 @@ public interface GuestService {
 
 	//=========admin guestlist 추가===================
 	public Map guestListPaging(AdminVO vo);
+	public GuestVO guestlist(GuestVO vo);
 
 }
 

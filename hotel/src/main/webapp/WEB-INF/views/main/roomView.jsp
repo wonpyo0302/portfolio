@@ -146,7 +146,7 @@
 				<input type="hidden" id="roomScore" value="${roomInfo.avgScore *10}">
 				
 				<br><br>
-				<form action="/hotel/reserve/reserve2.do" method="post">
+				<form action="/hotel/reserve/reserve.do" method="post">
 					<h4>체크인 날짜 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;체크아웃 날짜</h4>
 		  			<input type="text" name="startdate" id="startdate" style="float:left;" onchange="reservecheck()" autocomplete="off">
 		  			<input type="text" name="enddate" id="enddate" style="float:left;" onchange="reservecheck()" autocomplete="off">
@@ -169,7 +169,6 @@
 	  		<span>객실 안내/예약</span>
 	  	</div>
 		</div>
-
   	</div>
   	<div class="roomInfoDiv">
 	  	<div class="contentBox" >

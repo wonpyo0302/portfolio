@@ -14,7 +14,7 @@ import kr.co.hotel.room.RoomVO;
 public interface ReserveService {
 
 	public GuestVO select(GuestVO vo);
-	public void insert(ReserveVO vo,GuestVO gvo);
+	public int insert(ReserveVO vo,GuestVO gvo);
 	public int reservecheck(ReserveVO vo);
 	public List<GuestVO> couponlist(GuestVO vo);
 	public int CouponDelete();
