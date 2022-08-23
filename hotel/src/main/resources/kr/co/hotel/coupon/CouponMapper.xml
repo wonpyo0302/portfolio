@@ -5,7 +5,7 @@
 	<select id="list" parameterType="java.util.Map" resultType="kr.co.hotel.guest.GuestVO">
 		select * from guest
 		<where>
-			guest_id like '%${idsearch}%'
+			guest_id like '%${sword}%'
 		</where>
 	</select>
 

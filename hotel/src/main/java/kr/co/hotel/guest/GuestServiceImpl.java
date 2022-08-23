@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -155,6 +156,11 @@ public class GuestServiceImpl implements GuestService {
 		map.put("next", next);
 		map.put("list", list);
 		return map;
+	}
+
+	@Override
+	public GuestVO guestlist(GuestVO vo) {
+		return gmapper.guestlist(vo);
 	}
 
 }

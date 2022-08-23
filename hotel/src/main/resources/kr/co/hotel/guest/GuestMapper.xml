@@ -78,4 +78,9 @@
 		LIMIT ${startIdx} , ${pageRow}
 	</select>
 	
+	<!-- 게스트 목록 -->
+	<select id="guestlist" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
+		select * from guest where guest_no=#{guest_no}
+	</select>
+	
 </mapper>
