@@ -3,6 +3,8 @@ package kr.co.hotel.main;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.hotel.favorite.FavoriteVO;
+import kr.co.hotel.guest.GuestVO;
+import kr.co.hotel.review.ReviewVO;
 import kr.co.hotel.room.RoomVO;
 import lombok.AllArgsConstructor;
 
@@ -54,7 +59,21 @@ public class HotelController {
 	}
 	
 	@GetMapping("/main/hotelView.do")
-	public String hotelView(HotelVO vo, Model model) {
+	public String hotelView(HotelVO vo, Model model, HttpSession sess, FavoriteVO fvo) {
+		//"찜하기" 구현 중_빛찬
+		GuestVO guestInfo = (GuestVO)sess.getAttribute("loginInfo");
+		if(guestInfo != null) {
+			
+		int guest_no = guestInfo.getGuest_no();
+		int hotel_no = vo.getHotel_no();
+		fvo.setGuest_no(guest_no);
+		fvo.setHotel_no(hotel_no);
+		FavoriteVO rev = service.get_favorite(fvo);
+		model.addAttribute("rev", rev);
+		}
+		//END-"찜하기" 구현 중_빛찬
+		
+		
 		model.addAttribute("hotel",service.hotelView(vo.getHotel_no()));//호텔이름가져오기
 		List<HotelVO> hotelImage = service.getHotelImage(vo.getHotel_no());//호텔사진 가져오기
 		model.addAttribute("hotelImage",hotelImage);

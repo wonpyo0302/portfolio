@@ -134,7 +134,7 @@
 				</table>
 				<div class="btnSet" style="text-align: right;">
 				
-					<a class="btn" href="javascript:goWrite();">글작성 </a>
+					<a class="btn" href="javascript:goWrite();">관리 </a>
 					
 				</div>
 				<div class="pagenate clear">

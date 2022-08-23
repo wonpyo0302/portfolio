@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.hotel.HRRegister.ImageVO;
-import kr.co.hotel.favorite.FavoriteVO;
 import kr.co.hotel.reserve.ReserveVO;
 
 @Service
@@ -104,6 +103,13 @@ public class ReviewServiceImpl implements ReviewService {
 	public boolean delete(int review_no) {
 		
 		return mapper.delete(review_no);
+	}
+
+
+	@Override
+	public boolean review_update(ReviewVO vo) {
+		
+		return mapper.review_update(vo);
 	}
 
 	

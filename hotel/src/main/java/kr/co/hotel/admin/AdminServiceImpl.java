@@ -20,6 +20,7 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	AdminMapper amapper;
 
+	
 	@Override
 	public List<AdminVO> salesMonth() {
 		return amapper.salesMonth();

@@ -16,6 +16,7 @@ public class AdminController {
 	@Autowired
 	AdminService aservice;
 
+
 	
 	@GetMapping("/admin/login.do")
 	 public String adminLogin() {
@@ -41,7 +42,6 @@ public class AdminController {
 	}
 	
 	
-
 //-========================추가는 아래로 해주세요========================	
 	@GetMapping("/admin/main/adminMain.do")
 	public String adminMain(AdminVO avo, Model model ) {

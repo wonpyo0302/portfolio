@@ -12,6 +12,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <title>게스트마이페이지</title>
+    <link rel="stylesheet" href="/hotel/css/mypage.css"/>
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -23,11 +24,35 @@
 		<div class="sub">
 			<div class="size">
 				<h1 class="sub_title">마이페이지<br>GUEST</h1>
-					<table class="board_write">
+					<table >
 						<tbody>
-							<tr>
-								<th> <a href="myinfo.do">내정보관리</a></th>
+							<tr class="tr-head" >
+								<th colspan="2">
+								
+									<div class="user-name">${loginInfo.guest_name }님</div>
+									<div class="user-email">${loginInfo.guest_email }</div>
+									
+									<div class="d-grid gap-2 col-3 mx-auto">
+									  <button class="btn btn-warning" type="button" onclick="location.href='myinfo.do'">
+									  	<img src="/hotel/image/mypage/confidential.png" width="50px;">
+									  	내 정보 관리
+									  </button>
+									</div>
+								</th>
 							</tr>
+							<tr>
+								<td>`button1</td>
+								<td>`button2</td>
+							</tr>
+							<tr>
+								<td>`button3</td>
+								<td>`button4</td>
+							</tr>
+							<tr>
+								<td>`button5</td>
+								<td>`button6</td>
+							</tr>
+							
 						</tbody>
 					</table>
 			</div>

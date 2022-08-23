@@ -79,7 +79,7 @@
 										</c:if> <c:if test="${vo.gnotice_type == 4 }">
 											[발표] ${vo.gnotice_title} 
 										</c:if>
-											</b> <img src="/hotel/image/boardPic/new2.png" width="30px">
+											</b> <img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</a></td>
 										<td class="writer">관리자</td>
 										<td class="date"><fmt:formatDate
@@ -103,7 +103,7 @@
 											[발표] ${vo.gnotice_title} 
 										</c:if> 
 										<c:if test="${vo.diff <= 3 }">
-											<img src="/hotel/image/boardPic/new (4).png" width="30px">
+											<img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</c:if>
 										</a></td>
 										<td class="writer">관리자</td>

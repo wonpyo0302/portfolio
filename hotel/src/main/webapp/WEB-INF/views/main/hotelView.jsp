@@ -22,12 +22,27 @@
 	
 
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
+  <!-- 찜하기 제이쿼리 -->
+  <script src="/hotel/script/heart.js"></script>
   
   <body>
 	<div class ="detail_full_screen">
 		<div id="hotel_screen" style="vertical-align: middle;">
 	  		<div class="hotelName">${hotel.hotel_name}</div>
-		  	<div class="swiper mySwiper" id="Low" style="display: inline-block; height: 350px">
+	  		<!-- "찜하기" 구현_빛찬_220822 -->
+	  		<input type="hidden" class="guest_no" value="${loginInfo.guest_no }" >
+	  		<c:if test="${!empty rev }">
+		  		<div class="heart" >
+					<img class="like"  data-name="del" data-gno="${rev.guest_no}" data-hno="${rev.hotel_no}" src="/hotel/image/mypage/heart.png" style="width:50px; height: 50px;" >
+				</div>
+	  		</c:if>
+	  		<c:if test="${empty rev }">
+		  		<div class="heart" >
+					<img class="like"  data-name="fav" data-gno="${loginInfo.guest_no }" data-hno="${hotel.hotel_no}" src="/hotel/image/mypage/emptyHeart.png" style="width:50px; height: 50px;" >
+				</div>
+	  		</c:if>
+		  	<!-- END-"찜하기" 구현_빛찬_220822  -->
+		  	<div class="swiper mySwiper" id="Low" style="display: inline-block; height: 350px;">
 		  		<div class="swiper-wrapper" >
 				  	<c:forEach var="hotelImage" items="${hotelImage}">
 				  		<div class="swiper-slide" id="imgBox"><img alt="사진없음" src="/hotel/image/hotel/${hotelImage.filename_org}"></div>

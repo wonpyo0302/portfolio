@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.tr-head {
+	height: 300px; 
+	background-color: #ECF2E4;
+	border-right:1px solid #ebebeb;
+	border-bottom:1px solid #ebebeb;
+	padding:10px;
+}
+
+.tr-head th{
+	text-align: center;
+} 
+tr td{
+	text-align: center;
+	margin: 20px;
+}
+.tr-head .btn{
+	margin-top:10px;
+	color: balck !important;;
+}
+.user-name{
+	font-size: 30px;
+}
+.user-email{
+	font-size: 15px;
+}

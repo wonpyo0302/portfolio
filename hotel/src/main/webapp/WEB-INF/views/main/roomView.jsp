@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
+	<script src="/hotel/script/roomView.js">
 	<script>
 	$(function() {
 		$( "#startdate" ).datepicker({
@@ -57,12 +57,12 @@
 	                ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
 	                ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
 	                ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
-	                ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
-	                ,minDate: "+1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-	                ,maxDate: "+30Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
-	   	 });
-	   	 
-	   	 $('#enddate').datepicker('setDate', 'today+1');
+         ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
+         ,minDate: "+1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+         ,maxDate: "+30Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+ });
+ 
+ $('#enddate').datepicker('setDate', 'today+1');
 	   	 $('#enddate').val().replace("-","");
 	   	 //console.log(typeof((Number)($('#enddate').val().replace(/-/g,""))));
 	   	 var startdate=(Number)($('#startdate').val().replace(/-/g,""))
@@ -115,6 +115,9 @@
 	}
 	
 	</script>
+	
+
+</script>
 
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <body>
@@ -133,9 +136,15 @@
 			    <div class="swiper-pagination"></div>
 	  		</div>
 	  		<div id="room_infoScreen" style="vertical-align: middle; display: inline-block;">
-				<div id="roomAvgScroe" style="border: 1px solid black; display: inline-block;">
+				
+				<div id="roomAvgScroe" style="border: 1px solid gray; display: inline-block;">
 					객실평점 : ${roomInfo.avgScore }
 				</div>
+				<div id="star_img">
+					<img src="/hotel/image/mypage/star_score_10.png" style="height:40px; width: 120px;">
+				</div>
+				<input type="hidden" id="roomScore" value="${roomInfo.avgScore *10}">
+				
 				<br><br>
 				<form action="/hotel/reserve/reserve.do" method="post">
 					<h4>체크인 날짜 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;체크아웃 날짜</h4>
@@ -149,7 +158,7 @@
 		  			</div>
 		  			
 		  			<b>총 가격</b>&nbsp;
-		  			<input type="text" name="total_price" id="calcprice" style="outline: 0; border:none; font-size: 1.3em" readonly="readonly" value="10000">
+		  			<input type="text" name="total_price" id="calcprice" style="outline: 0; border:none; font-size: 1.3em" readonly="readonly" value="">
  		  			<br><br>
 					<div id="reserveBtn" style="display: inline-block; ">
 		  				<input type="submit" style="width:368px; border-radius:50px; color:white;  background-color: #FF3366;" id="reservebtn" value="">

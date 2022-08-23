@@ -72,11 +72,12 @@ public class Admin_GuestNoticeController {
 
 		HttpSession sess = req.getSession();
 		AdminVO avo = (AdminVO) sess.getAttribute("loginInfo2");
+		if (avo != null)
 		vo.setAdmin_no(avo.getAdmin_no());
 
 		if (service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
-			model.addAttribute("url", "admin/main/guestboard/notice/view.do?gnotice_no=" + vo.getGnotice_no());
+			model.addAttribute("url", "/hotel/admin/main/guestboard/notice/list.do");
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "저장 실패했습니다.");
@@ -99,7 +100,7 @@ public class Admin_GuestNoticeController {
 		if (service.update(vo)) {
 			model.addAttribute("data", service.update(vo));
 			model.addAttribute("msg", "정상적으로 수정되었습니다");
-			model.addAttribute("url", "admin/main/guestboard/notice/view.do?gnotice_no=" + vo.getGnotice_no());
+			model.addAttribute("url", "/hotel/admin/main/guestboard/notice/view.do?gnotice_no=" + vo.getGnotice_no());
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "수정 실패했습니다.");

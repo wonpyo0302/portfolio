@@ -53,4 +53,40 @@
 	<update id="fakeDelete" parameterType="kr.co.hotel.host.HostVO">
 		UPDATE host SET host_pwd=md5(#{host_pwd}) , host_status=1 WHERE host_no=#{host_no}
 	</update>
+	
+	<!-- 이하 이원표 작성 -->
+	<!-- 호스트 리스트 불러오기 -->
+	<select id="getHostList" parameterType="kr.co.hotel.admin.AdminVO" resultType="kr.co.hotel.host.HostVO">
+		SELECT *,
+			(SELECT isConfirm FROM hotel where host_no = host.host_no) as isConfirm
+		FROM host
+			<where>
+				<if test="stype != null and sword != ''">
+					<if test="stype != 'all'">
+						${stype} LIKE '%${sword}%'
+					</if>
+					<if test="stype == 'all'">
+						host_id LIKE '%${sword}%' or host_name LIKE '%${sword}%' 
+					</if>
+				</if>
+			</where>
+			ORDER BY host_no DESC
+			LIMIT ${startIdx} , ${pageRow}
+	</select>
+	
+	<!-- 호스트 수 불러오기 -->
+	<select id="getHostCount" parameterType="kr.co.hotel.admin.AdminVO" resultType="int">
+		SELECT COUNT(*) FROM host
+		<where>
+			<if test="stype != null and stype != ''">
+					${stype} LIKE '%${sword}%'
+			</if>
+		</where>
+	</select>
+
+	<!-- 해당 호스트의 상세보기 -->	
+	<select id="getView" parameterType="kr.co.hotel.host.HostVO" resultType="kr.co.hotel.host.HostVO">
+		SELECT * FROM host where host_no = #{host_no}
+	</select>
+	
 </mapper>

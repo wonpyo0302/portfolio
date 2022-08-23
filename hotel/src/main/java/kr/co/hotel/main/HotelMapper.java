@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.hotel.HRRegister.ImageVO;
+import kr.co.hotel.favorite.FavoriteVO;
 import kr.co.hotel.room.RoomVO;
 
 @Mapper
@@ -35,5 +36,8 @@ public interface HotelMapper {
 	//호텔,객실 이미지 가져오기
 	List<HotelVO> getHotelImage(int hotel_no);
 	List<ImageVO> getRoomImage(int room_no);
+	
+	//호텔 상세 "찜하기"버튼 표시
+	FavoriteVO get_favorite(FavoriteVO vo);
 	
 }
