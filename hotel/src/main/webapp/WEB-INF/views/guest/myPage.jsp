@@ -11,7 +11,7 @@
     <meta name="format-detection" content="telephone=no, address=no, email=no">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>게스트마이페이지</title>
+    <title>GUEST MY PAGE</title>
     <link rel="stylesheet" href="/hotel/css/guest_mypage.css"/>
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
