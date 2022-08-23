@@ -23,18 +23,5 @@ public class HostFaqController {
 		return "hostfaq/view";
 	}
 	
-	// 등록폼(관리자용)
-	@GetMapping("/hostfaq/write.do")
-	public String write() {
-		return "hostfaq/write";
-	}
-	
-	// 등록처리(관리자용)
-	@PostMapping("/hostfaq/write.do")
-	public String insert(Model model, HostFaqVO vo) {
-		model.addAttribute("data", service.insert(vo));
-		return "hostfaq/write";
-	}
-	
 	
 }

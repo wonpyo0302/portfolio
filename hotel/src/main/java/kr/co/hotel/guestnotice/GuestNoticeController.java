@@ -21,7 +21,6 @@ public class GuestNoticeController {
 	public String index(Model model, GuestNoticeVO vo) {
 		model.addAttribute("data", service.index(vo));
 		return "guestnotice/list";
-		
 	}
 	
 	// 조회
@@ -36,10 +35,4 @@ public class GuestNoticeController {
 		model.addAttribute("next", service.nextRownum(vo)); // 다음글 rownum
 		return "guestnotice/view";
 	}
-	
-	
-	
-
-	
-	
 } 

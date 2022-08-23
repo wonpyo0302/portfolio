@@ -32,11 +32,11 @@ public class GuestBoardVO {
 	
 	private int page; // 현재 페이지
 	private int pageRow; // 한 페이지당 행(게시물)의 개수
+	private int startIdx; // 페이지별 시작 인덱스
 	
 	private String sword; // 검색어
 	private String stype; // 검색유형
 	
-	private int startIdx; // 페이지별 시작 인덱스
 
 	public GuestBoardVO () {
 		this.page = 1;

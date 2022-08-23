@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@include file="/WEB-INF/views/includes/G_header.jsp" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
+
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,33 +19,36 @@
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
     
-    <script src="/hotel/smarteditor/js/HuskyEZCreator.js"></script><!-- 22.08.03 추가 -->
-    <script src="/hotel/js/function.js"></script><!-- 22.08.03 추가 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><!-- 22.08.03 추가 -->
+    <script src="/hotel/smarteditor/js/HuskyEZCreator.js"></script>
+    <script src="/hotel/js/function.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
     <script>
     	function goSave(){
     		frm.submit();
-    	}
-    	});
+    	};
+    	
+    	function goBack(){
+    		history.back();
+    	};
+    	
+
+    	
+    	
     </script>
 </head>
 <body>
+    <div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>호스트 관리 ▶ NOTICE ▶ 등록</h2>
+				</div>
+			</div>
+	</div>
         <div class="sub">
             <div class="size">
-            <br> <br>
-        	<h3 class="sub_title" style="text-align: left">NOTICE</h3>
-			<br>
-			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/boardPic/qna.png" width="40px"> 게스트 전용 공지사항
-				게시판입니다.
-			</h6>
-			<br>
-			<h3 class="sub_title" style="text-align: left">새 글 작성</h3>
-			<br>
                 <div class="bbs">
-                <form method="post" name="frm" id="frm" action="insert.do"  enctype="multipart/form-data" > 
-       		    <input type="hidden" name="admin_no" value="${loginInfo2.admin_no}"> 
+                <form method="post" name="frm" id="frm" action="write.do"  enctype="multipart/form-data" > 
                     <table class="board_write">
                     	<tbody>
 							<div class="container">
@@ -52,24 +58,29 @@
 										</span>
 										<td class="choose">
 										<span class="srchSelect"> 
-										<select id="stype" name="gboard_type" class="dSelect" title="검색분류 선택">
-												<option name="gboard_type" value="1">안내</option>
-												<option name="gboard_type" value="2">공지</option>
-												<option name="gboard_type" value="3">이벤트</option>
-												<option name="gboard_type" value="4">발표</option>
+										<select id="stype" name="hnotice_type" class="dSelect" title="검색분류 선택">
+												<option name="hnotice_type" value="1">안내</option>
+												<option name="hnotice_type" value="2">공지</option>
+												<option name="hnotice_type" value="3">이벤트</option>
+												<option name="hnotice_type" value="4">발표</option>
 										</select>
 									</li>
 							<tr>
+								<th>중요</th>
+								<td>중요 공지 <input type="checkbox" name="fix" id="fix" value="1" ></td>
+							</tr>
+									
+							<tr>
 								<th>제목</th>
-								<td><input name="gnotice_title" id="gnotice_title" type="text" style="width: 90%"></td>
+								<td><input name="hnotice_title" id="hnotice_title" type="text" style="width: 90%"></td>
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td>${loginInfo2.admin_no}</td>
+								<td>관리자</td>
 							</tr>
 							<tr>
 								<th>문의내용</th>
-								<td><textarea name="gnotice_content" id="gnotice_content" style="width: 90%"></textarea></td>
+								<td><textarea name="hnotice_content" id="hnotice_content" style="width: 90%"></textarea></td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>
@@ -79,8 +90,10 @@
 							</div>
 						</tbody>
                     </table>
-                    <div class="btnSet"  style="text-align:right;">
-                        <a class="btn" href="javascript:goSave();">작성완료 </a>
+                    <div class="btnSet"  >
+                        <a class="btn" style="align:left; background-color:grey; border:2px solid grey " href="javascript:goBack();" >이전 </a>
+                        <a class="btn" style="align:right;" href="javascript:goSave();">저장 </a>
+                    </div>
                     </div>
                     </form>
                 </div>

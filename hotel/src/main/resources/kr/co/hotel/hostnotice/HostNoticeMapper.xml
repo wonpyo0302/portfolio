@@ -5,9 +5,9 @@
 	<!-- 등록하기 -->
 	<insert id="insert" parameterType="kr.co.hotel.hostnotice.HostNoticeVO" >
 		INSERT INTO hostnotice (
-			admin_no, hnotice_title, hnotice_content, hnotice_regdate, hnotice_viewcount
+			admin_no, hnotice_type, hnotice_title, hnotice_content, hnotice_regdate, hnotice_viewcount, fix
 		) VALUES (
-			#{admin_no}, #{hnotice_title}, #{hnotice_content}, now(), #{hnotice_viewcount}
+			#{admin_no}, #{hnotice_type}, #{hnotice_title}, #{hnotice_content}, now(), #{hnotice_viewcount}, #{fix}
 		)
 	</insert>
 	
@@ -28,7 +28,9 @@
 	
 	<!-- 목록보기 -->
 	<select id="list" parameterType="kr.co.hotel.hostnotice.HostNoticeVO" resultType="kr.co.hotel.hostnotice.HostNoticeVO">
-		SELECT * FROM hostnotice
+		SELECT *, 
+			datediff (now(), hnotice_regdate) as diff
+		FROM hostnotice
 			<where>
 				<if test="stype != null and sword != ''">
 					<if test="stype != 'all'">
@@ -44,7 +46,7 @@
 	</select>
 	
 	<!-- 조회하기 -->
-	<select id="view" parameterType="kr.co.hotel.hostnotice.HostNoticeVO" resultType="kr.co.hotel.hostnotice.HostNoticeVO">
+	<select id="view" parameterType="int" resultType="kr.co.hotel.hostnotice.HostNoticeVO">
 		SELECT * FROM hostnotice WHERE hnotice_no = #{hnotice_no}
 	</select>
 	
@@ -80,9 +82,9 @@
 	</update>
 	
 	<!-- 수정하기 -->
-	<update id="update" parameterType="int">
+	<update id="update" parameterType="kr.co.hotel.hostnotice.HostNoticeVO">
 		UPDATE hostnotice SET 
-			hnotice_title = #{hnotice_title}, hnotice_content = #{hnotice_content}
+			hnotice_type = #{hnotice_type}, hnotice_title = #{hnotice_title}, hnotice_content = #{hnotice_content}
 			WHERE hnotice_no = #{hnotice_no}
 	</update>
 	
