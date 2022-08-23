@@ -25,6 +25,10 @@ public class GuestBoardVO {
 	private String filename_org;
 	private String filename_real;
 	
+	// 확인용
+	private int admin_no; // 관리자 번호
+	private String admin_id; //관리자 로그인 확인용
+	
 	
 	private int page; // 현재 페이지
 	private int pageRow; // 한 페이지당 행(게시물)의 개수

@@ -123,7 +123,7 @@
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td colspan="3" style="width: 600px">${data.gnotice_content}</td>
+								<td colspan="3" style="width: 600px;  height:300px">${data.gnotice_content}</td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>

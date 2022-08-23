@@ -26,17 +26,26 @@
 <script src="/hotel/js/function.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+<style type="text/css">
+th {
+	width: 10%;
+}
+td {
+	width: 200px;
+}
+</style>
 <script>
 	// 목록가기
 	function goList() {
 		location.href = "list.do";
 	}
-	// 수정하기
-	function goEdit() {
-		location.href = "edit.do";
-		frm.submit();
+
+	// 삭제하기
+	function goDelete(gnotice_no){
+		alert("정말 삭제하시겠습니까?");
+		location.href ="/hotel/admin/main/guestboard/notice/delete.do?gnotice_no="+gnotice_no;
 	}
+	
 </script>
 
 </head>
@@ -52,54 +61,50 @@
 		<div class="size">
 
 			<div class="bbs">
-				<form method="get" name="frm" id="frm" action="edit.do" enctype="multipart/form-data">
+				<form method="get" name="frm" id="frm" action="view.do" enctype="multipart/form-data">
 					<input type="hidden" name="gnotice_no" value="${data.gnotice_no}">
 					
 					<table class="board_write">
 						<div class="title">
 						<tr>
-							<th>제목</th>
-							<td>
-								<c:if test="${data.gnotice_type == 1}">
-									[안내] ${data.gnotice_title }
-								</c:if>
-								<c:if test="${data.gnotice_type == 2}">
-									[공지] ${data.gnotice_title }
-								</c:if>
-								<c:if test="${data.gnotice_type == 3}">
-									[이벤트] ${data.gnotice_title }
-								</c:if>
-								<c:if test="${data.gnotice_type == 4}">
-									[발표] ${data.gnotice_title }
-								</c:if>
+							<th>분류</th>
+							<td style="text-align:left; width:50px;">
+								<c:if test="${data.gnotice_type == 1}">[안내]	</c:if>
+								<c:if test="${data.gnotice_type == 2}">[공지]	</c:if>
+								<c:if test="${data.gnotice_type == 3}">[이벤트]</c:if>
+								<c:if test="${data.gnotice_type == 4}">[발표]	</c:if>
 							</td>
+							
 							<th>등록일자</th>
-							<td class="date"  style="width: 35%"><fmt:formatDate
-									value="${data.gnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+							<td class="date"  style="width: 35%">
+							<fmt:formatDate value="${data.gnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+						</tr>
+						<tr>
+						
+							<th>제목</th>
+							<td>${data.gnotice_title }</td>
+							<th>수정일자</th>
+							<td class="date" style="width: 100px"><fmt:formatDate value="${data.gnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
 							<td>관리자</td>
-							<th>수정일자</th>
-							<td class="date" style="width: 150px"><fmt:formatDate
-									value="${data.gnotice_regdate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
-						</tr>
-						<tr>
-							<th>내용</th>
-							<td colspan="3" style="width: 600px">${data.gnotice_content}</td>
-						</tr>
-						<tr>
 							<th>첨부파일</th>
-							<td colspan="3">
+							<td colspan="2">
 							<a href ="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}" target="_blank">
 									${data.filename_org }
 								</a>
 								</td>
 						</tr>
+						<tr>
+							<th>내용</th>
+							<td colspan="3" style="width: 600px; height:300px">${data.gnotice_content}</td>
+						</tr>
 						</div>
 					</table>
 					<div class="btnSet" style="text-align: right;">
-						<a class="btn" href="javascript:goEdit();">수정 </a>
+						<a  class="btn" href="edit.do?gnotice_no=${data.gnotice_no }">수정</a>
+						<a class="btn" href="javascript:goDelete(${data.gnotice_no});">삭제 </a>
 						<a class="btn" href="javascript:goList();">목록 </a>
 					</div>
 					

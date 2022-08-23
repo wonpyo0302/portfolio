@@ -125,7 +125,7 @@
 						
 						<tr>
 							<th>내용</th>
-							<td colspan="3">${data.gboard_content}</td>
+							<td colspan="3" style="width: 600px; height:300px">${data.gboard_content}</td>
 						</tr>
 						</div>
 					</table>

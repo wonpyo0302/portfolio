@@ -1,5 +1,7 @@
 package kr.co.hotel.guestfaq;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import kr.co.hotel.admin.AdminVO;
+import kr.co.hotel.guestboard.GuestBoardVO;
 
 @Controller
 public class Admin_GuestFaqController {
@@ -31,7 +34,17 @@ public class Admin_GuestFaqController {
 
 	// 등록처리(관리자용)
 	@PostMapping("/admin/main/guestboard/faq/write.do")
-	public String insert(Model model, GuestFaqVO vo, AdminVO avo) {
+	public String insert(Model model, GuestFaqVO vo, AdminVO avo,  HttpSession sess) {
+		
+		
+		//admin 로그인 테스트
+		GuestFaqVO AdminLoginInfo = new GuestFaqVO();
+		AdminLoginInfo.setAdmin_no(2); // demo
+		AdminLoginInfo.setAdmin_id("admin_찌수"); //demo
+		sess.setAttribute("loginInfo_admin", AdminLoginInfo);
+		
+		
+		
 		model.addAttribute("data", service.insert(vo));
 		return "admin/main/guestboard/faq/write";
 	}

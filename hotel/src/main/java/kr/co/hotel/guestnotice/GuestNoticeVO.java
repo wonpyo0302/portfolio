@@ -34,6 +34,7 @@ public class GuestNoticeVO extends Criteria {
 
 	private int rownum; 
 	
+	private String admin_id; //관리자 로그인 확인용
 	
 	
 	public GuestNoticeVO () {

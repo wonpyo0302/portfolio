@@ -24,7 +24,14 @@ public class Admin_GuestNoticeController {
 
 	// 목록
 	@GetMapping("/admin/main/guestboard/notice/list.do")
-	public String index(Model model, GuestNoticeVO vo) {
+	public String index(Model model, GuestNoticeVO vo, HttpSession sess) {
+		
+		//admin 로그인 테스트
+		GuestNoticeVO AdminLoginInfo = new GuestNoticeVO();
+		AdminLoginInfo.setAdmin_no(2); // demo
+		AdminLoginInfo.setAdmin_id("admin_찌수"); //demo
+		sess.setAttribute("loginInfo_admin", AdminLoginInfo);
+		
 		model.addAttribute("data", service.index(vo));
 		return "admin/main/guestboard/notice/list";
 
@@ -53,7 +60,7 @@ public class Admin_GuestNoticeController {
 
 	// 등록처리(관리자용)
 	@PostMapping("/admin/main/guestboard/notice/write.do")
-	public String insert(Model model, GuestNoticeVO vo, @RequestParam MultipartFile filename, HttpServletRequest req) {
+	public String insert(Model model, GuestNoticeVO vo, @RequestParam MultipartFile filename, HttpServletRequest req, HttpSession sess) {
 		// 첨부파일 처리
 		if (!filename.isEmpty()) {
 			String org = filename.getOriginalFilename();
@@ -70,12 +77,16 @@ public class Admin_GuestNoticeController {
 			vo.setFilename_real(real);
 		}
 
-		HttpSession sess = req.getSession();
-		AdminVO avo = (AdminVO) sess.getAttribute("loginInfo2");
-		if (avo != null)
-		vo.setAdmin_no(avo.getAdmin_no());
+
+		//admin 로그인 테스트
+		GuestNoticeVO AdminLoginInfo = new GuestNoticeVO();
+		AdminLoginInfo.setAdmin_no(2); // demo
+		sess.setAttribute("loginInfo_admin", AdminLoginInfo);
+		
+		
 
 		if (service.insert(vo)) {
+			System.out.println("==========================="+vo.getFix());
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
 			model.addAttribute("url", "/hotel/admin/main/guestboard/notice/list.do");
 			return "common/alert";
@@ -90,7 +101,7 @@ public class Admin_GuestNoticeController {
 	public String editForm(Model model, GuestNoticeVO vo) {
 		model.addAttribute("data", service.edit(vo.getGnotice_no()));
 		System.out.println("======================================" + model.getAttribute("data"));
-		return "admin/main/guestboard/notice/edit";
+		return "/admin/main/guestboard/notice/edit";
 	}
 
 	// 수정처리
@@ -110,8 +121,10 @@ public class Admin_GuestNoticeController {
 
 	// 삭제처리
 	@GetMapping("/admin/main/guestboard/notice/delete.do")
-	public String delete(GuestNoticeVO vo, Model model) {
-		if (service.delete(vo.getGnotice_no())) {
+	public String delete(int gnotice_no, Model model,  HttpSession sess) {
+
+		
+		if (service.delete(gnotice_no)) {
 
 			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
 			model.addAttribute("url", "list.do");
