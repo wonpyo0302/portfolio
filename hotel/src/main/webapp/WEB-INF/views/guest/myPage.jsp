@@ -31,7 +31,6 @@
 								
 									<div class="user-name">${loginInfo.guest_name }님</div>
 									<div class="user-email">${loginInfo.guest_email }</div>
-									
 									<div class="d-grid gap-2 col-3 mx-auto">
 									  <button class="btn btn-warning" type="button" onclick="location.href='myinfo.do'">
 									  	<img src="/hotel/image/mypage/confidential.png" width="50px;">
@@ -41,17 +40,30 @@
 								</th>
 							</tr>
 							<tr>
-								<td>`button1</td>
-								<td>`button2</td>
+								<td>
+									<button type="button" class="component">Large button</button>
+								</td>
+								<td>
+									<button type="button" class="component">Large button</button>
+								</td>
 							</tr>
 							<tr>
-								<td>`button3</td>
-								<td>`button4</td>
+								<td>
+									<button type="button" class="component">Large button</button>
+								</td>
+								<td>
+									<button type="button" class="component">Large button</button>
+								</td>
 							</tr>
 							<tr>
-								<td>`button5</td>
-								<td>`button6</td>
+								<td>
+									<button type="button" class="component">Large button</button>
+								</td>
+								<td>
+									<button type="button" class="component">Large button</button>
+								</td>
 							</tr>
+						
 							
 						</tbody>
 					</table>
