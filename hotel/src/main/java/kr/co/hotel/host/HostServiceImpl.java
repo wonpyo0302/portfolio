@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.hotel.admin.AdminVO;
+import kr.co.hotel.main.HotelVO;
 import util.SendMail;
 @Service
 public class HostServiceImpl implements HostService {
@@ -163,5 +164,25 @@ public class HostServiceImpl implements HostService {
 	@Override
 	public HostVO getView(HostVO vo) {
 		return hmapper.getView(vo);
+	}
+	
+	
+	//=====================이하 빛찬 작성=================
+	@Override
+	public Map get_numbers(HostVO hvo) {
+		Map map = new HashMap();
+		
+		int reserve_count = hmapper.reserve_count(hvo.getHotel_no());
+		int daily_sales = hmapper.daily_sales(hvo.getHotel_no());
+		HotelVO review_count = hmapper.review_count(hvo.getHost_no());
+		int totalReview = review_count.getTotalReview();
+		int avgScore = review_count.getAvgScore();
+		
+		map.put("reserve_count", reserve_count);
+		map.put("daily_sales", daily_sales);
+		map.put("totalReview", totalReview);
+		map.put("avgScore", avgScore);
+		
+		return map;
 	}
 }

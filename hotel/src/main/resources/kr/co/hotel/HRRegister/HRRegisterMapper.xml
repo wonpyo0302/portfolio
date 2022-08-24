@@ -184,7 +184,9 @@
 		UPDATE room
 		SET
 		status = 1
-		WHERE host_no = #{host_no} AND status = 0 or -1
+		WHERE host_no = #{host_no} 
+		AND status = 0 
+		OR status = 3
 		
 	</update>
 	
@@ -193,7 +195,9 @@
 		UPDATE hotel
 		SET
 		isConfirm = 1
-		where host_no = #{host_no} and isConfirm = 0 or -1;
+		WHERE host_no = #{host_no} 
+		AND isConfirm = 0 
+		OR isConfirm = 3
 		
 	</update>
 	

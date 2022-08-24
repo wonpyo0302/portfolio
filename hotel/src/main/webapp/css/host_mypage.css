@@ -2,8 +2,7 @@
 
 
 .tr-head-test{
-	
-	background-color: green;
+	padding: 30px;
 	height: 500px;
 }
 
@@ -20,40 +19,24 @@
 
 .tr-head-test button{
 	
-	font-size: 35px;
+	font-size: 25px;
 	cursor: pointer;
 	width: 450px;
 	height: 220px;
 	padding-left: 15px;
+	
 	border: 0px solid #221f1f;
 	margin: 50px 10px 10px 10px;
-	text-align: center;
+	text-align: left;
 	font-weight: bold;
 	border-radius: 25px;
 	background-color: #FAB3DB; 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.tr-head-test button p{
+	font-size: 55px;
+	text-align: center;
+}
 
 
 

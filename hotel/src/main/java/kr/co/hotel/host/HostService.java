@@ -24,4 +24,7 @@ public interface HostService {
 	Map getHostList(AdminVO vo);
 	int getHostCount(AdminVO vo);
 	HostVO getView(HostVO vo);
+	
+	//============이하 빛찬 작성=============
+	Map get_numbers (HostVO hvo);
 }

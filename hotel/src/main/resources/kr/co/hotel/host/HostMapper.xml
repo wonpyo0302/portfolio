@@ -89,4 +89,31 @@
 		SELECT * FROM host where host_no = #{host_no}
 	</select>
 	
+	
+	
+	<!-- 이하 빛찬 -->
+	<select id="reserve_count" parameterType="int" resultType="int">
+		select count(*) from reserv 
+		where 
+		hotel_no= #{hotel_no}
+		and use_status = 0
+	</select>
+	
+	<select id="daily_sales" parameterType="int" resultType="int">
+	
+		select sum(total_price) from reserv 
+		where date_format(rev_date, "%Y-%m-%d") = date_format(now(), "%Y-%m-%d")
+		and hotel_no = #{hotel_no}
+		
+	</select>
+	
+	<select id="review_count" parameterType="int" resultType="kr.co.hotel.main.HotelVO">
+	
+		SELECT avgScore, totalReview FROM hotel
+        where
+        host_no=#{host_no};
+		
+	</select>
+
+	
 </mapper>
