@@ -25,6 +25,7 @@ public interface ReserveMapper {
 	public HotelVO SelectHostNo(HotelVO vo);
 	public HostVO SelectHostAccount(HotelVO vo);
 	public RoomVO SelectRoominfo(ReserveVO vo);
+	public ReserveVO SelectReserveInfo(ReserveVO vo);
 	
 	
 	//이하 마이페이지 예약리스트_빛찬 

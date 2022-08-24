@@ -7,23 +7,39 @@
 	</select>
 	
 	<insert id="insert" parameterType="kr.co.hotel.reserve.ReserveVO">
-		insert into reserv (
-			coupon_no, room_no, guest_no, hotel_no, startdate, 
-			enddate, used_point, canceldate, 
-			total_price, rev_date, pay_type, imp_uid, rev_status, use_status, pay_status, rev_name, rev_hp
-		) values (
-			#{coupon_no}, #{room_no}, #{guest_no}, #{hotel_no}, #{startdate}, 
-			#{enddate}, #{used_point}, #{canceldate}, #{total_price}, 
-			 now(), #{pay_type}, #{imp_uid}, 0, 0, 1 , #{rev_name}, #{rev_hp}
-		)
+		<if test="pay_type==0">
+			insert into reserv (
+				coupon_no, room_no, guest_no, hotel_no, startdate, 
+				enddate, used_point, canceldate, 
+				total_price, rev_date, pay_type, 
+				imp_uid, rev_status, use_status, pay_status, rev_name, rev_hp
+			) values (
+				#{coupon_no}, #{room_no}, #{guest_no}, #{hotel_no}, #{startdate}, 
+				#{enddate}, #{used_point}, #{canceldate},
+				#{total_price}, now(), #{pay_type}, 
+				#{imp_uid}, 0, 0 ,1 ,#{rev_name}, #{rev_hp}
+			)
+		</if>
+		<if test="pay_type== 1">
+			insert into reserv (
+				coupon_no, room_no, guest_no, hotel_no, startdate, 
+				enddate, used_point, canceldate, 
+				total_price, rev_date, pay_type, 
+				imp_uid, rev_status, use_status, pay_status, rev_name, rev_hp
+			) values (
+				#{coupon_no}, #{room_no}, #{guest_no}, #{hotel_no}, #{startdate}, 
+				#{enddate}, #{used_point}, #{canceldate},
+				#{total_price}, now(), #{pay_type}, 
+				#{imp_uid}, 0, 0 , 0, #{rev_name}, #{rev_hp}
+			)
+		</if>
+		
 	</insert>
 	
 	<insert id="pointinsert" parameterType="kr.co.hotel.reserve.ReserveVO">
-		<if test="used_point !=0">
 			insert into point (
 				guest_no, io_point, totalpoint, pointtype, date)
 			values (#{guest_no}, #{used_point}, (select totalpoint from guest where guest_no = #{guest_no}), 1, now() )
-		</if>
 	</insert>
 	
 	<update id="guestUsedPointUpdate" parameterType="kr.co.hotel.guest.GuestVO">
@@ -69,7 +85,9 @@
 		select * from room where room_no=#{room_no}
 	</select>
 	
-	
+	<select id="SelectReserveInfo" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="kr.co.hotel.reserve.ReserveVO">
+		select * from reserv where imp_uid=#{imp_uid}
+	</select>
 	
 	
 	

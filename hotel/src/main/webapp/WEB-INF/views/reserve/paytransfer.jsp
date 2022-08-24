@@ -27,15 +27,19 @@ th, td{
 <table border="1">
 	<tr>
 		<th class="totalproce">결제금액</th>
-		<td>넘어온 가격</td>
+		<td>${reserveinfo.total_price}</td>
+	</tr>
+	<tr>
+		<th class="name">계좌주</th>
+		<td> ${hostinfo.host_name}</td>
 	</tr>
 	<tr>
 		<th class="banktype">입금은행</th>
-		<td> ${host.host_bank}</td>
+		<td> ${hostinfo.host_bank}</td>
 	</tr>
 	<tr>
 		<th class="account">입금계좌</th>
-		<td>${host.host_accountno}</td>
+		<td>${hostinfo.host_accountno}</td>
 	</tr>
 </table>
 

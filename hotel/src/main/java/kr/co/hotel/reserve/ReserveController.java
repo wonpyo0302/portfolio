@@ -43,7 +43,7 @@ public class ReserveController {
 	@PostMapping("/reserve/reserveinsert.do")
 	@ResponseBody
 	public int reserveinsert(ReserveVO vo,GuestVO gvo, Model model) {
-		System.out.println("===================================="+vo.getTotal_price());
+		System.out.println("===================================="+vo.getPay_type());
 		return service.insert(vo, gvo); //0,1조회값
 	}
 	
@@ -71,9 +71,18 @@ public class ReserveController {
     }
 	
 	@GetMapping("/reserve/paytransfer.do")
-	public String paytransfer(HotelVO vo, Model model) {
-		model.addAttribute("host",service.SelectHostNo(vo));
-		return "reserve/paytransfer";
+	public void paytransfer(ReserveVO vo, HotelVO hvo, Model model) {
+		model.addAttribute("reserveinfo", service.SelectReserveInfo(vo));
+		model.addAttribute("hostinfo", service.SelectHostNo(hvo));
+	}
+	
+	
+	//무통장입금
+	@PostMapping("/reserve/paytransfer.do")
+	@ResponseBody
+	public String paytransferpro(ReserveVO vo, HotelVO hvo, GuestVO gvo, Model model) {
+		service.insert(vo, gvo);
+		return vo.getImp_uid();
 	}
 	
 	

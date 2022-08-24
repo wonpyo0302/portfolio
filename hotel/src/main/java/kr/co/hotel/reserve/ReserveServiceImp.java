@@ -33,7 +33,9 @@ public class ReserveServiceImp implements ReserveService {
 		}else {
 			mapper.insert(vo);
 			mapper.guestUsedPointUpdate(gvo);
-			mapper.pointinsert(vo);
+			if(vo.getUsed_point() !=0) {
+				mapper.pointinsert(vo);
+			}
 			mapper.updateCoupon(vo);
 			return data;
 		}
@@ -113,6 +115,11 @@ public class ReserveServiceImp implements ReserveService {
 	@Override
 	public RoomVO SelectRoomInfo(ReserveVO vo) {
 		return mapper.SelectRoominfo(vo);
+	}
+
+	@Override
+	public ReserveVO SelectReserveInfo(ReserveVO vo) {
+		return mapper.SelectReserveInfo(vo);
 	}
 
 }
