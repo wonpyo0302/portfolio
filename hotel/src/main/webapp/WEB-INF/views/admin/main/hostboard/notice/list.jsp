@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@include file="/WEB-INF/views/includes/G_header.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -21,24 +21,37 @@
 
 
 </head>
+<script>
+
+function goWrite(){
+	<c:if test="${!empty loginInfo_admin}">
+		location.href= "write.do";
+	</c:if>
+	<c:if test="${empty loginInfo_admin}">
+		alert("관리자 로그인 바랍니다.");
+	</c:if>
+
+}
+</script>
+
 <body>
+    <div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>호스트 관리 ▶ NOTICE ▶ 목록조회</h2>
+				</div>
+			</div>
+	</div>
 	<div class="sub">
 		<div class="size">
-			<br> <br> <br>
-			<h3 class="sub_title" style="text-align: left">공지사항</h3>
-			<br>
-			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/boardPic/notice.png" width="60px"> 공지사항(게스트)
-			</h6>
-			<br>
-			<br>
-			<br>
-			<br>
 			<div class="bbs">
 				<table class="list">
+				
+						
 					<p>
-						<span><strong>총 ${data.totalCount}개</strong> | ${guestNoticeVO.page}/${data.totalPage}페이지</span>
+						<span><strong>총 ${data.totalCount}개</strong> | ${hostNoticeVO.page}/${data.totalPage}페이지 </span>
 					</p>
+					
 					<caption>게시판 목록</caption>
 					<colgroup>
 						<col width="80px" />
@@ -67,35 +80,50 @@
 						<c:if test="${not empty data.list}">
 							<c:forEach items="${data.list }" var="vo" varStatus="status">
 								<c:if test="${vo.fix == 1}">
-									<tr style="background-color: pink" style="font-weight" :bold" >
-										<td>${data.totalCount - status.index - ((guestNoticeVO.page - 1) * guestNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
+									<tr style="background-color: F7C1C2" style="font-weight" :bold" >
+										<td>${data.totalCount - status.index - ((hostNoticeVO.page - 1) * hostNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l"><a
-											href="/hotel/guestnotice/view.do?gnotice_no=${vo.gnotice_no}">
-												<img src="/hotel/image/boardPic/느낌2.png" width="20px"> <b>${vo.gnotice_title}</b>
-												<img src="/hotel/image/boardPic/new2.png" width="30px">
+											href="/hotel/admin/main/hostboard/notice/view.do?hnotice_no=${vo.hnotice_no}">
+										<b> <c:if test="${vo.hnotice_type == 1 }">
+											[안내] ${vo.hnotice_title} 
+										</c:if> <c:if test="${vo.hnotice_type == 2 }">
+											[공지] ${vo.hnotice_title} 
+										</c:if> <c:if test="${vo.hnotice_type == 3 }">
+											[이벤트] ${vo.hnotice_title} 
+										</c:if> <c:if test="${vo.hnotice_type == 4 }">
+											[발표] ${vo.hnotice_title} 
+										</c:if>
+											</b> <img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</a></td>
-										<td class="writer">관리자</td>
-										<td class="date"><fmt:formatDate
-												value="${vo.gnotice_regdate}" pattern="yyyy-MM-dd" /></td>
-										<td>${vo.gnotice_viewcount}</td>
-
+											<td class="writer">관리자</td>
+										<td class="date"><fmt:formatDate value="${vo.hnotice_regdate}" pattern="yyyy-MM-dd" /></td>
+										<td>${vo.hnotice_viewcount}</td>
 									</tr>
 								</c:if>
 								<c:if test="${vo.fix != 1}">
 									<tr>
-										<td>${data.totalCount - status.index - ((guestNoticeVO.page - 1) * guestNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
+										<td>${data.totalCount - status.index - ((hostNoticeVO.page - 1) * hostNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l">
 									
-										<a href="/hotel/guestnotice/view.do?gnotice_no=${vo.gnotice_no}">${vo.gnotice_title} 
+										<a href="/hotel/admin/main/hostboard/notice/view.do?hnotice_no=${vo.hnotice_no}">
+										<c:if test="${vo.hnotice_type == 1 }">
+											[안내] ${vo.hnotice_title} 
+										</c:if> <c:if test="${vo.hnotice_type == 2 }">
+											[공지] ${vo.hnotice_title} 
+										</c:if> <c:if test="${vo.hnotice_type == 3 }">
+											[이벤트] ${vo.hnotice_title} 
+										</c:if> <c:if test="${vo.hnotice_type == 4 }">
+											[발표] ${vo.hnotice_title} 
+										</c:if>
 										<c:if test="${vo.diff <= 3 }">
-										<img src="/hotel/image/boardPic/new (4).png" width="30px">
+										<img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</c:if></a>
 									
 										</td>
 										<td class="writer">관리자</td>
 										<td class="date"><fmt:formatDate
-												value="${vo.gnotice_regdate}" pattern="yyyy-MM-dd" /></td>
-										<td>${vo.gnotice_viewcount}</td>
+												value="${vo.hnotice_regdate}" pattern="yyyy-MM-dd" /></td>
+										<td>${vo.hnotice_viewcount}</td>
 									</tr>
 								</c:if>
 							</c:forEach>
@@ -104,7 +132,6 @@
 				</table>
 				<div class="btnSet" style="text-align: right;">
 
-				
 
 				</div>
 				<div class="pagenate clear">
@@ -118,7 +145,7 @@
 						<c:forEach var="p" begin="${data.startPage}"
 							end="${data.endPage }">
 							<li><a href='list.do?page=${p }'
-								<c:if test="${guestBoardVO.page == p }"> class='current'</c:if>>${p }</a></li>
+								<c:if test="${hostBoardVO.page == p }"> class='current'</c:if>>${p }</a></li>
 						</c:forEach>
 						<!-- 다음페이지 -->
 						<c:if test="${data.next == true }">
@@ -128,6 +155,10 @@
 					</ul>
 				</div>
 
+				<div class="btnSet" style="text-align: right;">
+						<a class="btn" href="javascript:goWrite();">등록 </a>
+				</div>
+				
 				<!-- 페이지처리 -->
 				<div class="bbsSearch">
 					<form method="get" name="searchForm" id="searchForm" action="">

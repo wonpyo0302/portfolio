@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
@@ -23,8 +23,7 @@
 
 <script src="/hotel/smarteditor/js/HuskyEZCreator.js"></script>
 <script src="/hotel/js/function.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <style>
 * {
@@ -76,6 +75,7 @@
 				$(this).find(".text").slideDown("fast");  
 				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png"); 
 				$(this).find(".downbtn").attr("src", "/hotel/image/boardPic/up.png");
+				
 			} else {
 				$(this).find(".text").slideUp("fast"); 
 				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png"); 
@@ -83,77 +83,104 @@
 		})
 	});
 </script>
+
+<script>
+	function goWrite() {
+		<c:if test="${!empty loginInfo_admin}">
+			frm.submit();
+			location.href= "write.do";
+		</c:if>
+		<c:if test="${empty loginInfo_admin}">
+			alert("관리자 로그인 바랍니다.");
+			location.href="/hotel/admin/login.do";
+		</c:if>
+	};
+</script>
+
+
+
 </head>
 <body>
 	<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>호스트 관리 ▶ 공지사항 ▶ 상세보기</h2>
+					<h2>호스트 관리 ▶ FAQ ▶ 보기</h2>
 				</div>
 			</div>
 	</div>
 	<div class="sub">
 		<div class="size">
+			<form method="get" name="frm" id="frm" action="view.do">
 				<section id="wrapper">
 					<div class="container">
 						<ul class="list">
 							<c:forEach items="${data }" var="faq" varStatus="status">
-							<!-- [예약 문의] -->
-								<c:if test="${faq.gfaq_type == 1}">
+								<!-- [예약 문의] -->
+								<c:if test="${faq.hfaq_type == 1}">
 									<li class="item">
 										<h5 class="Title">
-											[예약] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/boardPic/down.png" class="downbtn"> <span class="accIcon"></span>
+											[예약] &nbsp; ${faq.hfaq_title } <img
+												src="/hotel/image/boardPic/down.png" class="downbtn">
+											<span class="accIcon"></span>
 										</h5> <br>
 										<div>
-											<div class="text" id="text">${faq.gfaq_content}</div>
+											<div class="text" id="text">${faq.hfaq_content}</div>
 										</div>
 									</li>
 								</c:if>
-								
+
 								<!-- [결제 문의] -->
-								<c:if test="${faq.gfaq_type == 2}">
+								<c:if test="${faq.hfaq_type == 2}">
 									<li class="item">
 										<h5 class="Title">
-											[결제] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/boardPic/down.png" class="downbtn"> <span class="accIcon"></span>
+											[결제] &nbsp; ${faq.hfaq_title } <img
+												src="/hotel/image/boardPic/down.png" class="downbtn">
+											<span class="accIcon"></span>
 										</h5> <br>
 										<div>
-											<div class="text" id="text">${faq.gfaq_content}</div>
+											<div class="text" id="text">${faq.hfaq_content}</div>
 										</div>
 									</li>
 								</c:if>
-								
+
 								<!-- [숙소 문의] -->
-								<c:if test="${faq.gfaq_type == 3}">
+								<c:if test="${faq.hfaq_type == 3}">
 									<li class="item">
 										<h5 class="Title">
-											[숙소] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/boardPic/down.png" class="downbtn"> <span class="accIcon"></span>
+											[숙소] &nbsp; ${faq.hfaq_title } <img
+												src="/hotel/image/boardPic/down.png" class="downbtn">
+											<span class="accIcon"></span>
 										</h5> <br>
 										<div>
-											<div class="text" id="text">${faq.gfaq_content}</div>
+											<div class="text" id="text">${faq.hfaq_content}</div>
 										</div>
 									</li>
 								</c:if>
-								
+
 								<!-- [포인트/쿠폰 문의] -->
-								<c:if test="${faq.gfaq_type == 4}">
+								<c:if test="${faq.hfaq_type == 4}">
 									<li class="item">
 										<h5 class="Title">
-											[포인트/쿠폰] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/boardPic/down.png" class="downbtn"> <span class="accIcon"></span>
+											[포인트/쿠폰] &nbsp; ${faq.hfaq_title } <img
+												src="/hotel/image/boardPic/down.png" class="downbtn">
+											<span class="accIcon"></span>
 										</h5> <br>
 										<div>
-											<div class="text" id="text">${faq.gfaq_content}</div>
+											<pre><input type="text" class="text" id="text" value="${faq.hfaq_content}" readonly="readonly" style="width:100%;"></pre>
 										</div>
 									</li>
 								</c:if>
-								
+
 								<!-- [이용/기타 문의] -->
-								<c:if test="${faq.gfaq_type == 5}">
+								<c:if test="${faq.hfaq_type == 5}">
 									<li class="item">
 										<h5 class="Title">
-											[이용/기타] &nbsp; ${faq.gfaq_title } <img src="/hotel/image/boardPic/down.png" class="downbtn"> <span class="accIcon"></span>
+											[이용/기타] &nbsp; ${faq.hfaq_title } <img
+												src="/hotel/image/boardPic/down.png" class="downbtn">
+											<span class="accIcon"></span>
 										</h5> <br>
 										<div>
-											<div class="text" id="text">${faq.gfaq_content}</div>
+											<div class="text" id="text">${faq.hfaq_content}</div>
 										</div>
 									</li>
 								</c:if>
@@ -161,6 +188,9 @@
 								<br>
 							</c:forEach>
 						</ul>
+					</div>
+					<div class="btnSet" style="text-align: right;">
+						<a class="btn" href="javascript:goWrite();">등록 </a>
 					</div>
 				</section>
 			</form>

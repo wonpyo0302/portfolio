@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/views/includes/G_header.jsp"%>
+<%@ page language="java"  	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -53,22 +54,18 @@
 
 </head>
 <body>
-	<br>
-	<br>
+  <div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>호스트 관리 ▶ Q&A ▶ 등록</h2>
+				</div>
+			</div>
+	</div>
 	<div class="sub">
 		<div class="size">
-			<h3 class="sub_title" style="text-align: left">Q&A</h3>
-			<br>
-			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/boardPic/qna.png" width="40px"> 게스트 전용 문의사항
-				게시판입니다.
-			</h6>
-			<br>
-			<h3 class="sub_title" style="text-align: left">새 문의글 작성</h3>
-			<br>
 			<div class="bbs">
-				<form method="post" name="frm" id="frm" action="../guestboard/insert.do" enctype="multipart/form-data">
-					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
+				<form method="post" name="frm" id="frm" action="../hostboard/insert.do" enctype="multipart/form-data">
+					<input type="hidden" name="host_no" value="${loginInfo2.host_no}">
 					<table class="board_write">
 						<tbody>
 							<div class="container">
@@ -77,12 +74,12 @@
 										<th>문의유형</th>
 										</span>
 										<td class="choose">
-										<span class="srchSelect"> <select id="stype" name="gboard_type" class="dSelect" title="검색분류 선택">
-												<option name="gboard_type" value="1">예약문의</option>
-												<option name="gboard_type" value="2">결제 문의</option>
-												<option name="gboard_type" value="3">숙소 문의</option>
-												<option name="gboard_type" value="4">포인트/쿠폰 문의</option>
-												<option name="gboard_type" value="5">이용/기타 문의</option>
+										<span class="srchSelect"> <select id="stype" name="hboard_type" class="dSelect" title="검색분류 선택">
+												<option name="hboard_type" value="1">예약문의</option>
+												<option name="hboard_type" value="2">결제 문의</option>
+												<option name="hboard_type" value="3">숙소 문의</option>
+												<option name="hboard_type" value="4">포인트/쿠폰 문의</option>
+												<option name="hboard_type" value="5">이용/기타 문의</option>
 										</select>
 									</li>
 									<tr>
@@ -91,15 +88,15 @@
 									</tr>
 							<tr>
 								<th>제목</th>
-								<td><input name="gboard_title" id="gboard_title" type="text" style="width: 90%"></td>
+								<td><input name="hboard_title" id="hboard_title" type="text" style="width: 90%"></td>
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td>${loginInfo.guest_name}</td>
+								<td>${loginInfo.host_name}</td>
 							</tr>
 							<tr>
 								<th>문의내용</th>
-								<td><textarea name="gboard_content" id="gboard_content" style="width: 90%"></textarea></td>
+								<td><textarea name="hboard_content" id="hboard_content" style="width: 90%"></textarea></td>
 							</tr>
 					
 							<tr>

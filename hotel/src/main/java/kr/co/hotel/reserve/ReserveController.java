@@ -1,6 +1,9 @@
 package kr.co.hotel.reserve;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,9 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.main.HotelVO;
-import kr.co.hotel.room.RoomVO;
 
 @Controller
 
@@ -21,18 +24,12 @@ public class ReserveController {
 	@Autowired
 	ReserveService service;
 	
-	//예약컨트롤러
-	@GetMapping("/reserve/reserve.do")
-	public String reserve() {
-		return "/reserve/reserve";
-	}
-	
-	//테스트
-	@PostMapping("/reserve/reserve2.do")
-	public String reserve2(ReserveVO vo, HotelVO hvo, Model model) {
+	//예약하기
+	@PostMapping("/reserve/reserve.do")
+	public String reserve(ReserveVO vo, HotelVO hvo, Model model) {
 		model.addAttribute("hotelinfo",service.SelectHotelInfo(hvo) );
 		model.addAttribute("roominfo", service.SelectRoomInfo(vo));
-		return "/reserve/reserve2";
+		return "/reserve/reserve";
 	}
 	
 	//보유 쿠폰 리스트
@@ -45,9 +42,9 @@ public class ReserveController {
 	//예약하기
 	@PostMapping("/reserve/reserveinsert.do")
 	@ResponseBody
-	public void reserveinsert(ReserveVO vo,GuestVO gvo, Model model) {
+	public int reserveinsert(ReserveVO vo,GuestVO gvo, Model model) {
 		System.out.println("===================================="+vo.getTotal_price());
-		service.insert(vo, gvo);
+		return service.insert(vo, gvo); //0,1조회값
 	}
 	
 	//예약 중복체크

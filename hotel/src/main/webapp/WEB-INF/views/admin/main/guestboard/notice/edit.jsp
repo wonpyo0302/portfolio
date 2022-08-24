@@ -36,10 +36,14 @@
 </style>
 
 <script>
-	// 글작성 완료
+
 	function goSave() {
 		frm.submit();
 	};
+	
+	function goBack(){
+		history.back();
+	}
 </script>
 
 
@@ -64,8 +68,8 @@
 								<ul class="list">
 									<li class="item">
 									<th>분류</th>
-									<td class="choose"><span class="srchSelect"> <select
-											id="stype" name="stype" class="dSelect" title="검색분류 선택">
+									<td class="choose"><span class="srchSelect"> 
+									<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 												<option value="info1"
 													<c:if test="${data.gnotice_type == 1}">selected</c:if>>
 													안내</option>
@@ -85,8 +89,7 @@
 								</li>
 								<tr>
 									<th>제목</th>
-									<td><input type="text" name="gnotice_title"
-										style="width: 90%" value="${data.gnotice_title}" /></td>
+									<td><input type="text" name="gnotice_title" style="width: 90%" value="${data.gnotice_title}" /></td>
 								</tr>
 								<tr>
 									<th>작성자</th>
@@ -94,8 +97,7 @@
 								</tr>
 								<tr>
 									<th>내용</th>
-									<td><textarea name="gnotice_content" id="gnotice_content"
-											style="width: 90%">${data.gnotice_content}</textarea></td>
+									<td><textarea name="gnotice_content" id="gnotice_content" style="width: 90%">${data.gnotice_content}</textarea></td>
 								</tr>
 								<tr>
 									<th>첨부파일</th>
@@ -105,8 +107,10 @@
 							</div>
 						</tbody>
 					</table>
-					<div class="btnSet" style="text-align: right;">
-						<a class="btn" href="javascript:goSave();">저장 </a>
+					<div class="btnSet">
+					   <a class="btn" style="align:left; background-color:grey; border:2px solid grey " href="javascript:goBack();" >이전 </a>
+                        <a class="btn" style="align:right;" href="javascript:goSave();">저장 </a>
+						
 					</div>
 				</form>
 			</div>

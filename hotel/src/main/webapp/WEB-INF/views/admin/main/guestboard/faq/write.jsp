@@ -31,12 +31,13 @@
     
     <script>
     	function goSave(){
-    		
     		frm.submit();
-    	}
- 
-    	});
-
+    	};
+	
+    	
+     function goBack(){
+    		history.back();
+    	};
     </script>
     
 </head>
@@ -61,12 +62,12 @@
 							<tr>
 								<th>분류</th>
 								<td class="choose"> <span class="srchSelect"> 
-									<select id="stype" name="gboard_type" class="dSelect" title="검색분류 선택">
-											<option name="gboard_type" value="1">예약</option>
-											<option name="gboard_type" value="2">결제</option>
-											<option name="gboard_type" value="3">숙소</option>
-											<option name="gboard_type" value="4">포인트/쿠폰</option>
-											<option name="gboard_type" value="5">이용/기타</option>
+									<select id="stype" name="gfaq_type" class="dSelect" title="검색분류 선택">
+											<option name="gfaq_type" value="1">예약</option>
+											<option name="gfaq_type" value="2">결제</option>
+											<option name="gfaq_type" value="3">숙소</option>
+											<option name="gfaq_type" value="4">포인트/쿠폰</option>
+											<option name="gfaq_type" value="5">이용/기타</option>
 									</select>
 								</td>
 							</tr>
@@ -83,9 +84,12 @@
 
 						</tbody>
 					</table>
-                    <div class="btnSet"  style="text-align:right;">
-                        <a class="btn" href="javascript:goSave();">저장 </a>
+                    <div class="btnSet"  >
+                        <a class="btn" style="align:left; background-color:grey; border:2px solid grey " href="javascript:goBack();" >이전 </a>
+                        <a class="btn" style="align:right;" href="javascript:goSave();">저장 </a>
                     </div>
+                
+                    
                     </form>
                 </div>
             </div>

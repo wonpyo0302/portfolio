@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.hotel.guest.GuestVO;
+import kr.co.hotel.guestnotice.GuestNoticeVO;
 import util.ImgHandling;
 
 @Controller
@@ -89,8 +90,8 @@ public class Admin_GuestBoardController extends ImgHandling {
 
 	// 수정처리
 	@PostMapping("/admin/main/guestboard/qna/edit.do")
-	public String update(GuestBoardVO vo, Model model) {
-
+	public String update(GuestBoardVO vo, Model model, HttpSession sess) {
+	
 		if (service.update(vo)) {
 			model.addAttribute("data", service.update(vo));
 			model.addAttribute("msg", "정상적으로 수정되었습니다");

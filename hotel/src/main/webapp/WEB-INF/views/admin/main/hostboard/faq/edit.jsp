@@ -35,7 +35,7 @@
 </style>
 
 <script> 
-	// 글작성 완료 후 내가 쓴글 상세보기 이동
+
 	function goSave() {
 		frm.submit();
 		
@@ -68,70 +68,44 @@
 				</div>
 			</div>
 	</div>
-	<div class="sub">
-		<div class="size">
-			<div class="bbs">
-				<form method="post" name="frm" id="frm" action="edit.do"
-					enctype="multipart/form-data">
-					<input type="hidden" name="gboard_no" value="${data.gboard_no}">
-					<table class="board_write">
+	       <div class="sub">
+            <div class="size">
+                <div class="bbs">
+                <form method="post" name="frm" id="frm" action="edit.do"  enctype="multipart/form-data" > 
+                    <table class="board_write">
 						<tbody>
-							<div class="container">
-								<ul class="list">
-									<li class="item">
-									<th>분류</th>
-									</span>
-									<td class="choose"><span class="srchSelect"> <select
-											id="stype" name="stype" class="dSelect" title="검색분류 선택">
-												<option value="reservation"
-													<c:if test="${data.gboard_type==1 }">selected</c:if>>
-													예약</option>
-												<option value="pay"
-													<c:if test="${data.gboard_type==2 }"> selected</c:if>>
-													결제</option>
-												<option value="hotel"
-													<c:if test="${data.gboard_type==3 }"> selected</c:if>>
-													숙소</option>
-												<option value="pointAndCoupon"
-													<c:if test="${data.gboard_type==4 }"> selected</c:if>>
-													포인트/쿠폰</option>
-												<option value="etc"
-													<c:if test="${data.gboard_type==5 }"> selected</c:if>>
-													이용/기타</option>
-										</select>
-											</li>
 							<tr>
-								<th>이메일</th>
-								<td><input type="text" name="guest_email" id="email" value="" placeholder="선택사항입니다.">@<input type="text" id="" value=""></td>
+								<th>분류</th>
+								<td class="choose"> <span class="srchSelect"> 
+									<select id="stype" name="hfaq_type" class="dSelect" title="검색분류 선택">
+											<option name="hfaq_type" value="1">예약</option>
+											<option name="hfaq_type" value="2">결제</option>
+											<option name="hfaq_type" value="3">숙소</option>
+											<option name="hfaq_type" value="4">포인트/쿠폰</option>
+											<option name="hfaq_type" value="5">이용/기타</option>
+									</select>
+								</td>
 							</tr>
+							<tr>
 							<tr>
 								<th>제목</th>
-								<td><input type="text" name="gboard_title" style="width: 90%" value="${data.gboard_title }"></td>
+								<td><input type="text" name="title" id="title" value="" style="width: 90%" value="${data.gfaq_title }"/>
+								</td>
 							</tr>
 							<tr>
-								<th>작성자</th>
-								<td>${loginInfo.guest_name}</td>
+								<th>내용</th>
+								<td><textarea name="content" id="content" style="width: 90%" value="${data.gfaq_content}"></textarea></td>
 							</tr>
-							<tr>
-								<th>문의내용</th>
-								<td><textarea name="gboard_content" id="content" style="width: 90%" value="${data.gboard_content}"></textarea></td>
-							</tr>
-							<tr>
-								<th>첨부파일</th>
-								<td><input type="file" name="filename"></td>
-							</tr>
-							</ul>
-							</div>
+
 						</tbody>
 					</table>
-					<div class="btnSet" style="text-align: right;">
-						<a class="btn" href="javascript:goSave();">작성완료 </a>
-					</div>
-				</form>
-			</div>
-
-		</div>
-	</div>
+                    <div class="btnSet"  style="text-align:right;">
+                        <a class="btn" href="javascript:goSave();">저장 </a>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
 </body>
 </html>
