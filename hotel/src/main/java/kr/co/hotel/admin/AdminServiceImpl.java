@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.guestboard.GuestBoardVO;
 import kr.co.hotel.host.HostVO;
+import kr.co.hotel.main.HotelVO;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -42,6 +43,11 @@ public class AdminServiceImpl implements AdminService{
 			sess.setAttribute("loginInfo_admin", loginInfo);
 		}
 		return r;
+	}
+
+	@Override
+	public int setConfirm(HotelVO vo) {
+		return amapper.setConfirm(vo);
 	}
 
 

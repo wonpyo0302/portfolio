@@ -36,4 +36,10 @@ public interface HotelMapper {
 	List<HotelVO> getHotelImage(int hotel_no);
 	List<ImageVO> getRoomImage(int room_no);
 	
+	HotelVO getHostHotel(int host_no);
+	List<RoomVO> getHostRoom(int host_no);
+	List<ImageVO> getHostHotelImage(int host_no);
+	List<ImageVO> getHostRoomImage(int host_no);
+	
+	void setConfirm(HotelVO vo);
 }

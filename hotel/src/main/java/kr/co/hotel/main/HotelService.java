@@ -28,5 +28,7 @@ public interface HotelService {
 	List<HotelVO> getHotelImage(int hotel_no);
 	List<ImageVO> getRoomImage(int room_no);
 	
+	void setConfirm(HotelVO vo);
 	
+	Map hostView(int host_no);
 }

@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import kr.co.hotel.guest.GuestService;
+import kr.co.hotel.main.HotelVO;
 
 @Controller
 public class AdminController {
@@ -39,6 +39,12 @@ public class AdminController {
 		model.addAttribute("msg", "로그아웃되었습니다.");
 		model.addAttribute("url", "/hotel/admin/login.do");
 		return "common/alert";
+	}
+	
+	@PostMapping("/admin/main/setConfirm.do")
+	public String setConfrim(HotelVO vo) {
+		aservice.setConfirm(vo);
+		return "redirect:/admin/main/hostList.do";
 	}
 	
 	

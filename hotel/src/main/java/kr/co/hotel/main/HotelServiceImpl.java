@@ -1,6 +1,6 @@
 package kr.co.hotel.main;
 
-import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -66,6 +66,22 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public List<ImageVO> getRoomImage(int room_no) {
 		return mapper.getRoomImage(room_no);
+	}
+
+	@Override
+	public void setConfirm(HotelVO vo) {
+		mapper.setConfirm(vo);
+		
+	}
+
+	@Override
+	public Map hostView(int host_no) {
+		Map map = new HashMap();
+		map.put("room",mapper.getHostRoom(host_no));
+		map.put("hotel",mapper.getHostHotel(host_no));
+		map.put("imageR",mapper.getHostRoomImage(host_no));
+		map.put("imageH",mapper.getHostRoom(host_no));
+		return map;
 	}
 
 
