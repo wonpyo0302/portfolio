@@ -11,12 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import kr.co.hotel.admin.AdminVO;
+
 
 @Controller
 public class GuestController {
@@ -210,8 +211,7 @@ public class GuestController {
 			 out.flush();
 		 		 
 	 }
-	 
-	 //=====================AdminController 추가=======================
+
 	 
 	 @GetMapping("/admin/main/guest/guestlist.do")
 	 public String guestlist(AdminVO avo, Model model) {
@@ -224,4 +224,5 @@ public class GuestController {
 			model.addAttribute("guestlist",gservice.guestlist(vo));
 			return "/admin/main/guest/guestview";
 		}
+
 }

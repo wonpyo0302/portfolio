@@ -2,6 +2,7 @@ package kr.co.hotel.host;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,12 +16,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.hotel.admin.AdminVO;
+import kr.co.hotel.hostReserve.HostReserveService;
 
 
 @Controller
 public class HostController {
 	@Autowired
 	HostService hservice;
+	
+	@Autowired
+	HostReserveService service;
+	
 	@GetMapping("/host/join.do")
 	public String join() {
 		return "host/join";
@@ -127,6 +133,20 @@ public class HostController {
 			model.addAttribute("msg","로그인해야 합니다");
 			return "common/aleret";
 		}else {
+			//빛찬_220824
+			//해당 호텔의 가용객실 총 수
+			HostVO host_loginInfo =(HostVO)sess.getAttribute("loginInfo2");
+			int host_no = host_loginInfo.getHost_no();
+			
+			int r =service.room_count(host_no);
+			model.addAttribute("room_count", service.room_count(host_no));
+			
+			Map map = hservice.get_numbers(host_loginInfo);
+			model.addAttribute("map", map);
+			
+			
+			
+			//END_빛찬_220824
 			return "/host/myPage";
 		}
 	}
@@ -217,16 +237,5 @@ public class HostController {
 		return "/admin/main/hostView";
 	}
 	
-	@GetMapping("/admin/main/confirm.do")
-	public String confirm(AdminVO avo, HostVO hvo, Model model) {
-		return "/admin/main/confirm";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

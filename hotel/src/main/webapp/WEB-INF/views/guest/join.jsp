@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -10,6 +12,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <title>회원가입</title>
+    
    <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -179,25 +182,37 @@
     		
     		
     	});
+    	function bankCheck(){
+    		$("#bankCheck").click(function(){
+    			
+        		$.ajax({
+        			url: 'https://openapi.openbanking.or.kr/v2.0/inquiry/real_name',
+        			type:'POST',
+        		    dataType: 'JSON', 
+        			content_type:'application/json; charset=UTF-8',
+        			access_token :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNMjAyMjAxNTYwIiwic2NvcGUiOlsib29iIl0sImlzcyI6Imh0dHBzOi8vd3d3Lm9wZW5iYW5raW5nLm9yLmtyIiwiZXhwIjoxNjY4OTM0NzAwLCJqdGkiOiI3ODhjYWVhOC05ZWZiLTQ2YzctODg3NS00ZjJmMzE1NTIxYjMifQ.HfE40neb6gsyv8ZtfznrWDbeRntTc6SsNXSFnwQDOQ0',
+        			scope: 'oob',
+        			Access_Control_Allow_Origin :"*",
+        			data : 
+        			{	  
+        				 
+        				  'bank_tran_id': 'M202201560', 
+        				  'bank_code_std': '012',
+        				  'account_num': $('#account_num').val(),
+        				  'account_holder_info_type':' ',
+        				  'account_holder_info': $('#birthday').val(),
+        				  'tran_dtime':'20220823102200'
+        			},
+        			  success: function(data,textStatus) {
+        				  alert('은행예금주 실명 인증되었습니다');
+        				  console.log('안녕 나는 정인아야');
+        				  console.log(data.account_holder_name);
+        			  }
+        	});
+    			
+    		});
+    	};
     </script>
-    <!-- <script src="//developers.kftc.or.kr/proxy/oauth/2.0/token" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "client_id=69e9780d-b1fc-4f5e-b50c-530a83a724c4&client_secret=34b66771-f384-461a-9df1-daea6c6299d7&scope=oob&grant_type=client_credentials" ></script>
-    <script>
-    	function bankConfirm(){
-    		$.ajax({
-    			url:"https://openapi.openbanking.or.kr/v2.0/inquiry/real_name",
-    			type:"post",
-    			content_Type:"application/x-www-form-urlencoded; charset=UTF-8",
-    			access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNMjAyMjAxNTYwIiwic2NvcGUiOlsib29iIl0sImlzcyI6Imh0dHBzOi8vd3d3Lm9wZW5iYW5raW5nLm9yLmtyIiwiZXhwIjoxNjY4NjU4NDE5LCJqdGkiOiJkYzk2N2VhNi03ODcwLTRkMjctYjQ2MS00M2I2YTUyMDRlZjYifQ.PPx4NuMRzlYTBEpoECR6rV7VceEJ2VJxr8jk8cRJf8c",
-    			token_type: "Bearer",
-    			expires_in: 7775999,
-    			scope: "oob",
-    			client_use_code: "M202201560",
-    			success:function(res){
-    				alert('');
-    			}
-    		})
-    	}
-    </script> -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 	    function zipcode() {
@@ -312,24 +327,25 @@
                         </tr>
                         <tr>
                             <th>생년월일</th>
-                            <td><input type="text" name="guest_birth" id="birthday" style="float:left;" autocomplete="off"> </td>
+                            <td><input type="text" name="guest_birth" id="birthday" style="float:left;" autocomplete="off">&nbsp;&nbsp;&nbsp;6자 입력해주세요</td>
                         </tr>   
                         <tr>
                             <th>은행</th>
                             <td>
-                                <input type="text" name="g_bank" id="g_bank" value=""  maxlength="15" style="float:left;">
+                                <input type="text" name="g_bank" id="bank_name" value="${data.bank_name }"  maxlength="15" style="float:left;">
                             	<span class="guest_bank_check"><a href="javascript:;"  class="btn bgGray" style="float:left; width:auto; clear:none;" id="bankDupCheckBtn">은행확인</a></span>
                             </td>
                         </tr>
                         <tr>
                             <th>계좌번호</th>
                             <td>
-                                <input type="text" name="g_accountno" id="g_accountno" value=""  maxlength="15" style="float:left;" />
-                                <span class="guest_accountno_check"><a href="javascript:;"  class="btn bgGray" style="float:left; width:auto; clear:none;" id=""
-                                onclick="bankConfirm();">계좌확인</a></span>
-                               
+                                <input type="text" name="g_accountno" id="account_num" value="${data.account_num}"  maxlength="15" style="float:left;" />
+                                <span class="guest_accountno_check"><a href="javascript:bankCheck();"  class="btn bgGray" style="float:left; width:auto; clear:none;" id="bankCheck"
+                                 >계좌확인</a></span>
+                               	<input type="text" value="${data.account_holder_name }" />
                             </td>
                         </tr>
+          	
                         <tr>
                             <th>성별</th>
                             <td>

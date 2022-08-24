@@ -20,6 +20,8 @@ public interface HostReserveService {
 	
 	public boolean rejectRev (int reserve_no);
 	
+	public int room_count (int host_no);
+	
 	//--이하 마이페이지 포인트 적립_형욱--------------------
 
 	public int PointDeposit(ReserveVO vo, GuestVO gvo);

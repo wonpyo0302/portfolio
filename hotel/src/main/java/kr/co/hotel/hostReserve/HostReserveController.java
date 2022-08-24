@@ -1,7 +1,6 @@
 package kr.co.hotel.hostReserve;
 
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.host.HostVO;
-import kr.co.hotel.main.HotelVO;
 import kr.co.hotel.reserve.ReserveVO;
 
 @Controller
@@ -30,10 +28,12 @@ public class HostReserveController {
 	}
 	
 	@GetMapping("/hostReserve/index.do")
-	public String index(Model model, ReserveVO vo, @RequestParam int host_no) {
+	public String index(Model model, ReserveVO vo, HttpSession sess) {
+		HostVO host_loinInfo =(HostVO)sess.getAttribute("loginInfo2");
+		int host_no = host_loinInfo.getHost_no();
 		vo.setHotel_no(service.get_hotelInfo(host_no).getHotel_no());
-		System.out.println("============================="+vo.getHotel_no());
 		model.addAttribute("data", service.index(vo));
+		
 		return "hostReserve/index";
 	}
 	

@@ -18,7 +18,15 @@
 	<select id="hostCount" resultType="kr.co.hotel.admin.AdminVO">
 		select month(host_joindate) as hdate, count(host_id) as hostCount from host group by month(host_joindate) order by hdate
 	</select>
-
+	
+	<!-- 승인,반려 상태 업데이트 -->
+	<update id="setConfirm" parameterType="kr.co.hotel.main.HotelVO">
+		UPDATE hotel SET isConfirm = #{isConfirm}
+		<if test="isConfirm == 3">
+			,reject = #{reject}	
+		</if>
+		 WHERE host_no = #{host_no}
+	</update>
 	<!-- 이원표작성 끝 -->
 	
 	

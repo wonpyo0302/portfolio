@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.hotel.admin.AdminVO;
+import kr.co.hotel.host.HostVO;
 import kr.co.hotel.favorite.FavoriteVO;
 import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.review.ReviewVO;
@@ -85,6 +87,12 @@ public class HotelController {
 		model.addAttribute("room",roomList);
 		System.out.println("===================="+roomList);
 		return "/main/hotelView";
+	}
+	
+	@GetMapping("/admin/main/confirm.do")
+	public String confirm(AdminVO avo, HostVO hvo, Model model) {
+		model.addAttribute("view",service.hostView(hvo.getHost_no()));
+		return "/admin/main/confirm";
 	}
 	
 	//=====================이하 형욱================================

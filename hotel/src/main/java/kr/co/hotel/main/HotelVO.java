@@ -23,7 +23,7 @@ public class HotelVO {
 	private String lat;
 	private String lot;
 	
-	private int avgScore;
+	private double avgScore;
 	private int totalReview;
 	private int totalLike;
 	

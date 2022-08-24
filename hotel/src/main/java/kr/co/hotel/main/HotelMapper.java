@@ -37,6 +37,12 @@ public interface HotelMapper {
 	List<HotelVO> getHotelImage(int hotel_no);
 	List<ImageVO> getRoomImage(int room_no);
 	
+	HotelVO getHostHotel(int host_no);
+	List<RoomVO> getHostRoom(int host_no);
+	List<ImageVO> getHostHotelImage(int host_no);
+	List<ImageVO> getHostRoomImage(int host_no);
+	
+	void setConfirm(HotelVO vo);
 	//호텔 상세 "찜하기"버튼 표시
 	FavoriteVO get_favorite(FavoriteVO vo);
 	
