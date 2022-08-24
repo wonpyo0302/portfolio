@@ -21,9 +21,9 @@
 	</select>
 	
 	<!-- 수정하기(관리자용) -->
-	<update id="update" parameterType="int">
+	<update id="update" parameterType="kr.co.hotel.guestfaq.GuestFaqVO">
 		UPDATE guestfaq SET 
-			gfaq_title = #{gfaq_title}, gfaq_content = #{gfaq_content}
+			gfaq_type= #{gfaq_type}, gfaq_title = #{gfaq_title}, gfaq_content = #{gfaq_content}
 			WHERE gfaq_no = #{gfaq_no}
 	</update>
 	

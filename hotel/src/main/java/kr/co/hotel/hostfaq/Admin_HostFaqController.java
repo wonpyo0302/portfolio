@@ -44,16 +44,22 @@ public class Admin_HostFaqController {
 		AdminLoginInfo.setAdmin_no(2); // demo
 		sess.setAttribute("loginInfo_admin", AdminLoginInfo);
 		
-
-		model.addAttribute("data", service.insert(vo));
-		return "admin/main/hostboard/faq/write";
+		if (service.insert(vo)) {
+			model.addAttribute("msg", "정상적으로 등록되었습니다.");
+			model.addAttribute("url", "view.do");
+			return "common/alert";
+		} else {
+			model.addAttribute("msg", "등록 실패했습니다.");
+			return "common/alert";
+		}
 	}
 	
 	
 
 	// 수정폼(관리자용)
 	@GetMapping("/admin/main/hostboard/faq/edit.do")
-	public String edit() {
+	public String edit(Model model, HostFaqVO vo) {
+		model.addAttribute("data", service.edit(vo.getHfaq_no()));
 		return "admin/main/hostboard/faq/edit";
 	}
 
@@ -62,7 +68,7 @@ public class Admin_HostFaqController {
 	public String update(Model model, HostFaqVO vo, AdminVO avo) {
 		if (service.update(vo)) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
-			model.addAttribute("url", "view.do?hfaq_no=" + vo.getHfaq_no());
+			model.addAttribute("url", "view.do");
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "수정 실패했습니다.");
@@ -75,7 +81,7 @@ public class Admin_HostFaqController {
 	public String delete(Model model, HostFaqVO vo, AdminVO avo) {
 		if (service.delete(vo.getHfaq_no())) {
 			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
-			model.addAttribute("url", "list.do");
+			model.addAttribute("url", "view.do");
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "삭제 실패했습니다.");
