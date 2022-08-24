@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.co.hotel.HRRegister.HRRegisterService;
 import kr.co.hotel.HRRegister.ImageVO;
 import kr.co.hotel.guest.GuestVO;
+import kr.co.hotel.host.HostVO;
 import kr.co.hotel.reserve.ReserveVO;
 import util.ImgHandling;
 
@@ -157,6 +158,22 @@ public class ReviewController {
 		
 		
 		return"common/alert";
+	}
+	
+	//호스트 호텔 리뷰 리스트
+	
+	@GetMapping("/host_review/index.do")
+	public String host_index(ReviewVO vo, Model model, HttpServletRequest req) {
+		return"review/hostReviewList";
+	}
+	
+	//빛찬, 리뷰리스트
+	@GetMapping("/host_review/list.do")
+	public String host_list(ReviewVO vo, Model model, HttpServletRequest req) {
+				
+		Map map = service.host_index(vo);
+		model.addAttribute("rv", map);
+		return "common/hostReview";
 	}
 	
 	

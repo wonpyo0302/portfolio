@@ -65,6 +65,13 @@ public class HostReserveServiceImp implements HostReserveService {
 	public boolean rejectRev(int reserve_no) {
 		return mapper.rejectRev(reserve_no) > 0? true : false;
 	}
+	
+	
+	@Override
+	public int room_count(int host_no) {
+		return mapper.room_count(host_no);
+	}
+
 
 	//--이하 마이페이지 포인트 적립_형욱--------------------
 	@Override
@@ -87,6 +94,9 @@ public class HostReserveServiceImp implements HostReserveService {
 	public int checkout(ReserveVO vo) {
 		return mapper.checkout(vo);
 	}
+
+
+
 
 	
 

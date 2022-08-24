@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.hotel.admin.AdminVO;
+import kr.co.hotel.main.HotelVO;
 
 @Mapper
 public interface HostMapper {
@@ -26,4 +27,10 @@ public interface HostMapper {
 	List<HostVO> getHostList(AdminVO vo);
 	int getHostCount(AdminVO vo);
 	HostVO getView(HostVO vo);
+	
+	//==========이하 빛찬 작성============
+	
+	int reserve_count (int hotel_no);
+	int daily_sales (int hotel_no);
+	HotelVO review_count(int host_no);
 }

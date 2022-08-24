@@ -119,5 +119,46 @@
 		WHERE review_no=#{review_no}
 	</update>
 	 
+	 
+	 
+	 <select id="host_review_count" parameterType="kr.co.hotel.review.ReviewVO" resultType="java.lang.Integer">
+	<!-- 테이블 명이 변수로 들어갈수 있음 -->
+		select count(*) from review
+		<where>
+			hotel_no = #{hotel_no}
+			<if test="stype != null and stype !='' ">
+				<if test="stype != 'all' ">
+					${stype} like '%${sword}%'
+				</if>
+				
+				<if test="stype == 'all' ">
+		   			 content like '%${sword}%' or title like '%${sword}%'
+		    	</if>
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="host_review_list" parameterType="kr.co.hotel.review.ReviewVO" resultType="kr.co.hotel.review.ReviewVO">
+
+			select * ,
+			(select hotel_name from hotel where hotel_no=review.hotel_no) as hotel_name		
+			from review
+				<where>
+					hotel_no = #{hotel_no}
+					<if test="stype != null and stype !='' ">
+						<if test="stype != 'all' ">
+							${stype} like '%${sword}%'
+						</if>
+						
+						<if test="stype == 'all' ">
+				   			 content like '%${sword}%' or title like '%${sword}%'
+				    	</if>
+					</if>
+				</where>
+			order by review_no desc
+			limit ${startIdx}, ${pageRow}
+	
+	</select>
 
 </mapper>

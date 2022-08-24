@@ -128,7 +128,7 @@
 						</div>
 					</table>
 					<div class="btnSet" style="text-align: right;">
-						<a href="edit.do?gboard_no=${data.gboard_no }" class="btn">수정</a>
+						<a href="edit.do?gboard_no=${data.gboard_no}" class="btn">수정</a>
 						<a href="javascript:goDel(${data.gboard_no});" class="btn">삭제</a>
 						<a href="javascript:goList();" class="btn" style="text-align:right">목록 </a>
 					</div>

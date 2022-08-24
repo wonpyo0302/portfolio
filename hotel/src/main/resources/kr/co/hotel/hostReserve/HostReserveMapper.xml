@@ -57,6 +57,16 @@
 		use_status = 2
 		WHERE reserv_no = #{reserv_no}
 	</update>
+	
+	
+	<select id="room_count" parameterType="int" resultType="int">
+		select count(*) from room
+		where host_no = #{host_no}
+		and status = 2
+	</select>
+	
+	
+	
 
 	<!-- 이하 마이페이지 포인트 적립_형욱 -->
 	

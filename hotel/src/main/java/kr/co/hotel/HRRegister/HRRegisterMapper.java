@@ -50,9 +50,9 @@ public interface HRRegisterMapper {
 	public List<HotelVO> get_district_code (HotelVO hvo); 
 	
 	//호텔/객실 신청하기 toAdmin
-	public int room_toAdmin(RoomVO vo);
+	public boolean room_toAdmin(RoomVO vo);
 	
-	public int hotel_toAdmin(HotelVO hvo);
+	public boolean hotel_toAdmin(HotelVO hvo);
 	
 	//호텔 등록시 HOST테이블에 host_no 업데이트
 	public int update_host_no(HostVO vo);

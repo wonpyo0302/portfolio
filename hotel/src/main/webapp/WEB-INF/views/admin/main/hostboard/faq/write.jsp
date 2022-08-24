@@ -52,30 +52,29 @@
         <div class="sub">
             <div class="size">
                 <div class="bbs">
-                <form method="post" name="frm" id="frm" action="insert.do"  enctype="multipart/form-data" > 
+                <form method="post" name="frm" id="frm" action="write.do"  enctype="multipart/form-data" > 
                     <table class="board_write">
 						<tbody>
 							<tr>
 								<th>분류</th>
 								<td class="choose"> <span class="srchSelect"> 
 									<select id="stype" name="hfaq_type" class="dSelect" title="검색분류 선택">
-											<option name="hfaq_type" value="1">예약</option>
-											<option name="hfaq_type" value="2">결제</option>
-											<option name="hfaq_type" value="3">숙소</option>
-											<option name="hfaq_type" value="4">포인트/쿠폰</option>
-											<option name="hfaq_type" value="5">이용/기타</option>
+											<option name="hfaq_type" value="6">입점</option>
+											<option name="hfaq_type" value="7">광고/제휴</option>
+											<option name="hfaq_type" value="8">이용회원</option>
+											<option name="hfaq_type" value="9">이용/기타</option>
 									</select>
 								</td>
 							</tr>
 							<tr>
 							<tr>
 								<th>제목</th>
-								<td><input type="text" name="title" id="title" value="" style="width: 90%"/>
+								<td><input type="text" name="hfaq_title" id="title" value="" style="width: 90%"/>
 								</td>
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td><textarea name="content" id="content" style="width: 90%"></textarea></td>
+								<td><textarea name="hfaq_content" id="content" style="width: 90%"></textarea></td>
 							</tr>
 
 						</tbody>
