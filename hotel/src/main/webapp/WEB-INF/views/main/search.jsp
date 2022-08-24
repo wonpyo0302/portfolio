@@ -140,7 +140,10 @@
 								<div>
 								<!-- <div id="v-line"></div> -->
 								<span><p>${list.hotel_name}</p></span>
-								<span>최저가:  <fmt:formatNumber value="${list.lowPrice}" pattern="#,###"/> ~</span>
+								<span>최저가:  <fmt:formatNumber value="${list.lowPrice}" pattern="#,###"/> ~</span><br>
+								<span>평점: ${list.avgScore}</span><br>
+								<span>리뷰 수: ${list.totalReview}</span><br>
+								<span>좋아요 수: ${list.totalLike}</span>
 								</div>
 							</a>
 						</div>

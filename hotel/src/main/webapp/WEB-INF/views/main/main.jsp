@@ -94,7 +94,9 @@
 						</div>
 					<div><p>${SH.hotel_name}</p></div>
 					<span>최저가:  <fmt:formatNumber value="${SH.lowPrice }" pattern="#,###"/> ~</span>
-					<input type="hidden" name="hotel_no" value="${SH.hotel_no}">
+					<span>평점: ${SH.avgScore}</span><br>
+					<span>리뷰 수: ${SH.totalReview}</span><br>
+					<span>좋아요 수: ${SH.totalLike}</span>					
 				</a>
 			</div>
 			</c:forEach>
@@ -114,6 +116,9 @@
 						</div>
 					<div><p>${IH.hotel_name}</p></div>
 					<span>최저가:  <fmt:formatNumber value="${IH.lowPrice }" pattern="#,###"/> ~</span>
+					<span>평점: ${IH.avgScore}</span><br>
+					<span>리뷰 수: ${IH.totalReview}</span><br>
+					<span>좋아요 수: ${IH.totalLike}</span>					
 				</a>
 			</div>
 			</c:forEach>
@@ -133,6 +138,9 @@
 						</div>
 					<div><p>${KH.hotel_name}</p></div>
 					<span>최저가:  <fmt:formatNumber value="${KH.lowPrice }" pattern="#,###"/> ~</span>
+					<span>평점: ${KH.avgScore}</span><br>
+					<span>리뷰 수: ${KH.totalReview}</span><br>
+					<span>좋아요 수: ${KH.totalLike}</span>					
 				</a>
 			</div>
 			</c:forEach>

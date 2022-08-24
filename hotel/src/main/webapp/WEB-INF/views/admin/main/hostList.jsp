@@ -51,10 +51,10 @@
 										<td>${list.host_hp}</td>
 										
 										<td>
-										<c:if test="${list.isConfirm==0}"><a href="confirm.do?host_no=${list.host_no}">미등록</a></c:if>
-										<c:if test="${list.isConfirm==1}"><a href="confirm.do?host_no=${list.host_no}">승인요청</a></c:if>
-										<c:if test="${list.isConfirm==2}"><a href="confirm.do?host_no=${list.host_no}">승인완료</a></c:if>
-										<c:if test="${list.isConfirm==-1}"><a href="confirm.do?host_no=${list.host_no}">반려</a></c:if>
+										<c:if test="${list.isConfirm==0}"><a style="color: #000000">미등록</a></c:if>
+										<c:if test="${list.isConfirm==1}"><a style="color: green" href="confirm.do?host_no=${list.host_no}&isConfirm=${list.isConfirm}">승인요청</a></c:if>
+										<c:if test="${list.isConfirm==2}"><a style="color: blue" href="confirm.do?host_no=${list.host_no}&isConfirm=${list.isConfirm}">승인완료</a></c:if>
+										<c:if test="${list.isConfirm==3}"><a style="color: red" href="confirm.do?host_no=${list.host_no}&isConfirm=${list.isConfirm}">반려</a></c:if>
 										</td>
 										
 									</tr>

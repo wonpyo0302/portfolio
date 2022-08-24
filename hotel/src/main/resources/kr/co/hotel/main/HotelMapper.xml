@@ -41,11 +41,9 @@
 	 <!-- 2~6  -->
 	<select id="searchList" parameterType ="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
 		SELECT * ,
-			(SELECT  MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice,
-			(SELECT filename_org FROM image WHERE no = #{hotel_no} limit 1) AS filename
-		FROM hotel h LEFT JOIN favorite f
-		ON h.hotel_no = f.hotel_no LEFT JOIN review r
-		ON f.hotel_no = r.hotel_no
+			(SELECT  MIN(room_price) FROM room r where r.hotel_no = hotel.hotel_no) as lowPrice,
+			(SELECT filename_org FROM image WHERE no = hotel.hotel_no AND image_type ='HOTEL'  limit 1) AS filename
+		FROM hotel
 		<where>
 			<if test="searchWord ==''">
 				state_code = #{selectbox_state}
@@ -54,7 +52,7 @@
 				</if>
 			</if>
 			<if test="searchWord !=''"> <!-- 2번 -->
-				h.addr LIKE '%${searchWord}%' OR hotel_name LIKE '%${searchWord}%'
+				addr LIKE '%${searchWord}%' OR hotel_name LIKE '%${searchWord}%'
 				<if test="selectbox_state !=0">
 					AND state_code = #{selectbox_state}
 					<if test="selectbox_district !=0">
@@ -76,7 +74,7 @@
 				ORDER BY totalReview DESC
 			</if>
 			
-			<if test="sortType =='like'">
+			<if test="sortType =='favorite'">
 				ORDER BY totalLike DESC
 			</if>
 		</if>
@@ -104,6 +102,7 @@
 					</if>
 				</if>
 			</if>
+			isConfirm = 2
 		</where>
 	</select>
 
@@ -141,6 +140,30 @@
 		where no = #{room_no} AND image_type = 'ROOM'
 	</select>
 	
+	<!-- host_no에 해당하는 호텔정보,객실정보,각각의 이미지 가져오기 -->
+	<select id="getHostHotel" parameterType="int" resultType="kr.co.hotel.main.HotelVO">
+		SELECT * FROM hotel WHERE host_no = #{host_no}
+	</select>
+	<select id="getHostRoom" parameterType="int" resultType="kr.co.hotel.room.RoomVO">
+		SELECT * FROM room WHERE host_no = #{host_no}
+	</select>
+	<select id="getHostHotelImage" parameterType="int" resultType="kr.co.hotel.HRRegister.ImageVO">
+		SELECT * FROM image i, hotel h
+		WHERE i.no = h.hotel_no
+		AND host_no = #{host_no}
+	</select>
+	<select id="getHostRoomImage" parameterType="int" resultType="kr.co.hotel.HRRegister.ImageVO">
+		SELECT * FROM image i, room r
+		WHERE i.no = r.room_no
+		AND host_no = #{host_no}
+	</select>
+	
+	<!-- isConfirm 상태변경(승인처리과정) -->
+	<update id="setConfirm" parameterType="kr.co.hotel.main.HotelVO">
+		UPDATE hotel SET isConfirm = #{isConfirm}, reject = #{reject} WHERE hotel_no = #{hotel_no}
+	</update>
+	
+
 	<select id="get_favorite" parameterType="kr.co.hotel.favorite.FavoriteVO" resultType="kr.co.hotel.favorite.FavoriteVO">
 		SELECT * FROM favorite
 		WHERE guest_no= #{guest_no} and hotel_no=#{hotel_no}

@@ -75,10 +75,8 @@
 	
 	<!--호텔평점평균 -->
 	<update id="hotelUpdate" parameterType="int" >
-		UPDATE hotel 
-		SET 
-		avgScore = (SELECT ROUND(avg(avgScore),1) FROM room WHERE hotel_no=#{hotel_no}) 
-		WHERE hotel_no = #{hotel_no}
+		UPDATE hotel SET avgScore = (SELECT ROUND(avg(avgScore),1) FROM room WHERE hotel_no=#{hotel_no})
+		WHERE hotel_no=#{hotel_no}; 
 	</update>
 	
 	<!-- 객실 리뷰 카운트 -->

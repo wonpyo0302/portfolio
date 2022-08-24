@@ -217,16 +217,5 @@ public class HostController {
 		return "/admin/main/hostView";
 	}
 	
-	@GetMapping("/admin/main/confirm.do")
-	public String confirm(AdminVO avo, HostVO hvo, Model model) {
-		return "/admin/main/confirm";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
