@@ -186,31 +186,30 @@
     		$("#bankCheck").click(function(){
     			
         		$.ajax({
-        			URL: "https://openapi.openbanking.or.kr/v2.0/inquiry/real_name",
-        			Method:"POST",
-        			ContentType:"application/json; charset=UTF-8",
-        			
-        			   access_token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNMjAyMjAxNTYwIiwic2NvcGUiOlsib29iIl0sImlzcyI6Imh0dHBzOi8vd3d3Lm9wZW5iYW5raW5nLm9yLmtyIiwiZXhwIjoxNjY4OTM0NzAwLCJqdGkiOiI3ODhjYWVhOC05ZWZiLTQ2YzctODg3NS00ZjJmMzE1NTIxYjMifQ.HfE40neb6gsyv8ZtfznrWDbeRntTc6SsNXSFnwQDOQ0",
-        			   scope: "oob",
+        			url: 'https://openapi.openbanking.or.kr/v2.0/inquiry/real_name',
+        			type:'POST',
+        		    dataType: 'JSON', 
+        			content_type:'application/json; charset=UTF-8',
+        			access_token :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNMjAyMjAxNTYwIiwic2NvcGUiOlsib29iIl0sImlzcyI6Imh0dHBzOi8vd3d3Lm9wZW5iYW5raW5nLm9yLmtyIiwiZXhwIjoxNjY4OTM0NzAwLCJqdGkiOiI3ODhjYWVhOC05ZWZiLTQ2YzctODg3NS00ZjJmMzE1NTIxYjMifQ.HfE40neb6gsyv8ZtfznrWDbeRntTc6SsNXSFnwQDOQ0',
+        			scope: 'oob',
         			Access_Control_Allow_Origin :"*",
-        			
         			data : 
-        			{
-        				"bank_tran_id": "M202201560", 
-        				"bank_code_std": "012",
-        				  "account_num": $('#account_num').val(),
-        				  "account_holder_info_type": " ",
-        				  "account_holder_info": $('#birthday').val(),
-        				"tran_dtime": "20220822183200"
+        			{	  
+        				 
+        				  'bank_tran_id': 'M202201560', 
+        				  'bank_code_std': '012',
+        				  'account_num': $('#account_num').val(),
+        				  'account_holder_info_type':' ',
+        				  'account_holder_info': $('#birthday').val(),
+        				  'tran_dtime':'20220823102200'
         			},
-        			  success: function(data) {
-        				
+        			  success: function(data,textStatus) {
         				  alert('은행예금주 실명 인증되었습니다');
         				  console.log('안녕 나는 정인아야');
-        				  
+        				  console.log(data.account_holder_name);
         			  }
-        			
         	});
+    			
     		});
     	};
     </script>

@@ -24,6 +24,7 @@
 			<div class="size">
 				<h1 class="sub_title">마이페이지<br>GUEST</h1>
 					<table class="board_write">
+						<caption>마이페이지</caption>
 						<tbody>
 							<tr>
 								<th> <a href="myinfo.do">내정보관리</a></th>
