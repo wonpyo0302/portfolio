@@ -64,9 +64,8 @@ function search(){
 		url : "/hotel/coupon/idList.do?sword="+data,
 		cache:false,
 		success: function(res){
-			$("#test").empty();
-			$("#test").append(res);
-			
+			$("#idlist").empty();
+			$("#idlist").append(res);
 		}
 	});
 }
@@ -82,8 +81,7 @@ function create(){
 		return false;
 	} 
 	
-	
-		return false;
+	return true;
 }
 
 </script>
@@ -104,7 +102,7 @@ function create(){
 						<tr>
 							<th style="width: 450px;height: 30px">ID</th>
 						</tr>
-						<tr id="test" style="text-align: center;">
+						<tr id="idlist" style="text-align: center;">
 								
 						</tr>
 					</table>

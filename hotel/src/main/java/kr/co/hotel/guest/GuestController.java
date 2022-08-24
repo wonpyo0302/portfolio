@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -212,10 +213,15 @@ public class GuestController {
 	 
 	 //=====================AdminController 추가=======================
 	 
-	 @GetMapping("/admin/main/guestlist.do")
-		public String guestlist(AdminVO avo, Model model) {
-			System.out.println("=====================" + avo.getSword());
+	 @GetMapping("/admin/main/guest/guestlist.do")
+	 public String guestlist(AdminVO avo, Model model) {
 			model.addAttribute("guestlist", gservice.guestListPaging(avo));
-			return "/admin/main/guestlist";
+			return "/admin/main/guest/guestlist";
+		}
+	 
+	 @GetMapping("/amdin/main/gusetview.do")
+	 public String guestview(GuestVO vo, Model model) {
+			model.addAttribute("guestlist",gservice.guestlist(vo));
+			return "/admin/main/guest/guestview";
 		}
 }

@@ -25,4 +25,5 @@ public interface GuestMapper {
 	//=========admin guestlist 추가===================
 	List<GuestVO> listPaging(AdminVO vo);
 	int count(AdminVO vo);
+	GuestVO guestlist(GuestVO vo);
 }

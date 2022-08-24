@@ -83,3 +83,8 @@
 .lowDiv {
 	display: flex;	
 }
+
+.like{
+	position: absolute;
+	right: 10px;
+}

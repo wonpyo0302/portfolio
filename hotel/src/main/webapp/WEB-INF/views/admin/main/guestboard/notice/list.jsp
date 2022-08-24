@@ -24,7 +24,13 @@
 <script>
 
 function goWrite(){
-	location.href= "write.do";
+	<c:if test="${!empty loginInfo_admin}">
+		location.href= "write.do";
+	</c:if>
+	<c:if test="${empty loginInfo_admin}">
+		alert("관리자 로그인 바랍니다.");
+	</c:if>
+
 }
 </script>
 
@@ -40,9 +46,12 @@ function goWrite(){
 		<div class="size">
 			<div class="bbs">
 				<table class="list">
+				
+						
 					<p>
-						<span><strong>총 ${data.totalCount}개</strong> | ${guestNoticeVO.page}/${data.totalPage}페이지</span>
+						<span><strong>총 ${data.totalCount}개</strong> | ${guestNoticeVO.page}/${data.totalPage}페이지 </span>
 					</p>
+					
 					<caption>게시판 목록</caption>
 					<colgroup>
 						<col width="80px" />
@@ -84,7 +93,7 @@ function goWrite(){
 										</c:if> <c:if test="${vo.gnotice_type == 4 }">
 											[발표] ${vo.gnotice_title} 
 										</c:if>
-											</b> <img src="/hotel/image/boardPic/new2.png" width="30px">
+											</b> <img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</a></td>
 											<td class="writer">관리자</td>
 										<td class="date"><fmt:formatDate value="${vo.gnotice_regdate}" pattern="yyyy-MM-dd" /></td>
@@ -96,9 +105,18 @@ function goWrite(){
 										<td>${data.totalCount - status.index - ((guestNoticeVO.page - 1) * guestNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l">
 									
-										<a href="/hotel/admin/main/guestboard/notice/view.do?gnotice_no=${vo.gnotice_no}">${vo.gnotice_title} 
+										<a href="/hotel/admin/main/guestboard/notice/view.do?gnotice_no=${vo.gnotice_no}">
+										<c:if test="${vo.gnotice_type == 1 }">
+											[안내] ${vo.gnotice_title} 
+										</c:if> <c:if test="${vo.gnotice_type == 2 }">
+											[공지] ${vo.gnotice_title} 
+										</c:if> <c:if test="${vo.gnotice_type == 3 }">
+											[이벤트] ${vo.gnotice_title} 
+										</c:if> <c:if test="${vo.gnotice_type == 4 }">
+											[발표] ${vo.gnotice_title} 
+										</c:if>
 										<c:if test="${vo.diff <= 3 }">
-										<img src="/hotel/image/boardPic/new (4).png" width="30px">
+										<img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</c:if></a>
 									
 										</td>
@@ -114,7 +132,6 @@ function goWrite(){
 				</table>
 				<div class="btnSet" style="text-align: right;">
 
-				
 
 				</div>
 				<div class="pagenate clear">

@@ -76,18 +76,18 @@
 	<!--호텔평점평균 -->
 	<update id="hotelUpdate" parameterType="int" >
 		UPDATE hotel SET avgScore = (SELECT ROUND(avg(avgScore),1) FROM room WHERE hotel_no=#{hotel_no})
-		where hotel_no=#{hotel_no}; 
+		WHERE hotel_no=#{hotel_no}; 
 	</update>
 	
 	<!-- 객실 리뷰 카운트 -->
 	<update id="roomReviewCount">
 		UPDATE room SET totalReview = (SELECT COUNT(*) FROM review where room_no=#{room_no})
-		where room_no=#{room_no};
+		WHERE room_no=#{room_no}
 	</update>
 	<!-- 호텔 리뷰 카운트 -->
 	<update id="hotelReviewCount">
 		UPDATE hotel SET totalReview = (SELECT COUNT(*) FROM review where hotel_no=#{hotel_no})
-		where hotel_no=#{hotel_no};
+		WHERE hotel_no = #{hotel_no}
 	</update>
 	
 <!-- 작성자 이원표 -->	
@@ -105,10 +105,19 @@
 		where no=#{no} 
 		and image_type='REVIEW'
 	</select>
-	
+	<!-- 빛찬 -->
 	<delete id="delete" parameterType="int">
 		delete from review where review_no =#{review_no}
 	</delete>
+	
+	<update id="review_update" parameterType="kr.co.hotel.review.ReviewVO">
+		UPDATE review
+		SET
+		review_title=#{review_title},
+		review_content=#{review_content},
+		review_score=#{review_score}
+		WHERE review_no=#{review_no}
+	</update>
 	 
 
 </mapper>

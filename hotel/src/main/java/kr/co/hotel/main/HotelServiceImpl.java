@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import kr.co.hotel.HRRegister.ImageVO;
+import kr.co.hotel.favorite.FavoriteVO;
 import kr.co.hotel.room.RoomVO;
 
 @Service
@@ -82,6 +83,11 @@ public class HotelServiceImpl implements HotelService {
 		map.put("imageR",mapper.getHostRoomImage(host_no));
 		map.put("imageH",mapper.getHostRoom(host_no));
 		return map;
+	}
+	
+	public FavoriteVO get_favorite(FavoriteVO fvo) {
+		
+		return mapper.get_favorite(fvo);
 	}
 
 

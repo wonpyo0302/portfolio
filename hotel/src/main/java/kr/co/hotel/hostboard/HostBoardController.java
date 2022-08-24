@@ -64,12 +64,10 @@ public class HostBoardController extends ImgHandling{
 		}
 		
 		HttpSession sess = req.getSession();
-		HostVO hvo = (HostVO)sess.getAttribute("loginInfo");
+		HostVO hvo = (HostVO)sess.getAttribute("loginInfo2");
 		vo.setHost_no(hvo.getHost_no());
 		
-		System.out.println("========================="+vo.getHboard_type());
-		System.out.println("========================="+vo.getHboard_writer());
-		
+	
 		if(service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
 			model.addAttribute("url", "view.do?hboard_no="+vo.getHboard_no());
@@ -84,15 +82,15 @@ public class HostBoardController extends ImgHandling{
 	@GetMapping("/hostboard/edit.do")
 	public String editForm(Model model, HostBoardVO vo) {
 		model.addAttribute("data", service.edit(vo.getHboard_no()));
-		System.out.println("======================================"+model.getAttribute("data"));
+		//System.out.println("======================================"+model.getAttribute("data"));
 		return "hostboard/edit";
 	}
 	
 	// 수정처리
 	@PostMapping("/hostboard/edit.do")
 	public String update(HostBoardVO vo, Model model) {
-		System.out.println("=============================vo 확인" + vo.getHboard_no());
-		System.out.println("뭐라는거야 : " + vo.getHboard_type());
+		//System.out.println("=============================vo 확인" + vo.getHboard_no());
+		//System.out.println("뭐라는거야 : " + vo.getHboard_type());
 
 		if (service.update(vo)) {
 			model.addAttribute("data", service.update(vo));

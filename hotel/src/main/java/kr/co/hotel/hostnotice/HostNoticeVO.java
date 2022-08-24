@@ -6,16 +6,17 @@ import lombok.Data;
 
 @Data
 public class HostNoticeVO {
-	int hnotice_no;
-	int admin_no;
-	String hnotice_title;
-	String hnotice_content;
-	Timestamp hnotice_regdate;
-	int hnotice_viewcount;
+	private int hnotice_no;
+	private int admin_no;
+	private int hnotice_type;
+	private String hnotice_title;
+	private String hnotice_content;
+	private Timestamp hnotice_regdate;
+	private int hnotice_viewcount;
 	
-	int fix; // 게시물 고정 1=고정
-	int rownum;
-	
+	private int fix; // 게시물 고정 1=고정
+	private int rownum;
+	private int diff; // 최신글 new 날짜차이 (서브쿼리)
 	
 	private String filename_org;
 	private String filename_real;

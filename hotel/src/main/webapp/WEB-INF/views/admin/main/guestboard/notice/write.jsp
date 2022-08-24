@@ -26,8 +26,15 @@
     <script>
     	function goSave(){
     		frm.submit();
-    	
     	};
+    	
+    	function goBack(){
+    		history.back();
+    	};
+    	
+
+    	
+    	
     </script>
 </head>
 <body>
@@ -42,7 +49,6 @@
             <div class="size">
                 <div class="bbs">
                 <form method="post" name="frm" id="frm" action="write.do"  enctype="multipart/form-data" > 
-       		    <input type="hidden" name="admin_no" value="${loginInfo2.admin_no}"> 
                     <table class="board_write">
                     	<tbody>
 							<div class="container">
@@ -52,13 +58,18 @@
 										</span>
 										<td class="choose">
 										<span class="srchSelect"> 
-										<select id="stype" name="gboard_type" class="dSelect" title="검색분류 선택">
-												<option name="gboard_type" value="1">안내</option>
-												<option name="gboard_type" value="2">공지</option>
-												<option name="gboard_type" value="3">이벤트</option>
-												<option name="gboard_type" value="4">발표</option>
+										<select id="stype" name="gnotice_type" class="dSelect" title="검색분류 선택">
+												<option name="gnotice_type" value="1">안내</option>
+												<option name="gnotice_type" value="2">공지</option>
+												<option name="gnotice_type" value="3">이벤트</option>
+												<option name="gnotice_type" value="4">발표</option>
 										</select>
 									</li>
+							<tr>
+								<th>중요</th>
+								<td>중요 공지 <input type="checkbox" name="fix" id="fix" value="1" ></td>
+							</tr>
+									
 							<tr>
 								<th>제목</th>
 								<td><input name="gnotice_title" id="gnotice_title" type="text" style="width: 90%"></td>
@@ -79,9 +90,10 @@
 							</div>
 						</tbody>
                     </table>
-                    <div class="btnSet"  style="text-align:right;">
-                      
-                        <a class="btn" href="javascript:goSave();">작성완료 </a>
+                    <div class="btnSet"  >
+                        <a class="btn" style="align:left; background-color:grey; border:2px solid grey " href="javascript:goBack();" >이전 </a>
+                        <a class="btn" style="align:right;" href="javascript:goSave();">저장 </a>
+                    </div>
                     </div>
                     </form>
                 </div>

@@ -140,6 +140,7 @@
 		where no = #{room_no} AND image_type = 'ROOM'
 	</select>
 	
+<<<<<<< HEAD
 	<!-- host_no에 해당하는 호텔정보,객실정보,각각의 이미지 가져오기 -->
 	<select id="getHostHotel" parameterType="int" resultType="kr.co.hotel.main.HotelVO">
 		SELECT * FROM hotel WHERE host_no = #{host_no}
@@ -164,4 +165,10 @@
 	</update>
 	
 
+	<select id="get_favorite" parameterType="kr.co.hotel.favorite.FavoriteVO" resultType="kr.co.hotel.favorite.FavoriteVO">
+		SELECT * FROM favorite
+		WHERE guest_no= #{guest_no} and hotel_no=#{hotel_no}
+	</select>
+	
+	
 </mapper>

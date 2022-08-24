@@ -125,13 +125,13 @@
 						
 						<tr>
 							<th>내용</th>
-							<td colspan="3">${data.gboard_content}</td>
+							<td colspan="3" style="width: 600px; height:300px">${data.gboard_content}</td>
 						</tr>
 						</div>
 					</table>
 					<div class="btnSet" style="text-align: right;">
-						<a href="edit.do?gboard_no=${data.gboard_no }" class="btn">수정</a>
-						<a href="javascript:goDel(${data.gboard_no});" class="btn">삭제</a>
+						<a href="edit.do?gboard_no=${data.gboard_no }" class="btn">답변등록</a>
+					
 						<a href="javascript:goList();" class="btn" style="text-align:right">목록 </a>
 					</div>
 				

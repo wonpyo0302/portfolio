@@ -67,7 +67,7 @@
 			<h3 class="sub_title" style="text-align: left">새 문의글 작성</h3>
 			<br>
 			<div class="bbs">
-				<form method="post" name="frm" id="frm" action="../guestboard/insert.do" enctype="multipart/form-data">
+				<form method="post" name="frm" id="frm" action="../guestboard/write.do" enctype="multipart/form-data">
 					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
 					<table class="board_write">
 						<tbody>
@@ -77,7 +77,8 @@
 										<th>문의유형</th>
 										</span>
 										<td class="choose">
-										<span class="srchSelect"> <select id="stype" name="gboard_type" class="dSelect" title="검색분류 선택">
+										<span class="srchSelect"> 
+										<select id="stype" name="gboard_type" class="dSelect" title="검색분류 선택">
 												<option name="gboard_type" value="1">예약문의</option>
 												<option name="gboard_type" value="2">결제 문의</option>
 												<option name="gboard_type" value="3">숙소 문의</option>
