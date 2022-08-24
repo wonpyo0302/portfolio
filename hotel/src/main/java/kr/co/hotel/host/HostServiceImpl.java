@@ -176,7 +176,7 @@ public class HostServiceImpl implements HostService {
 		int daily_sales = hmapper.daily_sales(hvo.getHotel_no());
 		HotelVO review_count = hmapper.review_count(hvo.getHost_no());
 		int totalReview = review_count.getTotalReview();
-		int avgScore = review_count.getAvgScore();
+		double avgScore = review_count.getAvgScore();
 		
 		map.put("reserve_count", reserve_count);
 		map.put("daily_sales", daily_sales);

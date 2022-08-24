@@ -20,5 +20,18 @@
 		SELECT * FROM hostfaq WHERE hfaq_no = #{hfaq_no}
 	</select>
 	
+		
+	<!-- 수정하기(관리자용) -->
+	<update id="update" parameterType="int">
+		UPDATE hostfaq SET 
+			hfaq_title = #{hfaq_title}, hfaq_content = #{hfaq_content}
+			WHERE hfaq_no = #{hfaq_no}
+	</update>
+	
+	<!-- 삭제하기(관리자용) -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM hostfaq WHERE hfaq_no = #{hfaq_no}
+	</delete>
+	
 
 </mapper>

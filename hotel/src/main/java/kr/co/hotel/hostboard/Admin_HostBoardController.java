@@ -19,36 +19,36 @@ import kr.co.hotel.host.HostVO;
 import util.ImgHandling;
 
 @Controller
-public class HostBoardController extends ImgHandling{
+public class Admin_HostBoardController extends ImgHandling{
 
 	@Autowired
 	HostBoardService service;
 
 	// 목록
-	@GetMapping("/hostboard/list.do")
+	@GetMapping("/admin/main/hostboard/qna/list.do")
 	public String index(Model model, HostBoardVO vo) {
 		model.addAttribute("data", service.index(vo));
-		return "hostboard/list";
+		return "admin/main/hostboard/qna/list";
 	}
 
 	// 조회
-	@GetMapping("/hostboard/view.do")
+	@GetMapping("/admin/main/hostboard/qna/view.do")
 	public String view(Model model, HostBoardVO vo) {
 		//System.out.println(vo.get);
 		service.viewCount(vo.getHboard_no());
-		HostBoardVO gvo = service.view(vo.getHboard_no());
-		model.addAttribute("data", gvo);
-		return "hostboard/view";
+		HostBoardVO hvo = service.view(vo.getHboard_no());
+		model.addAttribute("data", hvo);
+		return "admin/main/hostboard/qna/view";
 	}
 
 	// 등록 폼
-	@GetMapping("/hostboard/write.do")
+	@GetMapping("/admin/main/hostboard/qna/write.do")
 	public String write(Model model) {
-		return "hostboard/write";
+		return "admin/main/hostboard/qna/write";
 	}
 
 	// 등록처리
-	@PostMapping("/hostboard/insert.do")
+	@PostMapping("/admin/main/hostboard/qna/write.do")
 	public String insert(Model model, HostBoardVO vo, @RequestParam MultipartFile filename, HttpServletRequest req) {
 		if(!filename.isEmpty()) {
 			String org = filename.getOriginalFilename();
@@ -67,10 +67,12 @@ public class HostBoardController extends ImgHandling{
 		HostVO hvo = (HostVO)sess.getAttribute("loginInfo2");
 		vo.setHost_no(hvo.getHost_no());
 		
-	
+		//System.out.println("========================="+vo.getHboard_type());
+		//System.out.println("========================="+vo.getHboard_writer());
+		
 		if(service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
-			model.addAttribute("url", "view.do?hboard_no="+vo.getHboard_no());
+			model.addAttribute("url", "admin/main/hostboard/qna/view.do?hboard_no="+vo.getHboard_no());
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "저장 실패했습니다.");
@@ -79,15 +81,15 @@ public class HostBoardController extends ImgHandling{
 	}
 
 	// 수정 폼
-	@GetMapping("/hostboard/edit.do")
+	@GetMapping("/admin/main/hostboard/qna/edit.do")
 	public String editForm(Model model, HostBoardVO vo) {
 		model.addAttribute("data", service.edit(vo.getHboard_no()));
-		//System.out.println("======================================"+model.getAttribute("data"));
-		return "hostboard/edit";
+		System.out.println("======================================"+model.getAttribute("data"));
+		return "admin/main/hostboard/qna/edit";
 	}
 	
 	// 수정처리
-	@PostMapping("/hostboard/edit.do")
+	@PostMapping("/admin/main/hostboard/qna/edit.do")
 	public String update(HostBoardVO vo, Model model) {
 		//System.out.println("=============================vo 확인" + vo.getHboard_no());
 		//System.out.println("뭐라는거야 : " + vo.getHboard_type());
@@ -95,7 +97,7 @@ public class HostBoardController extends ImgHandling{
 		if (service.update(vo)) {
 			model.addAttribute("data", service.update(vo));
 			model.addAttribute("msg", "정상적으로 수정되었습니다");
-			model.addAttribute("url", "view.do?hboard_no=" + vo.getHboard_no());
+			model.addAttribute("url", "admin/main/hostboard/qna/view.do?hboard_no=" + vo.getHboard_no());
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "수정 실패했습니다.");
@@ -104,7 +106,7 @@ public class HostBoardController extends ImgHandling{
 	}
 	
 	// 삭제처리
-	@GetMapping("/hostboard/delete.do")
+	@GetMapping("/admin/main/hostboard/qna/delete.do")
 	public String delete(HostBoardVO vo, Model model) {
 		if(service.delete(vo.getHboard_no())) {
 			

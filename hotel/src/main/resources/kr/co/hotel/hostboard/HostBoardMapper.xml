@@ -35,7 +35,8 @@
 	<select id="list" parameterType="kr.co.hotel.hostboard.HostBoardVO" resultType="kr.co.hotel.hostboard.HostBoardVO">
 		SELECT *,
 			( SELECT host_name FROM host 
-				WHERE host_no = hostboard.host_no ) AS host_name
+				WHERE host_no = hostboard.host_no ) AS host_name,
+				datediff (now(), hboard_regdate) as diff
 		FROM hostboard
 			<where>
 				<if test="stype != null and sword != ''">
@@ -65,7 +66,9 @@
 	<update id="update" parameterType="kr.co.hotel.hostboard.HostBoardVO">
 		UPDATE hostboard SET 
 			hboard_title = #{hboard_title}, hboard_content = #{hboard_content}, hboard_updatedate = now()
-			
+			<if test="filename_org != null">
+			, filename_org = #{filename_org}, filename_real = #{filename_real}
+			</if>
 			WHERE hboard_no = #{hboard_no}
 	</update>
 	

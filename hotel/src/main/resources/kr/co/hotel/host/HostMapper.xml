@@ -89,7 +89,8 @@
 		SELECT * FROM host where host_no = #{host_no}
 	</select>
 	
-	
+	<!-- 이원표 작성 end -->
+
 	
 	<!-- 이하 빛찬 -->
 	<select id="reserve_count" parameterType="int" resultType="int">
@@ -116,4 +117,5 @@
 	</select>
 
 	
+
 </mapper>

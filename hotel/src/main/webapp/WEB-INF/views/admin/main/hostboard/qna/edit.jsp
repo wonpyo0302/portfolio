@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/views/includes/G_header.jsp"%>
+<%@ page language="java" 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -35,7 +38,10 @@
 	// 글작성 완료 후 내가 쓴글 상세보기 이동
 	function goSave() {
 		frm.submit();
-		
+	};
+
+	function goBack() {
+		history.back();
 	};
 </script>
 
@@ -57,23 +63,19 @@
 
 </head>
 <body>
-	<br>
-	<br>
+   <div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>호스트 관리 ▶ Q&A ▶ 수정</h2>
+				</div>
+			</div>
+	</div>
 	<div class="sub">
 		<div class="size">
-			<h3 class="sub_title" style="text-align: left">Q&A</h3>
-			<br>
-			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/boardPic/qna.png" width="40px"> 게스트 전용 문의사항
-				게시판입니다.
-			</h6>
-			<br>
-			<h3 class="sub_title" style="text-align: left">문의글 수정</h3>
-			<br>
 			<div class="bbs">
 				<form method="post" name="frm" id="frm" action="edit.do"
 					enctype="multipart/form-data">
-					<input type="hidden" name="gboard_no" value="${data.gboard_no}">
+					<input type="hidden" name="hboard_no" value="${data.hboard_no}">
 					<table class="board_write">
 						<tbody>
 							<div class="container">
@@ -81,40 +83,35 @@
 									<li class="item">
 									<th>문의유형</th>
 									</span>
-									<td class="choose"><span class="srchSelect"> <select
-											id="stype" name="stype" class="dSelect" title="검색분류 선택">
+									<td class="choose"><span class="srchSelect"> 
+									<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 												<option value="reservation"
-													<c:if test="${data.gboard_type==1 }">selected</c:if>>
-													예약문의</option>
+													<c:if test="${data.hboard_type==1}">selected</c:if>>예약</option>
 												<option value="pay"
-													<c:if test="${data.gboard_type==2 }"> selected</c:if>>
-													결제 문의</option>
+													<c:if test="${data.hboard_type==2}">selected</c:if>>결제</option>
 												<option value="hotel"
-													<c:if test="${data.gboard_type==3 }"> selected</c:if>>
-													숙소 문의</option>
+													<c:if test="${data.hboard_type==3}">selected</c:if>>숙소</option>
 												<option value="pointAndCoupon"
-													<c:if test="${data.gboard_type==4 }"> selected</c:if>>
-													포인트/쿠폰 문의</option>
+													<c:if test="${data.hboard_type==4}">selected</c:if>>포인트/쿠폰</option>
 												<option value="etc"
-													<c:if test="${data.gboard_type==5 }"> selected</c:if>>
-													이용/기타 문의</option>
+													<c:if test="${data.hboard_type==5}">selected</c:if>>이용/기타</option>
 										</select>
 											</li>
 							<tr>
 								<th>이메일</th>
-								<td><input type="text" name="guest_email" id="email" value="" placeholder="선택사항입니다.">@<input type="text" id="" value=""></td>
+								<td><input type="text" name="host_email" id="email" value="" placeholder="선택사항입니다.">@<input type="text" id="" value=""></td>
 							</tr>
 							<tr>
 								<th>제목</th>
-								<td><input type="text" name="gboard_title" style="width: 90%" value="${data.gboard_title }"></td>
+								<td><input type="text" name="hboard_title" style="width: 90%" value="${data.hboard_title }"></td>
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td>${loginInfo.guest_name}</td>
+								<td>${loginInfo.host_name}</td>
 							</tr>
 							<tr>
 								<th>문의내용</th>
-								<td><textarea name="gboard_content" id="content" style="width: 90%" >${data.gboard_content}</textarea></td>
+								<td><textarea name="hboard_content" id="content" style="width: 90%" >${data.hboard_content}</textarea></td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>
@@ -124,8 +121,9 @@
 							</div>
 						</tbody>
 					</table>
-					<div class="btnSet" style="text-align: right;">
-						<a class="btn" href="javascript:goSave();">작성완료 </a>
+				<div class="btnSet" >
+					   <a class="btn" style="align:left; background-color:grey; border:2px solid grey " href="javascript:goBack();" >이전 </a>
+                        <a class="btn" style="align:right;" href="javascript:goSave();">저장 </a>
 					</div>
 				</form>
 			</div>

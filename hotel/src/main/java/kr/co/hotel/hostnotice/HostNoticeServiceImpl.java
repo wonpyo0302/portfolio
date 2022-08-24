@@ -71,14 +71,13 @@ public class HostNoticeServiceImpl implements HostNoticeService {
 
 
 	@Override
-	public HostNoticeVO view(HostNoticeVO vo) {
-		return mapper.view(vo);
+	public HostNoticeVO view(int hnotice_no) {
+		return mapper.view(hnotice_no);
 	}
 
 	@Override
 	public HostNoticeVO edit(int hnotice_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.view(hnotice_no);
 	}
 
 	@Override

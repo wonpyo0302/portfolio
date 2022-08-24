@@ -14,7 +14,6 @@
 							<!-- <div id="v-line"></div> -->
 							<span><p>${list.hotel_name}</p></span>
 							<span>최저가:  ${list.lowPrice } ~</span>
-							<input type="hidden" name="hotel_no">${list.hotel_no}
 							</div>
 						</a>
 					</div>

@@ -83,15 +83,15 @@ public class GuestBoardController extends ImgHandling {
 	@GetMapping("/guestboard/edit.do")
 	public String editForm(Model model, GuestBoardVO vo) {
 		model.addAttribute("data", service.edit(vo.getGboard_no()));
-		System.out.println("======================================" + model.getAttribute("data"));
+		//System.out.println("======================================" + model.getAttribute("data"));
 		return "guestboard/edit";
 	}
 
 	// 수정처리
 	@PostMapping("/guestboard/edit.do")
 	public String update(GuestBoardVO vo, Model model) {
-		System.out.println("=============================vo 확인" + vo.getGboard_no());
-		System.out.println("뭐라는거야 : " + vo.getGboard_type());
+		//System.out.println("=============================vo 확인" + vo.getGboard_no());
+		//System.out.println("뭐라는거야 : " + vo.getGboard_type());
 
 		if (service.update(vo)) {
 			model.addAttribute("data", service.update(vo));

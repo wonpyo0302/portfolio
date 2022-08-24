@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@include file="/WEB-INF/views/includes/G_header.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
 
 
 <!DOCTYPE html>
@@ -20,22 +20,22 @@
     
 <script>
 	function goWrite(){
-		<c:if test="${empty loginInfo}">
+		<c:if test="${empty loginInfo2}">
 			alert('로그인 후 작성 가능합니다.');
-			location.href='/hotel/guest/login.do';
+			location.href='/hotel/admin/login.do';
 		</c:if>
-		<c:if test="${!empty loginInfo}">
+		<c:if test="${!empty loginInfo2}">
 			location.href='write.do';
 		</c:if>	
 	}
 </script>
 <script>
 	function login(){
-		<c:if test="${empty data}">
+		<c:if test="${empty loginInfo2}">
 			alert('로그인 후 작성 가능합니다.');
 		</c:if>
 		
-		<c:if test="${!empty data}">
+		<c:if test="${!empty loginInfo2}">
 			location.href='list.do';
 		</c:if>
 	}
@@ -43,17 +43,20 @@
 
 </head>
 <body>
+
+ <div id="container">
+			<div id="content">
+				<div class="con_tit">
+					<h2>호스트 관리 ▶ Q&A ▶ 목록조회</h2>
+				</div>
+			</div>
+	</div>
 	<div class="sub">
 		<div class="size">
-		<br>
-			<h6 class="sub_content" style="text-align: left"> Q&A</h6>
-			<br>
-			<h8 class="sub_content" style="text-align:left"> <img src="/hotel/image/boardPic/qna.png" width="40px">  게스트 전용 문의 게시판입니다. 문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
-			<br><br><br><br>
 			<div class="bbs">
 				<table class="list">
 					<p>
-						<span><strong>총 ${data.totalCount}개</strong> | ${guestBoardVO.page}/${data.totalPage}페이지</span> 
+						<span><strong>총 ${data.totalCount}개</strong> | ${hostBoardVO.page}/${data.totalPage}페이지</span> 
 					</p>
 					<caption>게시판 목록</caption>
 					<colgroup>
@@ -87,41 +90,41 @@
 						<c:if test="${not empty data.list}">
 							<c:forEach items="${data.list }" var="vo" varStatus="status">
 									 <tr>
-										<td>${data.totalCount - status.index - ((guestBoardVO.page - 1) * guestBoardVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
+										<td>${data.totalCount - status.index - ((hostBoardVO.page - 1) * hostBoardVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										
-										<c:if test="${vo.gboard_type == 1 }">
+										<c:if test="${vo.hboard_type == 1 }">
 											<td>예약</td>
 										</c:if>
-										<c:if test="${vo.gboard_type == 2 }">
+										<c:if test="${vo.hboard_type == 2 }">
 											<td>결제</td>
 										</c:if>
-										<c:if test="${vo.gboard_type == 3 }">
+										<c:if test="${vo.hboard_type == 3 }">
 											<td>숙소</td>
 										</c:if>
-										<c:if test="${vo.gboard_type == 4 }">
+										<c:if test="${vo.hboard_type == 4 }">
 											<td>포인트/쿠폰</td>
 										</c:if>
-										<c:if test="${vo.gboard_type == 5 }">
+										<c:if test="${vo.hboard_type == 5 }">
 											<td>이용/기타</td>
 										</c:if>
 										<td class="txt_l">
 										
-										<a href="/hotel/guestboard/view.do?gboard_no=${vo.gboard_no}">${vo.gboard_title}
+										<a href="/hotel/admin/main/hostboard/qna/view.do?hboard_no=${vo.hboard_no}">${vo.hboard_title}
 										<c:if test="${vo.diff <= 3 }">
 										<img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</c:if>
 										</a></td>								
 										
-										<td>${vo.gboard_viewcount}</td>
+										<td>${vo.hboard_viewcount}</td>
 										
-										<td class="writer">${vo.guest_name}</td>
+										<td class="writer">${vo.host_name}</td>
 										
-										<td class="date"> <fmt:formatDate value="${vo.gboard_regdate}" pattern="yyyy-MM-dd"/></td>
+										<td class="date"> <fmt:formatDate value="${vo.hboard_regdate}" pattern="yyyy-MM-dd"/></td>
 										
-										<c:if test="${vo.gboard_status == 0 }">
+										<c:if test="${vo.hboard_status == 0 }">
 											<td>[답변대기]</td>
 										</c:if>	
-										<c:if test="${vo.gboard_status == 1 }">
+										<c:if test="${vo.hboard_status == 1 }">
 											<td>[답변완료]</td>
 										</c:if>	
 									</tr>
@@ -131,7 +134,7 @@
 				</table>
 				<div class="btnSet" style="text-align: right;">
 				
-					<a class="btn" href="javascript:goWrite();">글작성 </a>
+					<a class="btn" href="javascript:goWrite();">관리 </a>
 					
 				</div>
 				<div class="pagenate clear">
@@ -142,7 +145,7 @@
 					</c:if>
 					<!-- 페이지별 -->
 						<c:forEach var="p" begin="${data.startPage}" end="${data.endPage }">
-							<li><a href='list.do?page=${p }' <c:if test="${guestBoardVO.page == p }"> class='current'</c:if>>${p }</a></li>
+							<li><a href='list.do?page=${p }' <c:if test="${hostBoardVO.page == p }"> class='current'</c:if>>${p }</a></li>
 						</c:forEach>
 					<!-- 다음페이지 -->
 					<c:if test="${data.next == true }">
