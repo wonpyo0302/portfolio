@@ -63,8 +63,6 @@ public class GuestBoardServiceImpl implements GuestBoardService {
 	}
 	
 	
-	
-	
 	//수정폼(관리자용)
 	@Override
 	public GuestBoardVO edit(int gboard_no) {

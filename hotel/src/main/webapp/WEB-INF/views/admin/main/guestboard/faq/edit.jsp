@@ -1,6 +1,8 @@
-<%@ page language="java"	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
-<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp"%>
 
 
 
@@ -15,7 +17,7 @@
 	content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>Q&A</title>
+<title>FAQ</title>
 
 <!-- 아래부분 공통이니까 include -->
 <link rel="stylesheet" href="/hotel/css/reset.css" />
@@ -34,12 +36,14 @@
 }
 </style>
 
-<script> 
-	// 글작성 완료 후 내가 쓴글 상세보기 이동
+<script>
 	function goSave() {
 		frm.submit();
-		
 	};
+
+	function goBack() {
+		history.back();
+	}
 </script>
 
 <script>
@@ -61,55 +65,71 @@
 </head>
 <body>
 
- <div id="container">
-			<div id="content">
-				<div class="con_tit">
-					<h2>게스트 관리 ▶ FAQ ▶ 수정</h2>
-				</div>
+	<div id="container">
+		<div id="content">
+			<div class="con_tit">
+				<h2>게스트 관리 ▶ FAQ ▶ 수정</h2>
 			</div>
+		</div>
 	</div>
-	       <div class="sub">
-            <div class="size">
-                <div class="bbs">
-                <form method="post" name="frm" id="frm" action="edit.do"  enctype="multipart/form-data" > 
-                <!--  <input type="hidden" name="member_no" value="${loginInfo.no}"> -->
-                <!-- 작성자가 누구인지 저장/전송하기 위한 처리
-                session에 loginInfo라는 이름으로 저장했기 때문에 loginInfo이름으로 꺼내야 한다. 
-                그리고 loginInfo안에 MemberVO vo객체가 들어있는 것이고 member테이블에서는 member_no가 아니라 no!!!-->
-                    <table class="board_write">
+	<div class="sub">
+		<div class="size">
+			<div class="bbs">
+				<form method="post" name="frm" id="frm" action="edit.do"
+					enctype="multipart/form-data">
+					<input type="hidden" name="gfaq_no" value="${data.gfaq_no }">
+					<table class="board_write">
 						<tbody>
 							<tr>
-								<th>분류</th>
-								<td class="choose"> <span class="srchSelect"> 
-									<select id="stype" name="gboard_type" class="dSelect" title="검색분류 선택">
-											<option name="gboard_type" value="1">예약</option>
-											<option name="gboard_type" value="2">결제</option>
-											<option name="gboard_type" value="3">숙소</option>
-											<option name="gboard_type" value="4">포인트/쿠폰</option>
-											<option name="gboard_type" value="5">이용/기타</option>
-									</select>
-								</td>
+								<div class="container">
+									<ul class="list">
+										<li class="item">
+										<th>분류</th>
+										<td class="choose"><span class="srchSelect"> <select
+												id="stype" name="gfaq_type" class="dSelect" title="검색분류 선택">
+													<option name="gfaq_type" value="1"
+														<c:if test="${data.gfaq_type == 1 }">selected</c:if>>
+														예약</option>
+													<option name="gfaq_type" value="2"
+														<c:if test="${data.gfaq_type == 2 }">selected</c:if>>
+														결제</option>
+													<option name="gfaq_type" value="3"
+														<c:if test="${data.gfaq_type == 3 }">selected</c:if>>
+														숙소</option>
+													<option name="gfaq_type" value="4"
+														<c:if test="${data.gfaq_type == 4 }">selected</c:if>>
+														포인트/쿠폰</option>
+													<option name="gfaq_type" value="5"
+														<c:if test="${data.gfaq_type == 5 }">selected</c:if>>
+														이용/기타</option>
+											</select>
+												</li></td>
 							</tr>
 							<tr>
 							<tr>
 								<th>제목</th>
-								<td><input type="text" name="title" id="title" value="" style="width: 90%" value="${data.gfaq_title }"/>
-								</td>
+								<td><input type="text" name="gfaq_title" id="title"
+									style="width: 90%" value="${data.gfaq_title }" /></td>
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td><textarea name="content" id="content" style="width: 90%" value="${data.gfaq_content}"></textarea></td>
+								<td><textarea name="gfaq_content" id="content"
+										style="width: 90%">${data.gfaq_content}</textarea></td>
 							</tr>
-
+							</ul>
+							</div>
 						</tbody>
 					</table>
-                    <div class="btnSet"  style="text-align:right;">
-                        <a class="btn" href="javascript:goSave();">저장 </a>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+					<div class="btnSet">
+						<a class="btn"
+							style="align: left; background-color: grey; border: 2px solid grey"
+							href="javascript:goBack();">이전 </a> <a class="btn"
+							style="align: right;" href="javascript:goSave();">저장 </a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

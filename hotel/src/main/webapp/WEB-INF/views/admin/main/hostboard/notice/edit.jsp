@@ -52,7 +52,7 @@
 	<div id="container">
 		<div id="content">
 			<div class="con_tit">
-				<h2>게스트 관리 ▶ NOTICE ▶ 수정</h2>
+				<h2>호스트 관리 ▶ NOTICE ▶ 수정</h2>
 			</div>
 		</div>
 	</div>
@@ -61,7 +61,7 @@
 			<div class="bbs">
 				<form method="post" name="frm" id="frm" action="edit.do"
 					enctype="multipart/form-data">
-					<input type="hidden" name="gnotice_no" value="${data.gnotice_no}">
+					<input type="hidden" name="hnotice_no" value="${data.hnotice_no}">
 					<table class="board_write">
 						<tbody>
 							<div class="container">
@@ -71,16 +71,16 @@
 									<td class="choose"><span class="srchSelect"> 
 									<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 												<option value="info1"
-													<c:if test="${data.gnotice_type == 1}">selected</c:if>>
+													<c:if test="${data.hnotice_type == 1}">selected</c:if>>
 													안내</option>
 												<option value="info2"
-													<c:if test="${data.gnotice_type == 2}">selected</c:if>>
+													<c:if test="${data.hnotice_type == 2}">selected</c:if>>
 													공지</option>
 												<option value="event"
-													<c:if test="${data.gnotice_type == 3}">selected</c:if>>
+													<c:if test="${data.hnotice_type == 3}">selected</c:if>>
 													이벤트</option>
 												<option value="event2"
-													<c:if test="${data.gnotice_type == 4}">selected</c:if>>
+													<c:if test="${data.hnotice_type == 4}">selected</c:if>>
 													발표</option>
 										</select>
 									</span>
@@ -89,7 +89,7 @@
 								</li>
 								<tr>
 									<th>제목</th>
-									<td><input type="text" name="gnotice_title" style="width: 90%" value="${data.gnotice_title}" /></td>
+									<td><input type="text" name="hnotice_title" style="width: 90%" value="${data.hnotice_title}" /></td>
 								</tr>
 								<tr>
 									<th>작성자</th>
@@ -97,7 +97,7 @@
 								</tr>
 								<tr>
 									<th>내용</th>
-									<td><textarea name="gnotice_content" id="gnotice_content" style="width: 90%">${data.gnotice_content}</textarea></td>
+									<td><textarea name="hnotice_content" id="hnotice_content" style="width: 90%">${data.hnotice_content}</textarea></td>
 								</tr>
 								<tr>
 									<th>첨부파일</th>

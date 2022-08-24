@@ -4,6 +4,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style type="text/css">
+input {
+	width:200px;
+}
+</style>
 </head>
 
 <body> 
@@ -44,6 +49,10 @@
 								<th>계좌번호</th>
 								<td><input type="text" name="host_bank" id="host_bank" value="${host.host_bank }" />
 								&nbsp;&nbsp;&nbsp;<input type="text" name="host_accountno" id="host_accountno" value="${host.host_accountno }" /></td>
+							</tr>
+                        	<tr>
+								<th>가입일</th>
+								<td><input type="text" name="host_joindate" id="host_joindate" value="${host.host_joindate }" /></td>
 							</tr>
                         </tbody>
 					</table>

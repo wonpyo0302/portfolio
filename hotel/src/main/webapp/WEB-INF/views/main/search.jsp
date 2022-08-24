@@ -89,13 +89,21 @@
 		}
 		
 	</style>
-
+    <script type="text/javascript">
+    	function goSubmit() {
+    		if($("#searchWord").val()=='' && $("#selectbox_state").val()=='0'){
+				alert('찾으시고자하는 호텔의 이름 작성 또는 지역을 선택해주세요.');
+				return false;
+    		}
+    			$('#search_box_form').submit();
+    	}
+    </script>
   </head>
 
   <body>
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <div class="search_box">
-	<form class="search_box_form" action="/hotel/main/search.do">
+	<form class="search_box_form" id="search_box_form" action="/hotel/main/search.do">
 		<input type="text" size="50%" height="40px" id="searchWord" name="searchWord" value="${hotelVO.searchWord}" ><br>
 		
 		<div class ="location_box">
@@ -114,7 +122,7 @@
 					</c:forEach> 
 				</select>
 				
-				<input type="button" value="검색" onclick="sortList()">
+				<input type="button" value="검색" onclick="goSubmit();">
 			</div>
 		</div>
 	</form><br>
@@ -126,11 +134,14 @@
 			<option value="scoreList">평점순</option>
 			<option value="lowPrice">낮은 가격순</option>
 			<option value="review">리뷰순</option>
-			<option value="like">좋아요순</option>
+			<option value="favorite">좋아요순</option>
 		</select>
 	</div>
 	<div id="searchArea" class="container list_body" style="text-align: center;">
 		<div class="low" style="display: inline-block; width: 650px;">
+		<c:if test="${empty hotelList}">
+			<div class="first" colspan="8">등록된 호텔이 없습니다.</div>
+		</c:if>
 			<c:forEach var="list" items="${hotelList }" varStatus="idx">
 				<div class="container list" style="table-layout: fixed; float: left; width: 300px;">
 					<div>
@@ -140,7 +151,10 @@
 								<div>
 								<!-- <div id="v-line"></div> -->
 								<span><p>${list.hotel_name}</p></span>
-								<span>최저가:  <fmt:formatNumber value="${list.lowPrice}" pattern="#,###"/> ~</span>
+								<span>최저가:  <fmt:formatNumber value="${list.lowPrice}" pattern="#,###"/> ~</span><br>
+								<span>평점: ${list.avgScore}</span><br>
+								<span>리뷰 수: ${list.totalReview}</span><br>
+								<span>좋아요 수: ${list.totalLike}</span>
 								</div>
 							</a>
 						</div>

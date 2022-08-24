@@ -136,11 +136,13 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 
 	@Override
 	public boolean toAdmin(RoomVO vo, HotelVO hvo) {
-		
-		boolean r = mapper.room_toAdmin(vo) > 0 ? true:false;
-		boolean h = mapper.hotel_toAdmin(hvo) > 0 ? true:false;
-		
-		if(r&&h) {
+		System.out.println("=============="+vo.getHost_no());
+		System.out.println(hvo.getHost_no());
+		boolean r = mapper.room_toAdmin(vo);
+		boolean h = mapper.hotel_toAdmin(hvo);
+		System.out.println("결과"+r);
+		System.out.println("결과"+h);
+		if(r||h) {
 			return true;
 		}
 		return false;

@@ -38,7 +38,10 @@
 	// 글작성 완료 후 내가 쓴글 상세보기 이동
 	function goSave() {
 		frm.submit();
-		
+	};
+
+	function goBack() {
+		history.back();
 	};
 </script>
 
@@ -118,8 +121,9 @@
 							</div>
 						</tbody>
 					</table>
-					<div class="btnSet" style="text-align: right;">
-						<a class="btn" href="javascript:goSave();">작성완료 </a>
+				<div class="btnSet" >
+					   <a class="btn" style="align:left; background-color:grey; border:2px solid grey " href="javascript:goBack();" >이전 </a>
+                        <a class="btn" style="align:right;" href="javascript:goSave();">저장 </a>
 					</div>
 				</form>
 			</div>

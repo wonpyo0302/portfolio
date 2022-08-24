@@ -19,7 +19,10 @@ public class GuestNoticeVO extends Criteria {
 	private int gnotice_viewcount; //조회수
 	
 	private int fix; // 게시물 고정 1=고정 (서브쿼리)
+	private int rownum; 
 	private int diff; // 최신글 new 날짜차이 (서브쿼리)
+	
+	
 	
 	private String filename_org;
 	private String filename_real;
@@ -32,8 +35,9 @@ public class GuestNoticeVO extends Criteria {
 	private String stype; //검색타입
 	
 
-	private int rownum; 
 	
+	
+	private String admin_id; //관리자 로그인 확인용
 	
 	
 	public GuestNoticeVO () {

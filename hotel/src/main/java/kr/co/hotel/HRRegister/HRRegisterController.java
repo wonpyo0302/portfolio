@@ -38,8 +38,8 @@ public class HRRegisterController {
 		/*
 		 * HostVO loginInfo1 = new HostVO();// demo data
 		 * loginInfo1.setHost_no(110);//demo data
-		 * loginInfo1.setHost_name("호스트_빛찬");//demo data sess.setAttribute("loginInfo2",
-		 * loginInfo1);
+		 * loginInfo1.setHost_name("호스트_빛찬");//demo data 
+		 *sess.setAttribute("loginInfo2",loginInfo1);
 		 */
 		
 		

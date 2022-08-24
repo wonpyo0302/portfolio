@@ -9,12 +9,12 @@ import kr.co.hotel.guest.GuestVO;
 @Mapper
 
 public interface HostBoardMapper {
-	int insert(HostBoardVO vo); // 등록
 	List<HostBoardVO> list(HostBoardVO vo); // 목록
 	int updateViewcount(int hboard_no); // 조회수 증가
 	int count(HostBoardVO vo); // 게시물 개수 체크
-	int update(HostBoardVO vo); // 수정
-	int delete(int hboard_no); // 삭제
 	HostBoardVO view(int hboard_no); //상세보기
+	int insert(HostBoardVO vo); // 등록(관리자용)
+	int update(HostBoardVO vo); // 수정(관리자용)
+	int delete(int hboard_no); // 삭제(관리자용)
 
 }

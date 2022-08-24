@@ -49,9 +49,6 @@
 				alert('찾으시고자하는 호텔의 이름 작성 또는 지역을 선택해주세요.');
 				return false;
     		}
-    		else{
-					location.href='search.do';
-    		}
     	}
     </script>
 
@@ -61,7 +58,7 @@
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <div class="search_box">
 	<form class="search_box_form" action="/hotel/main/search.do" method="get" onsubmit="return goSubmit();">
-		<input type="text" size="50%" height="40px" id="searchWord" name="searchWord" value="" placeholder="호텔이름을 입력하세요" ><br>
+		<input type="text" size="50%" height="40px" id="searchWord" name="searchWord" placeholder="호텔이름을 입력하세요" ><br>
 		
 		<div class ="location_box">
 			<div class ="location_box_select">
@@ -93,8 +90,10 @@
 						<div class="hotel01"><img alt="서울이미지오류" src="/hotel/image/hotel/${SH.filename}" width="100px" height="100px">
 						</div>
 					<div><p>${SH.hotel_name}</p></div>
-					<span>최저가:  <fmt:formatNumber value="${SH.lowPrice }" pattern="#,###"/> ~</span>
-					<input type="hidden" name="hotel_no" value="${SH.hotel_no}">
+					<span>최저가:  <fmt:formatNumber value="${SH.lowPrice }" pattern="#,###"/> ~</span><br>
+					<span>평점: ${SH.avgScore}</span><br>
+					<span>리뷰 수: ${SH.totalReview}</span><br>
+					<span>좋아요 수: ${SH.totalLike}</span>					
 				</a>
 			</div>
 			</c:forEach>
@@ -113,7 +112,10 @@
 						<div id="hotel01"><img alt="인천이미지오류" src="/hotel/image/hotel/${IH.filename}" width="200px" height="200px">
 						</div>
 					<div><p>${IH.hotel_name}</p></div>
-					<span>최저가:  <fmt:formatNumber value="${IH.lowPrice }" pattern="#,###"/> ~</span>
+					<span>최저가:  <fmt:formatNumber value="${IH.lowPrice }" pattern="#,###"/>~</span>
+					<span id="score">평점: ${IH.avgScore}</span><br>
+					<span>리뷰 수: ${IH.totalReview}</span><br>
+					<span>좋아요 수: ${IH.totalLike}</span>					
 				</a>
 			</div>
 			</c:forEach>
@@ -133,6 +135,9 @@
 						</div>
 					<div><p>${KH.hotel_name}</p></div>
 					<span>최저가:  <fmt:formatNumber value="${KH.lowPrice }" pattern="#,###"/> ~</span>
+					<span>평점: ${KH.avgScore}</span><br>
+					<span>리뷰 수: ${KH.totalReview}</span><br>
+					<span>좋아요 수: ${KH.totalLike}</span>					
 				</a>
 			</div>
 			</c:forEach>

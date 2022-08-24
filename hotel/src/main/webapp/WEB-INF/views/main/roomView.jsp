@@ -128,7 +128,12 @@
 		window.open("/hotel/main/map.do?hotel_no="+data, "map", 'status=no, height=350, width=550, left='+ popupX + ', top='+ popupY); 
 	}
 	
-</script>
+
+	</script>
+	
+	<script src="/hotel/script/roomView.js"></script>
+
+
 
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <body>

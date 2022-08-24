@@ -77,8 +77,9 @@
 										<th>문의유형</th>
 										</span>
 										<td class="choose">
-										<span class="srchSelect"> <select id="stype" name="gboard_type" class="dSelect" title="검색분류 선택">
-												<option name="gboard_type" value="1">예약문의</option>
+										<span class="srchSelect"> 
+										<select id="stype" name="gboard_type" class="dSelect" title="검색분류 선택">
+												<option name="gboard_type" value="1">예약 문의</option>
 												<option name="gboard_type" value="2">결제 문의</option>
 												<option name="gboard_type" value="3">숙소 문의</option>
 												<option name="gboard_type" value="4">포인트/쿠폰 문의</option>

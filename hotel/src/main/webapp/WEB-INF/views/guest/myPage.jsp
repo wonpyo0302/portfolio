@@ -11,8 +11,8 @@
     <meta name="format-detection" content="telephone=no, address=no, email=no">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>게스트마이페이지</title>
-    <link rel="stylesheet" href="/hotel/css/mypage.css"/>
+    <title>GUEST MY PAGE</title>
+    <link rel="stylesheet" href="/hotel/css/guest_mypage.css"/>
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -29,9 +29,8 @@
 							<tr class="tr-head" >
 								<th colspan="2">
 								
-									<div class="user-name">${loginInfo.guest_name }님</div>
+									<div class="user-name">${loginInfo.guest_name } 님</div>
 									<div class="user-email">${loginInfo.guest_email }</div>
-									
 									<div class="d-grid gap-2 col-3 mx-auto">
 									  <button class="btn btn-warning" type="button" onclick="location.href='myinfo.do'">
 									  	<img src="/hotel/image/mypage/confidential.png" width="50px;">
@@ -41,17 +40,36 @@
 								</th>
 							</tr>
 							<tr>
-								<td>`button1</td>
-								<td>`button2</td>
+								<td>
+									<button type="button" class="component" onclick="location.href='../point/list.do'">
+										마이포인트
+									</button>
+								</td>
+								<td>
+									<button type="button" class="component" onclick="location.href='../coupon/index.do'">
+										마이 쿠폰
+									</button>
+								</td>
 							</tr>
 							<tr>
-								<td>`button3</td>
-								<td>`button4</td>
+								<td>
+									<button type="button" class="component" onclick="location.href='../reserve/index.do'">
+										마이 예약 내역
+									</button>
+								</td>
+								<td>
+									<button type="button" class="component" onclick="location.href='../review/index.do'">마이 후기</button>
+								</td>
 							</tr>
 							<tr>
-								<td>`button5</td>
-								<td>`button6</td>
+								<td>
+									<button type="button" class="component" onclick="location.href='../fav/index.do'">마이 찜 목록</button>
+								</td>
+								<td>
+									<button type="button" class="component">마이 문의 리스트</button>
+								</td>
 							</tr>
+						
 							
 						</tbody>
 					</table>

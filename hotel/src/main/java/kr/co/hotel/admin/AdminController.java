@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import kr.co.hotel.guest.GuestService;
+import kr.co.hotel.main.HotelVO;
 
 @Controller
 public class AdminController {
@@ -19,7 +19,11 @@ public class AdminController {
 
 	
 	@GetMapping("/admin/login.do")
-	 public String adminLogin() {
+	 public String adminLogin(HttpSession sess, Model model) {
+		if(sess.getAttribute("loginInfo_admin")!=null) { 
+			model.addAttribute("msg", "중복로그인입니다. 로그아웃해주세요");
+			return "common/alert";
+		}
 		return "admin/main/login";
 	}
 	@PostMapping("/admin/login.do")
@@ -41,13 +45,24 @@ public class AdminController {
 		return "common/alert";
 	}
 	
+	@PostMapping("/admin/main/setConfirm.do")
+	public String setConfrim(HotelVO vo) {
+		aservice.setConfirm(vo);
+		return "redirect:/admin/main/hostList.do";
+	}
+	
 	
 //-========================추가는 아래로 해주세요========================	
 	@GetMapping("/admin/main/adminMain.do")
-	public String adminMain(AdminVO avo, Model model ) {
-		model.addAttribute("sales", aservice.salesMonth());
-		aservice.memberCount(model);
-		return "/admin/main/adminMain";
+	public String adminMain(HttpSession sess,AdminVO avo, Model model ) {
+		if(sess.getAttribute("loginInfo_admin") == null) {
+			model.addAttribute("msg","로그인이 필요한 기능입니다");
+			return "common/alert";
+		}else {
+			model.addAttribute("sales", aservice.salesMonth());
+			aservice.memberCount(model);
+			return"/admin/main/adminMain";
+		}
 	}
 
 

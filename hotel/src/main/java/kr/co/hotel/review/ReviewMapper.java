@@ -34,5 +34,11 @@ public interface ReviewMapper {
 	
 	public boolean review_update(ReviewVO vo);
 	
+	//호스트 호텔 리뷰 가져오기
+	
+	public int host_review_count(ReviewVO vo);
+	
+	public List<ReviewVO> host_review_list(ReviewVO vo);
+	
 	
 }
