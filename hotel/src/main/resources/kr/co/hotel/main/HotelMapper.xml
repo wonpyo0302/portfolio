@@ -140,7 +140,6 @@
 		where no = #{room_no} AND image_type = 'ROOM'
 	</select>
 	
-<<<<<<< HEAD
 	<!-- host_no에 해당하는 호텔정보,객실정보,각각의 이미지 가져오기 -->
 	<select id="getHostHotel" parameterType="int" resultType="kr.co.hotel.main.HotelVO">
 		SELECT * FROM hotel WHERE host_no = #{host_no}
