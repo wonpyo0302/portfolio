@@ -54,7 +54,7 @@ public class HostBoardServiceImpl implements HostBoardService {
 		return map;
 	}
 	
-	//등록(관리자용)
+	//등록
 	@Override
 	public boolean insert(HostBoardVO vo) {
 		return mapper.insert(vo) > 0? true : false;
@@ -66,19 +66,19 @@ public class HostBoardServiceImpl implements HostBoardService {
 		return mapper.view(hboard_no);
 	}
 	
-	//수정폼(관리자용)
+	//수정폼
 	@Override
 	public HostBoardVO edit(int hboard_no) {
 		return mapper.view(hboard_no);
 	}
 	
-	//수정처리(관리자용)
+	//수정처리
 	@Override
 	public boolean update(HostBoardVO vo) {
 		return mapper.update(vo) > 0 ? true : false;
 	}
 
-	//삭제(관리자용)
+	//삭제
 	@Override
 	public boolean delete(int hboard_no) {
 		return mapper.delete(hboard_no) > 0 ? true : false;

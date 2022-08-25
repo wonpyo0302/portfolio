@@ -21,12 +21,12 @@
     
 <script>
 	function goWrite(){
-		<c:if test="${empty loginInfo}">
+		<c:if test="${empty loginInfo2}">
 			alert('로그인 후 작성 가능합니다.');
-			location.href='/hotel/guest/login.do';
+			location.href='/hotel/host/login.do';
 		</c:if>
-		<c:if test="${!empty loginInfo}">
-			location.href='write.do';
+		<c:if test="${!empty loginInfo2}">
+			location.href='/hotel/hostboard/write.do';
 		</c:if>	
 	}
 </script>
@@ -106,8 +106,11 @@
 									
 										<td class="txt_l">
 										
-										<a href="/hotel/board/view.do?hboard_no=${vo.hboard_no}">${vo.hboard_title}</a></td>								
-										
+										<a href="/hotel/hostboard/view.do?hboard_no=${vo.hboard_no}">${vo.hboard_title}								
+										<c:if test="${vo.diff <= 3 }">
+											<img src="/hotel/image/boardPic/new (1).png" width="30px">
+										</c:if>
+										</a></td>
 										<td>${vo.hboard_viewcount}</td>
 										
 										<td class="writer">${vo.host_name}</td>

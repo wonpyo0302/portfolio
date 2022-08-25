@@ -20,22 +20,22 @@
     
 <script>
 	function goWrite(){
-		<c:if test="${empty loginInfo2}">
+		<c:if test="${empty loginInfo_admin}">
 			alert('로그인 후 작성 가능합니다.');
 			location.href='/hotel/admin/login.do';
 		</c:if>
-		<c:if test="${!empty loginInfo2}">
+		<c:if test="${!empty loginInfo_admin}">
 			location.href='write.do';
 		</c:if>	
 	}
 </script>
 <script>
 	function login(){
-		<c:if test="${empty loginInfo2}">
+		<c:if test="${empty loginInfo_admin}">
 			alert('로그인 후 작성 가능합니다.');
 		</c:if>
 		
-		<c:if test="${!empty loginInfo2}">
+		<c:if test="${!empty loginInfo_admin}">
 			location.href='list.do';
 		</c:if>
 	}

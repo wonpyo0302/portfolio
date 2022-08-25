@@ -7,23 +7,39 @@
 	</select>
 	
 	<insert id="insert" parameterType="kr.co.hotel.reserve.ReserveVO">
-		insert into reserv (
-			coupon_no, room_no, guest_no, hotel_no, startdate, 
-			enddate, used_point, canceldate, 
-			total_price, rev_date, pay_type, imp_uid, rev_status, use_status, pay_status, rev_name, rev_hp
-		) values (
-			#{coupon_no}, #{room_no}, #{guest_no}, #{hotel_no}, #{startdate}, 
-			#{enddate}, #{used_point}, #{canceldate}, #{total_price}, 
-			 now(), #{pay_type}, #{imp_uid}, 0, 0, 1 , #{rev_name}, #{rev_hp}
-		)
+		<if test="pay_type==0">
+			insert into reserv (
+				coupon_no, room_no, guest_no, hotel_no, startdate, 
+				enddate, used_point, canceldate, 
+				total_price, rev_date, pay_type, 
+				imp_uid, rev_status, use_status, pay_status, rev_name, rev_hp
+			) values (
+				#{coupon_no}, #{room_no}, #{guest_no}, #{hotel_no}, #{startdate}, 
+				#{enddate}, #{used_point}, #{canceldate},
+				#{total_price}, now(), #{pay_type}, 
+				#{imp_uid}, 0, 0 ,1 ,#{rev_name}, #{rev_hp}
+			)
+		</if>
+		<if test="pay_type== 1">
+			insert into reserv (
+				coupon_no, room_no, guest_no, hotel_no, startdate, 
+				enddate, used_point, canceldate, 
+				total_price, rev_date, pay_type, 
+				imp_uid, rev_status, use_status, pay_status, rev_name, rev_hp
+			) values (
+				#{coupon_no}, #{room_no}, #{guest_no}, #{hotel_no}, #{startdate}, 
+				#{enddate}, #{used_point}, #{canceldate},
+				#{total_price}, now(), #{pay_type}, 
+				#{imp_uid}, 0, 0 , 0, #{rev_name}, #{rev_hp}
+			)
+		</if>
+		
 	</insert>
 	
 	<insert id="pointinsert" parameterType="kr.co.hotel.reserve.ReserveVO">
-		<if test="used_point !=0">
 			insert into point (
 				guest_no, io_point, totalpoint, pointtype, date)
 			values (#{guest_no}, #{used_point}, (select totalpoint from guest where guest_no = #{guest_no}), 1, now() )
-		</if>
 	</insert>
 	
 	<update id="guestUsedPointUpdate" parameterType="kr.co.hotel.guest.GuestVO">
@@ -69,7 +85,48 @@
 		select * from room where room_no=#{room_no}
 	</select>
 	
+	<select id="SelectReserveInfo" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="kr.co.hotel.reserve.ReserveVO">
+		select * from reserv where imp_uid=#{imp_uid}
+	</select>
 	
+	<select id="UpdatePay_Status" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="kr.co.hotel.reserve.ReserveVO">
+		update reserv set pay_status=1 where imp_uid=#{imp_uid}
+	</select>
+
+	<update id="DeleteAccountPay">
+		update reserv set rev_status=1  where pay_status=0
+	</update>
+	
+<!--============================================================================  -->	
+	<select id="CancleList" resultType="kr.co.hotel.reserve.ReserveVO">
+		select * from reserv where pay_status = 0
+	</select>
+
+	<update id="cancelReserve" parameterType="kr.co.hotel.reserve.ReserveVO">
+		update reserv set rev_status = 1, canceldate = now(), pay_status = 2 where reserv_no=#{reserv_no}
+	</update>
+	
+	<update id="UpdateGuestPoint" parameterType="kr.co.hotel.reserve.ReserveVO">
+		update guest set totalpoint = 
+			(select totalpoint from (select totalpoint from guest where guest_no =#{guest_no})as b)+
+			(select used_point from reserv  where reserv_no =#{reserv_no}) where guest_no=#{guest_no}; 
+	</update>
+	
+	<update id="InsertPointTable" parameterType="kr.co.hotel.reserve.ReserveVO">
+		insert into point 
+			( guest_no, io_point, totalpoint, pointtype, date)
+		values 
+			(#{guest_no}, #{used_point}, (select totalpoint from guest where guest_no=#{guest_no}), 0, now())	
+	</update>
+	
+	<update id="UpdateCouponStatus" parameterType="kr.co.hotel.reserve.ReserveVO">
+		update coupon set usedate = null, use_status = 0 where coupon_no =#{coupon_no}
+	</update>
+	
+	
+	
+
+
 	
 	
 	

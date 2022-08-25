@@ -93,15 +93,14 @@ public class Admin_GuestNoticeController {
 		}
 	}
 
-	// 수정 폼
+	// 수정폼(관리자용)
 	@GetMapping("/admin/main/guestboard/notice/edit.do")
 	public String editForm(Model model, GuestNoticeVO vo) {
 		model.addAttribute("data", service.edit(vo.getGnotice_no()));
-		System.out.println("======================================" + model.getAttribute("data"));
 		return "/admin/main/guestboard/notice/edit";
 	}
 
-	// 수정처리
+	// 수정처리(관리자용
 	@PostMapping("/admin/main/guestboard/notice/edit.do")
 	public String update(GuestNoticeVO vo, Model model) {
 
@@ -116,7 +115,7 @@ public class Admin_GuestNoticeController {
 		}
 	}
 
-	// 삭제처리
+	// 삭제(관리자용)
 	@GetMapping("/admin/main/guestboard/notice/delete.do")
 	public String delete(int gnotice_no, Model model, HttpSession sess) {
 

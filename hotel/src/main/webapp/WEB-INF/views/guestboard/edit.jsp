@@ -32,7 +32,6 @@
 </style>
 
 <script> 
-	// 글작성 완료 후 내가 쓴글 상세보기 이동
 	function goSave() {
 		frm.submit();
 	};
@@ -42,21 +41,7 @@
 	}
 </script>
 
-<script>
-	$(function() {
-		$(".choose").click(function() {
-			if ($(this).find(".type").css('display') == 'none') {
-				$(".type").slideUp("fast");
-				$(this).find(".type").slideDown("fast");
-				$(".downbtn").attr("src", "/hotel/image/down.png");
-				$(this).find(".downbtn").attr("src", "/hotel/image/up.png");
-			} else {
-				$(this).find(".type").slideUp("fast");
-				$(".downbtn").attr("src", "/hotel/image/down.png");
-			}
-		})
-	});
-</script>
+
 
 </head>
 <body>
@@ -66,11 +51,7 @@
 		<div class="size">
 			<h3 class="sub_title" style="text-align: left">Q&A</h3>
 			<br>
-			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/boardPic/qna.png" width="40px"> 게스트 전용 문의사항
-				게시판입니다.
-			</h6>
-			<br>
+		
 			<h3 class="sub_title" style="text-align: left">문의글 수정</h3>
 			<br>
 			<div class="bbs">
@@ -85,20 +66,20 @@
 									<th>문의유형</th>
 								
 									<td class="choose"><span class="srchSelect"> 
-									<select	id="stype" name="stype" class="dSelect" title="검색분류 선택">
-												<option value="reservation"
+									<select	id="stype" name="gboard_type" class="dSelect" title="검색분류 선택">
+												<option value="1"
 													<c:if test="${data.gboard_type==1 }">selected</c:if>>
 													예약 문의</option>
-												<option value="pay"
+												<option value="2"
 													<c:if test="${data.gboard_type==2 }"> selected</c:if>>
 													결제 문의</option>
-												<option value="hotel"
+												<option value="3"
 													<c:if test="${data.gboard_type==3 }"> selected</c:if>>
 													숙소 문의</option>
-												<option value="pointAndCoupon"
+												<option value="4"
 													<c:if test="${data.gboard_type==4 }"> selected</c:if>>
 													포인트/쿠폰 문의</option>
-												<option value="etc"
+												<option value="5"
 													<c:if test="${data.gboard_type==5 }"> selected</c:if>>
 													이용/기타 문의</option>
 										</select>
@@ -113,7 +94,7 @@
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td>${loginInfo.guest_name}</td>
+								<td>${data.guest_name}</td>
 							</tr>
 							<tr>
 								<th>문의내용</th>

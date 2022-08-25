@@ -25,6 +25,15 @@ public interface ReserveMapper {
 	public HotelVO SelectHostNo(HotelVO vo);
 	public HostVO SelectHostAccount(HotelVO vo);
 	public RoomVO SelectRoominfo(ReserveVO vo);
+	public ReserveVO SelectReserveInfo(ReserveVO vo);
+	public ReserveVO UpdatePay_Status(ReserveVO vo);
+	public ReserveVO DeleteAccountPay();
+	
+	public List<ReserveVO> CancleList();
+	public int cancelReserve(ReserveVO vo);
+	public int UpdateGuestPoint(ReserveVO vo);
+	public int InsertPointTable(ReserveVO vo);
+	public int UpdateCouponStatus(ReserveVO vo);
 	
 	
 	//이하 마이페이지 예약리스트_빛찬 

@@ -48,7 +48,7 @@ public class HostBoardController extends ImgHandling{
 	}
 
 	// 등록처리
-	@PostMapping("/hostboard/insert.do")
+	@PostMapping("/hostboard/write.do")
 	public String insert(Model model, HostBoardVO vo, @RequestParam MultipartFile filename, HttpServletRequest req) {
 		if(!filename.isEmpty()) {
 			String org = filename.getOriginalFilename();

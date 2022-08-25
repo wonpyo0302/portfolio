@@ -62,6 +62,7 @@
 				<form method="post" name="frm" id="frm" action="edit.do"
 					enctype="multipart/form-data">
 					<input type="hidden" name="hnotice_no" value="${data.hnotice_no}">
+					<input type="hidden" name="admin_no" value="${data.admin_no}">
 					<table class="board_write">
 						<tbody>
 							<div class="container">
@@ -69,17 +70,17 @@
 									<li class="item">
 									<th>분류</th>
 									<td class="choose"><span class="srchSelect"> 
-									<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
-												<option value="info1"
+									<select id="stype" name="hnotice_type" class="dSelect" title="검색분류 선택">
+												<option value="1"
 													<c:if test="${data.hnotice_type == 1}">selected</c:if>>
 													안내</option>
-												<option value="info2"
+												<option value="2"
 													<c:if test="${data.hnotice_type == 2}">selected</c:if>>
 													공지</option>
-												<option value="event"
+												<option value="3"
 													<c:if test="${data.hnotice_type == 3}">selected</c:if>>
 													이벤트</option>
-												<option value="event2"
+												<option value="4"
 													<c:if test="${data.hnotice_type == 4}">selected</c:if>>
 													발표</option>
 										</select>

@@ -14,21 +14,36 @@
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
     <link href="/hotel/css/hotelView.css" rel="stylesheet" type="text/css">
+    
+
   </head>
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5d133f411d7216df47f409d9f8b79bd"></script>
+
 	
 
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <!-- 찜하기 제이쿼리 -->
   <script src="/hotel/script/heart.js"></script>
-  
+
   <body>
 	<div class ="detail_full_screen">
 		<div id="hotel_screen" style="vertical-align: middle;">
 	  		<div class="hotelName">${hotel.hotel_name}</div>
+	  		<!-- 별점찍기 구현_원표 -->
+	  		<div class="star-ratings" style="text-align: center; display: inline-block; margin-left: 430px;">
+				<div class="star-ratings-fill space-x-2 text-lg" style="width: ${hotel.avgScore/5*100}%;">
+					<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+				</div>
+				<div class="star-ratings-base space-x-2 text-lg">
+					<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+				</div>
+				<span>(${hotel.avgScore })</span>
+			</div>
+	  		
+	  		<!-- END 별점찍기 -->
 	  		<!-- "찜하기" 구현_빛찬_220822 -->
 	  		<input type="hidden" class="guest_no" value="${loginInfo.guest_no }" >
 	  		<c:if test="${!empty rev }">
@@ -83,7 +98,6 @@
 			</c:forEach> 
 		</div>
 	</div>
-
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
