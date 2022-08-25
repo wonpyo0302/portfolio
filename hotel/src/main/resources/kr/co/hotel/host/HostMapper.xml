@@ -100,11 +100,15 @@
 		and use_status = 0
 	</select>
 	
-	<select id="daily_sales" parameterType="int" resultType="int">
+	<select id="today_sale" parameterType="int" resultType="int">
 	
-		select sum(total_price) from reserv 
-		where date_format(rev_date, "%Y-%m-%d") = date_format(now(), "%Y-%m-%d")
-		and hotel_no = #{hotel_no}
+		 select total_price from
+		 (select * from calendar where dt = substr(now(),1,10)) a
+		 left join
+		(select substr(now(),1,10) as date, sum(total_price) as total_price  from reserv 
+		where substr(rev_date, 1,10) = substr(now(),1,10 )
+		and hotel_no = #{hotel_no}) b
+		on a.dt = b.date
 		
 	</select>
 	
@@ -126,7 +130,7 @@
 	</insert>
 
 	<select id="sales_for_aWeek" parameterType="int" resultType="Integer">
-		select  ifnull(b.total_price,0)as total_price from
+		select  ifnull(b.total_price,0) as total_price from
 		(select * from calendar where dt between DATE_ADD(now(), INTERVAL -7 DAY) and now()) a
 		left join
 		(select substring( rev_date,1,10) as date, sum(total_price) as total_price  
@@ -137,6 +141,37 @@
 		group by substring( rev_date,1,10)) b
 		on a.dt = b.date
 	</select>
+	
+	<select id="monthly_sales" parameterType="int" resultType="Integer">
+		select ifnull(b.total_price, 0 ) from
+		(select month(dt) as months from calendar 
+		where substring(dt,1,7) 
+		between concat(substring(now(), 1,4),"-01") and concat(substring(now(), 1,4),"-12") 
+		group by months) a
+		
+		left join
+		
+		(select month(rev_date) as months, sum(total_price) as total_price from reserv 
+		where hotel_no=#{hotel_no} 
+		and use_status = 1 
+		group by month(rev_date) 
+		order by months) b
+		on a.months = b.months
+	</select>
+	
+	<select id="weekly_sales" parameterType="int" resultType="Integer">
+		select ifnull( b.total_price,0 ) from
+		(select week(dt) as weeks from calendar 
+		where dt between date_add(now(), INTERVAL - 4 week) and now()
+		group by week(dt) order by weeks) a
+		left join
+		(select week(rev_date) as weeks, sum(total_price) as total_price from reserv 
+		where hotel_no= #{hotel_no}
+		group by weeks order by weeks) b
+		on a.weeks = b.weeks;
+	</select>
+	
+	
 	
 
 </mapper>

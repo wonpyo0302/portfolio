@@ -44,29 +44,18 @@
 							<tr class="tr-head-test" >
 								<th>
 									<div onclick="location.href='myinfo.do'">호스트 정보 관리</div>
-									<div onclick="location.href=''">button1</div>
-									<div onclick="location.href=''">button1</div>
-									<div onclick="location.href=''">button1</div>
+									<div onclick="location.href='../host/sales.do'">매출 현황</div>
+									<div onclick="location.href='../hostReserve/index.do'">예약 현황</div>
+									<div onclick="location.href='../host_review/index.do'">리뷰 현황</div>
 								</th>
 								<td>
 									<button onclick="location.href='../host_review/index.do'">평점/리뷰<br><p>${map.avgScore }점 / ${map.totalReview }개</p></button>
-									<button onclick="location.href='../host/sales.do'">당일 매출<br><p><fmt:formatNumber pattern="#,###" value="${map.daily_sales }"/>￦</p></button><br>
+									<button onclick="location.href='../host/sales.do'">당일 매출<br><p><fmt:formatNumber pattern="#,###" value="${map.today_sale }"/>￦</p></button><br>
 									<button onclick="location.href='../room/index.do'">등록된 객실 현황<br><p>${room_count } 개</p></button>
 									<button onclick="location.href='../hostReserve/index.do'">예약현황<br><p>${map.reserve_count } 개</p></button>
 								</td>
 							</tr>
-							
-							
-							
-							<tr>
-								<th>게시판</th>
-								<th>게시판</th>
-								
-							</tr>
 						</tbody>
-						
-						
-
 					</table>
 			</div>
 		</div>
