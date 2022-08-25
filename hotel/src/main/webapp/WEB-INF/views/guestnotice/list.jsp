@@ -81,6 +81,7 @@
 										</c:if>
 											</b> <img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</a></td>
+										
 										<td class="writer">관리자</td>
 										<td class="date"><fmt:formatDate
 												value="${vo.gnotice_regdate}" pattern="yyyy-MM-dd" /></td>

@@ -93,27 +93,27 @@
 					<table class="board_write">
 						<div class="title">
 							<tr>
-								<th style="width: 5%">제목</th>
-								<td>${data.gboard_title }</td>
-								
-								<th style="width: 5%">문의유형</th>
-								<td style="text-align:left" colspan='2'>
+								<th style="width: 15%">문의유형</th>
+								<td style="text-align:left">
 									<c:if test="${data.gboard_type==1 }">[예약]</c:if>
 									<c:if test="${data.gboard_type==2 }">[결제]</c:if>
 									<c:if test="${data.gboard_type==3 }">[숙소]</c:if>
 									<c:if test="${data.gboard_type==4 }">[포인트/쿠폰]</c:if>
 									<c:if test="${data.gboard_type==5 }">[이용/기타]</c:if>
 								</td>
-							</tr>
-						<tr>
 							<th>등록일자</th>
 							<td  class="date" style="width: 30%"><fmt:formatDate value="${data.gboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+								
+							</tr>
+						<tr>
+								<th style="width: 5%">제목</th>
+								<td>${data.gboard_title }</td>
 							<th>수정일자</th>
 							<td colspan='2'  class="date" style="width: 30%"><fmt:formatDate value="${data.gboard_updatedate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td>${loginInfo.guest_name}</td>
+							<td>${data.guest_name}</td>
 							<th>첨부파일</th>
 							<td colspan="2">
 								<a href ="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}" target="_blank">
@@ -127,14 +127,14 @@
 							<th>내용</th>
 							<td colspan="3" style="width: 600px; height:300px">${data.gboard_content}</td>
 						</tr>
+					
 						</div>
 					</table>
+					
 					<div class="btnSet" style="text-align: right;">
 						<a href="edit.do?gboard_no=${data.gboard_no }" class="btn">답변등록</a>
-					
 						<a href="javascript:goList();" class="btn" style="text-align:right">목록 </a>
 					</div>
-				
 				</form>
 			</div>
 		</div>

@@ -36,21 +36,7 @@
     	};
     	</script>
 
-<script>
-    	$(function() {
-    		$(".choose").click(function() {
-    			if ($(this).find(".type").css('display') == 'none') {
-    				$(".type").slideUp("fast");
-    				$(this).find(".type").slideDown("fast");  
-    				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png"); 
-    				$(this).find(".downbtn").attr("src", "/hotel/image/boardPic/up.png");
-    			} else {
-    				$(this).find(".type").slideUp("fast"); 
-    				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png"); 
-    			}
-    		})
-    	});
-    </script>
+
 
 </head>
 <body>

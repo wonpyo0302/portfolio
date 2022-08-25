@@ -162,5 +162,6 @@ public class GuestServiceImpl implements GuestService {
 	public GuestVO guestlist(GuestVO vo) {
 		return gmapper.guestlist(vo);
 	}
+	
 
 }

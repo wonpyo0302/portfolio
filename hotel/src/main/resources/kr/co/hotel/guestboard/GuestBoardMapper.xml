@@ -6,9 +6,9 @@
 	<!-- 등록하기 -->
 	<insert id="insert" parameterType="kr.co.hotel.guestboard.GuestBoardVO" >
 		INSERT INTO guestboard (
-			guest_no, gboard_type, gboard_title, gboard_content, gboard_viewcount, gboard_writer, gboard_regdate, gboard_status, filename_org, filename_real
+			guest_no, gboard_type, gboard_title, gboard_content, gboard_viewcount, guest_name, gboard_regdate, gboard_status, filename_org, filename_real
 		) VALUES (
-			#{guest_no}, #{gboard_type}, #{gboard_title}, #{gboard_content}, #{gboard_viewcount}, #{gboard_writer}, now(), #{gboard_status}, #{filename_org}, #{filename_real}
+			#{guest_no}, #{gboard_type}, #{gboard_title}, #{gboard_content}, #{gboard_viewcount}, #{guest_name}, now(), #{gboard_status}, #{filename_org}, #{filename_real}
 		)  
 		<selectKey keyProperty="gboard_no" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID()
@@ -54,7 +54,10 @@
 	
 	<!-- 조회하기 -->
 	<select id="view" parameterType="int" resultType="kr.co.hotel.guestboard.GuestBoardVO">
-		SELECT * FROM guestboard WHERE gboard_no = #{gboard_no}
+		SELECT *, 
+			( SELECT guest_name FROM guest
+				WHERE guest_no = guestboard.guest_no) AS guest_name 
+		FROM guestboard WHERE gboard_no = #{gboard_no}
 	</select>
 
 	
@@ -66,7 +69,7 @@
 	<!-- 수정하기 -->
 	<update id="update" parameterType="kr.co.hotel.guestboard.GuestBoardVO">
 		UPDATE guestboard SET 
-			gboard_title = #{gboard_title}, gboard_content = #{gboard_content}, gboard_updatedate = now()
+			gboard_type = #{gboard_type}, gboard_title = #{gboard_title}, gboard_content = #{gboard_content}, gboard_updatedate = now()
 			<if test="filename_org != null">
 			, filename_org = #{filename_org}, filename_real = #{filename_real}
 			</if>

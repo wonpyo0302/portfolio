@@ -64,7 +64,7 @@
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "/hotel/board/list.do";
+		location.href = "/hotel/hostboard/list.do";
 	}
 	// 삭제하기
 	function goDel(hboard_no){
@@ -82,13 +82,10 @@
 			<h3 class="sub_title" style="text-align: left">Q&A</h3>
 			<br>
 			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/boardPic/qna.png" width="40px"> 게스트 전용 문의사항
-				게시판입니다.
+				<img src="/hotel/image/boardPic/qna.png" width="40px"> 호스트 전용
+				문의사항 게시판입니다.
 			</h6>
-			<br> 
-			<br> 
-			<br> 
-			<br>
+			<br> <br> <br> <br>
 			<div class="bbs">
 				<form method="get" name="frm" id="frm" action="view.do"
 					enctype="multipart/form-data">
@@ -97,39 +94,36 @@
 					<table class="board_write">
 						<div class="title">
 							<tr>
-								<th style="width: 5%">제목</th>
-								<td>${data.hboard_title }</td>
-								
-								<th style="width: 5%">문의유형</th>
-								<td style="text-align:left" colspan='2'>
-									<c:if test="${data.hboard_type==1 }">[예약]</c:if>
-									<c:if test="${data.hboard_type==2 }">[결제]</c:if>
-									<c:if test="${data.hboard_type==3 }">[숙소]</c:if>
-									<c:if test="${data.hboard_type==4 }">[포인트/쿠폰]</c:if>
-									<c:if test="${data.hboard_type==5 }">[이용/기타]</c:if>
+								<th style="width: 10%">문의유형</th>
+								<td style="text-align: left">
+									<c:if test="${data.hboard_type==6 }">[입점]</c:if> 
+									<c:if test="${data.hboard_type==7 }">[광고/제휴]</c:if> 
+									<c:if test="${data.hboard_type==8 }">[이용회원]</c:if>
+									 <c:if test="${data.hboard_type==9 }">[이용/기타]</c:if>
 								</td>
+							<th>등록일자</th>
+							<td class="date" style="width: 30%"><fmt:formatDate
+										value="${data.hboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 							</tr>
 						<tr>
-							<th>등록일자</th>
-							<td  class="date" style="width: 30%"><fmt:formatDate value="${data.hboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+							<th style="width: 5%">제목</th>
+							<td>${data.hboard_title }</td>
 							<th>수정일자</th>
-							<td colspan='2'  class="date" style="width: 30%"><fmt:formatDate value="${data.hboard_updatedate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
+							<td colspan='2'  class="date" style="width: 30%"><fmt:formatDate value="${data.hboard_updatedate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td>${loginInfo.host_name}</td>
+							<td>${data.host_name}</td>
 							<th>첨부파일</th>
 							<td colspan="2">
 								<a href ="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}" target="_blank">
 									${data.filename_org }
 								</a>
-							
 							</td>
 						</tr>
-						
 						<tr>
 							<th>내용</th>
-							<td colspan="3">${data.hboard_content}</td>
+							<td colspan="3" style="width: 600px; height:300px">${data.hboard_content}</td>
 						</tr>
 						</div>
 					</table>
@@ -138,10 +132,8 @@
 						<a href="javascript:goDel(${data.hboard_no});" class="btn">삭제</a>
 						<a href="javascript:goList();" class="btn" style="text-align:right">목록 </a>
 					</div>
-					<!-- <a href="javascript:goDel(${data.hboard_no});" class="btn">삭제</a> -->
 				</form>
 			</div>
-			
 		</div>
 	</div>
 </head>

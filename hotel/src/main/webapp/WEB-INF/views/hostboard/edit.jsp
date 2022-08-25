@@ -32,28 +32,15 @@
 </style>
 
 <script> 
-	// 글작성 완료 후 내가 쓴글 상세보기 이동
 	function goSave() {
 		frm.submit();
-		
+	};
+	
+	function goBack(){
+		history.back();
 	};
 </script>
 
-<script>
-	$(function() {
-		$(".choose").click(function() {
-			if ($(this).find(".type").css('display') == 'none') {
-				$(".type").slideUp("fast");
-				$(this).find(".type").slideDown("fast");
-				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png");
-				$(this).find(".downbtn").attr("src", "/hotel/image/boardPic/up.png");
-			} else {
-				$(this).find(".type").slideUp("fast");
-				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png");
-			}
-		})
-	});
-</script>
 
 </head>
 <body>
@@ -63,11 +50,7 @@
 		<div class="size">
 			<h3 class="sub_title" style="text-align: left">Q&A</h3>
 			<br>
-			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/boardPic/qna.png" width="40px"> 게스트 전용 문의사항
-				게시판입니다.
-			</h6>
-			<br>
+			
 			<h3 class="sub_title" style="text-align: left">문의글 수정</h3>
 			<br>
 			<div class="bbs">
@@ -82,21 +65,18 @@
 									<th>문의유형</th>
 									</span>
 									<td class="choose"><span class="srchSelect"> <select
-											id="stype" name="stype" class="dSelect" title="검색분류 선택">
-												<option value="reservation"
-													<c:if test="${data.hboard_type==1 }">selected</c:if>>
-													예약문의</option>
-												<option value="pay"
-													<c:if test="${data.hboard_type==2 }"> selected</c:if>>
-													결제 문의</option>
-												<option value="hotel"
-													<c:if test="${data.hboard_type==3 }"> selected</c:if>>
-													숙소 문의</option>
-												<option value="pointAndCoupon"
-													<c:if test="${data.hboard_type==4 }"> selected</c:if>>
-													포인트/쿠폰 문의</option>
-												<option value="etc"
-													<c:if test="${data.hboard_type==5 }"> selected</c:if>>
+											id="stype" name="hboard_type" class="dSelect" title="검색분류 선택">
+												<option value="6"
+													<c:if test="${data.hboard_type==6 }">selected</c:if>>
+													입점 문의</option>
+												<option value="7"
+													<c:if test="${data.hboard_type==7 }"> selected</c:if>>
+													광고/제휴 문의</option>
+												<option value="8"
+													<c:if test="${data.hboard_type==8 }"> selected</c:if>>
+													이용회원 문의</option>
+												<option value="9"
+													<c:if test="${data.hboard_type==9 }"> selected</c:if>>
 													이용/기타 문의</option>
 										</select>
 											</li>
@@ -110,7 +90,7 @@
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td>${loginInfo.guest_name}</td>
+								<td>${loginInfo2.host_name}</td>
 							</tr>
 							<tr>
 								<th>문의내용</th>
@@ -124,8 +104,9 @@
 							</div>
 						</tbody>
 					</table>
-					<div class="btnSet" style="text-align: right;">
-						<a class="btn" href="javascript:goSave();">작성완료 </a>
+				<div class="btnSet" >
+					   <a class="btn" style="align:left; background-color:grey; border:2px solid grey " href="javascript:goBack();" >이전 </a>
+                        <a class="btn" style="align:right;" href="javascript:goSave();">저장 </a>
 					</div>
 				</form>
 			</div>

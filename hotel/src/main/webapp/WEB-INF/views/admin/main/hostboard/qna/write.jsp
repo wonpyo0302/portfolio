@@ -36,21 +36,7 @@
     	};
     	</script>
 
-<script>
-    	$(function() {
-    		$(".choose").click(function() {
-    			if ($(this).find(".type").css('display') == 'none') {
-    				$(".type").slideUp("fast");
-    				$(this).find(".type").slideDown("fast");  
-    				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png"); 
-    				$(this).find(".downbtn").attr("src", "/hotel/image/boardPic/up.png");
-    			} else {
-    				$(this).find(".type").slideUp("fast"); 
-    				$(".downbtn").attr("src", "/hotel/image/boardPic/down.png"); 
-    			}
-    		})
-    	});
-    </script>
+
 
 </head>
 <body>
@@ -75,11 +61,10 @@
 										</span>
 										<td class="choose">
 										<span class="srchSelect"> <select id="stype" name="hboard_type" class="dSelect" title="검색분류 선택">
-												<option name="hboard_type" value="1">예약문의</option>
-												<option name="hboard_type" value="2">결제 문의</option>
-												<option name="hboard_type" value="3">숙소 문의</option>
-												<option name="hboard_type" value="4">포인트/쿠폰 문의</option>
-												<option name="hboard_type" value="5">이용/기타 문의</option>
+												<option name="hboard_type" value="6">입점 문의</option>
+												<option name="hboard_type" value="7">결제 문의</option>
+												<option name="hboard_type" value="8">이용회원 문의</option>
+												<option name="hboard_type" value="9">이용/기타 문의</option>
 										</select>
 									</li>
 									<tr>

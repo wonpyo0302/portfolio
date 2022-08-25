@@ -36,8 +36,10 @@ public class Admin_GuestBoardController extends ImgHandling {
 	public String view(Model model, GuestBoardVO vo) {
 		// System.out.println(vo.get);
 		service.viewCount(vo.getGboard_no());
+		System.out.println("=========================="+ vo.getGboard_no());
 		GuestBoardVO gvo = service.view(vo.getGboard_no());
 		model.addAttribute("data", gvo);
+		System.out.println("=============================="+ gvo.getGuest_name());
 		return "admin/main/guestboard/qna/view";
 	}
 

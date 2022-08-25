@@ -1,7 +1,7 @@
-<%@ page language="java" 	pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
-<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp"%>
 
 
 <!DOCTYPE html>
@@ -32,10 +32,14 @@
 	height: 100%;
 	text-align: left;
 }
+
+th {
+	width : 15%;
+}
+
 </style>
 
 <script> 
-	// 글작성 완료 후 내가 쓴글 상세보기 이동
 	function goSave() {
 		frm.submit();
 	};
@@ -45,30 +49,15 @@
 	};
 </script>
 
-<script>
-	$(function() {
-		$(".choose").click(function() {
-			if ($(this).find(".type").css('display') == 'none') {
-				$(".type").slideUp("fast");
-				$(this).find(".type").slideDown("fast");
-				$(".downbtn").attr("src", "/hotel/image/down.png");
-				$(this).find(".downbtn").attr("src", "/hotel/image/up.png");
-			} else {
-				$(this).find(".type").slideUp("fast");
-				$(".downbtn").attr("src", "/hotel/image/down.png");
-			}
-		})
-	});
-</script>
 
 </head>
 <body>
-   <div id="container">
-			<div id="content">
-				<div class="con_tit">
-					<h2>게스트 관리 ▶ Q&A ▶ 수정</h2>
-				</div>
+	<div id="container">
+		<div id="content">
+			<div class="con_tit">
+				<h2>게스트 관리 ▶ Q&A ▶ 답변 등록</h2>
 			</div>
+		</div>
 	</div>
 	<div class="sub">
 		<div class="size">
@@ -76,54 +65,62 @@
 				<form method="post" name="frm" id="frm" action="edit.do"
 					enctype="multipart/form-data">
 					<input type="hidden" name="gboard_no" value="${data.gboard_no}">
+					<tr>
+						<th>문의번호 : ${data.gboard_no }</th>
+					</tr>
+				
 					<table class="board_write">
+				
 						<tbody>
 							<div class="container">
 								<ul class="list">
 									<li class="item">
+									
 									<th>문의유형</th>
 									</span>
-									<td class="choose"><span class="srchSelect"> 
-									<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
-												<option value="reservation"
-													<c:if test="${data.gboard_type==1}">selected</c:if>>예약</option>
-												<option value="pay"
-													<c:if test="${data.gboard_type==2}">selected</c:if>>결제</option>
-												<option value="hotel"
-													<c:if test="${data.gboard_type==3}">selected</c:if>>숙소</option>
-												<option value="pointAndCoupon"
-													<c:if test="${data.gboard_type==4}">selected</c:if>>포인트/쿠폰</option>
-												<option value="etc"
-													<c:if test="${data.gboard_type==5}">selected</c:if>>이용/기타</option>
-										</select>
-											</li>
+									<td style="text-align: left">
+										<c:if test="${data.gboard_type==1 }">[예약]</c:if> 
+										<c:if test="${data.gboard_type==2 }">[결제]</c:if> 
+										<c:if test="${data.gboard_type==3 }">[숙소]</c:if> 
+										<c:if test="${data.gboard_type==4 }">[포인트/쿠폰]</c:if> 
+										<c:if test="${data.gboard_type==5 }">[이용/기타]</c:if></td>
+									</select>
+									</li>
 							<tr>
 								<th>이메일</th>
-								<td><input type="text" name="guest_email" id="email" value="" placeholder="선택사항입니다.">@<input type="text" id="" value=""></td>
+								<td>${loginInfo.guest_email}</td>
 							</tr>
 							<tr>
 								<th>제목</th>
-								<td><input type="text" name="gboard_title" style="width: 90%" value="${data.gboard_title }"></td>
+								<td>${data.gboard_title }</td>
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td>${loginInfo.guest_name}</td>
-							</tr>
-							<tr>
-								<th>문의내용</th>
-								<td><textarea name="gboard_content" id="content" style="width: 90%" >${data.gboard_content}</textarea></td>
+								<td>${data.gboard_writer}</td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>
-								<td><input type="file" name="filename"></td>
+								<td><a
+									href="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}"
+									target="_blank"> ${data.filename_org } </a>
+								</td>
+							</tr>
+								<th>문의내용</th>
+								<td style=" height:300px">${data.gboard_content}</td>
+							</tr>
+							<tr>
+								<th>답변</th>
+								<td colspan="3"><textarea style="width: 90%"></textarea></td>
 							</tr>
 							</ul>
 							</div>
 						</tbody>
 					</table>
-				<div class="btnSet" >
-					   <a class="btn" style="align:left; background-color:grey; border:2px solid grey " href="javascript:goBack();" >이전 </a>
-                        <a class="btn" style="align:right;" href="javascript:goSave();">저장 </a>
+					<div class="btnSet">
+						<a class="btn"
+							style="align: left; background-color: grey; border: 2px solid grey"
+							href="javascript:goBack();">이전 </a> <a class="btn"
+							style="align: right;" href="javascript:goSave();">저장 </a>
 					</div>
 				</form>
 			</div>

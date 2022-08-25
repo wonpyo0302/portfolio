@@ -2,12 +2,13 @@ package kr.co.hotel.guestboard;
 
 import java.sql.Timestamp;
 
+import kr.co.hotel.guest.GuestVO;
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString
-public class GuestBoardVO {
+public class GuestBoardVO extends GuestVO {
 	private int gboard_no; // 게시물 번호
 	private int guest_no; // 게스트 번호
 	private int gboard_type; // 문의유형
@@ -19,7 +20,7 @@ public class GuestBoardVO {
 	private Timestamp gboard_updatedate; // 수정일
 	private int gboard_status; // 답변상태
 	
-	private String guest_name; //스칼라서브쿼리로 host_name를 가져옴
+	private String guest_name; //스칼라서브쿼리로 guest_name를 가져옴
 	private int diff; // 최신글 확인을 위한 날짜 차이 
 	
 	private String filename_org;

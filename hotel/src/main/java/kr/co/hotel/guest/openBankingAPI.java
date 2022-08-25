@@ -10,26 +10,31 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Random;
+
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.gson.JsonObject;
 
 // 네이버 API 예제 - 블로그 카테고리 조회
+
 public class openBankingAPI {
 
+	@Autowired
+	ApiVO avo;
+	
     public static void main(String[] args) {
     	try {
-    		bankingRealNameApi(new HashMap<String, String>());
+    		//bankingRealNameApi(new HashMap<String, String>());
     	} catch (Exception e) {
     		System.out.println(e.toString());
     	}
     }
-    
-    public static String bankingRealNameApi(HashMap<String, String> p) throws Exception {
+    public String bankingRealNameApi(ApiVO avo, HttpSession sess) throws Exception {
 
 		String code = "";		// 최종 return 될 코드 값
 
@@ -55,7 +60,7 @@ public class openBankingAPI {
 			conn.setRequestProperty("Transfer-Encoding", "chunked");
 			conn.setRequestProperty("Connection", "keep-alive\"");
 			// token 값 header에 넣어주기
-			conn.setRequestProperty("Authorization", "BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNMjAyMjAxNTYwIiwic2NvcGUiOlsib29iIl0sImlzcyI6Imh0dHBzOi8vd3d3Lm9wZW5iYW5raW5nLm9yLmtyIiwiZXhwIjoxNjY5MDE1NDc0LCJqdGkiOiJjYmI1YzYwZi1lZjllLTRjNmUtOGQ0ZS01ZTQwYWE3YWMzNDcifQ.Rcs7PkxB86QLmDJUkpPMN5jcjNX1vE9dLQZW1yqcpMA");
+			conn.setRequestProperty("Authorization", "BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNMjAyMjAxNTYwIiwic2NvcGUiOlsib29iIl0sImlzcyI6Imh0dHBzOi8vd3d3Lm9wZW5iYW5raW5nLm9yLmtyIiwiZXhwIjoxNjY5MDk2MTk3LCJqdGkiOiIyZjJiMTQ2YS1mMzZlLTQ3ODgtOWM5YS1lYmNlOWU1NzU3NzkifQ.eSIC8SBmbgWEuXnqoN7M6ModH_uga9OjcF94PP_yZQQ");
             // POST 방식 사용을 위해
 			conn.setDoOutput(true);
 
@@ -65,15 +70,17 @@ public class openBankingAPI {
 			String bank_or_id = "M202201560";
 			String bank_tran_id = bank_or_id+"U"+n;
 			//String bank_tran_id = "M202201560U023162515";
-
+			
 			JsonObject params = new JsonObject();
-			params.addProperty("bank_code_std", "012");
-			params.addProperty("account_num", "3560094213733");
-			params.addProperty("account_holder_info_type", " ");
-			params.addProperty("account_holder_info", "940713");
+			
+			params.addProperty("bank_code_std", avo.getBank_code_std());
+			params.addProperty("account_num", avo.getAccount_num());
+			params.addProperty("account_holder_info_type", "");
+			params.addProperty("account_holder_info", avo.getAccount_holder_info());
 			params.addProperty("bank_tran_id", bank_tran_id);
 			params.addProperty("tran_dtime", time);
-
+			
+			 
 			bw.write(params.toString());
 			bw.flush();
 			bw.close();
@@ -93,7 +100,8 @@ public class openBankingAPI {
 				// 응답 데이터
 				System.out.println("responseJson :: " + sb.toString());
 				System.out.println("rsp_code :: " + code);
-			
+				sess.setAttribute("code",code);
+				sess.setAttribute("JSON",sb);
             // 아래 else 이후 코드는 입력하지 않아도 됨
 			} else {
 				code = "9999";
