@@ -26,15 +26,15 @@
 	 
 	 -->
 	 
-	 <!-- 1번조건 지역별 호텔 상위 3개 (리스트를 여럿 작성) -->
+	 <!-- 1번조건 지역별 호텔 상위 5개 (리스트를 여럿 작성) -->
 	 <select id="hotelTopFive" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
 	 <![CDATA[
 	 	SELECT *, 
 	 		(SELECT MIN(room_price) FROM room r where h.HOTEL_NO = r.hotel_no) as lowPrice,
-	 		(SELECT filename_org FROM image WHERE no = #{hotel_no} limit 1) AS filename
+	 		(SELECT filename_org FROM image WHERE no = h.hotel_no AND image_type ='HOTEL' limit 1) AS filename
 	 	FROM hotel h
-        where state_code = ${state_code}
-	 	LIMIT 5
+        where state_code = #{state_code}
+	 	LIMIT 5;
 	 ]]>
 	 </select>
 	 

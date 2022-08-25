@@ -42,7 +42,7 @@ html, body {
 	
 	.swiper-slide img {
 		display: block;
-		width: 50%;
-		height: 50%;
+		width: 240px;
+		height: 160px;
 		object-fit: cover;
 	}
