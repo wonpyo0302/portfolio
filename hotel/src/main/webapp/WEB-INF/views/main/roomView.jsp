@@ -60,15 +60,15 @@
          ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
          ,minDate: "+1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
          ,maxDate: "+30Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
- });
+ 		});
  
- $('#enddate').datepicker('setDate', 'today+1');
-	   	 $('#enddate').val().replace("-","");
-	   	 //console.log(typeof((Number)($('#enddate').val().replace(/-/g,""))));
-	   	 var startdate=(Number)($('#startdate').val().replace(/-/g,""))
-	   	 var enddate=(Number)($('#enddate').val().replace(/-/g,""))
-		reservecheck();
-	});
+	 $('#enddate').datepicker('setDate', 'today+1');
+	 $('#enddate').val().replace("-","");
+		   	 //console.log(typeof((Number)($('#enddate').val().replace(/-/g,""))));
+		   	 //var startdate=(Number)($('#startdate').val().replace(/-/g,""));
+		   	 //var enddate=(Number)($('#enddate').val().replace(/-/g,""));
+			reservecheck();
+		});
 
 //페이지 이동시 중복체크
 	function reservecheck(){
@@ -82,11 +82,25 @@
 				enddate : $('#enddate').val()
 			}
 		 }).done(function (res){
-			 var startdate=(Number)($('#startdate').val().replace(/-/g,""))
-	   	 	 var enddate=(Number)($('#enddate').val().replace(/-/g,""))
-	   	 	 console.log(enddate-startdate);
-			 $("#calcprice").val((enddate-startdate)*${roomInfo.room_price });
-			 
+	   	 	 //console.log(startdate);
+	   	 	 //console.log(enddate);
+	   	 	 //console.log(enddate-startdate);
+	   	 	 
+	   	 	 console.log($("#startdate").val());
+		   	 console.log($("#enddate").val());
+			 var startdate=new Date($("#startdate").val().split('-'));
+			 var enddate=new Date($("#enddate").val().split('-'));
+			 var dif = enddate-startdate;
+			 var day = 24*60*60*1000;
+			 var diffdate=(dif/day);
+		   	 console.log(diffdate);
+	   	 	 
+		   	 if(diffdate<0){
+				 $("#calcprice").val('0');
+		   	 }else{
+			 	$("#calcprice").val((diffdate)*${roomInfo.room_price });
+		   	 }
+		   	 
 			 if(res !=0){
 				 $("#reservebtn").val("예약 불가");
 				 $("#reservebtn").css("background-color","gray");

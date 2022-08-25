@@ -22,6 +22,7 @@ public interface ReserveService {
 	public HostVO SelectHostNo(HotelVO vo);
 	public HotelVO SelectHotelInfo(HotelVO vo);
 	public RoomVO SelectRoomInfo(ReserveVO vo);
+	public ReserveVO SelectReserveInfo(ReserveVO vo);
 	
 	
 	//--이하 마이페이지 예약내역리스트_빛찬--------------------

@@ -73,8 +73,11 @@ $(function(){
 	
 	$("#coupon_price").on("focusout",function(){
 		$("#totalprice").val(${param.total_price}-$("#point").val()-$("#coupon_price").val());
-		if($("#totalprice").val()<0){
-			$("#totalprice").val(0);
+		if($("#totalprice").val()< 100){
+			alert("최소 결제금액은 100원 입니다.");
+			$("#totalprice").val('${param.total_price}');
+			$("#point").val('');
+			resetcoupon();
 		}
 	});	
 	
@@ -85,8 +88,11 @@ $(function(){
 		}	
 		
 		$("#totalprice").val(${param.total_price}-$("#point").val()-$("#coupon_price").val());
-		if($("#totalprice").val()<0){
-			$("#totalprice").val(0);
+		if($("#totalprice").val()<100){
+			alert("최소 결제금액은 100원 입니다.");
+			$("#totalprice").val('${param.total_price}');
+			$("#point").val('');
+			resetcoupon();
 		}
 	});	
 });
@@ -101,22 +107,36 @@ function resetcoupon(){
 
 
 function reserve(){
-	if($("#payselect").val()==1){
+	if($("#rev_name").val()==''){
+		alert("예약자 이름을 입력하세요");
+		$("#rev_name").focus();
+		return false;
+	}
+	
+	if($("#rev_hp").val()==''){
+		alert("예약자 전화번호를 입력하세요");
+		$("#rev_hp").focus();
+		return false;
+	}
+	
+	if($("#point").val()==''){
+		$("#point").val('0');
+	}
+	
+	if($("#payselect").val()==0){
 		var con = true;
-		console.log(typeof(Date($("#startdate"))));
 		var IMP = window.IMP;      
 		IMP.init('imp74083745');                 
 		IMP.request_pay({            
 			pg: 'html5_inicis',
-			pay_method: 'card',//select 박스에서 선택한것
+			pay_method: 'card',
 			merchant_uid: 'merchant_' + new Date().getTime(),
-			name: '주문명:결제테스트',//상품페이지에서 있는 객실이름
+			name: "${hotelinfo.hotel_name}",//상품페이지에서 있는 객실이름
 			amount: $("#totalprice").val(), //상품페이지에서 있는 금액
 			buyer_email: "${loginInfo.guest_email}",//로그인 세션에 저장되어있는 이메일
 			buyer_name: "${loginInfo.guest_name}",//로그인 세션에 저장되어있는 이름
 			buyer_tel: "${loginInfo.guest_hp}",//로그인 세션에 저장되어있는 전화번호
 			buyer_addr: "${loginInfo.guest_addr1}",//로그인 세션에 저장되어있는 주소
-			buyer_postcode: '123-456',////로그인 세션에 저장되어있는 우편번호(생략할 생각)
 			},function (rsp) { 
 				console.log(rsp)
 						   if (rsp.success) {
@@ -129,8 +149,8 @@ function reserve(){
 						        	total_price : String($("#totalprice").val()),
 						        	startdate :  '${param.startdate}',
 						        	enddate :  '${param.enddate}',
-						        	room_no : 142,
-						        	hotel_no : 3,
+						        	room_no : ${param.room_no},
+						        	hotel_no : ${param.hotel_no},
 						        	guest_no : ${loginInfo.guest_no},
 						        	guest_hp : "${loginInfo.guest_hp}",
 						        	rev_name : $("#rev_name").val(),
@@ -159,13 +179,40 @@ function reserve(){
 						    		   }
 						       })
 						     } else {
-						       alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
+						       alert("결제에 실패하였습니다.\n 다시 시도해주세요");
+						       window.location.reload();
 						      con =false;
 						  }
 				});
 		}
 	else{
-		location.href ="paytransfer.do?hotel_no=3";
+		$(function(){
+			$.ajax({
+				url :"/hotel/reserve/paytransfer.do",
+				type :"post",
+				async : false,
+				data : {
+					imp_uid : "imp_"+new Date().getTime(),
+					total_price : String($("#totalprice").val()),
+		        	startdate :  '${param.startdate}',
+		        	enddate :  '${param.enddate}',
+		        	room_no : ${param.room_no},
+		        	hotel_no : ${param.hotel_no},
+		        	guest_no : ${loginInfo.guest_no},
+		        	guest_hp : "${loginInfo.guest_hp}",
+		        	rev_name : $("#rev_name").val(),
+		        	rev_hp : $("#rev_hp").val(),
+		        	used_point : Number($("#point").val()),
+		        	coupon_no : $("#coupon_no").val(),
+		        	totalpoint : ${loginInfo.totalpoint}-$("#point").val(),
+		        	pay_type : $("#payselect").val()
+				},
+				success : function(res){
+					alert("예약완료되었습니다. \n )"+res);
+					location.href="/hotel/reserve/paytransfer.do?hotel_no="+${param.hotel_no}+"&imp_uid="+res;
+				}
+			});
+		});
 	}
 }  
 </script>
@@ -182,12 +229,12 @@ function reserve(){
 	
 	<div style="margin:30px 0 0 400px">
 		예약자 이름 <br>
-		<input type="text" name="rev_name" style="width:300px;" id="rev_name" placeholder="체크인시 필요한 정보입니다.">
+		<input type="text" id="rev_name" name="rev_name" style="width:300px;" placeholder="체크인시 필요한 정보입니다.">
 	</div>
 	
 	<div style="margin:30px 0 0 400px">
 		예약자 전화번호 <br>
-		<input type="text" name="rev_name" style="width:300px;" id="rev_name" placeholder="체크인시 필요한 정보입니다">
+		<input type="text" id="rev_hp" name="rev_hp" style="width:300px;"  placeholder="체크인시 필요한 정보입니다">
 	</div>
 	
 	<hr class="hr1">
@@ -218,8 +265,8 @@ function reserve(){
 	<div style="margin:40px 0 0 400px"> 
 		<h4>결제 수단</h4>
 		<select id="payselect">
-				<option value="1" selected="selected">카드</option>
-				<option value="2">무통장입금</option>
+				<option value="0" selected="selected">카드</option>
+				<option value="1">무통장입금</option>
 		</select>
 	</div>
 </div>
@@ -237,9 +284,9 @@ function reserve(){
 	
 	<h3>총 결제 금액</h3><br>
 	<b>총가격</b> &nbsp;<input type="text" id="totalprice" style="border:none" readonly="readonly" 
-	value="<fmt:formatNumber value="${param.total_price}" pattern="#,###" />">
+	value="${param.total_price}">
 	<br>
-	<input type="button" id="submit" value="예약" onclick="reserve();">
+	<input type="button" id="submit" value="예약" onclick="return reserve();">
 </div>
 </body>
 </html>
