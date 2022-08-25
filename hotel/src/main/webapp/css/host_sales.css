@@ -8,7 +8,7 @@
 
 .tr-head-test th{
 	width: 20%;
-	border: 3px solid gray;
+	border: 3px solid red;
 	padding-left: 20px;
 }
 
@@ -41,46 +41,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.tr-head {
-	height: 250px;
-	background-color: #ECF2E4;
-	border-right: 1px solid #ebebeb;
-	border-bottom: 1px solid #ebebeb;
-	padding: 10px;
-
-	
-}
-
-
-.tr-head th {
-	text-align: center;
-}
-
 tr {
 	margin: 20px;
 }
@@ -96,10 +56,3 @@ tr td {
 	font-size: 20px;
 }
 
-.user-name {
-	font-size: 40px;
-}
-
-.user-email {
-	font-size: 20px;
-}

@@ -122,4 +122,41 @@ public class ReserveServiceImp implements ReserveService {
 		return mapper.SelectReserveInfo(vo);
 	}
 
+	@Override
+	public ReserveVO UpdatePay_Status(ReserveVO vo) {
+		return mapper.UpdatePay_Status(vo);
+	}
+
+	@Override
+	public void DeleteAccountPay() {
+		mapper.DeleteAccountPay();
+	}
+
+	
+	//스케줄러로 자동취소메소드 구현
+	@Override
+	public List<ReserveVO> CancleList() {
+		return mapper.CancleList();
+	}
+
+	@Override
+	public int UpdateReserveStatus(ReserveVO vo) {
+		return mapper.cancelReserve(vo);
+	}
+
+	@Override
+	public int UpdateGuestPoint(ReserveVO vo) {
+		return mapper.UpdateGuestPoint(vo);
+	}
+
+	@Override
+	public int InsertPointTable(ReserveVO vo) {
+		return mapper.InsertPointTable(vo);
+	}
+
+	@Override
+	public int UpdateCouponStatus(ReserveVO vo) {
+		return mapper.UpdateCouponStatus(vo);
+	}
+
 }

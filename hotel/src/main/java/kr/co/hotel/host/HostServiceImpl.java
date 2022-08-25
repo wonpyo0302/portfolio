@@ -1,5 +1,7 @@
 package kr.co.hotel.host;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 import kr.co.hotel.admin.AdminVO;
 import kr.co.hotel.main.HotelVO;
@@ -178,11 +182,34 @@ public class HostServiceImpl implements HostService {
 		int totalReview = review_count.getTotalReview();
 		double avgScore = review_count.getAvgScore();
 		
-		map.put("reserve_count", reserve_count);
+		if((Object)daily_sales == null) {
+			System.out.println("널값확인 : "+ daily_sales);
+			daily_sales =0;
+		}
+		
 		map.put("daily_sales", daily_sales);
+		map.put("reserve_count", reserve_count);
 		map.put("totalReview", totalReview);
 		map.put("avgScore", avgScore);
 		
 		return map;
 	}
+
+	@Override
+	public Map get_sales(int hotel_no) {
+		Map map = new HashMap();
+		
+		List<Integer> ary = hmapper.sales_for_aWeek(hotel_no);
+		map.put("ary", ary);
+		
+		return map;
+	}
+
+	@Override
+	public int making_calendar(Map map) {
+		hmapper.making_calendar(map);
+		return 0;
+	}
+
+	
 }

@@ -24,6 +24,5 @@
 		update coupon set usedate = null, use_status = 0 where coupon_no = (select coupon_no from reserv where imp_uid = #{imp_uid})
 	</update>
 	
-	
 
 </mapper>

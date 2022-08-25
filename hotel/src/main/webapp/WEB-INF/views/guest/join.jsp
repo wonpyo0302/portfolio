@@ -164,10 +164,11 @@
     		});
     	
     		$( "#birthday" ).datepicker({
-                dateFormat: 'yy-mm-dd' //Input Display Format 변경
+                dateFormat: 'yymmdd' //Input Display Format 변경
                     ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
                     ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
                     ,changeYear: true //콤보박스에서 년 선택 가능
+                    ,yearRange: "c-100:c+10"
                     ,changeMonth: true //콤보박스에서 월 선택 가능                
                     ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
                     ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
@@ -176,42 +177,39 @@
                     ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
                     ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
                     ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
-                    ,minDate: "-100Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+                    ,minDate: "-120Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
                     ,maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
                 });
     		
     		
     	});
-    	function bankCheck(){
-    		$("#bankCheck").click(function(){
-    			
-        		$.ajax({
-        			url: 'https://openapi.openbanking.or.kr/v2.0/inquiry/real_name',
-        			type:'POST',
-        		    dataType: 'JSON', 
-        			content_type:'application/json; charset=UTF-8',
-        			access_token :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNMjAyMjAxNTYwIiwic2NvcGUiOlsib29iIl0sImlzcyI6Imh0dHBzOi8vd3d3Lm9wZW5iYW5raW5nLm9yLmtyIiwiZXhwIjoxNjY4OTM0NzAwLCJqdGkiOiI3ODhjYWVhOC05ZWZiLTQ2YzctODg3NS00ZjJmMzE1NTIxYjMifQ.HfE40neb6gsyv8ZtfznrWDbeRntTc6SsNXSFnwQDOQ0',
-        			scope: 'oob',
-        			Access_Control_Allow_Origin :"*",
-        			data : 
-        			{	  
-        				 
-        				  'bank_tran_id': 'M202201560', 
-        				  'bank_code_std': '012',
-        				  'account_num': $('#account_num').val(),
-        				  'account_holder_info_type':' ',
-        				  'account_holder_info': $('#birthday').val(),
-        				  'tran_dtime':'20220823102200'
-        			},
-        			  success: function(data,textStatus) {
-        				  alert('은행예금주 실명 인증되었습니다');
-        				  console.log('안녕 나는 정인아야');
-        				  console.log(data.account_holder_name);
+    	function bankCheck() {
+    			if ($("#account_num").val().trim() == '') {
+    				alert('계좌를 입력해 주세요');
+    				$("#account_num").focus();
+    				return ;
+    			} else {
+        				$.ajax({
+        				url: "realNameApi.do",
+        				type:"POST",
+        				data : 
+        				{
+        			 	 bank_code_std: $("#bank").val(),
+        			  	 account_num: $("#account_num").val(),
+        			  	 account_holder_info: ($("#birthday").val()).substring(2,8),
+        				},
+        			  	success: function(res) {
+        				  	if(res) {
+        					alert('인증되었습니다.코드넘버:${code}${JSON}');
+        					console.log(res);
+        				  } else{
+        					 alert('인증 실패하였습니다');
+        					 console.log(res);
+        				  }
         			  }
-        	});
-    			
-    		});
-    	};
+        		});
+    		};
+    };
     </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -327,29 +325,77 @@
                         </tr>
                         <tr>
                             <th>생년월일</th>
-                            <td><input type="text" name="guest_birth" id="birthday" style="float:left;" autocomplete="off">&nbsp;&nbsp;&nbsp;6자 입력해주세요</td>
+                            <td><input type="text" name="guest_birth" id="birthday" style="float:left;" autocomplete="off"></td>
                         </tr>   
                         <tr>
                             <th>은행</th>
                             <td>
-                                <input type="text" name="g_bank" id="bank_name" value="${data.bank_name }"  maxlength="15" style="float:left;">
-                            	<span class="guest_bank_check"><a href="javascript:;"  class="btn bgGray" style="float:left; width:auto; clear:none;" id="bankDupCheckBtn">은행확인</a></span>
-                            </td>
+                            	<div class="select_pack">
+									<select name="bank_code" id="bank" required="required" style="height:30px;">
+										<option value="218">KB증권 (218)</option>
+										<option value="227">KTB투자증권 (227)</option>
+										<option value="238">미래에셋증권 (238)</option>
+										<option value="240">삼성증권 (240)</option>
+										<option value="243">한국투자증권 (243)</option>
+										<option value="247">NH투자증권 (247)</option>
+										<option value="261">교보증권 (261)</option>
+										<option value="262">하이투자증권 (262)</option>
+										<option value="263">현대차증권 (263)</option>
+										<option value="264">키움증권 (264)</option>
+										<option value="265">이베스트투자증권 (265)</option>
+										<option value="266">SK증권 (266)</option>
+										<option value="267">대신증권 (267)</option>
+										<option value="269">한화투자증권 (269)</option>
+										<option value="270">하나금융투자 (270)</option>
+										<option value="271">토스증권 (271)</option>
+										<option value="278">신한금융투자 (278)</option>
+										<option value="279">DB금융투자 (279)</option>
+										<option value="280">유진투자증권 (280)</option>
+										<option value="287">메리츠증권 (287)</option>
+										<option value="296">오픈증권 (296)</option>
+										<option value="002">산업 (002)</option>
+										<option value="003">기업 (003)</option>
+										<option value="004">국민 (004)</option>
+										<option value="007">수협 (007)</option>
+										<option value="011">농협 (011)</option>
+										<option value="012">농협중앙 (012)</option>
+										<option value="020">우리 (020)</option>
+										<option value="023">SC제일 (023)</option>
+										<option value="027">씨티 (027)</option>
+										<option value="031">대구 (031)</option>
+										<option value="032">부산 (032)</option>
+										<option value="034">광주 (034)</option>
+										<option value="035">제주 (035)</option>
+										<option value="037">전북 (037)</option>
+										<option value="039">경남 (039)</option>
+										<option value="045">새마을 (045)</option>
+										<option value="048">신협 (048)</option>
+										<option value="050">상호저축 (050)</option>
+										<option value="064">산림조합 (064)</option>
+										<option value="071">우체국 (071)</option>
+										<option value="081">KEB하나 (081)</option>
+										<option value="088">신한 (088)</option>
+										<option value="089">케이뱅크 (089)</option>
+										<option value="090">카카오 (090)</option>
+										<option value="092">토스 (092)</option>
+										<option value="097">오픈 (097)</option>
+									</select>
+								</div>
+							</td>
                         </tr>
                         <tr>
                             <th>계좌번호</th>
                             <td>
-                                <input type="text" name="g_accountno" id="account_num" value="${data.account_num}"  maxlength="15" style="float:left;" />
-                                <span class="guest_accountno_check"><a href="javascript:bankCheck();"  class="btn bgGray" style="float:left; width:auto; clear:none;" id="bankCheck"
+                                <input type="text" name="g_accountno" id="account_num" value="${data.account_num}"  maxlength="20" style="float:left;" />
+                                <span class="guest_accountno_check"><a href="javascript:;" onclick="bankCheck();"class="btn bgGray" style="float:left; width:auto; clear:none;" id="bankCheck"
                                  >계좌확인</a></span>
-                               	<input type="text" value="${data.account_holder_name }" />
                             </td>
                         </tr>
           	
                         <tr>
                             <th>성별</th>
                             <td>
-                            <select name="g_gender" id="g_gender">
+                            <select name="g_gender" id="g_gender" style="height:30px;">
                             <option value="1">남성</option>
                             <option value="2">여성</option>
                             </select> 

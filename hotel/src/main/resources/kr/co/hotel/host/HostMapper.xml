@@ -115,7 +115,28 @@
         host_no=#{host_no};
 		
 	</select>
+	
+	<insert id="making_calendar" parameterType="java.util.Map">
+	
+		INSERT INTO calendar
+		(dt, da)
+		VALUES
+		(#{date},#{day})
+	
+	</insert>
 
+	<select id="sales_for_aWeek" parameterType="int" resultType="Integer">
+		select  ifnull(b.total_price,0)as total_price from
+		(select * from calendar where dt between DATE_ADD(now(), INTERVAL -7 DAY) and now()) a
+		left join
+		(select substring( rev_date,1,10) as date, sum(total_price) as total_price  
+	    from reserv 
+	    where rev_date 
+		between DATE_ADD(now(), INTERVAL -6 DAY) and now()
+	    and hotel_no = 292
+		group by substring( rev_date,1,10)) b
+		on a.dt = b.date
+	</select>
 	
 
 </mapper>

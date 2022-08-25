@@ -1,3 +1,8 @@
+body {
+	position: absolute;
+	top: 5%;
+	left: 15%;
+}
 .swiper {
 	margin: initial;
 	width: 800px;
@@ -31,19 +36,7 @@
 	height: 300px;
 	padding: 20px 100px 30px 50px;
 }
-#infoBox {
-	align-self: center;
-	margin-left: 100px;
-}
-#infoBox #infoContent {
-	border: 1px solid black;
-	text-align: center;
-	padding: 5px 5px 5px 5px;
-	margin-top: 5px;
-}
-#reservBtn {
-	margin-top: 5px;
-}
+
 
 .detail_full_screen {
 	margin-top: 20px;
@@ -56,9 +49,9 @@
 }
 
 .middleBox {
-	width : 37.5cm;
+	width : 35.17cm;
 	border: 1px solid black;
-	margin: 0 100px 0 100px;
+	margin-right: 100px;
 }
 #room_screen {
 	height: 300px;
@@ -71,13 +64,12 @@
 	border: 2px solid black;
 	font-size: 20px;
 	font-weight: bold;
-	margin-left: 100px;
 	margin-top: 60px;
 }
 .contentBox{
 	text-align: center;
 	display: inline-block;
-	margin: 5px 0 0 100px;
+	margin-top: 5px;
 	width: 640px;
 	border: 1px solid black;
 }
@@ -87,19 +79,62 @@
 	border: 1px solid black;
 }
 .roomInfoDiv{
-	display: inline-block;
+	display: inline-flex;
+	margin: 5px 0 5px 0;
 }
 #roomInfoBox{
 	margin-top: 5px;
 	border: 0.5px solid black;
 }
+.serviceBox{
+	margin-left: 50px;
+	text-align: center; 
+}
 
 #Low {
-	margin-left: 100px;
 	vertical-align: middle;
 	display: flex;
 }
 
 .lowDiv {
 	display: flex;	
+}
+.reviewDiv{
+	width : 35.17cm;
+	border: 1px solid black;
+	margin-right: 100px;
+}
+
+.star-ratings {
+  color: black; 
+  position: relative;
+  unicode-bidi: bidi-override;
+  width: max-content;
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  font-size: 50px;
+  text-align: center;
+}
+ 
+.star-ratings-fill {
+  color: #fff58c;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-text-fill-color: gold;
+  size: 100px;
+}
+ 
+.star-ratings-base {
+  z-index: 0;
+  padding: 0;
+  size: 100px;
+}
+#ui-datepicker-div{
+	position: fixed;
 }

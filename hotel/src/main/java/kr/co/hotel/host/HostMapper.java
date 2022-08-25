@@ -1,6 +1,7 @@
 package kr.co.hotel.host;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -33,4 +34,7 @@ public interface HostMapper {
 	int reserve_count (int hotel_no);
 	int daily_sales (int hotel_no);
 	HotelVO review_count(int host_no);
+	List<Integer> sales_for_aWeek(int hotel_no);
+	
+	int making_calendar(Map map);
 }

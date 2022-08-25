@@ -34,10 +34,10 @@
 
   <body>
 	<div class ="detail_full_screen">
-		<div id="hotel_screen" style="vertical-align: middle;">
+		<div id="hotel_screen">
 	  		<div class="hotelName">${hotel.hotel_name}</div>
 	  		<!-- 별점찍기 구현_원표 -->
-	  		<div class="star-ratings" style="text-align: center; display: inline-block; margin-left: 430px;">
+	  		<div class="star-ratings" style="text-align: center; display: inline-block; margin-left: 330px;">
 				<div class="star-ratings-fill space-x-2 text-lg" style="width: ${hotel.avgScore/5*100}%;">
 					<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 				</div>
@@ -49,14 +49,13 @@
 	  		
 	  		<!-- END 별점찍기 -->
 	  		<!-- "찜하기" 구현_빛찬_220822 -->
-	  		<input type="hidden" class="guest_no" value="${loginInfo.guest_no }" >
 	  		<c:if test="${!empty rev }">
-		  		<div class="heart" >
+		  		<div class="heart" style="z-index: 1000;" >
 					<img class="like"  data-name="del" data-gno="${rev.guest_no}" data-hno="${rev.hotel_no}" src="/hotel/image/mypage/heart.png" style="width:50px; height: 50px;" >
 				</div>
 	  		</c:if>
 	  		<c:if test="${empty rev }">
-		  		<div class="heart" >
+		  		<div class="heart" style="z-index: 1000;" >
 					<img class="like"  data-name="fav" data-gno="${loginInfo.guest_no }" data-hno="${hotel.hotel_no}" src="/hotel/image/mypage/emptyHeart.png" style="width:50px; height: 50px;" >
 				</div>
 	  		</c:if>
@@ -64,17 +63,22 @@
 		  	<div class="swiper mySwiper" id="Low" style="display: inline-block; height: 350px;">
 		  		<div class="swiper-wrapper" >
 				  	<c:forEach var="hotelImage" items="${hotelImage}">
-				  		<div class="swiper-slide" id="imgBox"><img alt="사진없음" src="/hotel/image/hotel/${hotelImage.filename_org}"></div>
+				  		<div class="swiper-slide" id="imgBox"><img alt="사진없음" src="/hotel/image/hotel/hotelOne/${hotelImage.filename_org}"></div>
 				  	</c:forEach>
 		  		</div>
 		  		<div class="swiper-button-next"></div>
 			    <div class="swiper-button-prev"></div>
 			    <div class="swiper-pagination"></div>
 			</div>
+
 			<div id="map" style="width:545px;height:250px;display: inline-block;vertical-align: middle"></div>
 			<div class="btnSet" style="text-align: right;">
 				<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();">카카오톡</a>
 			</div>
+
+			<div id="map" style="width:500px;height:250px;display: inline-block;vertical-align: middle; z-index: -999"></div>
+
+
 	  		<div class="middleBox" style="text-align: center;">
 	  			<span>객실 안내/예약</span>
 	  		</div>
@@ -87,7 +91,7 @@
 		  		<div class="swiper mySwiper" id="Low" style="display: inline-block;">
 	      			<div class="swiper-wrapper" >
 	      				<c:forEach var="roomImage" items="${roomList.imageList}">
-	        			<div class="swiper-slide" id="imgBox"><img alt="객실이미지" src="/hotel/image/hotel/${roomImage.filename_org }"></div>
+	        			<div class="swiper-slide" id="imgBox"><img alt="객실이미지" src="/hotel/image/room/hotelOne/${roomImage.filename_org }"></div>
 	        			</c:forEach>
 	      			</div>
 			      	<div class="swiper-button-next"></div>

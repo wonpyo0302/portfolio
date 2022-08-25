@@ -2,14 +2,13 @@ package kr.co.hotel.guest;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +22,7 @@ import kr.co.hotel.admin.AdminVO;
 public class GuestController {
 	@Autowired
 	GuestService gservice;
+	
 	@GetMapping("/guest/join.do")
 	public String join() {
 		return "guest/join";
@@ -224,5 +224,24 @@ public class GuestController {
 			model.addAttribute("guestlist",gservice.guestlist(vo));
 			return "/admin/main/guest/guestview";
 		}
-
+	 @PostMapping("/guest/realNameApi.do")
+	 public void realNameApi(ApiVO avo,HttpSession sess, HttpServletResponse res) throws Exception {
+		 sess.removeAttribute("code");
+		 sess.removeAttribute("JSON");
+		 openBankingAPI api=new openBankingAPI();
+		 boolean r= false;
+		 api.bankingRealNameApi(avo,sess);
+		 if(sess.getAttribute("code").equals("A0000")) {
+			 r=true;
+			 PrintWriter out = res.getWriter();
+			 out.print(r); 
+			 out.flush();
+		 }else {
+			 r=false;
+			 PrintWriter out = res.getWriter();
+			 out.print(r); 
+			 out.flush();
+		 }
+		
+	 }
 }
