@@ -50,7 +50,7 @@
 								</th>
 								<td>
 									<button onclick="location.href='../host_review/index.do'">평점/리뷰<br><p>${map.avgScore }점 / ${map.totalReview }개</p></button>
-									<button onclick="location.href=''">매출보기<br><p><fmt:formatNumber pattern="#,###" value="${map.daily_sales }"/>￦</p></button><br>
+									<button onclick="location.href='../host/sales.do'">당일 매출<br><p><fmt:formatNumber pattern="#,###" value="${map.daily_sales }"/>￦</p></button><br>
 									<button onclick="location.href='../room/index.do'">등록된 객실 현황<br><p>${room_count } 개</p></button>
 									<button onclick="location.href='../hostReserve/index.do'">예약현황<br><p>${map.reserve_count } 개</p></button>
 								</td>
