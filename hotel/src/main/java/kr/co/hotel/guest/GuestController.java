@@ -22,6 +22,7 @@ import kr.co.hotel.admin.AdminVO;
 public class GuestController {
 	@Autowired
 	GuestService gservice;
+	
 	@GetMapping("/guest/join.do")
 	public String join() {
 		return "guest/join";
