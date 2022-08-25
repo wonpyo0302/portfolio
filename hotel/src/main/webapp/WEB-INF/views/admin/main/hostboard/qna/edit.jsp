@@ -35,9 +35,14 @@
 </style>
 
 <script> 
-	function goSave() {
+	function goSave(){
+		editor.getById['reply'].exec('UPDATE_CONTENTS_FIELD',[]); // getById -> jindo라는 프레임워크에서 사용하는 것	
 		frm.submit();
-	};
+	}
+	var editor; // 변수를 밖에 쓴 이유: 전역변수로 사용하기 위해서
+	$(function(){
+		editor = setEditor('reply'); // textarea id= content
+	});
 
 	function goBack() {
 		history.back();
@@ -85,7 +90,7 @@
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td>${loginInfo2.host_name}</td>
+								<td>${data.host_name}</td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>
@@ -99,7 +104,7 @@
 							</tr>
 							<tr>
 								<th>답변</th>
-								<td colspan="3"><textarea style="width: 90%"></textarea></td>
+								<td colspan="3"><textarea id="reply" style="width: 90%"></textarea></td>
 							</tr>
 							</ul>
 							</div>

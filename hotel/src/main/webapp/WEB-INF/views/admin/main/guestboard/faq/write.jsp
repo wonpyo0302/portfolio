@@ -32,15 +32,21 @@
     
     
     <script>
-    	function goSave(){
-    		frm.submit();
-    		
-    	};
+   	function goSave(){
+		editor.getById['gfaq_content'].exec('UPDATE_CONTENTS_FIELD',[]); // getById -> jindo라는 프레임워크에서 사용하는 것	
+		frm.submit();
+	}
+	var editor; // 변수를 밖에 쓴 이유: 전역변수로 사용하기 위해서
+	$(function(){
+		editor = setEditor('gfaq_content'); // textarea id= content
+	});
 	
     	
      function goBack(){
     		history.back();
     	};
+    	
+    	
     </script>
     
 </head>
@@ -78,7 +84,7 @@
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td><textarea name="gfaq_content" id="content" style="width: 90%"></textarea></td>
+								<td><textarea name="gfaq_content" id="gfaq_content" style="width: 90%"></textarea></td>
 							</tr>
 
 						</tbody>

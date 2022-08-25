@@ -33,12 +33,21 @@ public class HostBoardController extends ImgHandling{
 
 	// 조회
 	@GetMapping("/hostboard/view.do")
-	public String view(Model model, HostBoardVO vo) {
-		//System.out.println(vo.get);
+	public String view(Model model, HostBoardVO vo, @RequestParam String host_name) {
+		
 		service.viewCount(vo.getHboard_no());
-		HostBoardVO gvo = service.view(vo.getHboard_no());
-		model.addAttribute("data", gvo);
-		return "hostboard/view";
+		
+		
+		model.addAttribute("data", service.view(vo.getHboard_no()));
+		String hostName = service.view(vo.getHboard_no()).getHost_name();
+		
+		if (!hostName.equals(vo.getHost_name())) {
+			model.addAttribute("msg", "작성자만 확인 가능합니다.");
+			model.addAttribute("url", "list.do");
+			return "common/alert";
+		} else {
+			return "hostboard/view";	
+		}
 	}
 
 	// 등록 폼
