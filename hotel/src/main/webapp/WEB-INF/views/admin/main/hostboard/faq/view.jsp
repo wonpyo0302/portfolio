@@ -36,7 +36,7 @@
 .container {
 	background-color: light grey;
 	padding: 50px;
-	border: 15px solid mistyrose;
+	border: 15px solid lightpink;
 	margin: 20px;
 }
 

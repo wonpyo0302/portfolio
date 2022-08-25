@@ -22,8 +22,6 @@ public class GuestNoticeVO extends Criteria {
 	private int rownum; 
 	private int diff; // 최신글 new 날짜차이 (서브쿼리)
 	
-	
-	
 	private String filename_org;
 	private String filename_real;
 

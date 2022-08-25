@@ -2,12 +2,14 @@ package kr.co.hotel.hostboard;
 
 import java.sql.Timestamp;
 
+import kr.co.hotel.host.HostVO;
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString
-public class HostBoardVO {
+public class HostBoardVO extends HostVO {
+	
 	private int hboard_no; // 게시물 번호
 	private int host_no; // 호스트 번호
 	private int hboard_type; // 문의유형

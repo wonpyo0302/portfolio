@@ -54,7 +54,10 @@
 	
 	<!-- 조회하기 -->
 	<select id="view" parameterType="int" resultType="kr.co.hotel.hostboard.HostBoardVO">
-		SELECT * FROM hostboard WHERE hboard_no = #{hboard_no}
+		SELECT *,
+			( SELECT host_name FROM host
+				WHERE host_no = hostboard.host_no ) AS host_name 
+		FROM hostboard WHERE hboard_no = #{hboard_no}
 	</select>
 	
 	<!-- 조회수 1 증가 처리 -->
@@ -65,7 +68,7 @@
 	<!-- 수정하기 -->
 	<update id="update" parameterType="kr.co.hotel.hostboard.HostBoardVO">
 		UPDATE hostboard SET 
-			hboard_title = #{hboard_title}, hboard_content = #{hboard_content}, hboard_updatedate = now()
+			hboard_type = #{hboard_type}, hboard_title = #{hboard_title}, hboard_content = #{hboard_content}, hboard_updatedate = now()
 			<if test="filename_org != null">
 			, filename_org = #{filename_org}, filename_real = #{filename_real}
 			</if>

@@ -72,9 +72,18 @@
 										<td>${data.totalCount - status.index - ((hostNoticeVO.page - 1) * hostNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l"><a
 											href="/hotel/hostnotice/view.do?hnotice_no=${vo.hnotice_no}">
-												<img src="/hotel/image/boardPic/느낌2.png" width="20px"> <b>${vo.hnotice_title}</b>
-												<img src="/hotel/image/boardPic/new2.png" width="30px">
+										 <b> <c:if test="${vo.hnotice_type == 1 }">
+											[안내] ${vo.hnotice_title} 
+										</c:if> <c:if test="${vo.hnotice_type == 2 }">
+											[공지] ${vo.hnotice_title} 
+										</c:if> <c:if test="${vo.hnotice_type == 3 }">
+											[이벤트] ${vo.hnotice_title} 
+										</c:if> <c:if test="${vo.hnotice_type == 4 }">
+											[발표] ${vo.hnotice_title} 
+										</c:if>
+											</b><img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</a></td>
+		
 										<td class="writer">관리자</td>
 										<td class="date"><fmt:formatDate
 												value="${vo.hnotice_regdate}" pattern="yyyy-MM-dd" /></td>
@@ -85,10 +94,21 @@
 								<c:if test="${vo.fix != 1}">
 									<tr>
 										<td>${data.totalCount - status.index - ((hostNoticeVO.page - 1) * hostNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
-										<td class="txt_l"><a
-											href="/hotel/hostnotice/view.do?hnotice_no=${vo.hnotice_no}">
-												${vo.hnotice_title} <img src="/hotel/image/boardPic/new2.png"
-												width="30px">
+										<td class="txt_l">
+										<a	href="/hotel/hostnotice/view.do?hnotice_no=${vo.hnotice_no}">
+										 <c:if test="${vo.hnotice_type == 1 }">
+											[안내] ${vo.hnotice_title} 
+										</c:if> <c:if test="${vo.hnotice_type == 2 }">
+											[공지] ${vo.hnotice_title} 
+										</c:if> <c:if test="${vo.hnotice_type == 3 }">
+											[이벤트] ${vo.hnotice_title} 
+										</c:if> <c:if test="${vo.hnotice_type == 4 }">
+											[발표] ${vo.hnotice_title} 
+										</c:if>
+										<c:if test="${vo.diff <= 3 }">
+											<img src="/hotel/image/boardPic/new (1).png" width="30px">
+										</c:if>
+											
 										</a></td>
 										<td class="writer">관리자</td>
 										<td class="date"><fmt:formatDate
