@@ -1,5 +1,6 @@
 package kr.co.hotel.host;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -27,4 +28,8 @@ public interface HostService {
 	
 	//============이하 빛찬 작성=============
 	Map get_numbers (HostVO hvo);
+	Map get_sales (int hotel_no);
+	
+	
+	int making_calendar(Map map);
 }

@@ -81,14 +81,45 @@
 						}
 						
 					})
-					
 				}
 			})
+		
+		$(".paycheck").on("click",function(){
+			$.ajax({
+				type:'post',
+				url:"/hotel/reserve/paycheck.do",
+				data:{imp_uid : $(this).attr("id")},
+				error:function(er){
+					alert("ERROR")
+				},
+				success:function(response){
+					alert("입금확인 완료");
+					window.location.reload();
+				}
+				
+			})
 		})
+	})
 	</script>
 
 </head>
 
+<style>
+	#rejectRev{
+		color :red;
+		cursor:pointer;
+	}
+	
+	.paycheck{
+		color :blue;
+		cursor:pointer;
+	}
+	
+	.check{
+		color :#54994D;
+		cursor:pointer;
+	}
+</style>
 
 
 <body>  
@@ -112,6 +143,7 @@
                             <col width="*" />
                             <col width="*" />
                             <col width="*" />
+                            <col width="*" />
                         </colgroup>
                         <thead style="text-align:center;">
                             <tr>
@@ -122,6 +154,7 @@
                                 <th>객실</th>
                                 <th>결제금액</th>
                                 <th>예약상태</th>
+                                <th>결제상태</th>
                                 <th>이용상태</th>
                                 <th>체크인</th>
                                 <th>체크아웃</th>
@@ -164,14 +197,23 @@
 		                                <td class="writer">
 		                                    ${row.total_price} 
 		                                </td>
+		                                 
 		                                <td >
 		                                	<c:if test="${row.rev_status ==0 }">예약완료</c:if>
 		                                	<c:if test="${row.rev_status ==1 }">예약취소</c:if>
 		                                </td>
+		                               
+		                                <td >
+		                                	<c:if test="${row.pay_status ==0 }">
+		                                		입금대기 <br> <a class="paycheck" id ="${row.imp_uid}">[입금완료]</a>
+		                                	</c:if>
+		                                	<c:if test="${row.pay_status ==1 }">결제완료</c:if>
+		                                </td>
 		                                
 		                                <td>
 		                                	<p id="rejected${row.reserv_no}" style="display:none;">"예약반려(규정위반)"</p>
-			                                 <div class="rejectBtn${row.reserv_no}"><c:if test="${row.use_status == 0 }">이용전 | <a id="rejectRev" href="javascript:rejectRev(${row.reserv_no});" >[예약 반려하기]</a></c:if></div>
+			                                 <div class="rejectBtn${row.reserv_no}"><c:if test="${row.use_status == 0 }">이용전 <br> 
+			                                 	<a id="rejectRev" href="javascript:rejectRev(${row.reserv_no});" >[예약 반려하기]</a></c:if></div>
 			                                 <c:if test="${row.use_status == 1}">이용완료</c:if>
 			                                 <c:if test="${row.use_status == 2 }">'예약반려(규정위반)'</c:if>
 		                                </td>

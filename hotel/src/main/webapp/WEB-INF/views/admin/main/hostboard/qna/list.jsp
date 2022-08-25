@@ -20,22 +20,22 @@
     
 <script>
 	function goWrite(){
-		<c:if test="${empty loginInfo2}">
+		<c:if test="${empty loginInfo_admin}">
 			alert('로그인 후 작성 가능합니다.');
 			location.href='/hotel/admin/login.do';
 		</c:if>
-		<c:if test="${!empty loginInfo2}">
+		<c:if test="${!empty loginInfo_admin}">
 			location.href='write.do';
 		</c:if>	
 	}
 </script>
 <script>
 	function login(){
-		<c:if test="${empty loginInfo2}">
+		<c:if test="${empty loginInfo_admin}">
 			alert('로그인 후 작성 가능합니다.');
 		</c:if>
 		
-		<c:if test="${!empty loginInfo2}">
+		<c:if test="${!empty loginInfo_admin}">
 			location.href='list.do';
 		</c:if>
 	}
@@ -92,21 +92,19 @@
 									 <tr>
 										<td>${data.totalCount - status.index - ((hostBoardVO.page - 1) * hostBoardVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										
-										<c:if test="${vo.hboard_type == 1 }">
-											<td>예약</td>
+										<c:if test="${vo.hboard_type == 6 }">
+											<td>입점</td>
 										</c:if>
-										<c:if test="${vo.hboard_type == 2 }">
-											<td>결제</td>
+										<c:if test="${vo.hboard_type == 7 }">
+											<td>광고/제휴</td>
 										</c:if>
-										<c:if test="${vo.hboard_type == 3 }">
-											<td>숙소</td>
+										<c:if test="${vo.hboard_type == 8 }">
+											<td>이용회원</td>
 										</c:if>
-										<c:if test="${vo.hboard_type == 4 }">
-											<td>포인트/쿠폰</td>
-										</c:if>
-										<c:if test="${vo.hboard_type == 5 }">
+										<c:if test="${vo.hboard_type == 9 }">
 											<td>이용/기타</td>
 										</c:if>
+								
 										<td class="txt_l">
 										
 										<a href="/hotel/admin/main/hostboard/qna/view.do?hboard_no=${vo.hboard_no}">${vo.hboard_title}

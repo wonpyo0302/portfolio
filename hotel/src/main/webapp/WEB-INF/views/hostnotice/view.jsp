@@ -40,7 +40,7 @@
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "list.do";
+		location.href = "/hotel/hostnotice/list.do";
 	}
 	
 
@@ -79,10 +79,6 @@
 </script>
 
 
-
-
-
-
 </head>
 <body>
 	<div class="sub">
@@ -94,7 +90,7 @@
 				<img src="/hotel/image/boardPic/notice.png" width="60px"> 호스트
 				전용 공지사항 게시판입니다.
 			</h6>
-			<br> <br> <br> <br>
+			<br> <br>
 			<div class="bbs">
 				<form method="get" name="frm" id="frm" action="edit.do"
 					enctype="multipart/form-data">
@@ -128,7 +124,7 @@
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td colspan="3" style="width: 600px">${data.hnotice_content}</td>
+								<td colspan="3" style="width: 600px;  height:300px">${data.hnotice_content}</td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>
@@ -142,7 +138,6 @@
 						<a class="btn" href="javascript:goList();">목록 </a>
 					</div>
 
-
 					<br>
 					<br>
 					<br>
@@ -151,7 +146,8 @@
 					<div class="pagebox">
 						<div>
 							<p>
-								<a href="view.do?hnotice_no=${next.hnotice_no}"><img src="/hotel/image/boardPic/up.png" width="20px"> 다음글  | ${next.hnotice_title }</a>
+								<a href="view.do?hnotice_no=${next.hnotice_no}">
+								<img src="/hotel/image/boardPic/up.png" width="20px"> 다음글  | ${next.hnotice_title }</a>
 							</p>
 						</div>
 						<hr>

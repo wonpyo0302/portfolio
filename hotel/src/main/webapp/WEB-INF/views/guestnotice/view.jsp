@@ -14,7 +14,7 @@
 	content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>게시판 등록</title>
+<title>NOTICE</title>
 
 <!-- 아래부분 공통이니까 include -->
 <link rel="stylesheet" href="/hotel/css/reset.css" />
@@ -90,7 +90,7 @@
 				<img src="/hotel/image/boardPic/notice.png" width="60px"> 게스트
 				전용 공지사항 게시판입니다.
 			</h6>
-			<br> <br> <br> <br>
+			<br> <br>
 			<div class="bbs">
 				<form method="get" name="frm" id="frm" action="edit.do"
 					enctype="multipart/form-data">
@@ -137,21 +137,24 @@
 						<a class="btn" href="javascript:goList();">목록 </a>
 					</div>
 					
-					<br><br><br><br>
+					<br>
+					<br>
+					<br>
+					<br>
 					<hr>
 					<div class="pagebox">
 						<div>
 							<p>
-								<a href="view.do?gnotice_no=${next.gnotice_no}"><img
-									src="/hotel/image/boardPic/up.png" width="20px"> 다음글  |
+								<a href="view.do?gnotice_no=${next.gnotice_no}">
+								<img 	src="/hotel/image/boardPic/up.png" width="20px"> 다음글  |
 									${next.gnotice_title }</a>
 							</p>
 						</div>
 						<hr>
 						<div>
 							<p>
-								<a href="view.do?gnotice_no=${prev.gnotice_no}"><img
-									src="/hotel/image/boardPic/down.png" width="20px"> 이전글  |
+								<a href="view.do?gnotice_no=${prev.gnotice_no}">
+								<img 	src="/hotel/image/boardPic/down.png" width="20px"> 이전글  |
 									${prev.gnotice_title }</a>
 							</p>
 						</div>

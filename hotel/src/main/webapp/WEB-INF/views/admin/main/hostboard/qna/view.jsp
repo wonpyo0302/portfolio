@@ -93,27 +93,26 @@
 					<table class="board_write">
 						<div class="title">
 							<tr>
-								<th style="width: 5%">제목</th>
-								<td>${data.hboard_title }</td>
-								
-								<th style="width: 5%">문의유형</th>
-								<td style="text-align:left" colspan='2'>
-									<c:if test="${data.hboard_type==1 }">[예약]</c:if>
-									<c:if test="${data.hboard_type==2 }">[결제]</c:if>
-									<c:if test="${data.hboard_type==3 }">[숙소]</c:if>
-									<c:if test="${data.hboard_type==4 }">[포인트/쿠폰]</c:if>
-									<c:if test="${data.hboard_type==5 }">[이용/기타]</c:if>
+								<th style="width: 15%">문의유형</th>
+								<td style="text-align:left" >
+									<c:if test="${data.hboard_type==6 }">[입점]</c:if>
+									<c:if test="${data.hboard_type==7 }">[광고/제휴]</c:if>
+									<c:if test="${data.hboard_type==8 }">[이용회원]</c:if>
+									<c:if test="${data.hboard_type==9 }">[이용/기타]</c:if>
 								</td>
-							</tr>
-						<tr>
 							<th>등록일자</th>
 							<td  class="date" style="width: 30%"><fmt:formatDate value="${data.hboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+								
+							</tr>
+						<tr>
+								<th style="width: 5%">제목</th>
+								<td>${data.hboard_title }</td>
 							<th>수정일자</th>
 							<td colspan='2'  class="date" style="width: 30%"><fmt:formatDate value="${data.hboard_updatedate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td>${loginInfo.host_name}</td>
+							<td>${data.host_name}</td>
 							<th>첨부파일</th>
 							<td colspan="2">
 								<a href ="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}" target="_blank">

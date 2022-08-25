@@ -31,11 +31,11 @@ public class HostNoticeController {
 
 	// 조회
 	@GetMapping("/hostnotice/view.do")
-	public String view(Model model, HostNoticeVO vo) {
-		service.updateViewcount(vo.getHnotice_no());
-		model.addAttribute("data", service.view(vo.getHnotice_no()));
-
+	public String view(Model model, int hnotice_no, HostNoticeVO vo) {
+		service.updateViewcount(hnotice_no);
+		model.addAttribute("data", service.view(hnotice_no));
 		vo.setRownum(service.nowRownum(vo).getRownum());
+		
 		model.addAttribute("now", service.nowRownum(vo));
 		model.addAttribute("prev", service.prevRownum(vo));
 		model.addAttribute("next", service.nextRownum(vo));

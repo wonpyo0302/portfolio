@@ -68,7 +68,7 @@ td {
 						<div class="title">
 						<tr>
 							<th>분류</th>
-							<td style="text-align:left; width:50px;">
+							<td name="hnotice_type" style="text-align:left; width:50px;">
 								<c:if test="${data.hnotice_type == 1}">[안내]	</c:if>
 								<c:if test="${data.hnotice_type == 2}">[공지]	</c:if>
 								<c:if test="${data.hnotice_type == 3}">[이벤트]</c:if>

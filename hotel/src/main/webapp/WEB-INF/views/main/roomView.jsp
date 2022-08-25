@@ -77,14 +77,13 @@
 	   		 })
 	   	 }
  });
- 
- $('#enddate').datepicker('setDate', 'today+1');
-	   	 $('#enddate').val().replace("-","");
-	   	 //console.log(typeof((Number)($('#enddate').val().replace(/-/g,""))));
-	   	 var startdate=(Number)($('#startdate').val().replace(/-/g,""))
-	   	 var enddate=(Number)($('#enddate').val().replace(/-/g,""))
-		reservecheck();
-	});
+	 $('#enddate').datepicker('setDate', 'today+1');
+	 $('#enddate').val().replace("-","");
+		   	 //console.log(typeof((Number)($('#enddate').val().replace(/-/g,""))));
+		   	 //var startdate=(Number)($('#startdate').val().replace(/-/g,""));
+		   	 //var enddate=(Number)($('#enddate').val().replace(/-/g,""));
+			reservecheck();
+		});
 
 //페이지 이동시 중복체크
 	function reservecheck(){
@@ -98,11 +97,25 @@
 				enddate : $('#enddate').val()
 			}
 		 }).done(function (res){
-			 var startdate=(Number)($('#startdate').val().replace(/-/g,""))
-	   	 	 var enddate=(Number)($('#enddate').val().replace(/-/g,""))
-	   	 	 console.log(enddate-startdate);
-			 $("#calcprice").val((enddate-startdate)*${roomInfo.room_price });
-			 
+	   	 	 //console.log(startdate);
+	   	 	 //console.log(enddate);
+	   	 	 //console.log(enddate-startdate);
+	   	 	 
+	   	 	 console.log($("#startdate").val());
+		   	 console.log($("#enddate").val());
+			 var startdate=new Date($("#startdate").val().split('-'));
+			 var enddate=new Date($("#enddate").val().split('-'));
+			 var dif = enddate-startdate;
+			 var day = 24*60*60*1000;
+			 var diffdate=(dif/day);
+		   	 console.log(diffdate);
+	   	 	 
+		   	 if(diffdate<0){
+				 $("#calcprice").val('0');
+		   	 }else{
+			 	$("#calcprice").val((diffdate)*${roomInfo.room_price });
+		   	 }
+		   	 
 			 if(res !=0){
 				 $("#reservebtn").val("예약 불가");
 				 $("#reservebtn").css("background-color","gray");
