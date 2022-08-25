@@ -24,17 +24,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
     <script>
-    	function goSave(){
-    		frm.submit();
-    	};
-    	
+    function goSave(){
+		editor.getById['hnotice_content'].exec('UPDATE_CONTENTS_FIELD',[]); // getById -> jindo라는 프레임워크에서 사용하는 것	
+		frm.submit();
+	}
+	var editor; // 변수를 밖에 쓴 이유: 전역변수로 사용하기 위해서
+	$(function(){
+		editor = setEditor('hnotice_content'); // textarea id= content
+	});
+		
     	function goBack(){
     		history.back();
     	};
     	
 
-    	
-    	
     </script>
 </head>
 <body>

@@ -21,8 +21,12 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5d133f411d7216df47f409d9f8b79bd"></script>
-
-	
+	<!-- 카카오톡 공유하기 -->
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<style>
+	.link-icon { position: relative; display: inline-block; width: auto;  font-size: 14px; font-weight: 500; color: #333; margin-right: 10px; padding-top: 50px; }
+	.link-icon.kakao { background-image: url(/hotel/image/boardPic/icon-kakao.png); background-repeat: no-repeat; }
+	</style>
 
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <!-- 찜하기 제이쿼리 -->
@@ -68,7 +72,9 @@
 			    <div class="swiper-pagination"></div>
 			</div>
 			<div id="map" style="width:545px;height:250px;display: inline-block;vertical-align: middle"></div>
-
+			<div class="btnSet" style="text-align: right;">
+				<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();">카카오톡</a>
+			</div>
 	  		<div class="middleBox" style="text-align: center;">
 	  			<span>객실 안내/예약</span>
 	  		</div>
@@ -134,4 +140,25 @@
 							// 마커가 지도 위에 표시되도록 설정합니다
 							marker.setMap(map);
 	</script>	
+	
+	<script>
+
+	// 카카오톡 공유
+		Kakao.init('7316461b564393db0543f1e130e426e9'); // 앱 키
+	$(function shareKakao() {
+		Kakao.Share.createDefaultButton({
+					container : '#btnKakao',
+					objectType : 'feed',
+					content : {
+						title : '${data.gnotice_title }',
+						description : '${data.gnotice_content}',
+						imageUrl : 'http://localhost:8080/hotel/image/boardPic/notice.png',
+						link : {
+							mobileWebUrl : 'http://localhost:8080/hotel/guestboard/view.do?gnotice_no=${data.gnotice_no}',
+							webUrl : 'http://localhost:8080/hotel/guestboard/view.do?gnotice_no=${data.gnotice_no}',
+						}
+					}
+				})
+	})
+	</script>
   </body>

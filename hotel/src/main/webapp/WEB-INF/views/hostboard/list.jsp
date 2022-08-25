@@ -106,7 +106,7 @@
 									
 										<td class="txt_l">
 										
-										<a href="/hotel/hostboard/view.do?hboard_no=${vo.hboard_no}">${vo.hboard_title}								
+										<a href="/hotel/hostboard/view.do?hboard_no=${vo.hboard_no}&host_no=${vo.host_no}&host_name=${loginInfo2.host_name}">${vo.hboard_title}								
 										<c:if test="${vo.diff <= 3 }">
 											<img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</c:if>
