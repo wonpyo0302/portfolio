@@ -60,7 +60,7 @@
 			<br>
 			<div class="bbs">
 				<form method="post" name="frm" id="frm" action="write.do" enctype="multipart/form-data">
-					<input type="hidden" name="host_no" value="${loginInfo.guest_no}">
+					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
 					<table class="board_write">
 						<tbody>
 							<div class="container">

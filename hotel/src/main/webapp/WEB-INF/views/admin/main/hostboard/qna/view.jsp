@@ -65,7 +65,7 @@
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "/hotel/admin/main/hostboard/qna/list.do";
+		location.href = "/hotel/admin/main/hostboard/qna/list.do?stype=${param.stype}&sword=${param.sword}"";
 	}
 	// 삭제하기
 	function goDel(hboard_no){

@@ -35,9 +35,7 @@ public class HostBoardController extends ImgHandling{
 	@GetMapping("/hostboard/view.do")
 	public String view(Model model, HostBoardVO vo, @RequestParam String host_name) {
 		
-		service.viewCount(vo.getHboard_no());
-		
-		
+		// 작성자만 게시글 확인 가능, 조회수 증가 가능
 		model.addAttribute("data", service.view(vo.getHboard_no()));
 		String hostName = service.view(vo.getHboard_no()).getHost_name();
 		
@@ -46,6 +44,7 @@ public class HostBoardController extends ImgHandling{
 			model.addAttribute("url", "list.do");
 			return "common/alert";
 		} else {
+			service.viewCount(vo.getHboard_no());
 			return "hostboard/view";	
 		}
 	}
@@ -79,7 +78,7 @@ public class HostBoardController extends ImgHandling{
 	
 		if(service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
-			model.addAttribute("url", "view.do?hboard_no="+vo.getHboard_no());
+			model.addAttribute("url", "list.do");
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "저장 실패했습니다.");

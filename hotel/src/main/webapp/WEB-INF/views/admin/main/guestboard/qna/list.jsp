@@ -109,7 +109,7 @@
 										</c:if>
 										<td class="txt_l">
 										
-										<a href="/hotel/admin/main/guestboard/qna/view.do?gboard_no=${vo.gboard_no}">${vo.gboard_title}
+										<a href="/hotel/admin/main/guestboard/qna/view.do?gboard_no=${vo.gboard_no}&stype=${param.stype}&sword=${param.sword}">${vo.gboard_title}
 										<c:if test="${vo.diff <= 3 }">
 										<img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</c:if>
@@ -145,7 +145,8 @@
 					</c:if>
 					<!-- 페이지별 -->
 						<c:forEach var="p" begin="${data.startPage}" end="${data.endPage }">
-							<li><a href='list.do?page=${p }' <c:if test="${guestBoardVO.page == p }"> class='current'</c:if>>${p }</a></li>
+							<li><a href='list.do?page=${p }&stype=${param.stype}&sword=${param.sword}"
+							' <c:if test="${guestBoardVO.page == p }"> class='current'</c:if>>${p }</a></li>
 						</c:forEach>
 					<!-- 다음페이지 -->
 					<c:if test="${data.next == true }">
@@ -159,11 +160,11 @@
 					<form method="get" name="searchForm" id="searchForm" action="">
 						<span class="srchSelect"> <select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 								<option value="all">전체</option>
-								<option value="title">제목</option>
-								<option value="contents">내용</option>
+								<option value="gboard_title">제목</option>
+								<option value="gboard_content">내용</option>
 						</select>
 						</span> 
-						<span class="searchWord"> <input type="text" id="sword" name="sword" placeholder="검색어를 입력하세요." title="검색어 입력"> 
+						<span class="searchWord"> <input type="text" id="sword" name="sword" placeholder="검색어를 입력하세요." value="${param.sword }" title="검색어 입력"> 
 						<input type="button" id="" value="검색" title="검색">
 						</span>
 					</form>
