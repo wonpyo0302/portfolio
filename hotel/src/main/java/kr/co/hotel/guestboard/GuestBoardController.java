@@ -32,12 +32,20 @@ public class GuestBoardController extends ImgHandling {
 
 	// 조회
 	@GetMapping("/guestboard/view.do")
-	public String view(Model model, GuestBoardVO vo) {
-		// System.out.println(vo.get);
-		service.viewCount(vo.getGboard_no());
-		GuestBoardVO gvo = service.view(vo.getGboard_no());
-		model.addAttribute("data", gvo);
-		return "guestboard/view";
+	public String view(Model model, GuestBoardVO vo,@RequestParam String name2) {
+		
+		// 작성자만 게시글 확인 가능, 조회수 증가 가능
+		model.addAttribute("data", service.view(vo.getGboard_no()));
+		String name = service.view(vo.getGboard_no()).getGuest_name();
+		if(!name.equals(name2)) {
+			model.addAttribute("msg","작성자만 확인 가능");
+			model.addAttribute("url","list.do");
+		}
+		else {
+			service.viewCount(vo.getGboard_no());
+			return "guestboard/view";
+		}
+		return "common/alert";
 	}
 
 	// 등록 폼
@@ -71,7 +79,7 @@ public class GuestBoardController extends ImgHandling {
 
 		if (service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
-			model.addAttribute("url", "view.do?gboard_no=" + vo.getGboard_no());
+			model.addAttribute("url", "list.do");
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "저장 실패했습니다.");

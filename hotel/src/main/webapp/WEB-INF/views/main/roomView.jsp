@@ -13,8 +13,12 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
-    <link href="/hotel/css/roomView.css" rel="stylesheet" type="text/css">
-
+    <link href="/hotel/css/hotel/roomView.css" rel="stylesheet" type="text/css">
+    <style>
+	    $#ui-datepicker-div{
+			position: fixed;
+		}
+    </style>
   </head>
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -40,7 +44,13 @@
                 ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
                 ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
                 ,minDate: 0 //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-                ,maxDate: "+30Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+                ,maxDate: "+30Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+                ,beforeShow: function(input) {
+           	   		var i_offset = $(input).offset();
+           	   		setTimeout (function(){
+           	   			$('#ui-datepicker-div').css({'position': 'fixed'})
+           	   		 })
+           	   	 }
    	 	});
 		
 	   	 $('#startdate').datepicker('setDate', 'today');
@@ -59,9 +69,14 @@
 	                ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
          ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
          ,minDate: "+1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-         ,maxDate: "+30Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
- 		});
- 
+         ,maxDate: "+30Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후) 
+	   	 ,beforeShow: function(input) {
+	   		 var i_offset = $(input).offset();
+	   		 setTimeout (function(){
+	   			 $('#ui-datepicker-div').css({'position': 'fixed'})
+	   		 })
+	   	 }
+ });
 	 $('#enddate').datepicker('setDate', 'today+1');
 	 $('#enddate').val().replace("-","");
 		   	 //console.log(typeof((Number)($('#enddate').val().replace(/-/g,""))));
@@ -131,10 +146,6 @@
 
 	</script>
 	
-	<script src="/hotel/script/roomView.js"></script>
-
-
-
   <%@ include file="/WEB-INF/views/includes/G_header.jsp"  %>
   <body>
 
@@ -144,7 +155,7 @@
 		  	<div class="swiper mySwiper" id="Low" style="display: inline-block; height: 350px">
 		  		<div class="swiper-wrapper" >
 				  	<c:forEach var="roomImage" items="${roomImage}">
-				  		<div class="swiper-slide" id="imgBox"><img alt="사진없음" src="/hotel/image/hotel/${roomImage.filename_org}"></div>
+				  		<div class="swiper-slide" id="imgBox"><img alt="사진없음" src="/hotel/image/room/hotelOne/${roomImage.filename_org}"></div>
 				  	</c:forEach>
 		  		</div>
 		  		<div class="swiper-button-next"></div>
@@ -152,20 +163,19 @@
 			    <div class="swiper-pagination"></div>
 	  		</div>
 	  		<div id="room_infoScreen" style="vertical-align: middle; display: inline-block;">
-				
-				<div id="roomAvgScroe" style="border: 1px solid gray; display: inline-block;">
-					객실평점 : ${roomInfo.avgScore }
+				<div class="star-ratings" style="display: inline-block;">
+					<div class="star-ratings-fill space-x-2 text-lg" style="width: ${roomInfo.avgScore/5*100}%;">
+						<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+					</div>
+				<div class="star-ratings-base space-x-2 text-lg">
+					<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 				</div>
-				<div id="star_img">
-					<img src="/hotel/image/mypage/star_score_10.png" style="height:40px; width: 120px;">
+				<span style="color: #f3f3f3;">(${roomInfo.avgScore })</span>
 				</div>
-				<input type="hidden" id="roomScore" value="${roomInfo.avgScore *10}">
-				
-				<br><br>
 				<form action="/hotel/reserve/reserve.do" method="post">
 					<h4>체크인 날짜 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;체크아웃 날짜</h4>
-		  			<input type="text" name="startdate" id="startdate" style="float:left;" onchange="reservecheck()" autocomplete="off">
-		  			<input type="text" name="enddate" id="enddate" style="float:left;" onchange="reservecheck()" autocomplete="off">
+		  			<input type="text" name="startdate" id="startdate"  onchange="reservecheck()" autocomplete="off">
+		  			<input type="text" name="enddate" id="enddate"  onchange="reservecheck()" autocomplete="off">
 		  			<input type="hidden" name="hotel_no" id="hotel_no" value="${param.hotel_no }">
 		  			<input type="hidden" name="room_no" id="room_no" value="${param.room_no }">
 		  			<input type="hidden" name="guest_no" id="guest_no" value="${loginInfo.guest_no }">
@@ -198,16 +208,16 @@
 	  	</div>
   	</div>
   	<div class="reviewDiv">
-  		<div id="reviewInfo" style="border: 1px solid black; text-align: center;">
+  		<div id="reviewInfo" style="border: 1px solid black; text-align: center; ">
   			<span style="border: 1px solid #d3d3d3;">총 리뷰 수: ${roomInfo.totalReview}</span>
   			<span>해당객실의 리뷰입니다.</span>
   		</div>
   		<c:forEach var="review" items="${review }">
-  		<div class="reviewBox">
-  			<div id="review_Title" style="display: inline-block; border: 1px solid #d3d3d3;">
+  		<div class="reviewBox" style="border: 1px solid #d3d3d3;">
+  			<div id="review_Title">
   				제목 : ${review.review_title }
   			</div>
-  			<div id="review_Content" style="display: inline-block; border: 1px solid #d3d3d3;">
+  			<div id="review_Content">
   				내용 : ${review.review_content}
   			</div>
   		</div>
@@ -237,5 +247,6 @@
         keyboard: true,
       });
     </script>
+
 
   </body>

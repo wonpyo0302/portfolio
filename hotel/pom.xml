@@ -199,7 +199,13 @@
 	    	<groupId>com.googlecode.json-simple</groupId>      
 	    	<artifactId>json-simple</artifactId>      
 	    	<version>1.1.1</version>     
-	    </dependency>		
+	    </dependency>	
+	    
+	    <dependency>
+			<groupId>servlets.com</groupId>
+			<artifactId>cos</artifactId>
+			<version>05Nov2002</version>
+		</dependency>	
 		
 	</dependencies>
 	

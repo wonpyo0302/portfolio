@@ -64,7 +64,7 @@
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "/hotel/hostboard/list.do";
+		location.href = "/hotel/hostboard/list.do?stype=${param.stype}&sword=${param.sword}"";
 	}
 	// 삭제하기
 	function goDel(hboard_no){

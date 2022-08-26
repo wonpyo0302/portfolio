@@ -32,10 +32,14 @@
 </style>
 
 <script> 
-	function goSave() {
+	function goSave(){
+		editor.getById['hboard_content'].exec('UPDATE_CONTENTS_FIELD',[]); // getById -> jindo라는 프레임워크에서 사용하는 것	
 		frm.submit();
-	};
-	
+	}
+	var editor; // 변수를 밖에 쓴 이유: 전역변수로 사용하기 위해서
+	$(function(){
+		editor = setEditor('hboard_content'); // textarea id= content
+	});
 	function goBack(){
 		history.back();
 	};
@@ -57,6 +61,8 @@
 				<form method="post" name="frm" id="frm" action="edit.do"
 					enctype="multipart/form-data">
 					<input type="hidden" name="hboard_no" value="${data.hboard_no}">
+					<input type="hidden" name="host_name" value="${loginInfo2.host_name}">
+					
 					<table class="board_write">
 						<tbody>
 							<div class="container">
@@ -94,7 +100,7 @@
 							</tr>
 							<tr>
 								<th>문의내용</th>
-								<td><textarea name="hboard_content" id="content" style="width: 90%" >${data.hboard_content}</textarea></td>
+								<td><textarea name="hboard_content" id="hboard_content" style="width: 90%" >${data.hboard_content}</textarea></td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>

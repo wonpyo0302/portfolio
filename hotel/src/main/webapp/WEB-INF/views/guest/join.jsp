@@ -119,8 +119,10 @@
 	    				success:function(res) {
 	    					if (res == 'true') {
 	    						alert('사용 불가');
+	    						console.log(res);
 	    					} else {
 	    						alert('사용 가능');
+	    						console.log(res);
 	    					}
 	    				}
 	    			});
@@ -137,8 +139,10 @@
 	    				success:function(res) {
 	    					if (res == 'true') {
 	    						alert('사용 불가');
+	    						console.log(res);
 	    					} else {
 	    						alert('사용 가능');
+	    						console.log(res);
 	    					}
 	    				}
 	    			});
@@ -184,26 +188,32 @@
     		
     	});
     	function bankCheck() {
-        		$.ajax({
-        			url: "realNameApi.do",
-        			type:"POST",
-        			data : 
-        			{
-        				  bank_code_std: $("#bank").val(),
-        				  account_num: $("#account_num").val(),
-        				  account_holder_info: ($("#birthday").val()).substring(2,8),
-        			},
-        			  success: function(res) {
-        				  if(res) {
+    			if ($("#account_num").val().trim() == '') {
+    				alert('계좌를 입력해 주세요');
+    				$("#account_num").focus();
+    				return ;
+    			} else {
+        				$.ajax({
+        				url: "realNameApi.do",
+        				type:"POST",
+        				data : 
+        				{
+        			 	 bank_code_std: $("#bank").val(),
+        			  	 account_num: $("#account_num").val(),
+        			  	 account_holder_info: ($("#birthday").val()).substring(2,8),
+        				},
+        			  	success: function(res) {
+        				  	if(res = true) {
         					alert('인증되었습니다.코드넘버:${code}${JSON}');
         					console.log(res);
-        				  } else{
+        				  } else {
         					 alert('인증 실패하였습니다');
         					 console.log(res);
         				  }
         			  }
-        	});
-    	};
+        		});
+    		};
+    };
     </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -381,7 +391,7 @@
                             <th>계좌번호</th>
                             <td>
                                 <input type="text" name="g_accountno" id="account_num" value="${data.account_num}"  maxlength="20" style="float:left;" />
-                                <span class="guest_accountno_check"><a href="javascript:;" onclick="bankCheck()"  class="btn bgGray" style="float:left; width:auto; clear:none;" id="bankCheck"
+                                <span class="guest_accountno_check"><a href="javascript:;" onclick="bankCheck();"class="btn bgGray" style="float:left; width:auto; clear:none;" id="bankCheck"
                                  >계좌확인</a></span>
                             </td>
                         </tr>

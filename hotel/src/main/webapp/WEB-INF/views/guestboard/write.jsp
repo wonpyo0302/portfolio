@@ -27,12 +27,22 @@
 	height : 100%;
 	text-align : left;
 }
+#guest_name{
+	outline: 0;	
+	border: none;
+}
+
 </style>
 
 <script>
-    	function goSave(){
-    		frm.submit();
-    	};
+	function goSave(){
+		editor.getById['gboard_content'].exec('UPDATE_CONTENTS_FIELD',[]); // getById -> jindo라는 프레임워크에서 사용하는 것	
+		frm.submit();
+	}
+	var editor; // 변수를 밖에 쓴 이유: 전역변수로 사용하기 위해서
+	$(function(){
+		editor = setEditor('gboard_content'); // textarea id= content
+	});
     	</script>
 
 
@@ -50,7 +60,7 @@
 			<br>
 			<div class="bbs">
 				<form method="post" name="frm" id="frm" action="write.do" enctype="multipart/form-data">
-					<input type="hidden" name="host_no" value="${loginInfo.guest_no}">
+					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
 					<table class="board_write">
 						<tbody>
 							<div class="container">
@@ -77,7 +87,7 @@
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td>${loginInfo.guest_name}</td>
+								<td ><input type ="text" id="guest_name"  name="guest_name" value="${loginInfo.guest_name}" readonly="readonly"></td>
 							</tr>
 							<tr>
 								<th>문의내용</th>

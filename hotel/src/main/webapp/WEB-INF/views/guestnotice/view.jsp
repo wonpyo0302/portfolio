@@ -41,7 +41,7 @@
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "list.do";
+		location.href = "list.do?stype=${param.stype}&sword=${param.sword}";
 	}
 
 

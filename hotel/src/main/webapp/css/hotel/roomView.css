@@ -1,0 +1,140 @@
+body {
+	position: absolute;
+	top: 5%;
+	left: 15%;
+}
+.swiper {
+	margin: initial;
+	width: 800px;
+	height: 20%;
+}
+
+.swiper-slide {
+	margin-top: 5px;
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-slide img {
+	margin: initial;
+	display: block;
+	width: 40rem;
+	height: 300px;
+	padding: 20px 100px 30px 50px;
+}
+
+
+.detail_full_screen {
+	margin-top: 20px;
+}
+
+.detail_full_screen img {
+	margin: 20px 80px 20px 80px;
+	width: 40rem;
+	height: 300px;
+}
+
+.middleBox {
+	width : 35.17cm;
+	border: 1px solid black;
+	margin-right: 100px;
+}
+#room_screen {
+	height: 300px;
+	display: contents;
+	
+}
+.roomName {
+	text-align: center;
+	width: 800px;
+	border: 2px solid black;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 60px;
+}
+.contentBox{
+	text-align: center;
+	display: inline-block;
+	margin-top: 5px;
+	width: 640px;
+	border: 1px solid black;
+}
+.serviceBox{
+	display: inline-block;
+	width: 640px;
+	border: 1px solid black;
+}
+.roomInfoDiv{
+	display: inline-flex;
+	margin: 5px 0 5px 0;
+}
+#roomInfoBox{
+	margin-top: 5px;
+	border: 0.5px solid black;
+}
+.serviceBox{
+	margin-left: 50px;
+	text-align: center; 
+}
+
+#Low {
+	vertical-align: middle;
+	display: flex;
+}
+
+.lowDiv {
+	display: flex;	
+}
+.reviewDiv{
+	width : 35.17cm;
+	border: 1px solid black;
+	margin-right: 100px;
+}
+
+.star-ratings {
+  color: black; 
+  position: relative;
+  unicode-bidi: bidi-override;
+  width: max-content;
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  font-size: 50px;
+  text-align: center;
+}
+ 
+.star-ratings-fill {
+  color: #fff58c;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-text-fill-color: gold;
+  size: 100px;
+}
+ 
+.star-ratings-base {
+  z-index: 0;
+  padding: 0;
+  size: 100px;
+}
+#ui-datepicker-div{
+	position: fixed;
+}
