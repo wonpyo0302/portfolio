@@ -1,5 +1,6 @@
 package kr.co.hotel.HRRegister;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -294,8 +295,30 @@ public class HRRegisterController {
 	
 		
 		 @PostMapping("/myhotel/update.do")	
-		 public String H_update(HotelVO hvo, Model model) {
-			 System.out.println("vo 확인 : "+ hvo);
+		 public String H_update(Map mapp, HotelVO hvo, Model model,ImageVO ivo, @RequestParam("filename2") List<MultipartFile> filename, HttpServletRequest req) {
+			 System.out.println("vo 확인 : "+ hvo+mapp);
+			 
+			 
+			 
+			 ivo.setNo(hvo.getHotel_no());
+			 ivo.setImage_type("HOTEL");
+			 ImgHandling ih = new ImgHandling();
+			
+			//이미지 insert처리
+				if(!filename.get(0).isEmpty()) {//filename이 비어있는지 확인
+					for(int i=0; i<filename.size(); i++) {
+						Map map = ih.imghandle(filename.get(i), req);
+						ivo.setFilename_org((String)map.get("filename_org"));
+						ivo.setFilename_real((String)map.get("filename_real"));
+						ivo.setImage_order(i);
+						boolean r= service.img_insert(ivo);
+						System.out.println("imgInsert : " + r);
+					}
+				}
+			 
+			 
+			 
+			 
 			 if(service.H_update(hvo)) {
 				 model.addAttribute("msg","정상적으로 수정되었습니다");
 				 model.addAttribute("url","view.do?hotel_no="+hvo.getHotel_no());

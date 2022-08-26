@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
+    <script src="/hotel/js/hostHotelEdit.js"></script>
    
     <!-- 우편번호 API -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -190,8 +190,18 @@
 	                        	<th>호텔 사진</th>
 	                        	<td>
 	                        		<c:forEach items="${imgList }" var="img" varStatus="idx">
-		                        			<img src="/hotel/upload/${img.filename_real }" id="drag<c:out value='${idx.count }'/>"  width="128" height="128">
+	                        				<span id="imgSpan${img.image_no}" style="position: relative;">
+		                        				<input onchange="imgDel(${img.image_no})" type="checkbox" name="delImg" value="${img.image_no}" style="position: absolute; right: 10px; top: 5px;" > 
+			                        			<img src="/hotel/upload/${img.filename_real }" data-no="${img.no }" id="drag'${idx.count }"  width="128" height="128">
+		                        			</span>
 	                        		</c:forEach>
+	                        	</td>
+	                        </tr>
+	                         <tr id="imgFrame">
+	                        	<th> 첨부 파일<button id="addImg" type="button"> [+] </button>  </th>
+	                        	<td>
+	                        		<input type="file" name="filename2" onchange="readURL(this);"  > 
+									<img id="preview"/>
 	                        	</td>
 	                        </tr>
 	                        </tbody>

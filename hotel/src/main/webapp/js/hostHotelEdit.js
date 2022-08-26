@@ -49,7 +49,7 @@
 		  str +="<tr id='imgFrame"+rownum+"'>";
 		  str +="<th> 첨부 파일  </th>"  
           str +="	<td>"
-          str +="		<input type='file' name='filename' onchange='readURL(this, "+rownum+");' >"	
+          str +="		<input type='file' name='filename2' onchange='readURL(this, "+rownum+");' >"	
           str +="		<img id='preview"+rownum+"'/>"   
           str +="		<button id='delImg' type='button' onclick='delRow("+rownum+");'>[-]</button>"   
           str +="	</td>"  	
