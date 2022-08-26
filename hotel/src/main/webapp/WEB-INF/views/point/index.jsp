@@ -61,7 +61,7 @@
 							
 							<c:if test="${empty point.list}">
 	                            <tr>
-	                                <td class="first" colspan="5">등록된 글이 없습니다.</td>
+	                                <td class="first" colspan="5">포인트 내역이 없습니다.</td>
 	                            </tr>
 							</c:if>
 							
@@ -79,7 +79,13 @@
 	                                </td>
 	                                
 	                                <td>
-	                                    ${row.io_point}
+	                                   <c:if test="${row.pointtype==1 }">
+	                                    -${row.io_point}
+	                                   </c:if> 
+	                                   <c:if test="${row.pointtype==0 }">
+	                                    +${row.io_point}
+	                                   </c:if> 
+	                                  
 	                                </td>
 	                                
 	                            </tr>
@@ -89,26 +95,23 @@
 						
                         </tbody>
                     </table>
-                    <!-- 로그인한 사람만 글쓰기 버튼을 눌를 수 있도록 -->
                
                      <div class="pagenate clear">
 		               <ul class='paging'>
 			               <c:if test="${point.prev ==true }">
-			               		<li><a href ="index.do?page=${point.startPage-1}&stype=${param.stype}&sword=${param.sword}"><</a>
+			               		<li><a href ="/hotel/point/index.do?page=${point.startPage-1}&stype=${param.stype}&sword=${param.sword}"><</a>
 			               </c:if>
 			               
 			               	<c:forEach var="page" begin="${point.startPage}" end="${point.endPage}">
-			               		<li><a href ='index.do?page=${page}&stype=${param.stype}&sword=${param.sword}' <c:if test="${pointVO.page == page}">class='current'</c:if>>${page}</a></li></a>
+			               		<li><a href ='/hotel/point/list.do?page=${page}&stype=${param.stype}&sword=${param.sword}' <c:if test="${pointVO.page == page}">class='current'</c:if>>${page}</a></li></a>
 			               	</c:forEach>
 			               	
 			               	<c:if test="${point.next ==true }">
-			               		<li><a href = "index.do?page=${point.endPage+1}&stype=${param.stype}&sword=${param.sword}">></a></li>
+			               		<li><a href = "/hotel/point/index.do?page=${point.endPage+1}&stype=${param.stype}&sword=${param.sword}">></a></li>
 			               	</c:if>
 		               </ul>
 		            </div>
                 
-                    <!-- 페이지처리 -->
-                    <!-- 검색을 넣어야 할거같다 -->
                 </div>
             </div>
         </div>

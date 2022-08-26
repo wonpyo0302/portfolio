@@ -82,7 +82,7 @@ $(function(){
 	});	
 	
 	$("#point").on("focusout",function(){
-		if(${loginInfo.totalpoint} < $("#point").val()){
+		if(${totalpoint} < $("#point").val()){
     		alert("포인트가 부족합니다. 다시입력하세요");
 			$("#point").val('');
 		}	
@@ -157,7 +157,7 @@ function reserve(){
 						        	rev_hp : $("#rev_hp").val(),
 						        	used_point : $("#point").val(),
 						        	coupon_no : $("#coupon_no").val(),
-						        	totalpoint : ${loginInfo.totalpoint}-$("#point").val()
+						        	totalpoint : ${totalpoint}-$("#point").val()
 						           }
 						       }).done(function (data) {
 						    	   if(data ==0){
@@ -169,9 +169,9 @@ function reserve(){
 						    		  $.ajax({
 									   		url : "/hotel/cancel/cancel.do",
 									   		type: "post",
-									   		data : {imp_uid : rsp.imp_uid,//이놈을 가져와야하는방법이필요함
+									   		data : {imp_uid : rsp.imp_uid,
 									   				guest_no : ${loginInfo.guest_no},
-									   				totalpoint : ${loginInfo.totalpoint}
+									   				totalpoint : ${totalpoint}
 									   		},
 									   		success : function(res){
 									   		}
@@ -204,7 +204,7 @@ function reserve(){
 		        	rev_hp : $("#rev_hp").val(),
 		        	used_point : Number($("#point").val()),
 		        	coupon_no : $("#coupon_no").val(),
-		        	totalpoint : ${loginInfo.totalpoint}-$("#point").val(),
+		        	totalpoint : ${totalpoint}-$("#point").val(),
 		        	pay_type : $("#payselect").val()
 				},
 				success : function(res){
@@ -255,7 +255,7 @@ function reserve(){
 			<br>
 			<input type="button" id="reset" onclick="resetcoupon();" value="쿠폰취소">
 			<input type="hidden" name="coupon_no" id="coupon_no" value=""><br><br>
-			포인트 사용 <fmt:formatNumber value="${loginInfo.totalpoint}" pattern="#,###" />P
+			포인트 사용 <fmt:formatNumber value="${totalpoint}" pattern="#,###" />P
 			<input type="text" id="point" name="point" style="width: 153.55px">
 		</div>
 	</div>

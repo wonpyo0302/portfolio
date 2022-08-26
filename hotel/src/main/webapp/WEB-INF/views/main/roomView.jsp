@@ -168,6 +168,7 @@
 		  			<input type="text" name="enddate" id="enddate" style="float:left;" onchange="reservecheck()" autocomplete="off">
 		  			<input type="hidden" name="hotel_no" id="hotel_no" value="${param.hotel_no }">
 		  			<input type="hidden" name="room_no" id="room_no" value="${param.room_no }">
+		  			<input type="hidden" name="guest_no" id="guest_no" value="${loginInfo.guest_no }">
 		  			<br><hr>
 		  			<div>
 		  				<input type="button" style="margin-bottom: 20px; width: 370px" id="map" onclick="kakaomap(${param.hotel_no});" value="위치확인하기">

@@ -159,4 +159,9 @@ public class ReserveServiceImp implements ReserveService {
 		return mapper.UpdateCouponStatus(vo);
 	}
 
+	@Override
+	public int SelectTotalPoint(ReserveVO vo) {
+		return mapper.SelectTotalPoint(vo);
+	}
+
 }

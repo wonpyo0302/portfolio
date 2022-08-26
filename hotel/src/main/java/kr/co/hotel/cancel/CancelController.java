@@ -36,4 +36,20 @@ public class CancelController {
 		return service.cancel(vo, gvo);
 	}
 	
+	
+	//무통장입금 예약 취소
+	@PostMapping("cancel/payaccountcancle.do")
+	@ResponseBody
+	public int payaccountcancle(ReserveVO vo){
+		vo=service.SelectReserve(vo);
+		System.out.println("==================상태업데이트"+service.UpdateReserveStatus(vo));
+		if(vo.getUsed_point() !=0) {
+			System.out.println("==================포인트업데이트"+service.UpdateGuestPoint(vo));
+			System.out.println("==================포인트테이블 삽입"+service.InsertPointTable(vo));
+		}
+		if(vo.getCoupon_no() !="") {
+			System.out.println("==================쿠폰상태 업데이트"+service.UpdateCouponStatus(vo));
+		}	
+		return 0;
+	}
 }
