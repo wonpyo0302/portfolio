@@ -100,12 +100,12 @@ public class openBankingAPI {
 				// 응답 데이터
 				System.out.println("responseJson :: " + sb.toString());
 				System.out.println("rsp_code :: " + code);
-				sess.setAttribute("code",code);
-				sess.setAttribute("JSON",sb);
             // 아래 else 이후 코드는 입력하지 않아도 됨
 			} else {
 				code = "9999";
 			}
+			sess.setAttribute("code",code);
+			System.out.println("sesstion에 전달하는 코드는 :"+code);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
