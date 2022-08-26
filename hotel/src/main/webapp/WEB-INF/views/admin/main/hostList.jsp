@@ -83,10 +83,10 @@
 							<form name="searchForm" id="searchForm" action="hostList.do"  method="get">
 								<div class="search">
 									<select name="stype" title="검색을 선택해주세요">
-										<option value="host_id" selected="">아이디 검색</option>
-										<option value="host_name">이름 검색</option>
+										<option value="host_id" <c:if test="${param.stype eq 'host_id'}">selected</c:if>>아이디 검색</option>
+										<option value="host_name" <c:if test="${param.stype eq 'host_name'}">selected</c:if> >이름 검색</option>
 									</select>
-									<input type="text" id="sword" name="sword" value="" title="검색할 내용을 입력해주세요" />
+									<input type="text" id="sword" name="sword" value="${param.sword }" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/image/admin/btn_search.gif" class="sbtn" alt="검색" />
 								</div>
 							</form>

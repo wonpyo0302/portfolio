@@ -87,8 +87,8 @@
 							<form name="searchForm" id="searchForm" action="guestlist.do"  method="get">
 								<div class="search">
 									<select name="stype" title="검색을 선택해주세요">
-										<option value="guest_id" selected="selected">아이디</option>
-										<option value="guest_name">이름</option>
+										<option value="guest_id" <c:if test="${param.stype eq 'guest_id'}">selected</c:if>>아이디</option>
+										<option value="guest_name" <c:if test="${param.stype eq 'guest_name'}">selected</c:if>>이름</option>
 									</select>
 									<input type="text" id="sword" name="sword" value="${param.sword}" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/image/admin/btn_search.gif" class="sbtn" alt="검색" />
