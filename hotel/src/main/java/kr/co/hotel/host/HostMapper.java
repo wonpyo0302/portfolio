@@ -32,9 +32,11 @@ public interface HostMapper {
 	//==========이하 빛찬 작성============
 	
 	int reserve_count (int hotel_no);
-	int daily_sales (int hotel_no);
+	int today_sale (int hotel_no);
 	HotelVO review_count(int host_no);
 	List<Integer> sales_for_aWeek(int hotel_no);
+	List<Integer> monthly_sales(int hotel_no);
+	List<Integer> weekly_sales(int hotel_no);
 	
 	int making_calendar(Map map);
 }

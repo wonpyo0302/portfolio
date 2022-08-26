@@ -49,7 +49,7 @@
 			});
     		$.ajax({
 				url : 'idDupCheck.do',
-				data:{email:$("#host_id").val()},
+				data:{host_id:$("#host_id").val()},
 				async:false,
 				success:function(res) {
 					if (res == 'true') {
@@ -133,8 +133,10 @@
 	    				data:{host_id:$("#host_id").val()},
 	    				success:function(res) {
 	    					if (res == 'true') {
+	    						console.log(res);
 	    						alert('사용 불가');
 	    					} else {
+	    						console.log(res);
 	    						alert('사용 가능');
 	    					}
 	    				}

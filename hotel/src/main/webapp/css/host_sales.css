@@ -5,11 +5,16 @@
 	padding: 30px;
 	height: 500px;
 }
+.tr-head-test td{
+	padding-left: 20px;
+}
 
 .tr-head-test th{
-	width: 20%;
-	border: 3px solid red;
-	padding-left: 20px;
+	width: 14%;
+	border: 3px solid lightgray;
+	padding-left: 10px;
+	margin-right: 10px;
+	background-color: #F5F0F7;
 }
 
 .tr-head-test th div{
@@ -30,12 +35,18 @@
 	text-align: left;
 	font-weight: bold;
 	border-radius: 25px;
-	background-color: #FAB3DB; 
+	background-color: #F4BDED; 
 }
 
 .tr-head-test button p{
 	font-size: 55px;
 	text-align: center;
+}
+
+.tr-head-test input{
+	font-size: 22px;
+	margin: 10px 0 10px 0;
+	opacity: 100%;
 }
 
 
@@ -54,5 +65,9 @@ tr td {
 	margin-top: 20px;
 	color: balck !important;
 	font-size: 20px;
+}
+
+.sub_title{
+	margin-bottom: 30px;
 }
 

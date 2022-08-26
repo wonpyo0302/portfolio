@@ -177,17 +177,14 @@ public class HostServiceImpl implements HostService {
 		Map map = new HashMap();
 		
 		int reserve_count = hmapper.reserve_count(hvo.getHotel_no());
-		int daily_sales = hmapper.daily_sales(hvo.getHotel_no());
+		int today_sale = hmapper.today_sale(hvo.getHotel_no());
 		HotelVO review_count = hmapper.review_count(hvo.getHost_no());
 		int totalReview = review_count.getTotalReview();
 		double avgScore = review_count.getAvgScore();
 		
-		if((Object)daily_sales == null) {
-			System.out.println("널값확인 : "+ daily_sales);
-			daily_sales =0;
-		}
 		
-		map.put("daily_sales", daily_sales);
+		
+		map.put("today_sale", today_sale);
 		map.put("reserve_count", reserve_count);
 		map.put("totalReview", totalReview);
 		map.put("avgScore", avgScore);
@@ -201,6 +198,10 @@ public class HostServiceImpl implements HostService {
 		
 		List<Integer> ary = hmapper.sales_for_aWeek(hotel_no);
 		map.put("ary", ary);
+		List<Integer> monthly = hmapper.monthly_sales(hotel_no);
+		map.put("monthly", monthly);
+		List<Integer> weekly = hmapper.weekly_sales(hotel_no);
+		map.put("weekly", weekly);
 		
 		return map;
 	}

@@ -71,5 +71,74 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
     	<property name="dataSource" ref="dataSource"></property>
     </bean>
+    
+     <mvc:interceptors>
+    
+		<mvc:interceptor>
+			<mvc:mapping path="/guest/**/"/>
+			<mvc:mapping path="/cancle/**/"/>
+			<mvc:mapping path="/coupon/index.do"/>
+			<mvc:mapping path="/fav/**/"/>
+			<mvc:mapping path="/guestboard/**/"/>
+			<mvc:mapping path="/guestfaq/**/"/>
+			<mvc:mapping path="/guestnotice/**/"/>
+			<mvc:mapping path="/point/**/"/>
+			<mvc:mapping path="/reserve/**/"/>
+			<mvc:mapping path="/review/**/"/>
+			<!-- 게스트로 로그인했을때 들어갈수 있는 url -->
+			
+			<mvc:exclude-mapping path="/guest/findGuestPwd.do"/>
+			<mvc:exclude-mapping path="/guest/findGuestId.do"/>
+			<mvc:exclude-mapping path="/guest/login.do"/>
+			<mvc:exclude-mapping path="/guest/logout.do"/>
+			<mvc:exclude-mapping path="/guest/join.do"/>
+			<mvc:exclude-mapping path="/guest/emailDupCheck.do"/>
+			<mvc:exclude-mapping path="/guest/idDupCheck.do"/>
+			<mvc:exclude-mapping path="/guest/hpDupCheck.do"/>
+			<mvc:exclude-mapping path="/guest/realNameApi.do"/>
+			<!-- 게스트로 로그인하지 않아도 들어갈수 있는 url -->
+			
+			<bean class="interceptor.GuestLoginInterceptor"/>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/host/**/"/>
+			<mvc:mapping path="/hostboard/**/"/>
+			<mvc:mapping path="/hostfaq/**/"/>
+			<mvc:mapping path="/hostnotice/**/"/>
+			<mvc:mapping path="/hostReserve/**/"/>
+			<mvc:mapping path="/room/**/"/>
+			<mvc:mapping path="/myhotel/**/"/>
+			<mvc:mapping path="/host_review/**/"/>
+			<!-- 호스트로 로그인했을때 들어갈수 있는 url -->
+			
+			<mvc:exclude-mapping path="/host/findGuestPwd.do"/>
+			<mvc:exclude-mapping path="/host/findGuestId.do"/>
+			<mvc:exclude-mapping path="/host/login.do"/>
+			<mvc:exclude-mapping path="/host/logout.do"/>
+			<mvc:exclude-mapping path="/host/join.do"/>
+			<mvc:exclude-mapping path="/host/emailDupCheck.do"/>
+			<mvc:exclude-mapping path="/host/idDupCheck.do"/>
+			<mvc:exclude-mapping path="/host/hpDupCheck.do"/>
+			<!-- <mvc:exclude-mapping path="/host/realNameApi.do"/> -->
+			<!-- 호스트로 로그인하지 않아도 들어갈수 있는 url -->
+			
+			<bean class="interceptor.HostLoginInterceptor"/>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**/"/>
+			<mvc:mapping path="/coupon/idList.do"/>
+			<mvc:mapping path="/coupon/create.do"/>
+			<!-- 어드민으로 로그인했을때 들어갈수 있는 url -->
+			
+			<mvc:exclude-mapping path="/admin/login.do"/>
+			<mvc:exclude-mapping path="/admin/logout.do"/>
+			<!-- 어드민으로 로그인하지 않아도 들어갈수 있는 url -->
+			
+			<bean class="interceptor.AdminLoginInterceptor"/>
+		</mvc:interceptor>
+		
+	</mvc:interceptors>
 </beans>
 

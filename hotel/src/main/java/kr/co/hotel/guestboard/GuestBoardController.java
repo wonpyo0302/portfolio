@@ -32,12 +32,20 @@ public class GuestBoardController extends ImgHandling {
 
 	// 조회
 	@GetMapping("/guestboard/view.do")
-	public String view(Model model, GuestBoardVO vo) {
+	public String view(Model model, GuestBoardVO vo,@RequestParam String name2) {
 		// System.out.println(vo.get);
 		service.viewCount(vo.getGboard_no());
-		GuestBoardVO gvo = service.view(vo.getGboard_no());
-		model.addAttribute("data", gvo);
-		return "guestboard/view";
+		model.addAttribute("data", service.view(vo.getGboard_no()));
+		//((GuestBoardVO)sess.getAttribute("loginInfo")).getGuest_no();
+		String name = service.view(vo.getGboard_no()).getGuest_name();
+		if(!name.equals(name2)) {
+			model.addAttribute("msg","작성자만 확인 가능");
+			model.addAttribute("url","list.do");
+		}
+		else {
+			return "guestboard/view";
+		}
+		return "common/alert";
 	}
 
 	// 등록 폼

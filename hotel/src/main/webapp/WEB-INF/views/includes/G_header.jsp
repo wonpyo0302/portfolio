@@ -61,7 +61,7 @@
                   <a class="nav-link active" aria-current="page" href="/hotel/guest/mypage.do">마이페이지</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">예약내역</a>
+                  <a class="nav-link" href="../reserve/index.do">예약내역</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

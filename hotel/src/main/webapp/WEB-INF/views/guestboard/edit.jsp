@@ -32,9 +32,14 @@
 </style>
 
 <script> 
-	function goSave() {
+	function goSave(){
+		editor.getById['gboard_content'].exec('UPDATE_CONTENTS_FIELD',[]); // getById -> jindo라는 프레임워크에서 사용하는 것	
 		frm.submit();
-	};
+	}
+	var editor; // 변수를 밖에 쓴 이유: 전역변수로 사용하기 위해서
+	$(function(){
+		editor = setEditor('gboard_content'); // textarea id= content
+	});
 	
 	function goBack(){
 		history.back();
@@ -94,11 +99,11 @@
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td>${data.guest_name}</td>
+								<td>${loginInfo.guest_name}</td>
 							</tr>
 							<tr>
 								<th>문의내용</th>
-								<td><textarea name="gboard_content" id="content" style="width: 90%" >${data.gboard_content}</textarea></td>
+								<td><textarea name="gboard_content" id="gboard_content" style="width: 90%" >${data.gboard_content}</textarea></td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>

@@ -105,8 +105,7 @@
 											<td>이용/기타</td>
 										</c:if>
 										<td class="txt_l">
-										
-										<a href="/hotel/guestboard/view.do?gboard_no=${vo.gboard_no}">${vo.gboard_title}
+										<a href="/hotel/guestboard/view.do?gboard_no=${vo.gboard_no}&guest_no=${vo.guest_no}&name2=${loginInfo.guest_name }">${vo.gboard_title}
 										<c:if test="${vo.diff <= 3 }">
 										<img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</c:if>
