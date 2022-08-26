@@ -10,6 +10,7 @@ public class ImageVO {
 		private String filename_real;
 		private int Image_order;
 		private String Image_type;
+		private int image_no;
 		
 		private int no;
   

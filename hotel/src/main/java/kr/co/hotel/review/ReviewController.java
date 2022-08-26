@@ -72,20 +72,20 @@ public class ReviewController {
 			}
 			r=true;
 		}
-		
+		System.out.println("오류위치"+r);
 		
 		if(service.avgScroe(vo.getRoom_no(), vo.getHotel_no())) {
-			
 			r=true;
 		}else {
 			r=false;
 		}
+		System.out.println("avgScore"+r);
 		if(service.reviewTotalCount(vo.getRoom_no(),vo.getHotel_no())) {
 			r=true;
 		}else {
 			r=false;
 		}
-		
+		System.out.println("reviewTotalCount"+r);
 		
 		// 리뷰, 예약테이블의 review_status업데이트 여부, 이미지 등록 여부가 모두 완료되면 
 		if(r) {

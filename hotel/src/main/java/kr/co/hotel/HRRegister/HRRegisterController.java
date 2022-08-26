@@ -72,7 +72,7 @@ public class HRRegisterController {
 		//세션에서 host_no를 가져옴, host_no로 hotel테이블에서 hotel_no를 가져옴
 		HostVO Host_loginInfo = (HostVO) sess.getAttribute("loginInfo2");
 		System.out.println("호스트번호확인스 : "+Host_loginInfo.getHost_no());
-		//Host_loginInfo.setHost_no(1);//demo data
+		
 		
 		vo.setHost_no(Host_loginInfo.getHost_no());
 		HotelVO hotelInfo = service.get_hotelInfo(vo.getHost_no());
@@ -138,9 +138,13 @@ public class HRRegisterController {
 	}
 	
 	 @GetMapping("/room/update.do")	
-	 public String update(RoomVO vo, Model model) {
-		 System.out.println("vo 확인 : "+ vo);
-		 if(service.update(vo)) {
+	 public String update(RoomVO vo, Model model, ImageVO ivo) {
+		 //수정내용 update
+		 boolean r = false;
+		 r = service.update(vo);
+	
+		 
+		 if(r) {
 			 model.addAttribute("msg","정상적으로 수정되었습니다");
 			 model.addAttribute("url","view.do?room_no="+vo.getRoom_no());
 			 return"common/alert";
@@ -149,6 +153,13 @@ public class HRRegisterController {
 			 return"common/alert";
 		 }
 	 }
+	 
+	 @GetMapping("/room/delImg.do")//객실 수정 페이지에서 ajax로 이미지 삭제
+	 @ResponseBody
+	 public boolean delImg(ImageVO ivo) {
+		 return service.delImg(ivo.getImage_no());
+	 }
+	 
 	 	 
 	 @GetMapping("/room/delete.do")	
 	 public String delete(RoomVO vo, Model model, ImageVO ivo) {

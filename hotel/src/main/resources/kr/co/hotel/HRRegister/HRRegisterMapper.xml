@@ -216,6 +216,11 @@
 	
 	</select>
 	
+	<delete id="delImg" parameterType="int">
+	<!-- ajax > image_no로 delete 실행 -->
+	        delete from image where image_no = #{image_no};
+	</delete>
+	
 	
 	
 

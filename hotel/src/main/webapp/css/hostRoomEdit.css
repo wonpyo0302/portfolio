@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+#img_list span{
+	margin: 10px 10px 10px 10px;
+	position: relative;
+}
+
+#img_list input {
+	position: absolute; 
+	right: 10px; 
+	top: 5px;
+}

@@ -15,12 +15,13 @@
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/hotel/css/hostRoomEdit.css"/>
     
-    <script type="text/javascript">
+    <script src="/hotel/js/hostRoomEdit.js"></script>
    
     
     
-    </script>
+    
 		
 	<style type="text/css">
 		
@@ -85,12 +86,20 @@
 	                            </td>
 	                        </tr>
 	                        <tr>
-	                        	<th> 객실 사진</th>
+	                        	<th id="img_list"> 객실 사진</th>
 	                        	<td>
 	                        		<c:forEach items="${imgList }" var="img" varStatus="idx">
-		                        			<img src="/hotel/upload/${img.filename_real }" id="drag<c:out value='${idx.count }'/>"  width="128" height="128">
+	                        				<span id="imgSpan${img.image_no}" style="position: relative;">
+		                        				<input onchange="imgDel(${img.image_no})" type="checkbox" name="delImg" value="${img.image_no}" style="position: absolute; right: 10px; top: 5px;" > 
+			                        			<img src="/hotel/upload/${img.filename_real }" data-no="${img.no }" id="drag'${idx.count }"  width="128" height="128">
+		                        			</span>
 	                        		</c:forEach>
-	                        	
+	                        </tr>
+	                        <tr>
+	                        	<th> 첨부 파일  </th>
+	                        	<td>
+	                        		<input  type="file" name="filename" multiple>
+	                        	</td>
 	                        </tr>
 	                        </tbody>
 	                    </table>

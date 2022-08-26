@@ -136,7 +136,7 @@ function cancel(imp){
 												<a onclick="location.href='../review/write.do?guest_no=${loginInfo.guest_no}&reserv_no=${row.reserv_no }&hotel_no=${row.hotel_no}&room_no=${row.room_no }'">[리뷰 작성하기]</a>
 											</c:if>
 											<c:if test="${row.review_status==1}">
-												<a onclick="location.href=''">[나의 리뷰(..ing)]</a>
+												<a onclick="location.href='../review/index.do'">[리뷰보기]</a>
 											</c:if>
 										</td>
 		                            </tr>
