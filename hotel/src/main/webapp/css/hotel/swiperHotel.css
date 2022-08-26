@@ -1,0 +1,108 @@
+html, body {
+	align-content: center;
+	position: relative;
+	height: auto;
+	width: auto;
+}
+
+body {
+	background: #eee;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	color: #000;
+	margin: 0;
+	padding-top: 60px;
+}
+
+.swiper {
+	width: 50%;
+	height: 30%;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-slide img {
+	display: block;
+	width: 240px;
+	height: 160px;
+	object-fit: cover;
+}
+
+.star-ratings {
+	color: #aaa9a9;
+	position: relative;
+	unicode-bidi: bidi-override;
+	width: max-content;
+	-webkit-text-fill-color: transparent;
+	/* Will override color (regardless of order) */
+	-webkit-text-stroke-width: 1.3px;
+	-webkit-text-stroke-color: #2b2a29;
+}
+
+.star-ratings-fill {
+	color: #fff58c;
+	padding: 0;
+	position: absolute;
+	z-index: 1;
+	display: flex;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	-webkit-text-fill-color: gold;
+	size: 100px;
+}
+
+.star-ratings-base {
+	z-index: 0;
+	padding: 0;
+	size: 100px;
+}
+
+p {
+	margin: 0;
+	margin-bottom: 0;
+}
+
+.search_box {
+	text-align: center;
+}
+
+#searchWord {
+	color: inherit;
+	text-decoration: none;
+	font-size: 1.4rem;
+	font-weight: 400;
+	height: 3.6rem;
+	padding-left: 1.6rem;
+	margin-left: auto;
+	border-radius: 0.4rem;
+	border: 1px solid #e6e6e6;
+	background-color: #f8f8f8;
+	color: #919191;
+	line-height: 3.6rem;
+}
+
+#hotel01 {
+	text-align: center;
+}
+#background{
+	background-image:url("/hotel/image/hotel/pinkSky.jpg");
+	background-size:cover;
+}

@@ -10,14 +10,19 @@
 					<div class="list_hotel" style="border: 1px;">
 						<a href="/hotel/main/hotelView.do">
 							<div class="hotel_img"><img alt="이미지오류" src="/hotel/image/hotel/${list.filename}" width="200" height="200"></div>
-							<div>
-							<!-- <div id="v-line"></div> -->
-							<span><p>${list.hotel_name}</p></span>
-							<span>최저가:  <fmt:formatNumber value="${list.lowPrice }" pattern="#,###"/> ~</span><br>
-							<span>평점: ${list.avgScore}</span><br>
-							<span>리뷰 수: ${list.totalReview}</span><br>
-							<span>좋아요 수: ${list.totalLike}</span>
-							</div>
+								<div style="font-size: 15px;">
+									<div>${list.hotel_name} (${list.avgScore})</div>
+									<div class="star-ratings" style="text-align: center; display: inline-block;">
+										<div class="star-ratings-fill space-x-2 text-lg" style="width: ${list.avgScore/5*100}%;">
+											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+										</div>
+										<div class="star-ratings-base space-x-2 text-lg">
+											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+										</div>
+									</div><br>
+									<span>최저가:  <fmt:formatNumber value="${list.lowPrice }" pattern="#,###"/> ~</span><br>
+									<span>리뷰 수: ${list.totalReview}, 좋아요 수: ${list.totalLike}</span>
+								</div>
 						</a>
 					</div>
 				</div>
