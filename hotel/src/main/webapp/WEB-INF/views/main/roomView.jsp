@@ -13,7 +13,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
-    <link href="/hotel/css/roomView.css" rel="stylesheet" type="text/css">
+    <link href="/hotel/css/hotel/roomView.css" rel="stylesheet" type="text/css">
     <style>
 	    $#ui-datepicker-div{
 			position: fixed;

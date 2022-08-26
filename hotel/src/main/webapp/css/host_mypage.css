@@ -7,9 +7,11 @@
 }
 
 .tr-head-test th{
-	width: 20%;
-	border: 3px solid gray;
-	padding-left: 20px;
+	width: 17%;
+	border: 3px solid lightgray;
+	padding-left: 10px;
+	margin-right: 10px;
+	background-color: #F5F0F7;
 }
 
 .tr-head-test th div{
@@ -30,7 +32,7 @@
 	text-align: left;
 	font-weight: bold;
 	border-radius: 25px;
-	background-color: #FAB3DB; 
+	background-color: #F4BDED; 
 }
 
 .tr-head-test button p{

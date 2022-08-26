@@ -68,7 +68,7 @@ public class HostController {
 	public void emailDupCheck(@RequestParam String host_email, HttpServletResponse res) throws IOException {
 		int count = hservice.emailDupCheck(host_email);
 		boolean r = false;
-		if (count == 1) r = true;
+		if (count >= 1) r = true;
 		PrintWriter out = res.getWriter();
 		out.print(r);
 		out.flush();
@@ -77,7 +77,7 @@ public class HostController {
 	public void idDupCheck(@RequestParam String host_id, HttpServletResponse res) throws IOException {
 		int count = hservice.idDupCheck(host_id);
 		boolean r = false;
-		if (count == 1) r = true;
+		if (count >= 1) r = true;
 		PrintWriter out = res.getWriter();
 		out.print(r);
 		out.flush();
@@ -86,7 +86,7 @@ public class HostController {
 	public void hpDupCheck(@RequestParam String host_hp, HttpServletResponse res) throws IOException {
 		int count = hservice.hpDupCheck(host_hp);
 		boolean r=false;
-		if(count==1)r=true;
+		if(count>=1)r=true;
 		PrintWriter out=res.getWriter();
 		out.print(r);
 		out.flush();

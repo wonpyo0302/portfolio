@@ -31,38 +31,41 @@
 					
 						<tbody>
 							<tr class="tr-head" >
-								<th colspan="2">
+								<th colspan="3">
 								
 								</th>
 							</tr>
 							
 							<tr class="tr-head-test" >
 								<th>
-									<div onclick="">최근 일주일 매출현황</div>
-									<div onclick="">button1</div>
-									<div onclick="">button1</div>
-									<div onclick="">button1</div>
+									<input type="button" id="daily_btn" value="최근 일주일 매출"><br>
+									<input type="button" id="weekly_btn" value="주차별 매출"><br>
+									<input type="button" id="monthly_btn" value="월별 매출">
 								</th>
 								<td>
-									<div>
-										<canvas id="bar-chart" width="800" height="450"></canvas>
+									<div id="daily">
+										<canvas id="bar-chart-daily" width="800" height="450"></canvas>
 										<c:forEach var="sale" items="${map.ary}" varStatus="idx">
 											<input type="hidden" id="sale${idx.count}" value="${sale}">
 										</c:forEach>
 									</div>
+								
+									<div id="monthly">
+										<canvas id="bar-chart-monthly" width="800" height="450"></canvas>
+										<c:forEach var="sale" items="${map.monthly}" varStatus="idx">
+											<input type="hidden" id="monthly_sale${idx.count}" value="${sale}">
+										</c:forEach>
+									</div>
+									
+									<div id="weekly">
+										<canvas id="bar-chart-weekly" width="800" height="450"></canvas>
+										<c:forEach var="sale" items="${map.weekly}" varStatus="idx">
+											<input type="hidden" id="weekly_sale${idx.count}" value="${sale}">
+										</c:forEach>
+									</div>
 								</td>
 							</tr>
-							
-							
-							<tr>
-								<th>게시판</th>
-								<th>게시판</th>
-								
-							</tr>
 						</tbody>
-						
-						
-
 					</table>
 			</div>
 		</div>

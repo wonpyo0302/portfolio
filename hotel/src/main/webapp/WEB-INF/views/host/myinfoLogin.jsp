@@ -15,6 +15,11 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<script>
+		document.addEventListener('keydown', function(event) {
+		  if (event.keyCode === 13) {
+		    event.preventDefault();
+		  };
+		}, true);
 		function confirm() {
 			if($("#host_pwd").val().trim() == ''){
 				alert('비밀번호를 입력해주세요');

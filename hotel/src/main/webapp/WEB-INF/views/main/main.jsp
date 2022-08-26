@@ -14,33 +14,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
-    <link href="/hotel/css/swiperHotel.css" rel="stylesheet" type="text/css">
+    <link href="/hotel/css/hotel/swiperHotel.css" rel="stylesheet" type="text/css">
     <!-- Demo styles -->
     <style>
-	
-	
-	.search_box {
-		text-align: center;
-	}
-	
-	#searchWord {
-		color: inherit;
-		text-decoration: none;
-		font-size: 1.4rem;
-		font-weight: 400;
-		height: 3.6rem;
-		padding-left: 1.6rem;
-		margin-left: auto;
-		border-radius: 0.4rem;
-		border: 1px solid #e6e6e6;
-		background-color: #f8f8f8;
-		color: #919191;
-		line-height: 3.6rem;
-	}
-	#hotel01 {
-		text-align: center;
-	}
-	
+
 	</style>
 
     <script type="text/javascript">
@@ -79,7 +56,7 @@
 			</div>
 	</form><br>
 	</div>
-
+	<div id="background">
     <!-- Swiper seoul -->
 	<h2 align="center">서울상품</h2>
 	<div class="swiper mySwiper_s">
@@ -89,11 +66,19 @@
 				<a href="/hotel/main/hotelView.do?hotel_no=${SH.hotel_no}">
 						<div class="hotel01"><img alt="서울이미지오류" src="/hotel/image/hotel/hotelOne/${SH.filename}" width="100px" height="100px">
 						</div>
-					<div><p>${SH.hotel_name}</p></div>
-					<span>최저가:  <fmt:formatNumber value="${SH.lowPrice }" pattern="#,###"/> ~</span><br>
-					<span>평점: ${SH.avgScore}</span><br>
-					<span>리뷰 수: ${SH.totalReview}</span><br>
-					<span>좋아요 수: ${SH.totalLike}</span>					
+					<div style="font-size: 15px;">
+						<div>${SH.hotel_name} (${SH.avgScore})</div>
+						<div class="star-ratings" style="text-align: center; display: inline-block;">
+							<div class="star-ratings-fill space-x-2 text-lg" style="width: ${SH.avgScore/5*100}%;">
+								<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+							</div>
+							<div class="star-ratings-base space-x-2 text-lg">
+								<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+							</div>
+						</div><br>
+						<span>최저가:  <fmt:formatNumber value="${SH.lowPrice }" pattern="#,###"/> ~</span><br>
+						<span>리뷰 수: ${SH.totalReview}, 좋아요 수: ${SH.totalLike}</span>
+					</div>					
 				</a>
 			</div>
 			</c:forEach>
@@ -111,11 +96,19 @@
 				<a href="/hotel/main/hotelView.do?hotel_no=${IH.hotel_no}">
 						<div id="hotel01"><img alt="인천이미지오류" src="/hotel/image/hotel/hotelOne/${IH.filename}" width="200px" height="200px">
 						</div>
-					<div><p>${IH.hotel_name}</p></div>
-					<span>최저가:  <fmt:formatNumber value="${IH.lowPrice }" pattern="#,###"/>~</span>
-					<span id="score">평점: ${IH.avgScore}</span><br>
-					<span>리뷰 수: ${IH.totalReview}</span><br>
-					<span>좋아요 수: ${IH.totalLike}</span>					
+					<div style="font-size: 15px;">
+					<div>${IH.hotel_name} (${IH.avgScore})</div>
+						<div class="star-ratings" style="text-align: center; display: inline-block;">
+							<div class="star-ratings-fill space-x-2 text-lg" style="width: ${IH.avgScore/5*100}%;">
+								<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+							</div>
+							<div class="star-ratings-base space-x-2 text-lg">
+								<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+							</div>
+						</div><br>
+						<span>최저가:  <fmt:formatNumber value="${IH.lowPrice }" pattern="#,###"/>~</span><br>
+						<span>리뷰 수: ${IH.totalReview}, 좋아요 수: ${IH.totalLike}</span>
+					</div>					
 				</a>
 			</div>
 			</c:forEach>
@@ -131,13 +124,22 @@
 			<c:forEach var="KH" items="${data.listKyeonggi }">
 			<div class="swiper-slide">
 				<a href="/hotel/main/hotelView.do?hotel_no=${KH.hotel_no}">
-						<div class="hotel01"><img alt="경기이미지오류" src="/hotel/image/hotel/hotelOne/${KH.filename}" width="200px" height="200px">
+						<div class="hotel01">
+							<img alt="경기이미지오류" src="/hotel/image/hotel/hotelOne/${KH.filename}" width="200px" height="200px">
 						</div>
-					<div><p>${KH.hotel_name}</p></div>
-					<span>최저가:  <fmt:formatNumber value="${KH.lowPrice }" pattern="#,###"/> ~</span>
-					<span>평점: ${KH.avgScore}</span><br>
-					<span>리뷰 수: ${KH.totalReview}</span><br>
-					<span>좋아요 수: ${KH.totalLike}</span>					
+					<div style="font-size: 15px;">
+						<div>${KH.hotel_name} (${KH.avgScore})</div>
+						<div class="star-ratings" style="text-align: center; display: inline-block;">
+							<div class="star-ratings-fill space-x-2 text-lg" style="width: ${KH.avgScore/5*100}%;">
+								<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+							</div>
+							<div class="star-ratings-base space-x-2 text-lg">
+								<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+							</div>
+						</div><br>
+						<span>최저가:  <fmt:formatNumber value="${KH.lowPrice }" pattern="#,###"/> ~</span>
+						<span>리뷰 수: ${KH.totalReview}, 좋아요 수: ${KH.totalLike}</span>
+					</div>					
 				</a>
 			</div>
 			</c:forEach>
@@ -145,6 +147,7 @@
 		<div class="swiper-button-next"></div>
 		<div class="swiper-button-prev"></div>
 	</div>
+</div>
 	<!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
