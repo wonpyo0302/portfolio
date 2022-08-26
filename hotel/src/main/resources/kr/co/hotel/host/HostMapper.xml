@@ -102,7 +102,7 @@
 	
 	<select id="today_sale" parameterType="int" resultType="int">
 	
-		 select total_price from
+		 select ifnull(total_price, 0) from
 		 (select * from calendar where dt = substr(now(),1,10)) a
 		 left join
 		(select substr(now(),1,10) as date, sum(total_price) as total_price  from reserv 
