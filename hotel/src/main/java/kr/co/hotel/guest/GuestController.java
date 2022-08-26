@@ -63,7 +63,7 @@ public class GuestController {
 	public void emailDupCheck(@RequestParam String guest_email, HttpServletResponse res) throws IOException {
 		int count = gservice.emailDupCheck(guest_email);
 		boolean r = false;
-		if (count == 1) r = true;
+		if (count >= 1) r = true;
 		PrintWriter out = res.getWriter();
 		out.print(r);
 		out.flush();
@@ -72,7 +72,7 @@ public class GuestController {
 	public void idDupCheck(@RequestParam String guest_id, HttpServletResponse res) throws IOException {
 		int count = gservice.idDupCheck(guest_id);
 		boolean r = false;
-		if (count == 1) r = true;
+		if (count >= 1) r = true;
 		PrintWriter out = res.getWriter();
 		out.print(r);
 		out.flush();
@@ -81,7 +81,7 @@ public class GuestController {
 	public void hpDupCheck(@RequestParam String guest_hp, HttpServletResponse res) throws IOException {
 		int count = gservice.hpDupCheck(guest_hp);
 		boolean r= false;
-		if (count == 1) r = true;
+		if (count >= 1) r = true;
 		PrintWriter out = res.getWriter();
 		out.print(r);
 		out.flush();

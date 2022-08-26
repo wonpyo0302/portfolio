@@ -22,6 +22,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script language="javascript">
+	document.addEventListener('keydown', function(event) {
+	  if (event.keyCode === 13) {
+	    event.preventDefault();
+	  };
+	}, true);
 	function pwdChangePopup() {
 		window.open("pwdChangePopup.do","hp","width=600px, height=400px");
 	}
@@ -127,15 +132,15 @@
 						</tr>
 						<tr>
 							<th>이메일</th>
-							<td><input type="text" name="guest_email" id="guest_email" value="${loginInfo.guest_email}" /></td>
+							<td><input hidden="hidden" /><input type="text" name="guest_email" id="guest_email" value="${loginInfo.guest_email}" /></td>
 						</tr>
 						<tr>
 							<th>휴대폰번호</th>
-							<td><input type="text" name="guest_hp" id="guest_hp" value="${loginInfo.guest_hp}" /></td>
+							<td><input hidden="hidden" /><input type="text" name="guest_hp" id="guest_hp" value="${loginInfo.guest_hp}" /></td>
 						</tr>
 						<tr>
 							<th>계좌번호</th>
-							<td><input type="text" name="g_bank" id="g_bank" value="${loginInfo.g_bank }" />
+							<td><input hidden="hidden" /><input type="text" name="g_bank" id="g_bank" value="${loginInfo.g_bank }" />
 							&nbsp;&nbsp;&nbsp;<input type="text" name="g_accountno" id="g_accountno" value="${loginInfo.g_accountno }" /></td>
 						</tr>
 					</tbody>
@@ -147,7 +152,7 @@
 					<tbody>
 						<tr>
 							<th>비밀번호</th>
-							<td><input type="button" href="javascript:;" onclick="pwdChangePopup();" value="비밀번호바꾸기" /></td>
+							<td><input hidden="hidden" /><input type="button" href="javascript:;" onclick="pwdChangePopup();" value="비밀번호바꾸기" /></td>
 						</tr>
 					</tbody>
 				</table>
@@ -157,23 +162,23 @@
 					<tbody>
 						<tr>
 							<th>생년월일</th>
-                            <td><input type="text" name="guest_birth" id="birthday" style="float:left;" autocomplete="off" value="${loginInfo.guest_birth}" /> </td>
+                            <td><input hidden="hidden" /><input type="text" name="guest_birth" id="birthday" style="float:left;" autocomplete="off" value="${loginInfo.guest_birth}" /> </td>
                         </tr>   		
 						<tr>
                             <th rowspan="3">주소</th>
                             <td>
-                                <input type="text" name="zipcode" id="zipcode" class="inNextBtn" style="float:left;" readonly>
+                                <input hidden="hidden" /><input type="text" name="zipcode" id="zipcode" class="inNextBtn" style="float:left;" readonly>
                                 <span class="email_check"><a href="javascript:zipcode();"  class="btn bgGray" style="float:left; width:auto; clear:none;">우편번호</a></span>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                            	<input type="text" name="guest_addr1" id="guest_addr1" style="width:80%" readonly value="${loginInfo.guest_addr1 }">
+                            	<input hidden="hidden" /><input type="text" name="guest_addr1" id="guest_addr1" style="width:80%" readonly value="${loginInfo.guest_addr1 }">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                            	<input type="text" name="guest_addr2" id="geust_addr2" style="width:80%" value="${loginInfo.guest_addr2 }">
+                            	<input hidden="hidden" /><input type="text" name="guest_addr2" id="geust_addr2" style="width:80%" value="${loginInfo.guest_addr2 }">
                             </td>
                         </tr>
 					</tbody>

@@ -119,8 +119,10 @@
 	    				success:function(res) {
 	    					if (res == 'true') {
 	    						alert('사용 불가');
+	    						console.log(res);
 	    					} else {
 	    						alert('사용 가능');
+	    						console.log(res);
 	    					}
 	    				}
 	    			});
@@ -137,8 +139,10 @@
 	    				success:function(res) {
 	    					if (res == 'true') {
 	    						alert('사용 불가');
+	    						console.log(res);
 	    					} else {
 	    						alert('사용 가능');
+	    						console.log(res);
 	    					}
 	    				}
 	    			});
@@ -199,10 +203,10 @@
         			  	 account_holder_info: ($("#birthday").val()).substring(2,8),
         				},
         			  	success: function(res) {
-        				  	if(res) {
+        				  	if(res = true) {
         					alert('인증되었습니다.코드넘버:${code}${JSON}');
         					console.log(res);
-        				  } else{
+        				  } else {
         					 alert('인증 실패하였습니다');
         					 console.log(res);
         				  }

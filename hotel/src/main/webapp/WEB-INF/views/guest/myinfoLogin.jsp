@@ -18,6 +18,11 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<script>
+		document.addEventListener('keydown', function(event) {
+		  if (event.keyCode === 13) {
+		    event.preventDefault();
+		  };
+		}, true);
 		function confirm() {
 			if($("#guest_pwd").val().trim() == ''){
 				alert('비밀번호를 입력해주세요');
@@ -66,8 +71,8 @@
                         	</tr>
                         	<tr>
                         		<th>비밀번호</th>
-                        		<td><input type="password" id="guest_pwd" name="guest_pwd" /></td>
-                        		<td><input type="button" href="javascript:;" onclick="confirm();" value="비밀번호확인" style="background-color:gray; color:white;"/></td>
+                        		<td><input hidden="hidden" /><input type="password" id="guest_pwd" name="guest_pwd" /></td>
+                        		<td><input type="button" href="javascript:;" onclick="confirm();" value="비밀번호확인" onsubmit="return false;" style="background-color:gray; color:white;"/></td>
                         	</tr>
                         	</tbody>
                         </table>

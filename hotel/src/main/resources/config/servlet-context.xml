@@ -87,12 +87,15 @@
 			<mvc:mapping path="/review/**/"/>
 			<!-- 게스트로 로그인했을때 들어갈수 있는 url -->
 			
-			<mvc:exclude-mapping path="/guest/main/main.do"/>
 			<mvc:exclude-mapping path="/guest/findGuestPwd.do"/>
 			<mvc:exclude-mapping path="/guest/findGuestId.do"/>
 			<mvc:exclude-mapping path="/guest/login.do"/>
 			<mvc:exclude-mapping path="/guest/logout.do"/>
 			<mvc:exclude-mapping path="/guest/join.do"/>
+			<mvc:exclude-mapping path="/guest/emailDupCheck.do"/>
+			<mvc:exclude-mapping path="/guest/idDupCheck.do"/>
+			<mvc:exclude-mapping path="/guest/hpDupCheck.do"/>
+			<mvc:exclude-mapping path="/guest/realNameApi.do"/>
 			<!-- 게스트로 로그인하지 않아도 들어갈수 있는 url -->
 			
 			<bean class="interceptor.GuestLoginInterceptor"/>
@@ -114,6 +117,10 @@
 			<mvc:exclude-mapping path="/host/login.do"/>
 			<mvc:exclude-mapping path="/host/logout.do"/>
 			<mvc:exclude-mapping path="/host/join.do"/>
+			<mvc:exclude-mapping path="/host/emailDupCheck.do"/>
+			<mvc:exclude-mapping path="/host/idDupCheck.do"/>
+			<mvc:exclude-mapping path="/host/hpDupCheck.do"/>
+			<!-- <mvc:exclude-mapping path="/host/realNameApi.do"/> -->
 			<!-- 호스트로 로그인하지 않아도 들어갈수 있는 url -->
 			
 			<bean class="interceptor.HostLoginInterceptor"/>
