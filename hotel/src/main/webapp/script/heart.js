@@ -18,6 +18,12 @@
 	
 	
 	function like(id_name, guest_no, hotel_no, obj){
+	
+		if(!guest_no){
+			alert("로그인 후 이용이 가능합니다.")
+			return false;
+		}
+		
 		$.ajax({
 			type: "GET",
 			url: "../fav/"+id_name,
