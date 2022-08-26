@@ -137,11 +137,29 @@ public class HRRegisterController {
 		return "room/edit";
 	}
 	
-	 @GetMapping("/room/update.do")	
-	 public String update(RoomVO vo, Model model, ImageVO ivo) {
+	 @PostMapping("/room/update.do")	
+	 public String update(RoomVO vo, Model model, ImageVO ivo,  @RequestParam("filename") List<MultipartFile> filename, HttpServletRequest req ) {
 		 //수정내용 update
 		 boolean r = false;
 		 r = service.update(vo);
+		 
+		 
+		 ivo.setNo(vo.getRoom_no());
+		 ivo.setImage_type("ROOM");
+		 ImgHandling ih = new ImgHandling();
+		 
+		//이미지 insert처리
+			if(!filename.get(0).isEmpty()) {//filename이 비어있는지 확인
+				for(int i=0; i<filename.size(); i++) {
+					Map map = ih.imghandle(filename.get(i), req);
+					ivo.setFilename_org((String)map.get("filename_org"));
+					ivo.setFilename_real((String)map.get("filename_real"));
+					ivo.setImage_order(i);
+					r= service.img_insert(ivo);
+					System.out.println("imgInsert : " + r);
+				}
+			}
+		 
 	
 		 
 		 if(r) {

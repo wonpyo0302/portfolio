@@ -36,7 +36,7 @@
                 <h3 class="sub_title"> 객실 정보 수정 </h3>
     
                 <div class="bbs">
-                	<form method="get" name="frm" id="frm" action="update.do" enctype="multipart/form-data" > <!-- enctype="multipart/form-data" -->
+                	<form method="post" name="frm" id="frm" action="update.do" enctype="multipart/form-data" > <!-- enctype="multipart/form-data" -->
 	                   <input type="hidden" name = "room_no" value="${data.room_no }"/>
 	                   <input type="hidden" name = "hotel_no" value="${data.hotel_no }"/>
 	                   <input type="hidden" name = "host_no" value="${data.host_no }"/>
@@ -95,10 +95,11 @@
 		                        			</span>
 	                        		</c:forEach>
 	                        </tr>
-	                        <tr>
-	                        	<th> 첨부 파일  </th>
+	                        <tr id="imgFrame">
+	                        	<th> 첨부 파일<button id="addImg" type="button"> [+] </button>  </th>
 	                        	<td>
-	                        		<input  type="file" name="filename" multiple>
+	                        		<input type="file" name="filename" onchange="readURL(this);"  > 
+									<img id="preview"/>
 	                        	</td>
 	                        </tr>
 	                        </tbody>
