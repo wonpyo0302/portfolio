@@ -102,4 +102,30 @@ public class CancelServiceImp implements CancelService {
 		mapper.cancelCoupon(vo);
 		return sb.toString();
 	}	
+	
+	
+	@Override
+	public int UpdateReserveStatus(ReserveVO vo) {
+		return mapper.UpdateReserveStatus(vo);
+	}
+
+	@Override
+	public int UpdateGuestPoint(ReserveVO vo) {
+		return mapper.UpdateGuestPoint(vo);
+	}
+
+	@Override
+	public int InsertPointTable(ReserveVO vo) {
+		return mapper.InsertPointTable(vo);
+	}
+
+	@Override
+	public int UpdateCouponStatus(ReserveVO vo) {
+		return mapper.UpdateCouponStatus(vo);
+	}
+
+	@Override
+	public ReserveVO SelectReserve(ReserveVO vo) {
+		return mapper.SelectReserve(vo);
+	}
 }

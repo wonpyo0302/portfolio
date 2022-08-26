@@ -20,7 +20,7 @@
 					${stype} LIKE '%${sword}%'
 				</if>
 				<if test="stype == 'all'">
-					gboard_title LIKE '%${sword}%' or gboard_content LIKE '%${sword}%'
+					gnotice_title LIKE '%${sword}%' or gnotice_content LIKE '%${sword}%'
 				</if>
 			</if>
 		</where>
@@ -37,7 +37,7 @@
 						${stype} LIKE '%${sword}%'
 					</if>
 					<if test="stype == 'all'">
-						gboard_title LIKE '%${sword}%' or gboard_content LIKE '%${sword}%' 
+						gnotice_title LIKE '%${sword}%' or gnotice_content LIKE '%${sword}%' 
 					</if>
 				</if>
 			</where>

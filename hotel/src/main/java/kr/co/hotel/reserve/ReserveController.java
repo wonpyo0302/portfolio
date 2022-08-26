@@ -29,6 +29,7 @@ public class ReserveController {
 	public String reserve(ReserveVO vo, HotelVO hvo, Model model) {
 		model.addAttribute("hotelinfo",service.SelectHotelInfo(hvo) );
 		model.addAttribute("roominfo", service.SelectRoomInfo(vo));
+		model.addAttribute("totalpoint", service.SelectTotalPoint(vo));
 		return "/reserve/reserve";
 	}
 	
@@ -62,7 +63,7 @@ public class ReserveController {
 	}
 	
 	//쿠폰 삭제 스케줄러(만료시)
-	@Scheduled(cron="0 0 23 * * *")
+	//@Scheduled(cron="0/10 * * * * *")
 	public void Coupon_PayDelete() {
 		service.CouponDelete();
 		/*
@@ -127,7 +128,7 @@ public class ReserveController {
 		vo.setGuest_no(Host_loginInfo.getGuest_no());
 		
 		model.addAttribute("data", service.index(vo));
-		
+		model.addAttribute("totalpoint", service.SelectTotalPoint(vo));
 		
 		return "reserve/index";
 	}

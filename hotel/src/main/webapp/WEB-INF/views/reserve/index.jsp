@@ -27,7 +27,7 @@ function cancel(imp){
 		type: "post",
 		data : {imp_uid : imp,
 				guest_no : ${loginInfo.guest_no},
-				totalpoint : ${loginInfo.totalpoint}
+				totalpoint : ${totalpoint}
 		},
 		success : function(res){
 			console.log(res);
@@ -36,10 +36,29 @@ function cancel(imp){
 			}
 			else{
 				alert("성공했습니다.");
+				window.location.reload();
 			}
 		}
 	});
 }
+
+function accountcancel(reserv_no){
+	console.log(reserv_no);
+	$.ajax({
+		url : "/hotel/cancel/payaccountcancle.do",
+		type: "post",
+		data : {reserv_no : reserv_no,
+				guest_no : ${loginInfo.guest_no},
+				totalpoint : ${totalpoint}
+		},
+		success : function(res){
+			console.log(res);
+				alert("성공했습니다.");
+				window.location.reload();
+		}
+	});
+}
+
 </script>
 
 <body>  
@@ -125,8 +144,12 @@ function cancel(imp){
 		                                </td>
 		                                
 		                                <td>
-		                                	<c:if test="${row.rev_status ==0 && row.use_status == 0}">
+		                                	<c:if test="${row.rev_status ==0 && row.use_status == 0 && row.pay_status !=0}">
 		                                		<input type="button" onclick="cancel('${row.imp_uid}');" value="예약취소">
+		                                	</c:if>
+		                                	
+		                                	<c:if test="${row.rev_status ==0 && row.use_status == 0 && row.pay_status==0}">
+		                                		<input type="button" onclick="accountcancel('${row.reserv_no}');" value="예약취소">
 		                                	</c:if>
 		                                	<c:if test="${row.rev_status !=0 || row.use_status != 0}">-</c:if>
 		                                </td>

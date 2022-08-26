@@ -25,8 +25,9 @@ public class PointServiceImpl implements PointService {
 		//시작 인덱스
 		int startIdx = (vo.getPage()-1)*vo.getPageRow();
 		vo.setStartIdx(startIdx);
-		List<PointVO> list = mapper.list(vo);
 		
+		List<PointVO> list = mapper.list(vo);
+
 		
 		//페이징 처리
 		int endPage = (int)(Math.ceil(vo.getPage()/10.0)*10);

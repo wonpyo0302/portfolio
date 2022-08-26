@@ -16,6 +16,7 @@ public class PointVO {
 	private int totalpoint;
 	private Timestamp date; 
 	private String hotel_name;
+	private int pointtype;
 	
 	private Timestamp searchStartDate; 
 	private Timestamp searchEndDate; 

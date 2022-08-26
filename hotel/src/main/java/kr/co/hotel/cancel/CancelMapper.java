@@ -17,4 +17,10 @@ public interface CancelMapper {
 	public int cancelReserve(ReserveVO vo);
 	public void cancelCoupon(ReserveVO vo);
 	
+	
+	public ReserveVO SelectReserve(ReserveVO vo);
+	public int UpdateReserveStatus(ReserveVO vo);
+	public int UpdateGuestPoint(ReserveVO vo);
+	public int InsertPointTable(ReserveVO vo);
+	public int UpdateCouponStatus(ReserveVO vo);
 }

@@ -35,6 +35,7 @@ public interface ReserveMapper {
 	public int InsertPointTable(ReserveVO vo);
 	public int UpdateCouponStatus(ReserveVO vo);
 	
+	public int SelectTotalPoint(ReserveVO vo);
 	
 	//이하 마이페이지 예약리스트_빛찬 
 	public int count(ReserveVO vo);

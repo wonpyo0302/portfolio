@@ -123,7 +123,9 @@
 		update coupon set usedate = null, use_status = 0 where coupon_no =#{coupon_no}
 	</update>
 	
-	
+	<select id="SelectTotalPoint" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="java.lang.Integer">
+		select totalpoint from guest where guest_no=#{guest_no}
+	</select>
 	
 
 

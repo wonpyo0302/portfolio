@@ -61,6 +61,8 @@
 				<form method="post" name="frm" id="frm" action="edit.do"
 					enctype="multipart/form-data">
 					<input type="hidden" name="hboard_no" value="${data.hboard_no}">
+					<input type="hidden" name="host_name" value="${loginInfo2.host_name}">
+					
 					<table class="board_write">
 						<tbody>
 							<div class="container">

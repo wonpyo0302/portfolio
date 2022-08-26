@@ -7,29 +7,20 @@
 	<!-- 테이블 명이 변수로 들어갈수 있음 --><!-- comment테이블은 하나, 여기에 각 페이지의 table_name 구분, 페이지의 게시판 마다 boar_no구분 -->
 		SELECT count(*) from point
 		WHERE guest_no = #{guest_no} 
-		AND date BETWEEN #{searchStartDate} AND #{searchEndDate}
-		
-		
 	</select>
 	
+	<select id="hotellist" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="kr.co.hotel.main.HotelVO">
+		select * from hotel 
+	</select>	
 	
 	<select id="list" parameterType="kr.co.hotel.point.PointVO" resultType="kr.co.hotel.point.PointVO">
-
-		SELECT 
-		p.date, h.hotel_name , p.io_point, p.totalpoint from point p, reserv r, hotel h
-		WHERE p.guest_no = r.guest_no
-		AND r.hotel_no = h.hotel_no
-		
-		AND p.date BETWEEN #{searchStartDate} AND #{searchEndDate}
-		AND guest_no = #{guest_no}
-	
-		ORDER BY p.date DESC
+		select p.date, h.hotel_name, p.io_point, p.pointtype from hotel h join reserv r on h.hotel_no = r.hotel_no and 
+		r.guest_no=#{guest_no} join point p on (p.date = r.canceldate or p.date = r.rev_date)
+		ORDER BY rev_date DESC
 		limit ${startIdx}, ${pageRow}
-	
 	</select>
 	
 	<select id="total" parameterType="int" resultType="Integer">
-		
 		select totalpoint from point
 		where guest_no = #{guest_no}
 		order by point_no desc
@@ -37,17 +28,4 @@
 	
 	</select>
 	
-
-	
-	<delete id="delete" parameterType="int">
-		
-	</delete>
-	
-	
-	
-	
-
-	
-	
-
 </mapper>

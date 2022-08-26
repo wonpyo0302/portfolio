@@ -13,7 +13,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
-    <link href="/hotel/css/roomView.css" rel="stylesheet" type="text/css">
+    <link href="/hotel/css/hotel/roomView.css" rel="stylesheet" type="text/css">
     <style>
 	    $#ui-datepicker-div{
 			position: fixed;
@@ -178,6 +178,7 @@
 		  			<input type="text" name="enddate" id="enddate"  onchange="reservecheck()" autocomplete="off">
 		  			<input type="hidden" name="hotel_no" id="hotel_no" value="${param.hotel_no }">
 		  			<input type="hidden" name="room_no" id="room_no" value="${param.room_no }">
+		  			<input type="hidden" name="guest_no" id="guest_no" value="${loginInfo.guest_no }">
 		  			<br><hr>
 		  			<div>
 		  				<input type="button" style="margin-bottom: 20px; width: 370px" id="map" onclick="kakaomap(${param.hotel_no});" value="위치확인하기">
