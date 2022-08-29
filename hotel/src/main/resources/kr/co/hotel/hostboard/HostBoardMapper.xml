@@ -75,6 +75,13 @@
 			WHERE hboard_no = #{hboard_no}
 	</update>
 	
+	<!-- 답글업데이트 -->
+	<update id="replyupdate" parameterType="kr.co.hotel.hostboard.HostBoardVO">
+		UPDATE hostboard SET
+			 hboard_replyupdatedate= now(), hboard_reply=#{hboard_reply}
+			WHERE hboard_no =#{hboard_no}
+	</update>
+	
 	<!-- 삭제하기 -->
 	<delete id="delete" parameterType="int">
 		DELETE FROM hostboard WHERE hboard_no = #{hboard_no}

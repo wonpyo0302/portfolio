@@ -119,7 +119,7 @@
 								<td>관리자</td>
 								<th>수정일자</th>
 								<td class="date" style="width: 150px"><fmt:formatDate
-										value="${data.gnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+										value="${data.gnotice_updatedate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 							</tr>
 							<tr>
 								<th>내용</th>

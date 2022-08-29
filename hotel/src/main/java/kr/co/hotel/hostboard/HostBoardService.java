@@ -13,5 +13,6 @@ public interface HostBoardService {
 	HostBoardVO edit(int hboard_no); // 수정폼
 	boolean update(HostBoardVO vo); // 수정처리
 	boolean delete(int hboard_no); // 삭제
+	boolean replyupdate(HostBoardVO vo); // 답변달기(관리자용)
 	
 }

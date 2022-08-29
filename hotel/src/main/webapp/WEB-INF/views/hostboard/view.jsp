@@ -31,6 +31,10 @@
 	box-sizing: border-box;
 }
 
+th {
+	width: 10%;
+	text-align : center;
+}
 .container {
 	background-color: light grey;
 	padding: 50px;
@@ -64,7 +68,7 @@
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "/hotel/hostboard/list.do?stype=${param.stype}&sword=${param.sword}"";
+		location.href = "/hotel/hostboard/list.do?stype=${param.stype}&sword=${param.sword}";
 	}
 	// 삭제하기
 	function goDel(hboard_no){
@@ -126,7 +130,25 @@
 							<td colspan="3" style="width: 600px; height:300px">${data.hboard_content}</td>
 						</tr>
 						</div>
-					</table>
+						</table>
+					<!-- 답글란 시작 -->
+					<table class="board_write" style=" margin-top:20px">
+							<div class="title">
+								<c:if test="${!empty data.hboard_reply}">
+								<tr>
+									<th>답변날짜</th>
+									<td name="hboard_replyupdatedate" colspan="3">
+									<fmt:formatDate value="${data.hboard_replyupdatedate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+								</tr>
+								<tr>
+									<th>답변내용</th>
+									<td name="hboard_reply" colspan="3" style="width: 600px; height: 300px">${data.hboard_reply}</td>
+								</tr>
+								</c:if>
+							</div>
+						</table>
+					<!-- 답글란 끝 -->
+					
 					<div class="btnSet" style="text-align: right;">
 						<a href="edit.do?hboard_no=${data.hboard_no }" class="btn">수정</a>
 						<a href="javascript:goDel(${data.hboard_no});" class="btn">삭제</a>

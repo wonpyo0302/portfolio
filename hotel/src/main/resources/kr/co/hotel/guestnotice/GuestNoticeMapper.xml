@@ -83,7 +83,7 @@
 	<!-- 수정하기 -->
 	<update id="update" parameterType="kr.co.hotel.guestnotice.GuestNoticeVO">
 		UPDATE guestnotice SET 
-			gnotice_type = #{gnotice_type}, gnotice_title = #{gnotice_title}, gnotice_content = #{gnotice_content}
+			gnotice_type = #{gnotice_type}, gnotice_title = #{gnotice_title}, gnotice_content = #{gnotice_content}, gnotice_updatedate = now()
 			WHERE gnotice_no = #{gnotice_no}
 	</update>
 	

@@ -88,7 +88,7 @@ function goWrite(){
 								
 										<td>${data.totalCount - status.index - ((guestNoticeVO.page - 1) * guestNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l" >
-										<a	href="/hotel/guestnotice/view.do?gnotice_no=${vo.gnotice_no}&stype=${param.stype}&sword=${param.sword}">
+										<a	href="/hotel/admin/main/guestboard/notice/view.do?gnotice_no=${vo.gnotice_no}&stype=${param.stype}&sword=${param.sword}">
 										<b> <c:if test="${vo.gnotice_type == 1 }">
 											[안내] ${vo.gnotice_title}   
 										</c:if> <c:if test="${vo.gnotice_type == 2 }">

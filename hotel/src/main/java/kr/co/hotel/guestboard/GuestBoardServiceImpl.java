@@ -120,7 +120,11 @@ public class GuestBoardServiceImpl implements GuestBoardService {
 		map.put("list", list);
 		return map;
 		
-		
+	}
+
+	public boolean replyupdate(GuestBoardVO vo) {
+		return mapper.replyupdate(vo) > 0 ? true : false;
+
 	}
 
 

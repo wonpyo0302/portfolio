@@ -155,9 +155,8 @@
 								<option value="hnotice_title">제목</option>
 								<option value="hnotice_content">내용</option>
 						</select>
-						</span> <span class="searchWord"> <input type="text" id="sword"
-							name="sword" value="${param.sword }" title="검색어 입력"> <input
-							type="button" id="" value="검색" title="검색">
+						</span> <span class="searchWord"> <input type="text" id="sword" name="sword" value="${param.sword }" title="검색어 입력"> 
+							<input type="button" id="" value="검색" title="검색">
 						</span>
 					</form>
 				</div>

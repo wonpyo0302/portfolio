@@ -42,6 +42,7 @@ public class Admin_HostFaqController {
 		//admin 로그인 테스트
 		HostFaqVO AdminLoginInfo = new HostFaqVO();
 		AdminLoginInfo.setAdmin_no(2); // demo
+		AdminLoginInfo.setAdmin_id("admin_찌수"); //demo
 		sess.setAttribute("loginInfo_admin", AdminLoginInfo);
 		
 		if (service.insert(vo)) {
@@ -65,7 +66,7 @@ public class Admin_HostFaqController {
 
 	// 수정처리(관리자용)
 	@PostMapping("/admin/main/hostboard/faq/edit.do")
-	public String update(Model model, HostFaqVO vo, AdminVO avo) {
+	public String update(Model model, HostFaqVO vo) {
 		if (service.update(vo)) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
 			model.addAttribute("url", "view.do");

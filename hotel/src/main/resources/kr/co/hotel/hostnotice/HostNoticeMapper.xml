@@ -84,7 +84,7 @@
 	<!-- 수정하기 -->
 	<update id="update" parameterType="kr.co.hotel.hostnotice.HostNoticeVO">
 		UPDATE hostnotice SET 
-			hnotice_type = #{hnotice_type}, hnotice_title = #{hnotice_title}, hnotice_content = #{hnotice_content}
+			hnotice_type = #{hnotice_type}, hnotice_title = #{hnotice_title}, hnotice_content = #{hnotice_content}, hnotice_updatedate = now()
 			WHERE hnotice_no = #{hnotice_no}
 	</update>
 	

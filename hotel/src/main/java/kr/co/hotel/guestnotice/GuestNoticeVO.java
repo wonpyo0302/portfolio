@@ -1,5 +1,6 @@
 package kr.co.hotel.guestnotice;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 
 import kr.co.hotel.domain.Criteria;
@@ -9,13 +10,14 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class GuestNoticeVO extends Criteria {
+public class GuestNoticeVO {
 	private int gnotice_no; // 공지사항 번호
 	private int admin_no; // 관리자 번호
 	private int gnotice_type; // 공지사항 유형
 	private String gnotice_title; //제목
 	private String gnotice_content; //내용
 	private Timestamp gnotice_regdate; //작성일
+	private Timestamp gnotice_updatedate; // 수정일자
 	private int gnotice_viewcount; //조회수
 	
 	private int fix; // 게시물 고정 1=고정 (서브쿼리)

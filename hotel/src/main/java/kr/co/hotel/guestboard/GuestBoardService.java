@@ -13,6 +13,7 @@ public interface GuestBoardService {
 	GuestBoardVO edit(int gboard_no); // 수정폼(관리자용)
 	boolean update(GuestBoardVO vo); // 수정처리(관리자용)
 	boolean delete(int gboard_no); // 삭제(관리자용)
+	boolean replyupdate(GuestBoardVO vo); // 답변달기(관리자용)
 	
 	//마이페이지 내 문의글 목록보기_빛찬_220829
 	Map index_in_mypage(GuestBoardVO vo); // 목록보기 
