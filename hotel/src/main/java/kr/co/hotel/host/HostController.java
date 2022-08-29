@@ -19,6 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.hotel.admin.AdminVO;
 import kr.co.hotel.hostReserve.HostReserveService;
+import kr.co.hotel.hostboard.HostBoardService;
+import kr.co.hotel.hostboard.HostBoardVO;
+import kr.co.hotel.hostnotice.HostNoticeService;
+import kr.co.hotel.hostnotice.HostNoticeVO;
+
 
 
 @Controller
@@ -28,6 +33,12 @@ public class HostController {
 	
 	@Autowired
 	HostReserveService service;
+	
+	@Autowired
+	HostNoticeService hnservice;
+	
+	@Autowired
+	HostBoardService hbservice;
 	
 	@GetMapping("/host/join.do")
 	public String join() {
@@ -130,7 +141,7 @@ public class HostController {
 		return "common/return";
 	}
 	@GetMapping("/host/mypage.do")
-	public String mypage(HttpSession sess, Model model) {
+	public String mypage(HttpSession sess, Model model, HostNoticeVO vo, HostBoardVO hvo) {
 		if(sess.getAttribute("loginInfo2")==null) {
 			model.addAttribute("msg","로그인해야 합니다");
 			return "common/aleret";
@@ -145,7 +156,12 @@ public class HostController {
 			
 			Map map = hservice.get_numbers(host_loginInfo);
 			model.addAttribute("map", map);
+			Map map2 =hnservice.index(vo);
+			model.addAttribute("map2", map2);
 			
+			hvo.setHost_no(host_no);
+			Map map3 = hbservice.index_in_mypage(hvo);
+			model.addAttribute("map3", map3);
 			//END_빛찬_220824
 			return "/host/myPage";
 		}

@@ -87,5 +87,50 @@
 		DELETE FROM hostboard WHERE hboard_no = #{hboard_no}
 	</delete>
 	
+	
+	
+	<!-- 호스트 내가 남긴 문의글_빛찬_220829 -->
+	<!-- 총 게시물 수 체크 -->
+	<select id="count_in_mypage" parameterType="kr.co.hotel.hostboard.HostBoardVO" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM hostboard 
+		<where>
+			host_no=${host_no}
+			<if test="stype != null and stype != ''">
+				<if test="stype !='all'">
+					${stype} LIKE '%${sword}%'
+				</if>
+				<if test="stype == 'all'">
+					hboard_title LIKE '%${sword}%' or hboard_content LIKE '%${sword}%'
+				</if>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 목록보기 -->
+	<select id="list_in_mypage" parameterType="kr.co.hotel.hostboard.HostBoardVO" resultType="kr.co.hotel.hostboard.HostBoardVO">
+		SELECT *,
+			( SELECT host_name FROM host 
+				WHERE host_no = hostboard.host_no ) AS host_name,
+				datediff (now(), hboard_regdate) as diff
+		FROM hostboard
+			<where>
+				host_no=${host_no}
+				<if test="stype != null and sword != ''">
+					<if test="stype != 'all'">
+						${stype} LIKE '%${sword}%'
+					</if>
+					<if test="stype == 'all'">
+						hboard_title LIKE '%${sword}%' or hboard_content LIKE '%${sword}%' 
+					</if>
+				</if>
+			</where>
+			ORDER BY hboard_regdate DESC
+			LIMIT ${startIdx} , ${pageRow}
+	</select>
+	
+	
+	
+	
+	
 
 </mapper>
