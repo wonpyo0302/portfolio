@@ -50,7 +50,7 @@ public class CouponController {
 				}
 			}
 		}
-			return "/admin/main/couponcreate";
+			return "/admin/main/coupon/couponcreate";
 	}
 	
 	
