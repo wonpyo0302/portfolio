@@ -32,6 +32,11 @@
 	box-sizing: border-box;
 }
 
+th {
+	width: 10%;
+	text-align : center;
+}
+
 .container {
 	background-color: light grey;
 	padding: 50px;
@@ -94,7 +99,7 @@
 						<tbody>
 							<div class="title">
 								<tr>
-									<th style="width: 15%">문의유형</th>
+									<th>문의유형</th>
 									<td style="text-align: left">
 										<c:if test="${data.hboard_type==6 }">[입점]</c:if> 
 										<c:if test="${data.hboard_type==7 }">[광고/제휴]</c:if> 
@@ -106,7 +111,7 @@
 									<fmt:formatDate	value="${data.hboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 								</tr>
 								<tr>
-									<th style="width: 5%">제목</th>
+									<th>제목</th>
 									<td name="hboard_title">${data.hboard_title}</td>
 									<th>수정일자</th>
 									<td colspan='2' class="date" style="width: 30%">
@@ -130,18 +135,25 @@
 						<tbody>
 							<div class="title">
 								<!-- 답글란 시작 -->
-								<tr>
-									<th>답변날짜</th>
-									<td name="hboard_replyupdatedate" colspan="3" >
-									<fmt:formatDate	value="${data.hboard_replyupdatedate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
-								</tr>
-								<tr>
-									<th>답변내용</th>
-									<td name="hboard_reply" colspan="3" style="width: 600px; height: 300px">
-									${data.hboard_reply}</td>
-								</tr>
+								<table class="board_write" style="margin-top: 20px">
+									<div class="title">
+										<c:if test="${!empty data.hboard_reply}">
+											<tr>
+												<th>답변날짜</th>
+												<td name="hboard_replyupdatedate" colspan="3"><fmt:formatDate
+														value="${data.hboard_replyupdatedate}"
+														pattern="yyyy-MM-dd hh:mm:ss" /></td>
+											</tr>
+											<tr>
+												<th>답변내용</th>
+												<td name="hboard_reply" colspan="3"
+													style="width: 600px; height: 300px">${data.hboard_reply}</td>
+											</tr>
+										</c:if>
+									</div>
+								</table>
 								<!-- 답글란 끝 -->
-								</div>
+							</div>
 						</tbody>
 					</table>
 					<div class="btnSet" style="text-align: right;">

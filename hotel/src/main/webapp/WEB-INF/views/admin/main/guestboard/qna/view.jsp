@@ -32,6 +32,11 @@
 	box-sizing: border-box;
 }
 
+th {
+	width: 10%;
+	text-align : center;
+}
+
 .container {
 	background-color: light grey;
 	padding: 50px;
@@ -94,7 +99,7 @@
 					<table class="board_write">
 						<div class="title">
 							<tr>
-								<th style="width: 15%">문의유형</th>
+								<th >문의유형</th>
 								<td style="text-align: left"><c:if
 										test="${data.gboard_type==1 }">[예약]</c:if> <c:if
 										test="${data.gboard_type==2 }">[결제]</c:if> <c:if
@@ -107,7 +112,7 @@
 
 							</tr>
 							<tr>
-								<th style="width: 5%">제목</th>
+								<th >제목</th>
 								<td>${data.gboard_title }</td>
 								<th>수정일자</th>
 								<td colspan='2' class="date" style="width: 30%"><fmt:formatDate
@@ -130,22 +135,23 @@
 						</div>
 						</tbody>
 						
-						<!-- 답글란 시작 -->
-						<tbody>
-							<div class="title">
-								<tr>
-									<th>답변날짜</th>
-									<td name="gboard_replyupdatedate" colspan="3">
-									<fmt:formatDate value="${data.gboard_replyupdatedate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
-								</tr>
-								<tr>
-									<th>답변내용</th>
-									<td name="gboard_reply" colspan="3" style="width: 600px; height: 300px">${data.gboard_reply}</td>
-								</tr>
-							</div>
-						</tbody>
-						</table>
-						<!-- 답글란 끝 -->
+					<!-- 답글란 시작 -->
+								<table class="board_write" style="margin-top: 20px">
+									<div class="title">
+										<c:if test="${!empty data.gboard_reply}">
+											<tr>
+												<th>답변날짜</th>
+												<td name="gboard_replyupdatedate" colspan="3"><fmt:formatDate value="${data.gboard_replyupdatedate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+											</tr>
+											<tr>
+												<th>답변내용</th>
+												<td name="gboard_reply" colspan="3"
+													style="width: 600px; height: 300px">${data.gboard_reply}</td>
+											</tr>
+										</c:if>
+									</div>
+								</table>
+								<!-- 답글란 끝 -->
 						
 						<div class="btnSet" style="text-align: right;">
 							<a href="answer.do?gboard_no=${data.gboard_no }" class="btn">답변등록 및 수정</a>

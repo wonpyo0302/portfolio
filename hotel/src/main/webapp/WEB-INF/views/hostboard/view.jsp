@@ -131,7 +131,7 @@ th {
 						</tr>
 						</div>
 						</table>
-					<!-- 답글란 시작 -->
+						<!-- 답글란 시작 -->
 					<table class="board_write" style=" margin-top:20px">
 							<div class="title">
 								<c:if test="${!empty data.hboard_reply}">

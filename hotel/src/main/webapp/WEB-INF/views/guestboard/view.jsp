@@ -149,6 +149,9 @@ th {
 							</div>
 						</table>
 					<!-- 답글란 끝 -->
+				
+						
+						
 						
 					<div class="btnSet" style="text-align: right;">
 						<a href="edit.do?gboard_no=${data.gboard_no}" class="btn">수정</a> <a

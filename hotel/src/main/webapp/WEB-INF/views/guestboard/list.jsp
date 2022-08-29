@@ -117,11 +117,11 @@
 										
 										<td class="date"> <fmt:formatDate value="${vo.gboard_regdate}" pattern="yyyy-MM-dd"/></td>
 										
-										<c:if test="${vo.gboard_status == 0 }">
-											<td>[답변대기]</td>
+										<c:if test="${empty vo.gboard_reply }">
+											<td style="color:red">[답변대기]</td>
 										</c:if>	
-										<c:if test="${vo.gboard_status == 1 }">
-											<td>[답변완료]</td>
+										<c:if test="${!empty vo.gboard_reply}">
+											<td style="color:blue">[답변완료]</td>
 										</c:if>	
 									</tr>
 							</c:forEach>	
