@@ -55,6 +55,11 @@
 									<button onclick="location.href='../hostReserve/index.do'">예약현황<br><p>${map.reserve_count } 개</p></button>
 								</td>
 							</tr>
+							<tr>
+							<td>게시판</td>
+							<td>게시판</td>
+							
+							</tr>
 						</tbody>
 					</table>
 			</div>

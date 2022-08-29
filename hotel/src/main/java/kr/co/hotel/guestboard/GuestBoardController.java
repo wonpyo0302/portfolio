@@ -126,5 +126,19 @@ public class GuestBoardController extends ImgHandling {
 		}
 
 	}
+	
+	
+//---------------이하 빛찬-------------------------------------------------------
+	// 목록
+	@GetMapping("/mypage/guestboard/list.do")
+	public String index_mypage(Model model, GuestBoardVO vo, HttpSession sess) {
+		GuestVO guest_info=(GuestVO)sess.getAttribute("loginInfo");
+		vo.setGuest_no(guest_info.getGuest_no());
+		
+		model.addAttribute("data", service.index_in_mypage(vo));
+		return "guestboard/list_in_mypage";
+	}
+
+	
 
 }

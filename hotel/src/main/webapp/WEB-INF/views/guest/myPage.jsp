@@ -66,7 +66,7 @@
 									<button type="button" class="component" onclick="location.href='../fav/index.do'">마이 찜 목록</button>
 								</td>
 								<td>
-									<button type="button" class="component">마이 문의 리스트</button>
+									<button type="button" class="component" onclick="location.href='../mypage/guestboard/list.do'">마이 문의 리스트</button>
 								</td>
 							</tr>
 						
