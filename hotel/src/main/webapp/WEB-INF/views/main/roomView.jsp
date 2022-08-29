@@ -113,7 +113,13 @@
 		   	 if(diffdate<0){
 				 $("#calcprice").val('0');
 		   	 }else{
-			 	$("#calcprice").val((diffdate)*${roomInfo.room_price });
+		   		 var totalprice = (diffdate)*${roomInfo.room_price };
+		   		 console.log(totalprice);
+			 	$("#calcprice").val(totalprice.toLocaleString('ko-KR'));
+		   	 }
+		   	 
+		   	 if($("#enddate").val()=='' || $("#startdate").val()==''){
+		   		$("#calcprice").val('0');
 		   	 }
 		   	 
 			 if(res !=0){
@@ -185,7 +191,7 @@
 		  			</div>
 		  			
 		  			<b>총 가격</b>&nbsp;
-		  			<input type="text" name="total_price" id="calcprice" style="outline: 0; border:none; font-size: 1.3em" readonly="readonly" value="">
+		  			<input type="text"  id="calcprice" style="outline: 0; border:none; font-size: 1.3em" readonly="readonly" value="">
  		  			<br><br>
 					<div id="reserveBtn" style="display: inline-block; ">
 		  				<input type="submit" style="width:368px; border-radius:50px; color:white;  background-color: #FF3366;" id="reservebtn" value="">

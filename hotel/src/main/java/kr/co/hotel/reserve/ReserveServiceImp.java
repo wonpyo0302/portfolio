@@ -164,4 +164,9 @@ public class ReserveServiceImp implements ReserveService {
 		return mapper.SelectTotalPoint(vo);
 	}
 
+	@Override
+	public int SelectRoomPrice(ReserveVO vo) {
+		return mapper.SelectRoomPrice(vo);
+	}
+
 }

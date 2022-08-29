@@ -28,11 +28,13 @@ public class PointController {
 			
 		GuestVO loginInfo= (GuestVO)sess.getAttribute("loginInfo");
 		vo.setGuest_no(loginInfo.getGuest_no());
-		int totalpoint= service.total(loginInfo.getGuest_no());					//totalpoint를 구해 PointVO에 set합니다. PointVO는 jsp에 자동으로 전달됩니다.				
-		vo.setTotalpoint(totalpoint);
+		int totalpoint= service.total(loginInfo.getGuest_no());				
 		
 		Map map = service.index(vo);
+		
+		model.addAttribute("totalpoint", totalpoint);
 		model.addAttribute("point", map);
+		
 		
 		}catch(Exception e) {
 			e.printStackTrace();

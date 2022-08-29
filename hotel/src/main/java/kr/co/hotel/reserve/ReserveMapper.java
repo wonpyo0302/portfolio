@@ -28,6 +28,7 @@ public interface ReserveMapper {
 	public ReserveVO SelectReserveInfo(ReserveVO vo);
 	public ReserveVO UpdatePay_Status(ReserveVO vo);
 	public ReserveVO DeleteAccountPay();
+	public int SelectRoomPrice(ReserveVO vo);
 	
 	public List<ReserveVO> CancleList();
 	public int cancelReserve(ReserveVO vo);

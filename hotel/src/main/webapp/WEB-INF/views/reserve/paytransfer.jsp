@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/includes/G_header.jsp" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +28,7 @@ th, td{
 <table border="1">
 	<tr>
 		<th class="totalproce">결제금액</th>
-		<td>${reserveinfo.total_price}</td>
+		<td><fmt:formatNumber value="${reserveinfo.total_price}" pattern="##,###"/> </td>
 	</tr>
 	<tr>
 		<th class="name">계좌주</th>
