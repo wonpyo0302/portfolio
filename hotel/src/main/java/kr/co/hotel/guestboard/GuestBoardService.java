@@ -13,5 +13,6 @@ public interface GuestBoardService {
 	GuestBoardVO edit(int gboard_no); // 수정폼(관리자용)
 	boolean update(GuestBoardVO vo); // 수정처리(관리자용)
 	boolean delete(int gboard_no); // 삭제(관리자용)
+	boolean replyupdate(GuestBoardVO vo); // 답변달기(관리자용)
 	
 }

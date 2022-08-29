@@ -19,6 +19,8 @@ public class GuestBoardVO extends GuestVO {
 	private Timestamp gboard_regdate; // 등록일
 	private Timestamp gboard_updatedate; // 수정일
 	private int gboard_status; // 답변상태
+	private Timestamp gboard_replyupdatedate; // 답변날짜
+	private String gboard_reply; // 답변내용
 	
 	private String guest_name; // 스칼라서브쿼리로 guest_name를 가져옴
 	private int diff; // 최신글 확인을 위한 날짜 차이 

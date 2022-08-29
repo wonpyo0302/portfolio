@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+6<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/includes/G_header.jsp"%>
 <!DOCTYPE html>
@@ -43,6 +43,10 @@
 	$(function(){
 		editor = setEditor('gboard_content'); // textarea id= content
 	});
+	
+	function goBack(){
+		history.back();
+	}
     	</script>
 
 
@@ -102,9 +106,10 @@
 							</div>
 						</tbody>
 					</table>
-					<div class="btnSet" style="text-align: right;">
-						<a class="btn" href="javascript:goSave();">작성완료 </a>
-					</div>
+				   <div class="btnSet"  >
+                        <a class="btn" style="align:left; background-color:grey; border:2px solid grey " href="javascript:goBack();" >이전 </a>
+                        <a class="btn" style="align:right;" href="javascript:goSave();">저장 </a>
+                    </div>
 				</form>
 			</div>
 			

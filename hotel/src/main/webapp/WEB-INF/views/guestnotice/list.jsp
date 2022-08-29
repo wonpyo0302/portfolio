@@ -127,15 +127,15 @@
 						<span class="srchSelect"> <select id="stype" name="stype"
 							class="dSelect" title="검색분류 선택">
 								<option value="all">전체</option>
-								<option value="gnotice_title" <c:if test="${param.stype=='gnotice_title' }">selected</c:if>>제목</option>
-								<option value="gnotice_content" <c:if test="${param.stype=='gnotice_content' }">selected</c:if>>내용</option>
+								<option value="gnotice_title" <c:if test="${param.stype=='gnotice_title'}">selected</c:if>>제목</option>
+								<option value="gnotice_content" <c:if test="${param.stype=='gnotice_content'}">selected</c:if>>내용</option>
 						</select>
 						</span> 
 						<span class="searchWord"> 
 						<input type="text" id="sword" name="sword" value="${param.sword }" title="검색어 입력" > 
+							<input type="button" id="" value="검색" title="검색">
 		
 						</span>
-							<a class="btn" id="" value="검색" title="검색">검색</a>
 					</form>
 				</div>
 			</div>

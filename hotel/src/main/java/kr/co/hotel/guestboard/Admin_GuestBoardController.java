@@ -43,61 +43,24 @@ public class Admin_GuestBoardController extends ImgHandling {
 		return "admin/main/guestboard/qna/view";
 	}
 
-	// 등록 폼
-	@GetMapping("/admin/main/guestboard/qna/write.do")
-	public String write(Model model) {
-		return "admin/main/guestboard/qna/write";
-	}
 
-	// 등록처리
-	@PostMapping("/admin/main/guestboard/qna/write.do")
-	public String insert(Model model, GuestBoardVO vo, @RequestParam MultipartFile filename, HttpServletRequest req) {
-		// 첨부파일 처리
-		if (!filename.isEmpty()) {
-			String org = filename.getOriginalFilename();
-			String ext = org.substring(org.lastIndexOf("."));
-			String real = new Date().getTime() + ext;
 
-			// 첨부파일 저장처리
-			String path = req.getRealPath("/upload/");
-			try {
-				filename.transferTo(new File(path + real));
-			} catch (Exception e) {
-			}
-			vo.setFilename_org(org);
-			vo.setFilename_real(real);
-		}
-
-		HttpSession sess = req.getSession();
-		GuestVO gvo = (GuestVO) sess.getAttribute("loginInfo");
-		vo.setGuest_no(gvo.getGuest_no());
-
-		if (service.insert(vo)) {
-			model.addAttribute("msg", "정상적으로 등록되었습니다.");
-			model.addAttribute("url", "admin/main/guestboard/qna/view.do?gboard_no=" + vo.getGboard_no());
-			return "common/alert";
-		} else {
-			model.addAttribute("msg", "저장 실패했습니다.");
-			return "common/alert";
-		}
-	}
-
-	// 수정 폼
-	@GetMapping("/admin/main/guestboard/qna/edit.do")
+	// 답글달기 폼
+	@GetMapping("/admin/main/guestboard/qna/answer.do")
 	public String editForm(Model model, GuestBoardVO vo) {
 		model.addAttribute("data", service.edit(vo.getGboard_no()));
 		System.out.println("======================================" + model.getAttribute("data"));
-		return "admin/main/guestboard/qna/edit";
+		return "admin/main/guestboard/qna/answer";
 	}
 
-	// 수정처리
-	@PostMapping("/admin/main/guestboard/qna/edit.do")
+	// 답글달기 처리
+	@PostMapping("/admin/main/guestboard/qna/answer.do")
 	public String update(GuestBoardVO vo, Model model, HttpSession sess) {
 	
-		if (service.update(vo)) {
-			model.addAttribute("data", service.update(vo));
+		if (service.replyupdate(vo)) {
+			model.addAttribute("data", service.replyupdate(vo));
 			model.addAttribute("msg", "정상적으로 수정되었습니다");
-			model.addAttribute("url", "admin/main/guestboard/qna/view.do?gboard_no=" + vo.getGboard_no());
+			model.addAttribute("url", "list.do");
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "수정 실패했습니다.");
@@ -109,7 +72,6 @@ public class Admin_GuestBoardController extends ImgHandling {
 	@GetMapping("/admin/main/guestboard/qna/delete.do")
 	public String delete(GuestBoardVO vo, Model model) {
 		if (service.delete(vo.getGboard_no())) {
-
 			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
 			model.addAttribute("url", "list.do");
 			return "common/alert";

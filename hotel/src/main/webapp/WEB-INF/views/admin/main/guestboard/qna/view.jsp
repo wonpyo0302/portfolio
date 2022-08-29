@@ -1,9 +1,9 @@
-<%@ page language="java" 	pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp" %>
-<%@ include file="/WEB-INF/views/admin/include/top.jsp" %>
-<%@ page import="java.net.*" %>
+<%@ include file="/WEB-INF/views/admin/include/headHtml.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/top.jsp"%>
+<%@ page import="java.net.*"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -65,76 +65,92 @@
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "/hotel/admin/main/guestboard/qna/list.do?stype=${param.stype}&sword=${param.sword}"";
+		location.href = "/hotel/admin/main/guestboard/qna/list.do?stype=${param.stype}&sword=${param.sword}";
 	}
 	// 삭제하기
-	function goDel(gboard_no){
-		if (confirm ('정말 삭제하시겠습니까?')){
-			location.href='delete.do?gboard_no='+gboard_no;
-		}	
+	function goDel(gboard_no) {
+		if (confirm('정말 삭제하시겠습니까?')) {
+			location.href = 'delete.do?gboard_no=' + gboard_no;
+		}
 	}
 </script>
 
 </head>
 <body>
-  <div id="container">
-			<div id="content">
-				<div class="con_tit">
-					<h2>게스트 관리 ▶ Q&A ▶ 상세보기</h2>
-				</div>
+	<div id="container">
+		<div id="content">
+			<div class="con_tit">
+				<h2>게스트 관리 ▶ Q&A ▶ 상세보기</h2>
 			</div>
+		</div>
 	</div>
 	<div class="sub">
 		<div class="size">
 			<div class="bbs">
-				<form method="get" name="frm" id="frm" action="view.do" enctype="multipart/form-data">
+				<form method="get" name="frm" id="frm" action="view.do"
+					enctype="multipart/form-data">
 					<input type="hidden" name="gboard_no" value="${data.gboard_no}">
-					<input type="hidden" name="guest_no" value="${loginInfo.guest_no}">
+
 					<table class="board_write">
 						<div class="title">
 							<tr>
 								<th style="width: 15%">문의유형</th>
-								<td style="text-align:left">
-									<c:if test="${data.gboard_type==1 }">[예약]</c:if>
-									<c:if test="${data.gboard_type==2 }">[결제]</c:if>
-									<c:if test="${data.gboard_type==3 }">[숙소]</c:if>
-									<c:if test="${data.gboard_type==4 }">[포인트/쿠폰]</c:if>
-									<c:if test="${data.gboard_type==5 }">[이용/기타]</c:if>
-								</td>
-							<th>등록일자</th>
-							<td  class="date" style="width: 30%"><fmt:formatDate value="${data.gboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
-								
+								<td style="text-align: left"><c:if
+										test="${data.gboard_type==1 }">[예약]</c:if> <c:if
+										test="${data.gboard_type==2 }">[결제]</c:if> <c:if
+										test="${data.gboard_type==3 }">[숙소]</c:if> <c:if
+										test="${data.gboard_type==4 }">[포인트/쿠폰]</c:if> <c:if
+										test="${data.gboard_type==5 }">[이용/기타]</c:if></td>
+								<th>등록일자</th>
+								<td class="date" style="width: 30%"><fmt:formatDate
+										value="${data.gboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+
 							</tr>
-						<tr>
+							<tr>
 								<th style="width: 5%">제목</th>
 								<td>${data.gboard_title }</td>
-							<th>수정일자</th>
-							<td colspan='2'  class="date" style="width: 30%"><fmt:formatDate value="${data.gboard_updatedate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
-						</tr>
-						<tr>
-							<th>작성자</th>
-							<td>${data.guest_name}</td>
-							<th>첨부파일</th>
-							<td colspan="2">
-								<a href ="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}" target="_blank">
-									${data.filename_org }
-								</a>
-							
-							</td>
-						</tr>
-						
-						<tr>
-							<th>내용</th>
-							<td colspan="3" style="width: 600px; height:300px">${data.gboard_content}</td>
-						</tr>
-					
+								<th>수정일자</th>
+								<td colspan='2' class="date" style="width: 30%"><fmt:formatDate
+										value="${data.gboard_updatedate}"
+										pattern="yyyy/MM/dd hh:mm:ss" /></td>
+							</tr>
+							<tr>
+								<th>작성자</th>
+								<td>${data.guest_name}</td>
+								<th>첨부파일</th>
+								<td colspan="2"><a
+									href="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}"
+									target="_blank"> ${data.filename_org } </a></td>
+							</tr>
+							<tr>
+								<th>내용</th>
+								<td name="gboard_content" colspan="3"
+									style="width: 600px; height: 300px">${data.gboard_content}</td>
+							</tr>
 						</div>
-					</table>
-					
-					<div class="btnSet" style="text-align: right;">
-						<a href="edit.do?gboard_no=${data.gboard_no }" class="btn">답변등록</a>
-						<a href="javascript:goList();" class="btn" style="text-align:right">목록 </a>
-					</div>
+						</tbody>
+						
+						<!-- 답글란 시작 -->
+						<tbody>
+							<div class="title">
+								<tr>
+									<th>답변날짜</th>
+									<td name="gboard_replyupdatedate" colspan="3">
+									<fmt:formatDate value="${data.gboard_replyupdatedate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+								</tr>
+								<tr>
+									<th>답변내용</th>
+									<td name="gboard_reply" colspan="3" style="width: 600px; height: 300px">${data.gboard_reply}</td>
+								</tr>
+							</div>
+						</tbody>
+						</table>
+						<!-- 답글란 끝 -->
+						
+						<div class="btnSet" style="text-align: right;">
+							<a href="answer.do?gboard_no=${data.gboard_no }" class="btn">답변등록 및 수정</a>
+							<a href="javascript:goList();" class="btn" style="text-align: right">목록 </a>
+						</div>
 				</form>
 			</div>
 		</div>

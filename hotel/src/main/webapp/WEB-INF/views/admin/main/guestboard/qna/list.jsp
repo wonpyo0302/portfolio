@@ -46,7 +46,7 @@
 
  <div id="container">
 			<div id="content">
-				<div class="con_tit">
+				<div class="con_tit">5578
 					<h2>게스트 관리 ▶ Q&A ▶ 목록조회</h2>
 				</div>
 			</div>
@@ -55,9 +55,14 @@
 		<div class="size">
 			<div class="bbs">
 				<table class="list">
-					<p>
+					<div class="btnSet" style="text-align: right;">
+						<a class="btn" href="list.do">관리 </a>
+					</div>
+					<p style="width:50%">
 						<span><strong>총 ${data.totalCount}개</strong> | ${guestBoardVO.page}/${data.totalPage}페이지</span> 
 					</p>
+					
+					
 					<caption>게시판 목록</caption>
 					<colgroup>
 						<col width="80px" />
@@ -86,7 +91,7 @@
 								<td class="first" colspan="8">등록된 글이 없습니다.</td>
 							</tr>
 						</c:if>
-						
+				
 						<c:if test="${not empty data.list}">
 							<c:forEach items="${data.list }" var="vo" varStatus="status">
 									 <tr>
@@ -132,11 +137,9 @@
 						</c:if>					
 					</tbody>
 				</table>
-				<div class="btnSet" style="text-align: right;">
 				
-					<a class="btn" href="javascript:goWrite();">관리 </a>
-					
-				</div>
+			
+				
 				<div class="pagenate clear">
 					<ul class='paging'>
 					<!-- 이전페이지 -->

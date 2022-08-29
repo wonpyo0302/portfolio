@@ -40,7 +40,7 @@
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "/hotel/hostnotice/list.do?stype=${param.stype}&sword=${param.sword}"";
+		location.href = "/hotel/hostnotice/list.do?stype=${param.stype}&sword=${param.sword}";
 	}
 	
 

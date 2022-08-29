@@ -16,5 +16,6 @@ public interface GuestBoardMapper {
 	int insert(GuestBoardVO vo); // 등록(관리자용)
 	int update(GuestBoardVO vo); // 수정(관리자용)
 	int delete(int gboard_no); // 삭제(관리자용)
+	int replyupdate(GuestBoardVO vo); // 답변달기(관리자용)
 
 }

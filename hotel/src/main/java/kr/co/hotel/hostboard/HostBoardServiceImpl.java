@@ -90,7 +90,11 @@ public class HostBoardServiceImpl implements HostBoardService {
 		return mapper.updateViewcount(hboard_no);
 	}
 
-
+	//답글업데이트(관리자용)
+	@Override
+	public boolean replyupdate(HostBoardVO vo) {
+		return mapper.replyupdate(vo) > 0 ? true : false;
+	}
 
 
 	

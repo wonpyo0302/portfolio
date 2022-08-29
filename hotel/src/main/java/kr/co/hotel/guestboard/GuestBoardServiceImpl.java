@@ -87,6 +87,11 @@ public class GuestBoardServiceImpl implements GuestBoardService {
 		return mapper.updateViewcount(gboard_no);
 	}
 
+	@Override
+	public boolean replyupdate(GuestBoardVO vo) {
+		return mapper.replyupdate(vo) > 0 ? true : false;
+	}
+
 
 
 

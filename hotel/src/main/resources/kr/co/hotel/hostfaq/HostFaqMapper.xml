@@ -22,7 +22,7 @@
 	
 		
 	<!-- 수정하기(관리자용) -->
-	<update id="update" parameterType="int">
+	<update id="update" parameterType="kr.co.hotel.hostfaq.HostFaqVO">
 		UPDATE hostfaq SET 
 			hfaq_title = #{hfaq_title}, hfaq_content = #{hfaq_content}
 			WHERE hfaq_no = #{hfaq_no}

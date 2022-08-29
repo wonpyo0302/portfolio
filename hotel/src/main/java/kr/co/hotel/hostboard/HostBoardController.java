@@ -90,7 +90,7 @@ public class HostBoardController extends ImgHandling{
 	@GetMapping("/hostboard/edit.do")
 	public String editForm(Model model, HostBoardVO vo) {
 		model.addAttribute("data", service.edit(vo.getHboard_no()));
-		//System.out.println("======================================"+model.getAttribute("data"));
+		//System.out.println("==========================="+model.getAttribute("data"));
 		return "hostboard/edit";
 	}
 	

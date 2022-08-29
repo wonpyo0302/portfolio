@@ -76,6 +76,14 @@
 			WHERE gboard_no = #{gboard_no}
 	</update>
 	
+	<!-- 답변업데이트(관리자용) -->
+		<update id="replyupdate" parameterType="kr.co.hotel.guestboard.GuestBoardVO">
+		UPDATE guestboard SET
+			 gboard_replyupdatedate= now(), gboard_reply=#{gboard_reply}
+			WHERE gboard_no =#{gboard_no}
+	</update>
+	
+	
 	<!-- 삭제하기 -->
 	<delete id="delete" parameterType="int">
 		DELETE FROM guestboard WHERE gboard_no = #{gboard_no}

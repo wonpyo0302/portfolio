@@ -91,7 +91,7 @@
 											</li>
 							<tr>
 								<th>이메일</th>
-								<td><input type="text" name="guest_email" id="email" value="" placeholder="선택사항입니다.">@<input type="text" id="" value=""></td>
+								<td><input type="text" name="guest_email" id="email" value="" placeholder="선택사항입니다."></td>
 							</tr>
 							<tr>
 								<th>제목</th>

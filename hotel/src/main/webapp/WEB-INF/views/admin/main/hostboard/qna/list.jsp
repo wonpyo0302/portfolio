@@ -55,6 +55,9 @@
 		<div class="size">
 			<div class="bbs">
 				<table class="list">
+				<div class="btnSet" style="text-align: right;">
+					<a class="btn" href="list.do">관리 </a>
+				</div>
 					<p>
 						<span><strong>총 ${data.totalCount}개</strong> | ${hostBoardVO.page}/${data.totalPage}페이지</span> 
 					</p>
@@ -130,11 +133,7 @@
 						</c:if>					
 					</tbody>
 				</table>
-				<div class="btnSet" style="text-align: right;">
-				
-					<a class="btn" href="javascript:goWrite();">관리 </a>
-					
-				</div>
+			
 				<div class="pagenate clear">
 					<ul class='paging'>
 					<!-- 이전페이지 -->
@@ -162,7 +161,7 @@
 								<option value="hboard_content">내용</option>
 						</select>
 						</span> 
-						<span class="searchWord"> <input type="text" id="sword" name="sword" placeholder="검색어를 입력하세요." title="검색어 입력"> 
+						<span class="searchWord"> <input type="text" id="sword" name="sword" value="${param.sword }" placeholder="검색어를 입력하세요." title="검색어 입력"> 
 						<input type="button" id="" value="검색" title="검색">
 						</span>
 					</form>

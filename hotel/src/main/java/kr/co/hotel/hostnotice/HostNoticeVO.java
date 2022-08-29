@@ -12,6 +12,7 @@ public class HostNoticeVO {
 	private String hnotice_title;
 	private String hnotice_content;
 	private Timestamp hnotice_regdate;
+	private Timestamp hnotice_updatedate;
 	private int hnotice_viewcount;
 	
 	private int fix; // 게시물 고정 1=고정
