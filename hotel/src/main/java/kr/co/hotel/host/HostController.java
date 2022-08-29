@@ -156,9 +156,10 @@ public class HostController {
 			
 			Map map = hservice.get_numbers(host_loginInfo);
 			model.addAttribute("map", map);
+			//공지사항
 			Map map2 =hnservice.index(vo);
 			model.addAttribute("map2", map2);
-			
+			//문의글
 			hvo.setHost_no(host_no);
 			Map map3 = hbservice.index_in_mypage(hvo);
 			model.addAttribute("map3", map3);
