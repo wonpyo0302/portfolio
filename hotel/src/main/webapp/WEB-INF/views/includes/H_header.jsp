@@ -46,7 +46,7 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/hotel/host/myinfo.do">마이페이지</a>
+                  <a class="nav-link active" aria-current="page" href="/hotel/host/mypage.do">마이페이지</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="../hostReserve/index.do">예약내역</a>
