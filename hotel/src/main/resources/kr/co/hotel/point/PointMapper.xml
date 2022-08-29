@@ -16,16 +16,13 @@
 	<select id="list" parameterType="kr.co.hotel.point.PointVO" resultType="kr.co.hotel.point.PointVO">
 		select p.date, h.hotel_name, p.io_point, p.pointtype from hotel h join reserv r on h.hotel_no = r.hotel_no and 
 		r.guest_no=#{guest_no} join point p on (p.date = r.canceldate or p.date = r.rev_date)
-		ORDER BY rev_date DESC
+		ORDER BY p.date DESC
 		limit ${startIdx}, ${pageRow}
 	</select>
 	
 	<select id="total" parameterType="int" resultType="Integer">
-		select totalpoint from point
+		select totalpoint from guest
 		where guest_no = #{guest_no}
-		order by point_no desc
-		limit 1
-	
 	</select>
 	
 </mapper>

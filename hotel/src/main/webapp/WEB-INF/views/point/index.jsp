@@ -18,26 +18,12 @@
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
 </head>
 
-
-	<script type="text/javascript">
-		function goWrite(){
-			<c:if test="${empty loginInfo}">
-				alert("로그인 후 작성 가능합니다.(목록에서)");
-			</c:if>
-			<c:if test="${!empty loginInfo}">
-				location.href="write.do";
-			</c:if>
-		}		
-	
-	
-	</script>
-
 <body>
     
         <div class="sub">
             <div class="size">
                 <h3 class="sub_title"></h3>
-                <p class="sub_title">MY POINT :  ${pointVO.totalpoint }  P</p>
+                <p class="sub_title">MY POINT :  ${totalpoint }  P</p>
     
                 <div class="bbs">
                     <table class="list">

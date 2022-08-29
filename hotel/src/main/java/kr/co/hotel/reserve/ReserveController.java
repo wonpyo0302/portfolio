@@ -1,13 +1,14 @@
 package kr.co.hotel.reserve;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,8 @@ public class ReserveController {
 		model.addAttribute("hotelinfo",service.SelectHotelInfo(hvo) );
 		model.addAttribute("roominfo", service.SelectRoomInfo(vo));
 		model.addAttribute("totalpoint", service.SelectTotalPoint(vo));
+		model.addAttribute("totalprice", service.SelectRoomPrice(vo));
+		
 		return "/reserve/reserve";
 	}
 	
@@ -100,9 +103,11 @@ public class ReserveController {
 	//무통장입금 처리페이지
 	@PostMapping("/reserve/paytransfer.do")
 	@ResponseBody
-	public String paytransferpro(ReserveVO vo, HotelVO hvo, GuestVO gvo, Model model) {
-		service.insert(vo, gvo);
-		return vo.getImp_uid();
+	public Map paytransferpro(ReserveVO vo, HotelVO hvo, GuestVO gvo, Model model) {
+		Map map = new HashMap();
+		map.put("check",service.insert(vo, gvo));
+		map.put("imp_uid", vo.getImp_uid());
+		return map;
 	}
 	
 	//결제확인

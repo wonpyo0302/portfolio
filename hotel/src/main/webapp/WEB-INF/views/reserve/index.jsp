@@ -80,6 +80,7 @@ function accountcancel(reserv_no){
                             <col width="*" />
                             <col width="*" />
                             <col width="*" />
+                            <col width="*" />
                         </colgroup>
                         <thead style="text-align:center;">
                             <tr>
@@ -89,6 +90,7 @@ function accountcancel(reserv_no){
                                 <th>호텔</th>
                                 <th>객실</th>
                                 <th>결제금액</th>
+                                <th>사용포인트</th>
                                 <th>예약상태</th>
                                 <th>이용상태</th>
                                 <th>취소하기</th>
@@ -99,7 +101,7 @@ function accountcancel(reserv_no){
 							
 							<c:if test="${empty data.list}">
 	                            <tr>
-	                                <td class="first" colspan="5">등록된 글이 없습니다.</td>
+	                                <td class="first" colspan="11">예약 내역이 없습니다.</td>
 	                            </tr>
 							</c:if>
 							
@@ -130,6 +132,9 @@ function accountcancel(reserv_no){
 		                                
 		                                <td class="writer">
 		                                    ${row.total_price} 
+		                                </td>
+		                                <td class="writer">
+		                                    ${row.used_point} 
 		                                </td>
 		                                <td >
 		                                	<c:if test="${row.rev_status ==0 }">예약완료 </c:if>

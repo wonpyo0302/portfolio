@@ -41,7 +41,7 @@
 							</tr>
 							<tr>
 								<td>
-									<button type="button" class="component" onclick="location.href='../point/list.do'">
+									<button type="button" class="component" onclick="location.href='../point/list.do?guest_vo=${loginInfo.guest_no}'">
 										마이포인트
 									</button>
 								</td>
