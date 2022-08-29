@@ -15,4 +15,7 @@ public interface HostBoardService {
 	boolean delete(int hboard_no); // 삭제
 	boolean replyupdate(HostBoardVO vo); // 답변달기(관리자용)
 	
+	//이하 빛찬(호스트 마이페이지의 내가 남긴 문의글)--------------------
+	public Map index_in_mypage(HostBoardVO vo);
+	
 }
