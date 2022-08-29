@@ -28,6 +28,7 @@ public interface ReserveMapper {
 	public ReserveVO SelectReserveInfo(ReserveVO vo);
 	public ReserveVO UpdatePay_Status(ReserveVO vo);
 	public ReserveVO DeleteAccountPay();
+	public int SelectRoomPrice(ReserveVO vo);
 	
 	public List<ReserveVO> CancleList();
 	public int cancelReserve(ReserveVO vo);
@@ -35,6 +36,7 @@ public interface ReserveMapper {
 	public int InsertPointTable(ReserveVO vo);
 	public int UpdateCouponStatus(ReserveVO vo);
 	
+	public int SelectTotalPoint(ReserveVO vo);
 	
 	//이하 마이페이지 예약리스트_빛찬 
 	public int count(ReserveVO vo);

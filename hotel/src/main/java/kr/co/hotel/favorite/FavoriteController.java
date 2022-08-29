@@ -42,6 +42,8 @@ public class FavoriteController {
 	public String insert (FavoriteVO vo, Model model) {
 		int r = service.insert(vo);
 		model.addAttribute("result", r);
+		
+		
 		return "common/return";//메서드 하나로 처리
 	}
 	

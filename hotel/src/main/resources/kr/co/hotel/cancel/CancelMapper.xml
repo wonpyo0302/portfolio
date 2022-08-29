@@ -24,5 +24,34 @@
 		update coupon set usedate = null, use_status = 0 where coupon_no = (select coupon_no from reserv where imp_uid = #{imp_uid})
 	</update>
 	
+	
+	<!-- 무통장 취소  -->
+	<select id="SelectReserve" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="kr.co.hotel.reserve.ReserveVO">
+		select * from reserv where reserv_no=#{reserv_no}
+	</select>
+	
+	<update id="UpdateReserveStatus" parameterType="kr.co.hotel.reserve.ReserveVO">
+		update reserv set rev_status = 1, canceldate = now(), pay_status = 2 where reserv_no=#{reserv_no}
+	</update>
+	
+	<update id="UpdateGuestPoint" parameterType="kr.co.hotel.reserve.ReserveVO">
+		update guest set totalpoint = 
+			(select totalpoint from (select totalpoint from guest where guest_no =#{guest_no})as b)+
+			(select used_point from reserv  where reserv_no =#{reserv_no}) where guest_no=#{guest_no} 
+	</update>
+	
+	<update id="InsertPointTable" parameterType="kr.co.hotel.reserve.ReserveVO">
+		insert into point 
+			( guest_no, io_point, totalpoint, pointtype, date)
+		values 
+			(#{guest_no}, #{used_point}, (select totalpoint from guest where guest_no=#{guest_no}), 0, now())	
+	</update>
+	
+	<update id="UpdateCouponStatus" parameterType="kr.co.hotel.reserve.ReserveVO">
+		update coupon set usedate = null, use_status = 0 where coupon_no =#{coupon_no}
+	</update>
+
+
+
 
 </mapper>

@@ -27,7 +27,7 @@ function cancel(imp){
 		type: "post",
 		data : {imp_uid : imp,
 				guest_no : ${loginInfo.guest_no},
-				totalpoint : ${loginInfo.totalpoint}
+				totalpoint : ${totalpoint}
 		},
 		success : function(res){
 			console.log(res);
@@ -36,10 +36,29 @@ function cancel(imp){
 			}
 			else{
 				alert("성공했습니다.");
+				window.location.reload();
 			}
 		}
 	});
 }
+
+function accountcancel(reserv_no){
+	console.log(reserv_no);
+	$.ajax({
+		url : "/hotel/cancel/payaccountcancle.do",
+		type: "post",
+		data : {reserv_no : reserv_no,
+				guest_no : ${loginInfo.guest_no},
+				totalpoint : ${totalpoint}
+		},
+		success : function(res){
+			console.log(res);
+				alert("성공했습니다.");
+				window.location.reload();
+		}
+	});
+}
+
 </script>
 
 <body>  
@@ -61,6 +80,7 @@ function cancel(imp){
                             <col width="*" />
                             <col width="*" />
                             <col width="*" />
+                            <col width="*" />
                         </colgroup>
                         <thead style="text-align:center;">
                             <tr>
@@ -70,6 +90,7 @@ function cancel(imp){
                                 <th>호텔</th>
                                 <th>객실</th>
                                 <th>결제금액</th>
+                                <th>사용포인트</th>
                                 <th>예약상태</th>
                                 <th>이용상태</th>
                                 <th>취소하기</th>
@@ -80,7 +101,7 @@ function cancel(imp){
 							
 							<c:if test="${empty data.list}">
 	                            <tr>
-	                                <td class="first" colspan="5">등록된 글이 없습니다.</td>
+	                                <td class="first" colspan="11">예약 내역이 없습니다.</td>
 	                            </tr>
 							</c:if>
 							
@@ -112,6 +133,9 @@ function cancel(imp){
 		                                <td class="writer">
 		                                    ${row.total_price} 
 		                                </td>
+		                                <td class="writer">
+		                                    ${row.used_point} 
+		                                </td>
 		                                <td >
 		                                	<c:if test="${row.rev_status ==0 }">예약완료 </c:if>
 		                                	<c:if test="${row.rev_status ==1 }">예약취소</c:if>
@@ -125,8 +149,12 @@ function cancel(imp){
 		                                </td>
 		                                
 		                                <td>
-		                                	<c:if test="${row.rev_status ==0 && row.use_status == 0}">
+		                                	<c:if test="${row.rev_status ==0 && row.use_status == 0 && row.pay_status !=0}">
 		                                		<input type="button" onclick="cancel('${row.imp_uid}');" value="예약취소">
+		                                	</c:if>
+		                                	
+		                                	<c:if test="${row.rev_status ==0 && row.use_status == 0 && row.pay_status==0}">
+		                                		<input type="button" onclick="accountcancel('${row.reserv_no}');" value="예약취소">
 		                                	</c:if>
 		                                	<c:if test="${row.rev_status !=0 || row.use_status != 0}">-</c:if>
 		                                </td>
@@ -136,7 +164,7 @@ function cancel(imp){
 												<a onclick="location.href='../review/write.do?guest_no=${loginInfo.guest_no}&reserv_no=${row.reserv_no }&hotel_no=${row.hotel_no}&room_no=${row.room_no }'">[리뷰 작성하기]</a>
 											</c:if>
 											<c:if test="${row.review_status==1}">
-												<a onclick="location.href=''">[나의 리뷰(..ing)]</a>
+												<a onclick="location.href='../review/index.do'">[리뷰보기]</a>
 											</c:if>
 										</td>
 		                            </tr>

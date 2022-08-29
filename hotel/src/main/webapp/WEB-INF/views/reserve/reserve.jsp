@@ -70,27 +70,33 @@
 
 $(function(){
 	var startdate=${param.startdate};
+	var orgtotalprice = ${totalprice};
+	$("#totalprice").val(orgtotalprice.toLocaleString('ko-KR'));
 	
 	$("#coupon_price").on("focusout",function(){
-		$("#totalprice").val(${param.total_price}-$("#point").val()-$("#coupon_price").val());
-		if($("#totalprice").val()< 100){
+		var totalprice = ${totalprice}-$('#point').val()-$('#coupon_price').val();
+		
+		$("#totalprice").val(totalprice.toLocaleString('ko-KR'));
+		if(totalprice< 100){
 			alert("최소 결제금액은 100원 입니다.");
-			$("#totalprice").val('${param.total_price}');
+			$("#totalprice").val(orgtotalprice.toLocaleString('ko-KR'));
 			$("#point").val('');
 			resetcoupon();
 		}
 	});	
 	
 	$("#point").on("focusout",function(){
-		if(${loginInfo.totalpoint} < $("#point").val()){
+		var totalprice = ${totalprice}-$('#point').val()-$('#coupon_price').val();
+		console.log(totalprice.toLocaleString('ko-KR'));
+		if(${totalpoint} < $("#point").val()){
     		alert("포인트가 부족합니다. 다시입력하세요");
 			$("#point").val('');
 		}	
 		
-		$("#totalprice").val(${param.total_price}-$("#point").val()-$("#coupon_price").val());
-		if($("#totalprice").val()<100){
+		$("#totalprice").val(totalprice.toLocaleString('ko-KR'));
+		if(totalprice<100){
 			alert("최소 결제금액은 100원 입니다.");
-			$("#totalprice").val('${param.total_price}');
+			$("#totalprice").val(orgtotalprice.toLocaleString('ko-KR'));
 			$("#point").val('');
 			resetcoupon();
 		}
@@ -132,7 +138,7 @@ function reserve(){
 			pay_method: 'card',
 			merchant_uid: 'merchant_' + new Date().getTime(),
 			name: "${hotelinfo.hotel_name}",//상품페이지에서 있는 객실이름
-			amount: $("#totalprice").val(), //상품페이지에서 있는 금액
+			amount: ${totalprice}-$('#point').val()-$('#coupon_price').val(), //상품페이지에서 있는 금액
 			buyer_email: "${loginInfo.guest_email}",//로그인 세션에 저장되어있는 이메일
 			buyer_name: "${loginInfo.guest_name}",//로그인 세션에 저장되어있는 이름
 			buyer_tel: "${loginInfo.guest_hp}",//로그인 세션에 저장되어있는 전화번호
@@ -146,7 +152,7 @@ function reserve(){
 						           async : false,
 						           data : 
 						           {imp_uid: rsp.imp_uid,
-						        	total_price : String($("#totalprice").val()),
+						        	total_price : ${totalprice}-$('#point').val()-$('#coupon_price').val(),
 						        	startdate :  '${param.startdate}',
 						        	enddate :  '${param.enddate}',
 						        	room_no : ${param.room_no},
@@ -157,7 +163,7 @@ function reserve(){
 						        	rev_hp : $("#rev_hp").val(),
 						        	used_point : $("#point").val(),
 						        	coupon_no : $("#coupon_no").val(),
-						        	totalpoint : ${loginInfo.totalpoint}-$("#point").val()
+						        	totalpoint : ${totalpoint}-$("#point").val()
 						           }
 						       }).done(function (data) {
 						    	   if(data ==0){
@@ -169,9 +175,9 @@ function reserve(){
 						    		  $.ajax({
 									   		url : "/hotel/cancel/cancel.do",
 									   		type: "post",
-									   		data : {imp_uid : rsp.imp_uid,//이놈을 가져와야하는방법이필요함
+									   		data : {imp_uid : rsp.imp_uid,
 									   				guest_no : ${loginInfo.guest_no},
-									   				totalpoint : ${loginInfo.totalpoint}
+									   				totalpoint : ${totalpoint}
 									   		},
 									   		success : function(res){
 									   		}
@@ -193,7 +199,7 @@ function reserve(){
 				async : false,
 				data : {
 					imp_uid : "imp_"+new Date().getTime(),
-					total_price : String($("#totalprice").val()),
+					total_price : ${totalprice}-$('#point').val()-$('#coupon_price').val(),
 		        	startdate :  '${param.startdate}',
 		        	enddate :  '${param.enddate}',
 		        	room_no : ${param.room_no},
@@ -204,12 +210,18 @@ function reserve(){
 		        	rev_hp : $("#rev_hp").val(),
 		        	used_point : Number($("#point").val()),
 		        	coupon_no : $("#coupon_no").val(),
-		        	totalpoint : ${loginInfo.totalpoint}-$("#point").val(),
+		        	totalpoint : ${totalpoint}-$("#point").val(),
 		        	pay_type : $("#payselect").val()
 				},
 				success : function(res){
-					alert("예약완료되었습니다. \n )"+res);
-					location.href="/hotel/reserve/paytransfer.do?hotel_no="+${param.hotel_no}+"&imp_uid="+res;
+					if(res.check ==0 ){
+						alert("예약완료되었습니다.)");
+						location.href="/hotel/reserve/paytransfer.do?hotel_no="+${param.hotel_no}+"&imp_uid="+res.imp_uid;
+					}
+					else{
+						alert("이미 예약완료된 객실입니다.\n다른객실 이용부탁드립니다.");
+						location.href="/hotel/main/hotelView.do?hotel_no="+${param.hotel_no}
+					}
 				}
 			});
 		});
@@ -255,7 +267,7 @@ function reserve(){
 			<br>
 			<input type="button" id="reset" onclick="resetcoupon();" value="쿠폰취소">
 			<input type="hidden" name="coupon_no" id="coupon_no" value=""><br><br>
-			포인트 사용 <fmt:formatNumber value="${loginInfo.totalpoint}" pattern="#,###" />P
+			포인트 사용 <fmt:formatNumber value="${totalpoint}" pattern="#,###" />P
 			<input type="text" id="point" name="point" style="width: 153.55px">
 		</div>
 	</div>
@@ -284,7 +296,7 @@ function reserve(){
 	
 	<h3>총 결제 금액</h3><br>
 	<b>총가격</b> &nbsp;<input type="text" id="totalprice" style="border:none" readonly="readonly" 
-	value="${param.total_price}">
+	value="">
 	<br>
 	<input type="button" id="submit" value="예약" onclick="return reserve();">
 </div>

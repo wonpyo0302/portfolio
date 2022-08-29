@@ -226,12 +226,11 @@ public class GuestController {
 		}
 	 @PostMapping("/guest/realNameApi.do")
 	 public void realNameApi(ApiVO avo,HttpSession sess, HttpServletResponse res) throws Exception {
-		 sess.removeAttribute("code");
-		 sess.removeAttribute("JSON");
 		 openBankingAPI api=new openBankingAPI();
 		 boolean r= false;
-		 api.bankingRealNameApi(avo,sess);
-		 if(sess.getAttribute("code").equals("A0000")) {
+		 String code = api.bankingRealNameApi(avo,sess);
+		 System.out.println("code="+code);
+		 if(code.equals("A0000")) {
 			 r=true;
 			 PrintWriter out = res.getWriter();
 			 out.print(r); 

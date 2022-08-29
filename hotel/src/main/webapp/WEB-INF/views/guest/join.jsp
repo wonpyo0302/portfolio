@@ -103,6 +103,10 @@
     			$("#guest_hp").focus();
     			return;
     		}
+    		if ($("#code").val().trim() == "인증실패"){
+    			alert('계좌번호인증을 진행해주세요');
+    			return;
+    		}
     		$("#frm").submit();
     		alert('가입을 축하드립니다');
     		
@@ -188,6 +192,7 @@
     		
     	});
     	function bankCheck() {
+    		var code="";
     			if ($("#account_num").val().trim() == '') {
     				alert('계좌를 입력해 주세요');
     				$("#account_num").focus();
@@ -196,6 +201,7 @@
         				$.ajax({
         				url: "realNameApi.do",
         				type:"POST",
+        				cache:false,
         				data : 
         				{
         			 	 bank_code_std: $("#bank").val(),
@@ -203,12 +209,18 @@
         			  	 account_holder_info: ($("#birthday").val()).substring(2,8),
         				},
         			  	success: function(res) {
-        				  	if(res = true) {
-        					alert('인증되었습니다.코드넘버:${code}${JSON}');
+        				  	if(res == 'true') {
+        					alert('인증되었습니다.');
         					console.log(res);
+        					code="인증";
+        					document.getElementById("code").value = code;
+        					console.log(code);
         				  } else {
         					 alert('인증 실패하였습니다');
         					 console.log(res);
+        					 code="인증실패";
+        					 document.getElementById("code").value = code;
+        					 console.log(code);
         				  }
         			  }
         		});
@@ -390,14 +402,14 @@
                         <tr>
                             <th>계좌번호</th>
                             <td>
-                                <input type="text" name="g_accountno" id="account_num" value="${data.account_num}"  maxlength="20" style="float:left;" />
+                                <input type="text" name="g_accountno" id="account_num" maxlength="20" style="float:left;" />
                                 <span class="guest_accountno_check"><a href="javascript:;" onclick="bankCheck();"class="btn bgGray" style="float:left; width:auto; clear:none;" id="bankCheck"
-                                 >계좌확인</a></span>
+                                 >계좌확인</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="code" name="code" style="color:black;" value="" style="background-color:pink;" readonly ></a></span>
                             </td>
                         </tr>
           	
                         <tr>
-                            <th>성별</th>
+                            <th>성별</th>	
                             <td>
                             <select name="g_gender" id="g_gender" style="height:30px;">
                             <option value="1">남성</option>

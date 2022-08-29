@@ -118,6 +118,42 @@
 		return;
 	}
 	
+	function imgDel(image_no){
+		console.log(image_no)
+		$("#imgSpan"+image_no).hide();
+		
+		$.ajax({
+			type: "GET",
+			url: "../guest_review/delImg.do",
+			data:{image_no:image_no},
+			error:function(er){
+				$("#imgSpan"+image_no).show();
+			},
+			success: function(res){
+				alert(res);
+				alert("성공")
+				$("#imgAtc"+image_no).show();
+								
+			}
+		})//END_ajax
+	}//END_imgDel
+		
+	function readURL(input, image_no) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+				
+				document.getElementById('preview'+image_no).src = e.target.result;
+				
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('preview'+image_no).src = "";
+		  }
+		}//END_readURL	
+		
+		
+	
 
 </script>
 <body style="padding:50px;">

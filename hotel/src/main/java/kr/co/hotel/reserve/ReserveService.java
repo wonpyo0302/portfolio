@@ -27,6 +27,9 @@ public interface ReserveService {
 	public ReserveVO SelectReserveInfo(ReserveVO vo);
 	public ReserveVO UpdatePay_Status(ReserveVO vo);
 	public void DeleteAccountPay();
+	public int SelectTotalPoint(ReserveVO vo);
+	public int SelectRoomPrice(ReserveVO vo);
+	
 	
 	//스케줄러로 자동취소메소드 구현
 	public List<ReserveVO> CancleList();//미입금 결제 리스트조회

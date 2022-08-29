@@ -25,6 +25,7 @@
 						
 						
 						<c:forEach var="img" items="${vo.imageList }" end="0">
+						
 							<div>
 								<div class="heart">
 									<img class="like"  data-name="del" data-gno="${vo.guest_no}" data-hno="${vo.hotel_no}" src="/hotel/image/mypage/heart.png" width="40px" >
