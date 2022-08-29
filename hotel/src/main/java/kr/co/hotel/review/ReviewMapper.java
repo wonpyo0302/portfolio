@@ -40,5 +40,6 @@ public interface ReviewMapper {
 	
 	public List<ReviewVO> host_review_list(ReviewVO vo);
 	
+	public int review_delImg(int image_no);
 	
 }

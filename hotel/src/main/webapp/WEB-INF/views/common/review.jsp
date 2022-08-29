@@ -80,8 +80,9 @@
 </head>
 
 <body>
+<c:if test="${empty rv.list }">등록된 후기가 존재하지 않습니다.</c:if>
 
-<c:forEach var="rv" items="${rv.list }">
+<c:forEach var="rv" items="${rv.list }" varStatus="idx">
 	
 	
 	<div class="outer-div" id="outer-div${rv.review_no }">
@@ -93,7 +94,7 @@
 						<img src="/hotel/upload/${rv.img.filename_real }" class="img-fluid rounded-start" alt="..." width="200px">
 					</c:if>
 					<c:if test="${empty rv.img.filename_real }">
-						<img src="/hotel/image/hotel/ex_room.jpg" class="img-fluid rounded-start" alt="..." width="200px">
+						<img src="/hotel/image/mypage/noImage.png" class="img-fluid rounded-start" alt="..." width="200px">
 					</c:if>
 					
 					</div>
@@ -138,22 +139,47 @@
 		
 		
 		<!-- 수정 BOX!! -->
-		<form method="post" id="form${rv.review_no }" action="../review/update.do">
+		<form method="post" id="form${rv.review_no }" action="../review/update.do" enctype="multipart/form-data" >
 		
 			<div class="outer-div-modi" id="outer-div-modi${rv.review_no }">
-			<input type="hidden" name="review_score" id="${rv.review_no }" value="${rv.review_score }">
-			<input type="hidden" name="review_no" value="${rv.review_no }">
-			<input type="hidden" name="hotel_no" value="${rv.hotel_no }">
-			<input type="hidden" name="room_no" value="${rv.room_no }">
-		
+				<input type="hidden" name="review_score" id="${rv.review_no }" value="${rv.review_score }">
+				<input type="hidden" name="review_no" value="${rv.review_no }">
+				<input type="hidden" name="hotel_no" value="${rv.hotel_no }">
+				<input type="hidden" name="room_no" value="${rv.room_no }">
+			
 			<div class="card mb-3" style="width: 700px; height: 210px; ">
 					<div class="row g-0">
 						<div class="col-md-4">
+						
+						<!-- 이미지가 존재하는 경우 -->
 						<c:if test="${!empty rv.img.filename_real }">
-							<img src="/hotel/upload/${rv.img.filename_real }" class="img-fluid rounded-start" alt="..." width="200px">
+							<span id="imgSpan${rv.img.image_no}" style="position: relative;">
+								<input onchange="imgDel(${rv.img.image_no})" type="checkbox" name="delImg" value="${rv.img.image_no}" style="position: absolute; right: 10px; top: 5px;" >
+								<img src="/hotel/upload/${rv.img.filename_real }" class="img-fluid rounded-start" width="200px">
+							</span>	
+							<div id="imgAtc${rv.img.image_no}" style="display: none; position: relative;">
+							
+								<input id="file${rv.img.image_no}" type="file" name="filename" onchange="readURL(this, ${rv.img.image_no});"  hidden="true" > 
+								<div>
+									<img id="preview${rv.img.image_no}" style="position: absolute; right: 0" width="200px"/>
+								</div>
+							
+								<label for="file${rv.img.image_no}">
+									<img src="/hotel/image/mypage/imgPlus.png" class="img-fluid rounded-start"  width="40px" style="margin: 150px 0 5px 5px; ">
+								</label>
+							
+							</div>
 						</c:if>
+						
+						<!-- 이미지가 존재하지 않는 경우 -->
 						<c:if test="${empty rv.img.filename_real }">
-							<img src="/hotel/image/hotel/ex_room.jpg" class="img-fluid rounded-start" alt="..." width="200px">
+							<div id="imgAtc${rv.review_no}" style=" position: relative;">
+								<input id="file${rv.review_no}" type="file" name="filename" onchange="readURL(this, ${rv.review_no});" hidden="true" > 
+								<div><img id="preview${rv.review_no}" style="position: absolute; right: 0" width="200px"/></div>
+							</div>
+							<label for="file${rv.review_no}">
+								<img src="/hotel/image/mypage/imgPlus.png" class="img-fluid rounded-start"  width="40px" style="margin: 135px 0 5px 5px; ">
+							</label>
 						</c:if>
 						
 						</div>

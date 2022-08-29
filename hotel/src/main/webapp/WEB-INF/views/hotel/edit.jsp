@@ -198,7 +198,7 @@
 	                        	</td>
 	                        </tr>
 	                         <tr id="imgFrame">
-	                        	<th> 첨부 파일<button id="addImg" type="button"> [+] </button>  </th>
+	                        	<th> 첨부 파일<button id="addImg" type="button">&nbsp;&nbsp;&nbsp; <img src="/hotel/image/mypage/imgPlus.png" width="30px"> </button>  </th>
 	                        	<td>
 	                        		<input type="file" name="filename2" onchange="readURL(this);"  > 
 									<img id="preview"/>

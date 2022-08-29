@@ -160,5 +160,10 @@
 			limit ${startIdx}, ${pageRow}
 	
 	</select>
+	
+	
+	<delete id="review_delImg" parameterType="int">
+		delete from image where image_no = #{image_no}
+	</delete>
 
 </mapper>

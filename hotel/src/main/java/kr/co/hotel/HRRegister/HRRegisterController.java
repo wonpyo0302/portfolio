@@ -175,7 +175,9 @@ public class HRRegisterController {
 	 
 	 @GetMapping("/room/delImg.do")//객실 수정 페이지에서 ajax로 이미지 삭제
 	 @ResponseBody
-	 public boolean delImg(ImageVO ivo) {
+	 public boolean delImg(ImageVO ivo, @RequestParam int image_no) {
+		 System.out.println("이미지번호	 : "+ivo.getImage_no());
+		 System.out.println("이미지번호 : "+image_no);
 		 return service.delImg(ivo.getImage_no());
 	 }
 	 

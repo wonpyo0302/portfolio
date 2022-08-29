@@ -24,4 +24,6 @@ public interface ReviewService {
 	public boolean review_update(ReviewVO vo);
 	
 	public Map host_index(ReviewVO vo);
+	
+	public boolean review_delImg (int image_no);
 }

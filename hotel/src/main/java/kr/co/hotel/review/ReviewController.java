@@ -1,5 +1,6 @@
 package kr.co.hotel.review;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.hotel.HRRegister.HRRegisterService;
@@ -56,6 +58,8 @@ public class ReviewController {
 	
 	@PostMapping("/review/insert.do")
 	public String insert(ReviewVO vo, ImageVO ivo, Model model, @RequestParam MultipartFile filename, HttpServletRequest req) {
+		
+		
 		ImgHandling ih = new ImgHandling();
 		boolean r= false;
 		if(service.insert(vo)) {
@@ -125,16 +129,28 @@ public class ReviewController {
 	
 	
 	@PostMapping("/review/update.do")
-	public String update(ReviewVO vo, Model model) {
-		System.out.println("업데이트합니다");
-		System.out.println("리뷰확인"+vo.getReview_no());
-		System.out.println("호텔확인"+vo.getHotel_no());
-		System.out.println("객실확인"+vo.getRoom_no());
-		System.out.println(vo.getReview_title());
-		System.out.println(vo.getReview_content());
-		System.out.println("리뷰확인"+vo.getReview_score());
+	public String update(ReviewVO vo, Model model, ImageVO ivo, @RequestParam List<MultipartFile> filename, HttpServletRequest req) {
+		
 		boolean r = service.review_update(vo);//review 테이블 평점 입력
-
+		
+		//리뷰 이미지 업데이트
+		ivo.setNo(vo.getReview_no());
+		ivo.setImage_type("REVIEW");
+		ImgHandling ih = new ImgHandling();
+		 
+		//이미지 insert처리
+		if(!filename.get(0).isEmpty()) {//filename이 비어있는지 확인
+			for(int i=0; i<filename.size(); i++) {
+				Map map = ih.imghandle(filename.get(i), req);
+				ivo.setFilename_org((String)map.get("filename_org"));
+				ivo.setFilename_real((String)map.get("filename_real"));
+				ivo.setImage_order(i);
+				r= HRservice.img_insert(ivo);
+				System.out.println("imgInsert : " + r);
+			}
+		}
+		
+		
 		//hotel, room 평점 업데이트
 		if(service.avgScroe(vo.getRoom_no(), vo.getHotel_no())) {
 			r=true;
@@ -146,6 +162,7 @@ public class ReviewController {
 		}else {
 			r=false;
 		}
+		
 		
 		if(r) {
 			
@@ -174,6 +191,15 @@ public class ReviewController {
 		Map map = service.host_index(vo);
 		model.addAttribute("rv", map);
 		return "common/hostReview";
+	}
+	
+	//리뷰 리스트, 수정시 사진 삭제
+	@GetMapping("/guest_review/delImg.do")
+	@ResponseBody
+	public boolean host_delImg (ImageVO ivo) {
+		System.out.println("==================="+ivo.getImage_no());
+		boolean r =service.review_delImg(ivo.getImage_no());
+		return r;
 	}
 	
 	

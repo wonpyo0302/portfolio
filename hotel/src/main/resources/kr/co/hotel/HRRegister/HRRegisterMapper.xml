@@ -16,9 +16,7 @@
 			(#{no} ,#{filename_org},#{filename_real},#{image_order},#{image_type})
 	</insert>
 	
-	<select id="img_get" parameterType="int" resultType="kr.co.hotel.room.RoomVO">
-		
-	</select>
+
 
 	
 	<select id="count" parameterType="kr.co.hotel.room.RoomVO" resultType="java.lang.Integer">
