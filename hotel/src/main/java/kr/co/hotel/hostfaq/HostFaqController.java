@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HostFaqController {
-	
+
 	@Autowired
 	HostFaqService service;
 
@@ -18,10 +18,9 @@ public class HostFaqController {
 	@GetMapping("/hostfaq/view.do")
 	public String view(Model model, HostFaqVO vo) {
 		HostFaqVO r = service.view(vo.getHfaq_no());
-		System.out.println("=================================="+r);
-		model.addAttribute("data",service.list(vo));
+		System.out.println("==================================" + r);
+		model.addAttribute("data", service.list(vo));
 		return "hostfaq/view";
 	}
-	
-	
+
 }

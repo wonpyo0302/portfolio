@@ -13,13 +13,13 @@ public class HostFaqServiceImpl implements HostFaqService {
 	@Autowired
 	HostFaqMapper mapper;
 
-	//목록
+	// 목록
 	@Override
 	public List<HostFaqVO> list(HostFaqVO vo) {
 		return mapper.list(vo);
 	}
-	
-	//상세보기
+
+	// 상세보기
 	@Override
 	public HostFaqVO view(int hfaq_no) {
 		return mapper.view(hfaq_no);
@@ -45,5 +45,4 @@ public class HostFaqServiceImpl implements HostFaqService {
 		return mapper.delete(hfaq_no) > 0 ? true : false;
 	}
 
-	
 }

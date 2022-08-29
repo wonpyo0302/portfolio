@@ -36,14 +36,12 @@ public class Admin_GuestBoardController extends ImgHandling {
 	public String view(Model model, GuestBoardVO vo) {
 		// System.out.println(vo.get);
 		service.viewCount(vo.getGboard_no());
-		System.out.println("=========================="+ vo.getGboard_no());
+		System.out.println("==========================" + vo.getGboard_no());
 		GuestBoardVO gvo = service.view(vo.getGboard_no());
 		model.addAttribute("data", gvo);
-		System.out.println("=============================="+ gvo.getGuest_name());
+		System.out.println("==============================" + gvo.getGuest_name());
 		return "admin/main/guestboard/qna/view";
 	}
-
-
 
 	// 답글달기 폼
 	@GetMapping("/admin/main/guestboard/qna/answer.do")
@@ -56,7 +54,7 @@ public class Admin_GuestBoardController extends ImgHandling {
 	// 답글달기 처리
 	@PostMapping("/admin/main/guestboard/qna/answer.do")
 	public String update(GuestBoardVO vo, Model model, HttpSession sess) {
-	
+
 		if (service.replyupdate(vo)) {
 			model.addAttribute("data", service.replyupdate(vo));
 			model.addAttribute("msg", "정상적으로 수정되었습니다");

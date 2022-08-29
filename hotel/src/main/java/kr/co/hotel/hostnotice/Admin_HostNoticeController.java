@@ -26,12 +26,12 @@ public class Admin_HostNoticeController {
 	// 목록
 	@GetMapping("/admin/main/hostboard/notice/list.do")
 	public String index(Model model, HostNoticeVO vo, HttpSession sess) {
-		
+
 		// admin 로그인 테스트
-			GuestNoticeVO AdminLoginInfo = new GuestNoticeVO();
-			AdminLoginInfo.setAdmin_no(2); // demo
-			sess.setAttribute("loginInfo_admin", AdminLoginInfo);
-		
+		GuestNoticeVO AdminLoginInfo = new GuestNoticeVO();
+		AdminLoginInfo.setAdmin_no(2); // demo
+		sess.setAttribute("loginInfo_admin", AdminLoginInfo);
+
 		model.addAttribute("data", service.index(vo));
 		return "admin/main/hostboard/notice/list";
 	}
@@ -101,11 +101,11 @@ public class Admin_HostNoticeController {
 	// 수정처리(관리자용)
 	@PostMapping("/admin/main/hostboard/notice/edit.do")
 	public String update(Model model, HostNoticeVO vo) {
-	
+
 		if (service.update(vo)) {
 			model.addAttribute("data", service.update(vo));
 			model.addAttribute("msg", "정상적으로 수정되었습니다");
-			model.addAttribute("url", "/hotel/admin/main/hostboard/notice/view.do?hnotice_no="+ vo.getHnotice_no());
+			model.addAttribute("url", "/hotel/admin/main/hostboard/notice/view.do?hnotice_no=" + vo.getHnotice_no());
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "수정 실패했습니다.");
@@ -116,7 +116,7 @@ public class Admin_HostNoticeController {
 	// 삭제(관리자용)
 	@GetMapping("/admin/main/hostboard/notice/delete.do")
 	public String delete(Model model, HostNoticeVO vo, int hnotice_no) {
-		
+
 		if (service.delete(hnotice_no)) {
 			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
 			model.addAttribute("url", "list.do");

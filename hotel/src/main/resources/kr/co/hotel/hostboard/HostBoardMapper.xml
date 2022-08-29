@@ -49,7 +49,7 @@
 				</if>
 			</where>
 			ORDER BY hboard_regdate DESC
-			LIMIT ${startIdx} , ${pageRow}
+			LIMIT ${startIdx}, ${pageRow}
 	</select>
 	
 	<!-- 조회하기 -->

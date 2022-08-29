@@ -34,7 +34,8 @@
 }
 
 th {
-	width : 15%;
+	width: 10%;
+	text-align : center;
 }
 
 </style>

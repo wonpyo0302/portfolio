@@ -31,6 +31,10 @@
 	outline: 0;	
 	border: none;
 }
+th {
+	width: 10%;
+	text-align : center;
+}
 
 </style>
 

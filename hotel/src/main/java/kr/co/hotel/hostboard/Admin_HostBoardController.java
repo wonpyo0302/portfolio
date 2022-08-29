@@ -41,7 +41,6 @@ public class Admin_HostBoardController extends ImgHandling {
 		return "admin/main/hostboard/qna/view";
 	}
 
-
 	// 답변달기 폼
 	@GetMapping("/admin/main/hostboard/qna/answer.do")
 	public String editForm(Model model, HostBoardVO vo) {
@@ -65,9 +64,8 @@ public class Admin_HostBoardController extends ImgHandling {
 		}
 	}
 
-	
-	// 
-	
+	//
+
 	// 삭제처리
 	@GetMapping("/admin/main/hostboard/qna/delete.do")
 	public String delete(HostBoardVO vo, Model model) {

@@ -33,6 +33,11 @@
 	height: 100%;
 	text-align: left;
 }
+
+th {
+	width: 10%;
+	text-align: center;
+}
 </style>
 
 <script>

@@ -23,6 +23,14 @@
     <script src="/hotel/js/function.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
+        
+<style>
+th {
+	width: 10%;
+	text-align: center;
+}
+</style>
+
     <script>
    	function goSave(){
 		editor.getById['gnotice_content'].exec('UPDATE_CONTENTS_FIELD',[]); // getById -> jindo라는 프레임워크에서 사용하는 것	
