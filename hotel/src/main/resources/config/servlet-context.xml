@@ -59,8 +59,7 @@
       <!-- 1024 * 1024 * 10bytes 10mb -->
       <property name="maxUploadSizePerFile"
          value="2097152"/>
-      <property name="uploadTempDir"
-         value="file:/C:/KHW/upload/temp"/>
+      
       <property name="maxInMemorySize" value="10485756"/>
    </bean>
    

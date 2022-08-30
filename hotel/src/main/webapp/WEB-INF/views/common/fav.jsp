@@ -18,6 +18,7 @@
 <img alt="" src="hotel/image/boardPic/impo.jpg">
 
 	<div class="row row-cols-1 row-cols-md-4 g-4">
+		<c:if test="${empty fav.list }">등록된 목록이 존재하지 않습니다.</c:if>
 		<c:forEach var="vo" items="${fav.list }">
 				<div class="col">
 					<div class="card h-100">

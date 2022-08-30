@@ -29,18 +29,7 @@ public class ReviewController {
 	ReviewService service;
 	@Autowired
 	HRRegisterService HRservice;
-	/*
-	//목록, 등록, 삭제
-	@GetMapping("/comment/list.do")
-	public String list(ReviewVO vo, Model model) {
-		
-		Map map = service.index(vo);
-		model.addAttribute("comment", map);
-		return "common/comment";
-		
-	
-	}
-	*/
+
 	
 	//마이페이지.예약내역 > 리뷰작성하기
 	@GetMapping("/review/write.do")
@@ -58,7 +47,6 @@ public class ReviewController {
 	
 	@PostMapping("/review/insert.do")
 	public String insert(ReviewVO vo, ImageVO ivo, Model model, @RequestParam MultipartFile filename, HttpServletRequest req) {
-		
 		
 		ImgHandling ih = new ImgHandling();
 		boolean r= false;
@@ -146,7 +134,6 @@ public class ReviewController {
 				ivo.setFilename_real((String)map.get("filename_real"));
 				ivo.setImage_order(i);
 				r= HRservice.img_insert(ivo);
-				System.out.println("imgInsert : " + r);
 			}
 		}
 		
@@ -178,13 +165,12 @@ public class ReviewController {
 	}
 	
 	//호스트 호텔 리뷰 리스트
-	
 	@GetMapping("/host_review/index.do")
 	public String host_index(ReviewVO vo, Model model, HttpServletRequest req) {
 		return"review/hostReviewList";
 	}
 	
-	//빛찬, 리뷰리스트
+	//빛찬, 리뷰리스트 ajax
 	@GetMapping("/host_review/list.do")
 	public String host_list(ReviewVO vo, Model model, HttpServletRequest req) {
 				
@@ -201,13 +187,6 @@ public class ReviewController {
 		boolean r =service.review_delImg(ivo.getImage_no());
 		return r;
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }
