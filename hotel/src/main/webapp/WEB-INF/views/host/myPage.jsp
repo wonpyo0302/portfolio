@@ -71,7 +71,7 @@
 							</colgroup>
 							<thead style="text-align: center">
 								<tr>
-									<th>번호</th>
+									<th> </th>
 									<th>제목</th>
 									<th>작성일</th>
 								</tr>
@@ -88,7 +88,7 @@
 									<c:forEach items="${map2.list }" var="vo" varStatus="status">
 										<c:if test="${vo.fix == 1}">
 											<tr style="background-color: pink" style="font-weight" :bold" >
-												<td>${data.totalCount - status.index - ((hostNoticeVO.page - 1) * hostNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
+												<td><!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 												<td class="txt_l"><a
 													href="/hotel/hostnotice/view.do?hnotice_no=${vo.hnotice_no}&stype=${param.stype}&sword=${param.sword}">
 												 <b> <c:if test="${vo.hnotice_type == 1 }">
@@ -111,7 +111,7 @@
 										</c:if>
 										<c:if test="${vo.fix != 1}">
 											<tr>
-												<td>${data.totalCount - status.index - ((hostNoticeVO.page - 1) * hostNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
+												<td><!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 												<td class="txt_l">
 												<a	href="/hotel/hostnotice/view.do?hnotice_no=${vo.hnotice_no}&stype=${param.stype}&sword=${param.sword}">
 												 <c:if test="${vo.hnotice_type == 1 }">
