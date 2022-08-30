@@ -68,7 +68,7 @@
 		  	<div class="swiper mySwiper" id="Low" style="display: inline-block; height: 350px;">
 		  		<div class="swiper-wrapper" >
 				  	<c:forEach var="hotelImage" items="${hotelImage}">
-				  		<div class="swiper-slide" id="imgBox"><img alt="사진없음" src="/hotel/image/hotel/hotelOne/${hotelImage.filename_org}"></div>
+				  		<div class="swiper-slide" id="imgBox"><img alt="사진없음" src="/hotel/image/hotel//${hotelImage.filename_org}"></div>
 				  	</c:forEach>
 		  		</div>
 		  		<div class="swiper-button-next"></div>
@@ -91,7 +91,7 @@
 		  		<div class="swiper mySwiper" id="Low" style="display: inline-block;">
 	      			<div class="swiper-wrapper" >
 	      				<c:forEach var="roomImage" items="${roomList.imageList}">
-	        			<div class="swiper-slide" id="imgBox"><img alt="객실이미지" src="/hotel/image/ah/room/${roomImage.filename_org }"></div>
+	        			<div class="swiper-slide" id="imgBox"><img alt="객실이미지" src="/hotel/image/room/${roomImage.filename_org }"></div>
 	        			</c:forEach>
 	      			</div>
 			      	<div class="swiper-button-next"></div>
