@@ -101,12 +101,14 @@
 				
 					<div class="col-md-8">
 						<div class="card-body">
-							<h5 class="card-title"> ${rv.review_title }</h5>
+							<h5 class="card-title" onclick="location.href='/hotel/main/hotelView.do?hotel_no=${rv.hotel_no}'" > 
+								${rv.review_title }
+							</h5>
 							
 							<div id="score">
 								<img alt="평점 :" src="/hotel/image/mypage/star.png" width="30px"> ${rv.review_score }점
 							</div>
-							<div>
+							<div onclick="location.href='/hotel/main/hotelView.do?hotel_no=${rv.hotel_no}'">
 								호텔  ${rv.hotel_name }
 							</div>
 							
