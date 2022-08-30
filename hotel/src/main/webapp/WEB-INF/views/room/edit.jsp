@@ -15,12 +15,13 @@
     <link rel="stylesheet" href="/hotel/css/reset.css"/>
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/hotel/css/hostRoomEdit.css"/>
     
-    <script type="text/javascript">
+    <script src="/hotel/js/hostRoomEdit.js"></script>
    
     
     
-    </script>
+    
 		
 	<style type="text/css">
 		
@@ -35,7 +36,7 @@
                 <h3 class="sub_title"> 객실 정보 수정 </h3>
     
                 <div class="bbs">
-                	<form method="get" name="frm" id="frm" action="update.do" enctype="multipart/form-data" > <!-- enctype="multipart/form-data" -->
+                	<form method="post" name="frm" id="frm" action="update.do" enctype="multipart/form-data" > <!-- enctype="multipart/form-data" -->
 	                   <input type="hidden" name = "room_no" value="${data.room_no }"/>
 	                   <input type="hidden" name = "hotel_no" value="${data.hotel_no }"/>
 	                   <input type="hidden" name = "host_no" value="${data.host_no }"/>
@@ -85,12 +86,21 @@
 	                            </td>
 	                        </tr>
 	                        <tr>
-	                        	<th> 객실 사진</th>
+	                        	<th id="img_list"> 객실 사진</th>
 	                        	<td>
 	                        		<c:forEach items="${imgList }" var="img" varStatus="idx">
-		                        			<img src="/hotel/upload/${img.filename_real }" id="drag<c:out value='${idx.count }'/>"  width="128" height="128">
+	                        				<span id="imgSpan${img.image_no}" style="position: relative;">
+		                        				<input onchange="imgDel(${img.image_no})" type="checkbox" name="delImg" value="${img.image_no}" style="position: absolute; right: 10px; top: 5px;" > 
+			                        			<img src="/hotel/upload/${img.filename_real }" data-no="${img.no }" id="drag'${idx.count }"  width="128" height="128">
+		                        			</span>
 	                        		</c:forEach>
-	                        	
+	                        </tr>
+	                        <tr id="imgFrame">
+	                        	<th> 첨부 파일<button id="addImg" type="button"> [+] </button>  </th>
+	                        	<td>
+	                        		<input type="file" name="filename" onchange="readURL(this);"  > 
+									<img id="preview"/>
+	                        	</td>
 	                        </tr>
 	                        </tbody>
 	                    </table>

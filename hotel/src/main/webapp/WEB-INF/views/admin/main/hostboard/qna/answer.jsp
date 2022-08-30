@@ -32,16 +32,22 @@
 	height: 100%;
 	text-align: left;
 }
+
+th {
+	width: 10%;
+	text-align : center;
+}
 </style>
 
 <script> 
 	function goSave(){
-		editor.getById['reply'].exec('UPDATE_CONTENTS_FIELD',[]); // getById -> jindo라는 프레임워크에서 사용하는 것	
+		editor.getById['hboard_reply'].exec('UPDATE_CONTENTS_FIELD',[]); // getById -> jindo라는 프레임워크에서 사용하는 것	
 		frm.submit();
 	}
+
 	var editor; // 변수를 밖에 쓴 이유: 전역변수로 사용하기 위해서
 	$(function(){
-		editor = setEditor('reply'); // textarea id= content
+		editor = setEditor('hboard_reply'); // textarea id= content
 	});
 
 	function goBack() {
@@ -63,26 +69,22 @@
 	<div class="sub">
 		<div class="size">
 			<div class="bbs">
-				<form method="post" name="frm" id="frm" action="edit.do"
+				<form method="post" name="frm" id="frm" action="answer.do"
 					enctype="multipart/form-data">
 					<input type="hidden" name="hboard_no" value="${data.hboard_no}">
 					<table class="board_write">
 						<tbody>
 							<div class="container">
-								<ul class="list">
-									<li class="item">
 									<th>문의유형</th>
-									</span>
-									<td style="text-align: left">
+									<td name="hboard_type" style="text-align: left">
 											<c:if test="${data.hboard_type==6}">입점</c:if>
 											<c:if test="${data.hboard_type==7}">광고/제휴</c:if>
 											<c:if test="${data.hboard_type==8}">이용회원</c:if>
 											<c:if test="${data.hboard_type==9}">이용/기타</c:if>
-										</select>
-									</li>
+									</td>
 							<tr>
 								<th>이메일</th>
-								<td>${loginInfo.guest_mail }</td>
+								<td>${loginInfo2.host_email }</td>
 							</tr>
 							<tr>
 								<th>제목</th>
@@ -104,9 +106,8 @@
 							</tr>
 							<tr>
 								<th>답변</th>
-								<td colspan="3"><textarea id="reply" style="width: 90%"></textarea></td>
+								<td colspan="3"><textarea id="hboard_reply" name="hboard_reply" style="width: 100%"></textarea></td>
 							</tr>
-							</ul>
 							</div>
 						</tbody>
 					</table>

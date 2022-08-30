@@ -32,17 +32,16 @@ public class GuestBoardController extends ImgHandling {
 
 	// 조회
 	@GetMapping("/guestboard/view.do")
-	public String view(Model model, GuestBoardVO vo,@RequestParam String name2) {
-		// System.out.println(vo.get);
-		service.viewCount(vo.getGboard_no());
+	public String view(Model model, GuestBoardVO vo, @RequestParam String name2) {
+
+		// 작성자만 게시글 확인 가능, 조회수 증가 가능
 		model.addAttribute("data", service.view(vo.getGboard_no()));
-		//((GuestBoardVO)sess.getAttribute("loginInfo")).getGuest_no();
 		String name = service.view(vo.getGboard_no()).getGuest_name();
-		if(!name.equals(name2)) {
-			model.addAttribute("msg","작성자만 확인 가능");
-			model.addAttribute("url","list.do");
-		}
-		else {
+		if (!name.equals(name2)) {
+			model.addAttribute("msg", "작성자만 확인 가능");
+			model.addAttribute("url", "list.do");
+		} else {
+			service.viewCount(vo.getGboard_no());
 			return "guestboard/view";
 		}
 		return "common/alert";
@@ -79,7 +78,7 @@ public class GuestBoardController extends ImgHandling {
 
 		if (service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
-			model.addAttribute("url", "view.do?gboard_no=" + vo.getGboard_no());
+			model.addAttribute("url", "list.do");
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "저장 실패했습니다.");
@@ -91,20 +90,36 @@ public class GuestBoardController extends ImgHandling {
 	@GetMapping("/guestboard/edit.do")
 	public String editForm(Model model, GuestBoardVO vo) {
 		model.addAttribute("data", service.edit(vo.getGboard_no()));
-		//System.out.println("======================================" + model.getAttribute("data"));
+		// System.out.println("======================================" +
+		// model.getAttribute("data"));
 		return "guestboard/edit";
 	}
 
 	// 수정처리
 	@PostMapping("/guestboard/edit.do")
-	public String update(GuestBoardVO vo, Model model) {
-		//System.out.println("=============================vo 확인" + vo.getGboard_no());
-		//System.out.println("뭐라는거야 : " + vo.getGboard_type());
+	public String update(GuestBoardVO vo, Model model, @RequestParam MultipartFile filename, HttpServletRequest req) {
+
+		
+		// 첨부파일 처리
+		if (!filename.isEmpty()) {
+			String org = filename.getOriginalFilename();
+			String ext = org.substring(org.lastIndexOf("."));
+			String real = new Date().getTime() + ext;
+
+			// 첨부파일 저장처리
+			String path = req.getRealPath("/upload/");
+			try {
+				filename.transferTo(new File(path + real));
+			} catch (Exception e) {
+			}
+			vo.setFilename_org(org);
+			vo.setFilename_real(real);
+		}
 
 		if (service.update(vo)) {
 			model.addAttribute("data", service.update(vo));
 			model.addAttribute("msg", "정상적으로 수정되었습니다");
-			model.addAttribute("url", "view.do?gboard_no=" + vo.getGboard_no());
+			model.addAttribute("url", "list.do");
 			return "common/alert";
 		} else {
 			model.addAttribute("msg", "수정 실패했습니다.");
@@ -125,6 +140,17 @@ public class GuestBoardController extends ImgHandling {
 			return "common/alert";
 		}
 
+	}
+
+//---------------이하 빛찬-------------------------------------------------------
+	// 목록
+	@GetMapping("/mypage/guestboard/list.do")
+	public String index_mypage(Model model, GuestBoardVO vo, HttpSession sess) {
+		GuestVO guest_info = (GuestVO) sess.getAttribute("loginInfo");
+		vo.setGuest_no(guest_info.getGuest_no());
+
+		model.addAttribute("data", service.index_in_mypage(vo));
+		return "guestboard/list_in_mypage";
 	}
 
 }

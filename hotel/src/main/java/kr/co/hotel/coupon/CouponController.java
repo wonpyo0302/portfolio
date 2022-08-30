@@ -73,11 +73,10 @@ public class CouponController {
 		
 		}catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("pointController에서 예외발생!");
+			System.out.println("pointController에서 예외발m생!");
 		}
 		return "coupon/index";
 	}
-	
 	//=====================쿠폰 admin내용 추가=========================
 	
 	@GetMapping("/admin/main/coupon/couponcreate.do")

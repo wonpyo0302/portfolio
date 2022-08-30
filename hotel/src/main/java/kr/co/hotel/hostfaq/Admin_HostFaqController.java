@@ -15,7 +15,7 @@ import kr.co.hotel.guestfaq.GuestFaqVO;
 
 @Controller
 public class Admin_HostFaqController {
-	
+
 	@Autowired
 	HostFaqService service;
 
@@ -23,27 +23,27 @@ public class Admin_HostFaqController {
 	@GetMapping("/admin/main/hostboard/faq/view.do")
 	public String view(Model model, HostFaqVO vo) {
 		HostFaqVO r = service.view(vo.getHfaq_no());
-		System.out.println("=================================="+r);
-		model.addAttribute("data",service.list(vo));
+		System.out.println("==================================" + r);
+		model.addAttribute("data", service.list(vo));
 		return "admin/main/hostboard/faq/view";
 	}
-	
+
 	// 등록폼(관리자용)
 	@GetMapping("/admin/main/hostboard/faq/write.do")
 	public String write() {
 		return "admin/main/hostboard/faq/write";
 	}
-	
+
 	// 등록처리(관리자용)
 	@PostMapping("/admin/main/hostboard/faq/write.do")
-	public String insert(Model model, HostFaqVO vo,  HttpSession sess) {
-		
-		
-		//admin 로그인 테스트
+	public String insert(Model model, HostFaqVO vo, HttpSession sess) {
+
+		// admin 로그인 테스트
 		HostFaqVO AdminLoginInfo = new HostFaqVO();
 		AdminLoginInfo.setAdmin_no(2); // demo
+		AdminLoginInfo.setAdmin_id("admin_찌수"); // demo
 		sess.setAttribute("loginInfo_admin", AdminLoginInfo);
-		
+
 		if (service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
 			model.addAttribute("url", "view.do");
@@ -53,8 +53,6 @@ public class Admin_HostFaqController {
 			return "common/alert";
 		}
 	}
-	
-	
 
 	// 수정폼(관리자용)
 	@GetMapping("/admin/main/hostboard/faq/edit.do")
@@ -65,7 +63,7 @@ public class Admin_HostFaqController {
 
 	// 수정처리(관리자용)
 	@PostMapping("/admin/main/hostboard/faq/edit.do")
-	public String update(Model model, HostFaqVO vo, AdminVO avo) {
+	public String update(Model model, HostFaqVO vo) {
 		if (service.update(vo)) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
 			model.addAttribute("url", "view.do");
@@ -75,7 +73,7 @@ public class Admin_HostFaqController {
 			return "common/alert";
 		}
 	}
-	
+
 	// 삭제(관리자용)
 	@GetMapping("/admin/main/hostboard/faq/delete.do")
 	public String delete(Model model, HostFaqVO vo, AdminVO avo) {
@@ -88,5 +86,5 @@ public class Admin_HostFaqController {
 			return "common/alert";
 		}
 	}
-	
+
 }

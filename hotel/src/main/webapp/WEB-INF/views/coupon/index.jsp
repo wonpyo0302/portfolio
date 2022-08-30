@@ -51,7 +51,7 @@
 							
 							<c:if test="${empty coupon.list}">
 	                            <tr>
-	                                <td class="first" colspan="5">등록된 글이 없습니다.</td>
+	                                <td class="first" colspan="5">보유한 쿠폰이 없습니다.</td>
 	                            </tr>
 							</c:if>
 							

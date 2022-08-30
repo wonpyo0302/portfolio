@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -71,7 +72,7 @@
 									<tr style="background-color: pink" style="font-weight" :bold" >
 										<td>${data.totalCount - status.index - ((hostNoticeVO.page - 1) * hostNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l"><a
-											href="/hotel/hostnotice/view.do?hnotice_no=${vo.hnotice_no}">
+											href="/hotel/hostnotice/view.do?hnotice_no=${vo.hnotice_no}&stype=${param.stype}&sword=${param.sword}">
 										 <b> <c:if test="${vo.hnotice_type == 1 }">
 											[안내] ${vo.hnotice_title} 
 										</c:if> <c:if test="${vo.hnotice_type == 2 }">
@@ -95,7 +96,7 @@
 									<tr>
 										<td>${data.totalCount - status.index - ((hostNoticeVO.page - 1) * hostNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l">
-										<a	href="/hotel/hostnotice/view.do?hnotice_no=${vo.hnotice_no}">
+										<a	href="/hotel/hostnotice/view.do?hnotice_no=${vo.hnotice_no}&stype=${param.stype}&sword=${param.sword}">
 										 <c:if test="${vo.hnotice_type == 1 }">
 											[안내] ${vo.hnotice_title} 
 										</c:if> <c:if test="${vo.hnotice_type == 2 }">
@@ -135,7 +136,7 @@
 						<!-- 페이지별 -->
 						<c:forEach var="p" begin="${data.startPage}"
 							end="${data.endPage }">
-							<li><a href='list.do?page=${p }'
+							<li><a href='list.do?page=${p }&stype=${param.stype}&sword=${param.sword}'
 								<c:if test="${hostBoardVO.page == p }"> class='current'</c:if>>${p }</a></li>
 						</c:forEach>
 						<!-- 다음페이지 -->
@@ -152,12 +153,11 @@
 						<span class="srchSelect"> <select id="stype" name="stype"
 							class="dSelect" title="검색분류 선택">
 								<option value="all">전체</option>
-								<option value="title">제목</option>
-								<option value="contents">내용</option>
+								<option value="hnotice_title">제목</option>
+								<option value="hnotice_content">내용</option>
 						</select>
-						</span> <span class="searchWord"> <input type="text" id="sword"
-							name="sword" value="" title="검색어 입력"> <input
-							type="button" id="" value="검색" title="검색">
+						</span> <span class="searchWord"> <input type="text" id="sword" name="sword" value="${param.sword }" title="검색어 입력"> 
+							<input type="button" id="" value="검색" title="검색">
 						</span>
 					</form>
 				</div>

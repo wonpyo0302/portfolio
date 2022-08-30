@@ -113,7 +113,13 @@
 		   	 if(diffdate<0){
 				 $("#calcprice").val('0');
 		   	 }else{
-			 	$("#calcprice").val((diffdate)*${roomInfo.room_price });
+		   		 var totalprice = (diffdate)*${roomInfo.room_price };
+		   		 console.log(totalprice);
+			 	$("#calcprice").val(totalprice.toLocaleString('ko-KR'));
+		   	 }
+		   	 
+		   	 if($("#enddate").val()=='' || $("#startdate").val()==''){
+		   		$("#calcprice").val('0');
 		   	 }
 		   	 
 			 if(res !=0){
@@ -178,13 +184,14 @@
 		  			<input type="text" name="enddate" id="enddate"  onchange="reservecheck()" autocomplete="off">
 		  			<input type="hidden" name="hotel_no" id="hotel_no" value="${param.hotel_no }">
 		  			<input type="hidden" name="room_no" id="room_no" value="${param.room_no }">
+		  			<input type="hidden" name="guest_no" id="guest_no" value="${loginInfo.guest_no }">
 		  			<br><hr>
 		  			<div>
 		  				<input type="button" style="margin-bottom: 20px; width: 370px" id="map" onclick="kakaomap(${param.hotel_no});" value="위치확인하기">
 		  			</div>
 		  			
 		  			<b>총 가격</b>&nbsp;
-		  			<input type="text" name="total_price" id="calcprice" style="outline: 0; border:none; font-size: 1.3em" readonly="readonly" value="">
+		  			<input type="text"  id="calcprice" style="outline: 0; border:none; font-size: 1.3em" readonly="readonly" value="">
  		  			<br><br>
 					<div id="reserveBtn" style="display: inline-block; ">
 		  				<input type="submit" style="width:368px; border-radius:50px; color:white;  background-color: #FF3366;" id="reservebtn" value="">

@@ -154,6 +154,13 @@ public class ReviewServiceImpl implements ReviewService {
 		return map;
 	}
 
+
+	@Override
+	public boolean review_delImg(int image_no) {
+		
+		return mapper.review_delImg(image_no) >0? true:false;
+	}
+
 	
 
 }

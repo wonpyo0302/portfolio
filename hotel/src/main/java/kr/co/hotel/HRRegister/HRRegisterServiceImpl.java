@@ -158,6 +158,11 @@ public class HRRegisterServiceImpl implements HRRegisterService {
 		return mapper.get_hostInfo(vo);
 	}
 
+	@Override
+	public boolean delImg(int image_no) {
+		return  mapper.delImg(image_no) > 0? true : false;
+	}
+
 
 
 	

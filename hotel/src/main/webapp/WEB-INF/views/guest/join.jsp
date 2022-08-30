@@ -103,10 +103,24 @@
     			$("#guest_hp").focus();
     			return;
     		}
-    		$("#frm").submit();
+    		if ($("#code").val().trim() == "인증실패"){
+    			alert('계좌번호인증을 진행해주세요(인증실패)');
+    			return;
+    		}
+    		if($("#account_num").val().trim() !=''){
+    			if ($("#code").val().trim() == ''){
+        			alert('계좌번호인증을 진행해주세요');
+        			return;
+        		}
+    			if($("#accountname").val().trim() != $("#guest_name").val().trim()){
+        			alert('계좌실명과 이름이 같아야 합니다');
+        			return; 
+        		 }
+    		}
+    		$("#frm").submit(	);
     		alert('가입을 축하드립니다');
     		
-    	}
+    	};
     	$(function(){
     		$("#edupCheckBtn").click(function(){
     			if ($("#guest_email").val().trim() == '') {
@@ -196,23 +210,28 @@
         				$.ajax({
         				url: "realNameApi.do",
         				type:"POST",
+        				cache:false,
         				data : 
         				{
-        			 	 bank_code_std: $("#bank").val(),
+        			 	 bank_code_std: $("#g_bank").val(),
         			  	 account_num: $("#account_num").val(),
         			  	 account_holder_info: ($("#birthday").val()).substring(2,8),
         				},
+        				datatype: "JSON",
         			  	success: function(res) {
-        				  	if(res = true) {
-        					alert('인증되었습니다.코드넘버:${code}${JSON}');
         					console.log(res);
+        				  	if(res.result == true) {
+        					alert('인증되었습니다.');
+        					document.getElementById("code").value = "인증";
+        					$("#accountname").val(res.account_holder_name);
         				  } else {
         					 alert('인증 실패하였습니다');
-        					 console.log(res);
+        					 document.getElementById("code").value = "인증실패";
         				  }
         			  }
         		});
     		};
+    		      
     };
     </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -335,54 +354,54 @@
                             <th>은행</th>
                             <td>
                             	<div class="select_pack">
-									<select name="bank_code" id="bank" required="required" style="height:30px;">
-										<option value="218">KB증권 (218)</option>
-										<option value="227">KTB투자증권 (227)</option>
-										<option value="238">미래에셋증권 (238)</option>
-										<option value="240">삼성증권 (240)</option>
-										<option value="243">한국투자증권 (243)</option>
-										<option value="247">NH투자증권 (247)</option>
-										<option value="261">교보증권 (261)</option>
-										<option value="262">하이투자증권 (262)</option>
-										<option value="263">현대차증권 (263)</option>
-										<option value="264">키움증권 (264)</option>
-										<option value="265">이베스트투자증권 (265)</option>
-										<option value="266">SK증권 (266)</option>
-										<option value="267">대신증권 (267)</option>
-										<option value="269">한화투자증권 (269)</option>
-										<option value="270">하나금융투자 (270)</option>
-										<option value="271">토스증권 (271)</option>
-										<option value="278">신한금융투자 (278)</option>
-										<option value="279">DB금융투자 (279)</option>
-										<option value="280">유진투자증권 (280)</option>
-										<option value="287">메리츠증권 (287)</option>
-										<option value="296">오픈증권 (296)</option>
-										<option value="002">산업 (002)</option>
-										<option value="003">기업 (003)</option>
-										<option value="004">국민 (004)</option>
-										<option value="007">수협 (007)</option>
-										<option value="011">농협 (011)</option>
-										<option value="012">농협중앙 (012)</option>
-										<option value="020">우리 (020)</option>
-										<option value="023">SC제일 (023)</option>
-										<option value="027">씨티 (027)</option>
-										<option value="031">대구 (031)</option>
-										<option value="032">부산 (032)</option>
-										<option value="034">광주 (034)</option>
-										<option value="035">제주 (035)</option>
-										<option value="037">전북 (037)</option>
-										<option value="039">경남 (039)</option>
-										<option value="045">새마을 (045)</option>
-										<option value="048">신협 (048)</option>
-										<option value="050">상호저축 (050)</option>
-										<option value="064">산림조합 (064)</option>
-										<option value="071">우체국 (071)</option>
-										<option value="081">KEB하나 (081)</option>
-										<option value="088">신한 (088)</option>
-										<option value="089">케이뱅크 (089)</option>
-										<option value="090">카카오 (090)</option>
-										<option value="092">토스 (092)</option>
-										<option value="097">오픈 (097)</option>
+									<select name="g_bank" id="g_bank" required="required" style="height:30px;">
+										<option name="KB증권" id="KB증권" value="218">KB증권 (218)</option>
+										<option name="KTB투자증권" id="KTB투자증권" value="227">KTB투자증권 (227)</option>
+										<option name="미래에셋증권" id="미래에셋증권" value="238">미래에셋증권 (238)</option>
+										<option name="삼성증권" id="삼성증권" value="240">삼성증권 (240)</option>
+										<option name="한국투자증권" id="한국투자증권" value="243">한국투자증권 (243)</option>
+										<option name="NH투자증권" id="NH투자증권" value="247">NH투자증권 (247)</option>
+										<option name="교보증권" id="교보증권" value="261">교보증권 (261)</option>
+										<option name="하이투자증권" id="하이투자증권" value="262">하이투자증권 (262)</option>
+										<option name="현대차증권" id="현대차증권" value="263">현대차증권 (263)</option>
+										<option name="키움증권" id="키움증권" value="264">키움증권 (264)</option>
+										<option name="이베스트투자증권" id="이베스트투자증권" value="265">이베스트투자증권 (265)</option>
+										<option name="SK증권" id="SK증권" value="266">SK증권 (266)</option>
+										<option name="대신증권" id="대신증권" value="267">대신증권 (267)</option>
+										<option name="한화투자증권" id="한화투자증권" value="269">한화투자증권 (269)</option>
+										<option name="하나금융투자" id="하나금융투자" value="270">하나금융투자 (270)</option>
+										<option name="토스증권" id="토스증권" value="271">토스증권 (271)</option>
+										<option name="신한금융투자" id="신한금융투자" value="278">신한금융투자 (278)</option>
+										<option name="DB금융투자" id="DB금융투자" value="279">DB금융투자 (279)</option>
+										<option name="유진투자증권" id="유진투자증권" value="280">유진투자증권 (280)</option>
+										<option name="메리츠증권" id="메리츠증권" value="287">메리츠증권 (287)</option>
+										<option name="오픈증권" id="오픈증권" value="296">오픈증권 (296)</option>
+										<option name="산업" id="산업" value="002">산업 (002)</option>
+										<option name="기업" id="기업" value="003">기업 (003)</option>
+										<option name="국민" id="국민" value="004">국민 (004)</option>
+										<option name="수협" id="수협" value="007">수협 (007)</option>
+										<option name="농협" id="농협" value="011">농협 (011)</option>
+										<option name="농협중앙" id="농협중앙" value="012">농협중앙 (012)</option>
+										<option name="우리" id="우리" value="020">우리 (020)</option>
+										<option name="SC제일" id="SC제일" value="023">SC제일 (023)</option>
+										<option name="씨티" id="씨티" value="027">씨티 (027)</option>
+										<option name="대구" id="대구" value="031">대구 (031)</option>
+										<option name="부산" id="부산" value="032">부산 (032)</option>
+										<option name="광주" id="광주" value="034">광주 (034)</option>
+										<option name="제주" id="제주" value="035">제주 (035)</option>
+										<option name="전북" id="전북" value="037">전북 (037)</option>
+										<option name="경남" id="경남" value="039">경남 (039)</option>
+										<option name="새마을" id="새마을" value="045">새마을 (045)</option>
+										<option name="신협" id="신협" value="048">신협 (048)</option>
+										<option name="상호저축" id="상호저축" value="050">상호저축 (050)</option>
+										<option name="산림조합" id="산림조합" value="064">산림조합 (064)</option>
+										<option name="우체국" id="우체국" value="071">우체국 (071)</option>
+										<option name="KEB하나" id="KEB하나" value="081">KEB하나 (081)</option>
+										<option name="신한" id="신한" value="088">신한 (088)</option>
+										<option name="케이뱅크" id="케이뱅크" value="089">케이뱅크 (089)</option>
+										<option name="카카오" id="카카오" value="090">카카오 (090)</option>
+										<option name="토스" id="토스" value="092">토스 (092)</option>
+										<option name="오픈" id="오픈" value="097">오픈 (097)</option>
 									</select>
 								</div>
 							</td>
@@ -390,14 +409,15 @@
                         <tr>
                             <th>계좌번호</th>
                             <td>
-                                <input type="text" name="g_accountno" id="account_num" value="${data.account_num}"  maxlength="20" style="float:left;" />
-                                <span class="guest_accountno_check"><a href="javascript:;" onclick="bankCheck();"class="btn bgGray" style="float:left; width:auto; clear:none;" id="bankCheck"
-                                 >계좌확인</a></span>
+                                <input type="text" name="g_accountno" id="account_num" maxlength="20" style="float:left;" />
+                                <span class="guest_accountno_check"><a href="javascript:bankCheck();" class="btn bgGray" style="float:left; width:auto; clear:none;" id="bankCheck"
+                                 >계좌확인</a> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="code" name="code" value="" style=" background-color:transparent; border-radius:50px;color:red;" readonly />
+                                 &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="accountname" name="accountname" value="" style=" background-color:transparent; border-radius:50px; color:blue;" readonly ></span>
                             </td>
                         </tr>
           	
                         <tr>
-                            <th>성별</th>
+                            <th>성별</th>	
                             <td>
                             <select name="g_gender" id="g_gender" style="height:30px;">
                             <option value="1">남성</option>
@@ -413,7 +433,7 @@
                 <div class="btnSet clear">
                 	<div>
                     	<a class="btn bgGray" href="javascript:;"  onclick="goSave()">가입</a> &nbsp;&nbsp;
-                    	<a class="btn bgGray" href="javascript:;"  onclick="history.back()">취소</a> &nbsp;&nbsp;
+                    	<a class="btn bgGray" href="join.do">취소</a> &nbsp;&nbsp;
                     	<a class="btn bgGray" href="login.do" >로그인 </a>
                     </div>
                 </div>

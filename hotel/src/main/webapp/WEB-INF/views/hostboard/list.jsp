@@ -106,7 +106,7 @@
 									
 										<td class="txt_l">
 										
-										<a href="/hotel/hostboard/view.do?hboard_no=${vo.hboard_no}&host_no=${vo.host_no}&host_name=${loginInfo2.host_name}">${vo.hboard_title}								
+										<a href="/hotel/hostboard/view.do?hboard_no=${vo.hboard_no}&host_no=${vo.host_no}&host_name=${loginInfo2.host_name}&stype=${param.stype}&sword=${param.sword}">${vo.hboard_title}								
 										<c:if test="${vo.diff <= 3 }">
 											<img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</c:if>
@@ -117,11 +117,11 @@
 										
 										<td class="date"> <fmt:formatDate value="${vo.hboard_regdate}" pattern="yyyy-MM-dd"/></td>
 										
-										<c:if test="${vo.hboard_status == 0 }">
-											<td>[답변대기]</td>
+										<c:if test="${empty vo.hboard_reply }">
+											<td style="color:red">[답변대기]</td>
 										</c:if>	
-										<c:if test="${vo.hboard_status == 1 }">
-											<td>[답변완료]</td>
+										<c:if test="${!empty vo.hboard_reply}">
+											<td style="color:blue">[답변완료]</td>
 										</c:if>	
 									</tr>
 							</c:forEach>	
@@ -141,7 +141,10 @@
 					</c:if>
 					<!-- 페이지별 -->
 						<c:forEach var="p" begin="${data.startPage}" end="${data.endPage }">
-							<li><a href='list.do?page=${p }' <c:if test="${hostBoardVO.page == p }"> class='current'</c:if>>${p }</a></li>
+							<li><a href='list.do?page=${p }&stype=${param.stype}&sword=${param.sword}'
+							 <c:if test="${hostBoardVO.page == p }"> class='current'</c:if>>${p }
+							 </a>
+							 </li>
 						</c:forEach>
 					<!-- 다음페이지 -->
 					<c:if test="${data.next == true }">
@@ -155,11 +158,11 @@
 					<form method="get" name="searchForm" id="searchForm" action="">
 						<span class="srchSelect"> <select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 								<option value="all">전체</option>
-								<option value="title">제목</option>
-								<option value="contents">내용</option>
+								<option value="hboard_title">제목</option>
+								<option value="hboard_content">내용</option>
 						</select>
 						</span> 
-						<span class="searchWord"> <input type="text" id="sword" name="sword" placeholder="검색어를 입력하세요." title="검색어 입력"> 
+						<span class="searchWord"> <input type="text" id="sword" name="sword" value="${param.sword }" placeholder="검색어를 입력하세요." title="검색어 입력"> 
 						<input type="button" id="" value="검색" title="검색">
 						</span>
 					</form>

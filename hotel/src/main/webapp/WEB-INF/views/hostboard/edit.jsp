@@ -29,6 +29,11 @@
 	height: 100%;
 	text-align: left;
 }
+
+th {
+	width: 10%;
+	text-align : center;
+}
 </style>
 
 <script> 
@@ -45,7 +50,7 @@
 	};
 </script>
 
-
+e
 </head>
 <body>
 	<br>
@@ -58,9 +63,9 @@
 			<h3 class="sub_title" style="text-align: left">문의글 수정</h3>
 			<br>
 			<div class="bbs">
-				<form method="post" name="frm" id="frm" action="edit.do"
-					enctype="multipart/form-data">
+				<form method="post" name="frm" id="frm" action="edit.do" enctype="multipart/form-data">
 					<input type="hidden" name="hboard_no" value="${data.hboard_no}">
+					
 					<table class="board_write">
 						<tbody>
 							<div class="container">
@@ -71,7 +76,7 @@
 									<td class="choose"><span class="srchSelect"> <select
 											id="stype" name="hboard_type" class="dSelect" title="검색분류 선택">
 												<option value="6"
-													<c:if test="${data.hboard_type==6 }">selected</c:if>>
+													<c:if test="${data.hboard_type==6 }"> selected</c:if>>
 													입점 문의</option>
 												<option value="7"
 													<c:if test="${data.hboard_type==7 }"> selected</c:if>>

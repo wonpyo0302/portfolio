@@ -79,35 +79,18 @@ function goWrite(){
 
 						<c:if test="${not empty data.list}">
 							<c:forEach items="${data.list }" var="vo" varStatus="status">
-								<c:if test="${vo.fix == 1}">
-									<tr style="background-color: F7C1C2" style="font-weight" :bold" >
-										<td>${data.totalCount - status.index - ((guestNoticeVO.page - 1) * guestNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
-										<td class="txt_l"><a
-											href="/hotel/admin/main/guestboard/notice/view.do?gnotice_no=${vo.gnotice_no}">
-										<b> <c:if test="${vo.gnotice_type == 1 }">
-											[안내] ${vo.gnotice_title} 
-										</c:if> <c:if test="${vo.gnotice_type == 2 }">
-											[공지] ${vo.gnotice_title} 
-										</c:if> <c:if test="${vo.gnotice_type == 3 }">
-											[이벤트] ${vo.gnotice_title} 
-										</c:if> <c:if test="${vo.gnotice_type == 4 }">
-											[발표] ${vo.gnotice_title} 
-										</c:if>
-											</b> <img src="/hotel/image/boardPic/new (1).png" width="30px">
-										</a></td>
-											<td class="writer">관리자</td>
-										<td class="date"><fmt:formatDate value="${vo.gnotice_regdate}" pattern="yyyy-MM-dd" /></td>
-										<td>${vo.gnotice_viewcount}</td>
-									</tr>
-								</c:if>
-								<c:if test="${vo.fix != 1}">
+									<c:if test="${vo.fix == 1}">
+									<tr style="background-color: #F7C1C2" >
+									</c:if>
+									<c:if test="${vo.fix != 1}">
 									<tr>
+									</c:if>
+								
 										<td>${data.totalCount - status.index - ((guestNoticeVO.page - 1) * guestNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
-										<td class="txt_l">
-									
-										<a href="/hotel/admin/main/guestboard/notice/view.do?gnotice_no=${vo.gnotice_no}">
-										<c:if test="${vo.gnotice_type == 1 }">
-											[안내] ${vo.gnotice_title} 
+										<td class="txt_l" >
+										<a	href="/hotel/admin/main/guestboard/notice/view.do?gnotice_no=${vo.gnotice_no}&stype=${param.stype}&sword=${param.sword}">
+										<b> <c:if test="${vo.gnotice_type == 1 }">
+											[안내] ${vo.gnotice_title}   
 										</c:if> <c:if test="${vo.gnotice_type == 2 }">
 											[공지] ${vo.gnotice_title} 
 										</c:if> <c:if test="${vo.gnotice_type == 3 }">
@@ -115,9 +98,10 @@ function goWrite(){
 										</c:if> <c:if test="${vo.gnotice_type == 4 }">
 											[발표] ${vo.gnotice_title} 
 										</c:if>
-										<c:if test="${vo.diff <= 3 }">
-										<img src="/hotel/image/boardPic/new (1).png" width="30px">
-										</c:if></a>
+											<c:if test="${vo.diff <= 3 }">
+											<img src="/hotel/image/boardPic/new (1).png" width="30px">
+										</c:if>
+										</a></td>
 									
 										</td>
 										<td class="writer">관리자</td>
@@ -125,9 +109,9 @@ function goWrite(){
 												value="${vo.gnotice_regdate}" pattern="yyyy-MM-dd" /></td>
 										<td>${vo.gnotice_viewcount}</td>
 									</tr>
-								</c:if>
+								
 							</c:forEach>
-						</c:if>
+					</c:if>
 					</tbody>
 				</table>
 				<div class="btnSet" style="text-align: right;">
@@ -144,13 +128,13 @@ function goWrite(){
 						<!-- 페이지별 -->
 						<c:forEach var="p" begin="${data.startPage}"
 							end="${data.endPage }">
-							<li><a href='list.do?page=${p }'
+							<li><a href='list.do?page=${p }&stype=${param.stype}&sword=${param.sword}'
 								<c:if test="${guestBoardVO.page == p }"> class='current'</c:if>>${p }</a></li>
 						</c:forEach>
 						<!-- 다음페이지 -->
 						<c:if test="${data.next == true }">
 							<li><a
-								href="list.do?page=${data.endPage + 1 }&stype=${param.stype}&sword=${param.sword}">></a></li>
+								href="list.do?page=${data.endPage + 1 }&stype=${param.stype}&sword=${param.sword}"></a></li>
 						</c:if>
 					</ul>
 				</div>
@@ -165,11 +149,11 @@ function goWrite(){
 						<span class="srchSelect"> <select id="stype" name="stype"
 							class="dSelect" title="검색분류 선택">
 								<option value="all">전체</option>
-								<option value="title">제목</option>
-								<option value="contents">내용</option>
+								<option value="gboard_title">제목</option>
+								<option value="gboard_content">내용</option>
 						</select>
 						</span> <span class="searchWord"> <input type="text" id="sword"
-							name="sword" value="" title="검색어 입력"> <input
+							name="sword" value="${param.sword }" title="검색어 입력"> <input
 							type="button" id="" value="검색" title="검색">
 						</span>
 					</form>

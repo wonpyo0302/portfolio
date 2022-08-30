@@ -33,13 +33,12 @@
 				#{imp_uid}, 0, 0 , 0, #{rev_name}, #{rev_hp}
 			)
 		</if>
-		
 	</insert>
 	
 	<insert id="pointinsert" parameterType="kr.co.hotel.reserve.ReserveVO">
 			insert into point (
 				guest_no, io_point, totalpoint, pointtype, date)
-			values (#{guest_no}, #{used_point}, (select totalpoint from guest where guest_no = #{guest_no}), 1, now() )
+			values (#{guest_no}, #{used_point}, (select totalpoint from guest where guest_no = #{guest_no}), 1, (select rev_date from reserv where imp_uid= #{imp_uid}) )
 	</insert>
 	
 	<update id="guestUsedPointUpdate" parameterType="kr.co.hotel.guest.GuestVO">
@@ -97,6 +96,10 @@
 		update reserv set rev_status=1  where pay_status=0
 	</update>
 	
+	<select id="SelectRoomPrice" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="int">
+		select datediff(#{enddate},#{startdate})*(select room_price from room where room_no = #{room_no} and hotel_no = #{hotel_no}) as room_price  from room where room_no = #{room_no} and hotel_no = #{hotel_no}
+	</select>
+	
 <!--============================================================================  -->	
 	<select id="CancleList" resultType="kr.co.hotel.reserve.ReserveVO">
 		select * from reserv where pay_status = 0
@@ -123,7 +126,9 @@
 		update coupon set usedate = null, use_status = 0 where coupon_no =#{coupon_no}
 	</update>
 	
-	
+	<select id="SelectTotalPoint" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="java.lang.Integer">
+		select totalpoint from guest where guest_no=#{guest_no}
+	</select>
 	
 
 

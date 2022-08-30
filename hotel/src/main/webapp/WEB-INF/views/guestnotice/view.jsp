@@ -36,12 +36,16 @@
 .link-icon.facebook { background-image: url(/hotel/image/boardPic/icon-facebook.png); background-repeat: no-repeat; } 
 .link-icon.kakao { background-image: url(/hotel/image/boardPic/icon-kakao.png); background-repeat: no-repeat; }
 
+th {
+	width: 10%;
+	text-align : center;
+}
 </style>
 
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "list.do";
+		location.href = "list.do?stype=${param.stype}&sword=${param.sword}";
 	}
 
 
@@ -102,7 +106,7 @@
 								<th>제목</th>
 								<td>${data.gnotice_title }</td>
 								<th>등록일자</th>
-								<td class="date" style="width: 35%"><fmt:formatDate
+								<td class="date" style="width: 40%"><fmt:formatDate
 										value="${data.gnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 							</tr>
 							
@@ -118,8 +122,8 @@
 								<th>작성자</th>
 								<td>관리자</td>
 								<th>수정일자</th>
-								<td class="date" style="width: 150px"><fmt:formatDate
-										value="${data.gnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+								<td class="date" style="width: 40"><fmt:formatDate
+										value="${data.gnotice_updatedate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 							</tr>
 							<tr>
 								<th>내용</th>
@@ -127,9 +131,9 @@
 							</tr>
 							<tr>
 								<th>첨부파일</th>
-								<td colspan="3"><a
-									href="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}"
-									target="_blank"> ${data.filename_org } </a></td>
+								<td colspan="3">
+								<input type="file" name="filename">
+								</td>
 							</tr>
 						</div>
 					</table>

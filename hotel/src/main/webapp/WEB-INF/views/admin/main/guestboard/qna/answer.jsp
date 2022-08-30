@@ -34,21 +34,22 @@
 }
 
 th {
-	width : 15%;
+	width: 10%;
+	text-align : center;
 }
 
 </style>
 
 <script> 
 	function goSave(){
-		editor.getById['reply'].exec('UPDATE_CONTENTS_FIELD',[]); // getById -> jindo라는 프레임워크에서 사용하는 것	
+		editor.getById['gboard_reply'].exec('UPDATE_CONTENTS_FIELD',[]); // getById -> jindo라는 프레임워크에서 사용하는 것	
 		frm.submit();
 	}
+	
 	var editor; // 변수를 밖에 쓴 이유: 전역변수로 사용하기 위해서
 	$(function(){
-		editor = setEditor('reply'); // textarea id= content
+		editor = setEditor('gboard_reply'); // textarea id= content
 	});
-
 
 	function goBack() {
 		history.back();
@@ -68,20 +69,18 @@ th {
 	<div class="sub">
 		<div class="size">
 			<div class="bbs">
-				<form method="post" name="frm" id="frm" action="edit.do"
+				<form method="post" name="frm" id="frm" action="answer.do"
 					enctype="multipart/form-data">
 					<input type="hidden" name="gboard_no" value="${data.gboard_no}">
 					<tr>
 						<th>문의번호 : ${data.gboard_no }</th>
 					</tr>
-				
+					
 					<table class="board_write">
-				
 						<tbody>
 							<div class="container">
 								<ul class="list">
 									<li class="item">
-									
 									<th>문의유형</th>
 									</span>
 									<td style="text-align: left">
@@ -116,16 +115,15 @@ th {
 							</tr>
 							<tr>
 								<th>답변</th>
-								<td colspan="3"><textarea id="reply" style="width: 100%"></textarea></td>
+								<td colspan="3"><textarea id="gboard_reply" name="gboard_reply" placeholder="답글 작성란입니다." style="width: 100%"></textarea></td>
 							</tr>
 							</ul>
 							</div>
+
 						</tbody>
 					</table>
 					<div class="btnSet">
-						<a class="btn"
-							style="align: left; background-color: grey; border: 2px solid grey"
-							href="javascript:goBack();">이전 </a> <a class="btn"
+						<a class="btn" style="align: left; background-color: grey; border: 2px solid grey" href="javascript:goBack();">이전 </a> <a class="btn"
 							style="align: right;" href="javascript:goSave();">저장 </a>
 					</div>
 				</form>

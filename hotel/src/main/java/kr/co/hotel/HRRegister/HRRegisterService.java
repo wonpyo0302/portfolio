@@ -56,4 +56,6 @@ public interface HRRegisterService {
 	public int update_host_no(HostVO vo);
 	//host페이지에 hotel_no 업데이트 후, 세션 계정 업데이트
 	public HostVO get_hostInfo(HostVO vo);
+	
+	public boolean delImg(int image_no);
 }

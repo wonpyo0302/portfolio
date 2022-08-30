@@ -53,7 +53,7 @@
 		                        <tr >
 		                            <th >호텔명</th>
 		                            <td>
-		                            	${rev.hotel_name }
+			                            ${rev.hotel_name }
 		                            </td>
 		                            <th>객실</th><!-- 객실번호 -->
 		                            <td>

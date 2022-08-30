@@ -34,13 +34,21 @@
 .link-icon.facebook { background-image: url(/hotel/image/boardPic/icon-facebook.png); background-repeat: no-repeat; } 
 .link-icon.kakao { background-image: url(/hotel/image/boardPic/icon-kakao.png); background-repeat: no-repeat; }
 
+th {
+	width: 10%;
+	text-align : center;
+}
+
+.date {
+	width: 40%;
+}
 </style>
 
 
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "/hotel/hostnotice/list.do";
+		location.href = "/hotel/hostnotice/list.do?stype=${param.stype}&sword=${param.sword}";
 	}
 	
 
@@ -102,7 +110,7 @@
 								<th>제목</th>
 								<td>${data.hnotice_title }</td>
 								<th>등록일자</th>
-								<td class="date" style="width: 35%"><fmt:formatDate
+								<td class="date" ><fmt:formatDate
 										value="${data.hnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 							</tr>
 							
@@ -119,7 +127,7 @@
 								<th>작성자</th>
 								<td>관리자</td>
 								<th>수정일자</th>
-								<td class="date" style="width: 150px"><fmt:formatDate
+								<td class="date"><fmt:formatDate
 										value="${data.hnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 							</tr>
 							<tr>

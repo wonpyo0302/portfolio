@@ -55,9 +55,14 @@
 		<div class="size">
 			<div class="bbs">
 				<table class="list">
-					<p>
+					<div class="btnSet" style="text-align: right;">
+						<a class="btn" href="list.do">관리 </a>
+					</div>
+					<p style="width:50%">
 						<span><strong>총 ${data.totalCount}개</strong> | ${guestBoardVO.page}/${data.totalPage}페이지</span> 
 					</p>
+					
+					
 					<caption>게시판 목록</caption>
 					<colgroup>
 						<col width="80px" />
@@ -86,7 +91,7 @@
 								<td class="first" colspan="8">등록된 글이 없습니다.</td>
 							</tr>
 						</c:if>
-						
+				
 						<c:if test="${not empty data.list}">
 							<c:forEach items="${data.list }" var="vo" varStatus="status">
 									 <tr>
@@ -109,7 +114,7 @@
 										</c:if>
 										<td class="txt_l">
 										
-										<a href="/hotel/admin/main/guestboard/qna/view.do?gboard_no=${vo.gboard_no}">${vo.gboard_title}
+										<a href="/hotel/admin/main/guestboard/qna/view.do?gboard_no=${vo.gboard_no}&stype=${param.stype}&sword=${param.sword}">${vo.gboard_title}
 										<c:if test="${vo.diff <= 3 }">
 										<img src="/hotel/image/boardPic/new (1).png" width="30px">
 										</c:if>
@@ -121,22 +126,20 @@
 										
 										<td class="date"> <fmt:formatDate value="${vo.gboard_regdate}" pattern="yyyy-MM-dd"/></td>
 										
-										<c:if test="${vo.gboard_status == 0 }">
-											<td>[답변대기]</td>
+										<c:if test="${empty vo.gboard_reply }">
+											<td style="color:red">[답변대기]</td>
 										</c:if>	
-										<c:if test="${vo.gboard_status == 1 }">
-											<td>[답변완료]</td>
+										<c:if test="${!empty vo.gboard_reply}">
+											<td style="color:blue">[답변완료]</td>
 										</c:if>	
 									</tr>
 							</c:forEach>	
 						</c:if>					
 					</tbody>
 				</table>
-				<div class="btnSet" style="text-align: right;">
 				
-					<a class="btn" href="javascript:goWrite();">관리 </a>
-					
-				</div>
+			
+				
 				<div class="pagenate clear">
 					<ul class='paging'>
 					<!-- 이전페이지 -->
@@ -145,7 +148,11 @@
 					</c:if>
 					<!-- 페이지별 -->
 						<c:forEach var="p" begin="${data.startPage}" end="${data.endPage }">
-							<li><a href='list.do?page=${p }' <c:if test="${guestBoardVO.page == p }"> class='current'</c:if>>${p }</a></li>
+							<li><a href='list.do?page=${p }&stype=${param.stype}&sword=${param.sword}'
+								<c:if test="${guestBoardVO.page == p }"> class='current'
+								</c:if>>${p }
+								</a>
+							</li>
 						</c:forEach>
 					<!-- 다음페이지 -->
 					<c:if test="${data.next == true }">
@@ -159,11 +166,11 @@
 					<form method="get" name="searchForm" id="searchForm" action="">
 						<span class="srchSelect"> <select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 								<option value="all">전체</option>
-								<option value="title">제목</option>
-								<option value="contents">내용</option>
+								<option value="gboard_title">제목</option>
+								<option value="gboard_content">내용</option>
 						</select>
 						</span> 
-						<span class="searchWord"> <input type="text" id="sword" name="sword" placeholder="검색어를 입력하세요." title="검색어 입력"> 
+						<span class="searchWord"> <input type="text" id="sword" name="sword" placeholder="검색어를 입력하세요." value="${param.sword }" title="검색어 입력"> 
 						<input type="button" id="" value="검색" title="검색">
 						</span>
 					</form>

@@ -29,15 +29,20 @@
 <style type="text/css">
 th {
 	width: 10%;
+	text-align:center;
 }
 td {
 	width: 200px;
+}
+
+.date {
+	width: 40%;
 }
 </style>
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "list.do";
+		location.href = "list.do?stype=${param.stype}&sword=${param.sword}";
 	}
 
 	// 삭제하기
@@ -76,7 +81,7 @@ td {
 							</td>
 							
 							<th>등록일자</th>
-							<td class="date"  style="width: 35%">
+							<td class="date" >
 							<fmt:formatDate value="${data.hnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 						</tr>
 						<tr>
@@ -84,7 +89,7 @@ td {
 							<th>제목</th>
 							<td>${data.hnotice_title }</td>
 							<th>수정일자</th>
-							<td class="date" style="width: 100px"><fmt:formatDate value="${data.hnotice_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+							<td class="date"><fmt:formatDate value="${data.hnotice_updatedate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 						</tr>
 						<tr>
 							<th>작성자</th>

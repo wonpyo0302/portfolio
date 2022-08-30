@@ -14,12 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.hotel.guest.GuestVO;
 import kr.co.hotel.host.HostVO;
 import util.ImgHandling;
 
 @Controller
-public class Admin_HostBoardController extends ImgHandling{
+public class Admin_HostBoardController extends ImgHandling {
 
 	@Autowired
 	HostBoardService service;
@@ -34,82 +33,44 @@ public class Admin_HostBoardController extends ImgHandling{
 	// 조회
 	@GetMapping("/admin/main/hostboard/qna/view.do")
 	public String view(Model model, HostBoardVO vo) {
-		//System.out.println(vo.get);
+		// System.out.println(vo.get);
 		service.viewCount(vo.getHboard_no());
 		HostBoardVO hvo = service.view(vo.getHboard_no());
 		model.addAttribute("data", hvo);
+
 		return "admin/main/hostboard/qna/view";
 	}
 
-	// 등록 폼
-	@GetMapping("/admin/main/hostboard/qna/write.do")
-	public String write(Model model) {
-		return "admin/main/hostboard/qna/write";
-	}
-
-	// 등록처리
-	@PostMapping("/admin/main/hostboard/qna/write.do")
-	public String insert(Model model, HostBoardVO vo, @RequestParam MultipartFile filename, HttpServletRequest req) {
-		if(!filename.isEmpty()) {
-			String org = filename.getOriginalFilename();
-			String ext = org.substring(org.lastIndexOf("."));
-			String real = new Date().getTime()+ext;
-			
-			String path = req.getRealPath("/upload/");
-			try {
-				filename.transferTo(new File(path+real));
-			} catch (Exception e) {}
-				vo.setFilename_org(org);
-				vo.setFilename_real(real);
-		}
-		
-		HttpSession sess = req.getSession();
-		HostVO hvo = (HostVO)sess.getAttribute("loginInfo2");
-		vo.setHost_no(hvo.getHost_no());
-		
-		//System.out.println("========================="+vo.getHboard_type());
-		//System.out.println("========================="+vo.getHboard_writer());
-		
-		if(service.insert(vo)) {
-			model.addAttribute("msg", "정상적으로 등록되었습니다.");
-			model.addAttribute("url", "admin/main/hostboard/qna/view.do?hboard_no="+vo.getHboard_no());
-			return "common/alert";
-		} else {
-			model.addAttribute("msg", "저장 실패했습니다.");
-			return "common/alert";
-		}
-	}
-
-	// 수정 폼
-	@GetMapping("/admin/main/hostboard/qna/edit.do")
+	// 답변달기 폼
+	@GetMapping("/admin/main/hostboard/qna/answer.do")
 	public String editForm(Model model, HostBoardVO vo) {
 		model.addAttribute("data", service.edit(vo.getHboard_no()));
-		System.out.println("======================================"+model.getAttribute("data"));
-		return "admin/main/hostboard/qna/edit";
+		System.out.println("======================================" + model.getAttribute("data"));
+		return "admin/main/hostboard/qna/answer";
 	}
-	
-	// 수정처리
-	@PostMapping("/admin/main/hostboard/qna/edit.do")
-	public String update(HostBoardVO vo, Model model) {
-		//System.out.println("=============================vo 확인" + vo.getHboard_no());
-		//System.out.println("뭐라는거야 : " + vo.getHboard_type());
 
-		if (service.update(vo)) {
-			model.addAttribute("data", service.update(vo));
-			model.addAttribute("msg", "정상적으로 수정되었습니다");
-			model.addAttribute("url", "admin/main/hostboard/qna/view.do?hboard_no=" + vo.getHboard_no());
+	// 답변달기 처리
+	@PostMapping("/admin/main/hostboard/qna/answer.do")
+	public String update(HostBoardVO vo, Model model) {
+
+		if (service.replyupdate(vo)) {
+			model.addAttribute("data", service.replyupdate(vo));
+			model.addAttribute("msg", "정상적으로 답변이 등록되었습니다.");
+			model.addAttribute("url", "list.do");
 			return "common/alert";
 		} else {
-			model.addAttribute("msg", "수정 실패했습니다.");
+			model.addAttribute("msg", "등록 실패했습니다.");
 			return "common/alert";
 		}
 	}
-	
+
+	//
+
 	// 삭제처리
 	@GetMapping("/admin/main/hostboard/qna/delete.do")
 	public String delete(HostBoardVO vo, Model model) {
-		if(service.delete(vo.getHboard_no())) {
-			
+		if (service.delete(vo.getHboard_no())) {
+
 			model.addAttribute("msg", "정상적으로 삭제되었습니다.");
 			model.addAttribute("url", "list.do");
 			return "common/alert";
@@ -117,9 +78,7 @@ public class Admin_HostBoardController extends ImgHandling{
 			model.addAttribute("msg", "삭제 실패했습니다.");
 			return "common/alert";
 		}
-		
+
 	}
-	
-	
-	
+
 }

@@ -29,6 +29,11 @@
 	height: 100%;
 	text-align: left;
 }
+
+th {
+	width: 10%;
+	text-align : center;
+}
 </style>
 
 <script> 
@@ -60,8 +65,7 @@
 			<h3 class="sub_title" style="text-align: left">문의글 수정</h3>
 			<br>
 			<div class="bbs">
-				<form method="post" name="frm" id="frm" action="edit.do"
-					enctype="multipart/form-data">
+				<form method="post" name="frm" id="frm" action="edit.do" enctype="multipart/form-data">
 					<input type="hidden" name="gboard_no" value="${data.gboard_no}">
 					<table class="board_write">
 						<tbody>
@@ -91,7 +95,7 @@
 											</li>
 							<tr>
 								<th>이메일</th>
-								<td><input type="text" name="guest_email" id="email" value="" placeholder="선택사항입니다.">@<input type="text" id="" value=""></td>
+								<td><input type="text" name="guest_email" id="email" value="" placeholder="선택사항입니다."></td>
 							</tr>
 							<tr>
 								<th>제목</th>

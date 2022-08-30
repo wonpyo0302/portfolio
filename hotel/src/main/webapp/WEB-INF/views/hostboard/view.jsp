@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="/WEB-INF/views/includes/H_header.jsp"%>
+<%@ page import="java.net.*"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -29,6 +30,15 @@
 <style>
 * {
 	box-sizing: border-box;
+}
+
+th {
+	width: 10%;
+	text-align : center;
+}
+
+.date {
+	width: 40%;
 }
 
 .container {
@@ -64,7 +74,7 @@
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "/hotel/hostboard/list.do";
+		location.href = "/hotel/hostboard/list.do?stype=${param.stype}&sword=${param.sword}";
 	}
 	// 삭제하기
 	function goDel(hboard_no){
@@ -82,19 +92,17 @@
 			<h3 class="sub_title" style="text-align: left">Q&A</h3>
 			<br>
 			<h6 class="sub_content" style="text-align: left">
-				<img src="/hotel/image/boardPic/qna.png" width="40px"> 호스트 전용
-				문의사항 게시판입니다.
+				<img src="/hotel/image/boardPic/qna.png" width="40px"> 호스트 전용 문의사항 게시판입니다.
 			</h6>
 			<br> <br> <br> <br>
 			<div class="bbs">
-				<form method="get" name="frm" id="frm" action="view.do"
-					enctype="multipart/form-data">
+				<form method="get" name="frm" id="frm" action="view.do" enctype="multipart/form-data">
 					<input type="hidden" name="hboard_no" value="${data.hboard_no}">
 					<input type="hidden" name="host_no" value="${loginInfo2.host_no}">
 					<table class="board_write">
 						<div class="title">
 							<tr>
-								<th style="width: 10%">문의유형</th>
+								<th >문의유형</th>
 								<td style="text-align: left">
 									<c:if test="${data.hboard_type==6 }">[입점]</c:if> 
 									<c:if test="${data.hboard_type==7 }">[광고/제휴]</c:if> 
@@ -102,14 +110,15 @@
 									 <c:if test="${data.hboard_type==9 }">[이용/기타]</c:if>
 								</td>
 							<th>등록일자</th>
-							<td class="date" style="width: 30%"><fmt:formatDate
-										value="${data.hboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+							<td class="date" >
+							<fmt:formatDate	value="${data.hboard_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 							</tr>
 						<tr>
 							<th style="width: 5%">제목</th>
 							<td>${data.hboard_title }</td>
 							<th>수정일자</th>
-							<td colspan='2'  class="date" style="width: 30%"><fmt:formatDate value="${data.hboard_updatedate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+							<td colspan='2'  class="date">
+							<fmt:formatDate value="${data.hboard_updatedate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
@@ -126,7 +135,25 @@
 							<td colspan="3" style="width: 600px; height:300px">${data.hboard_content}</td>
 						</tr>
 						</div>
-					</table>
+						</table>
+						<!-- 답글란 시작 -->
+					<table class="board_write" style=" margin-top:20px">
+							<div class="title">
+								<c:if test="${!empty data.hboard_reply}">
+								<tr>
+									<th>답변날짜</th>
+									<td name="hboard_replyupdatedate" colspan="3">
+									<fmt:formatDate value="${data.hboard_replyupdatedate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+								</tr>
+								<tr>
+									<th>답변내용</th>
+									<td name="hboard_reply" colspan="3" style="width: 600px; height: 300px">${data.hboard_reply}</td>
+								</tr>
+								</c:if>
+							</div>
+						</table>
+					<!-- 답글란 끝 -->
+					
 					<div class="btnSet" style="text-align: right;">
 						<a href="edit.do?hboard_no=${data.hboard_no }" class="btn">수정</a>
 						<a href="javascript:goDel(${data.hboard_no});" class="btn">삭제</a>

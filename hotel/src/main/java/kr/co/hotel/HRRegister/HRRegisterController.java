@@ -1,5 +1,6 @@
 package kr.co.hotel.HRRegister;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,7 +73,7 @@ public class HRRegisterController {
 		//세션에서 host_no를 가져옴, host_no로 hotel테이블에서 hotel_no를 가져옴
 		HostVO Host_loginInfo = (HostVO) sess.getAttribute("loginInfo2");
 		System.out.println("호스트번호확인스 : "+Host_loginInfo.getHost_no());
-		//Host_loginInfo.setHost_no(1);//demo data
+		
 		
 		vo.setHost_no(Host_loginInfo.getHost_no());
 		HotelVO hotelInfo = service.get_hotelInfo(vo.getHost_no());
@@ -137,10 +138,32 @@ public class HRRegisterController {
 		return "room/edit";
 	}
 	
-	 @GetMapping("/room/update.do")	
-	 public String update(RoomVO vo, Model model) {
-		 System.out.println("vo 확인 : "+ vo);
-		 if(service.update(vo)) {
+	 @PostMapping("/room/update.do")	
+	 public String update(RoomVO vo, Model model, ImageVO ivo,  @RequestParam("filename") List<MultipartFile> filename, HttpServletRequest req ) {
+		 //수정내용 update
+		 boolean r = false;
+		 r = service.update(vo);
+		 
+		 
+		 ivo.setNo(vo.getRoom_no());
+		 ivo.setImage_type("ROOM");
+		 ImgHandling ih = new ImgHandling();
+		 
+		//이미지 insert처리
+			if(!filename.get(0).isEmpty()) {//filename이 비어있는지 확인
+				for(int i=0; i<filename.size(); i++) {
+					Map map = ih.imghandle(filename.get(i), req);
+					ivo.setFilename_org((String)map.get("filename_org"));
+					ivo.setFilename_real((String)map.get("filename_real"));
+					ivo.setImage_order(i);
+					r= service.img_insert(ivo);
+					System.out.println("imgInsert : " + r);
+				}
+			}
+		 
+	
+		 
+		 if(r) {
 			 model.addAttribute("msg","정상적으로 수정되었습니다");
 			 model.addAttribute("url","view.do?room_no="+vo.getRoom_no());
 			 return"common/alert";
@@ -149,6 +172,15 @@ public class HRRegisterController {
 			 return"common/alert";
 		 }
 	 }
+	 
+	 @GetMapping("/room/delImg.do")//객실 수정 페이지에서 ajax로 이미지 삭제
+	 @ResponseBody
+	 public boolean delImg(ImageVO ivo, @RequestParam int image_no) {
+		 System.out.println("이미지번호	 : "+ivo.getImage_no());
+		 System.out.println("이미지번호 : "+image_no);
+		 return service.delImg(ivo.getImage_no());
+	 }
+	 
 	 	 
 	 @GetMapping("/room/delete.do")	
 	 public String delete(RoomVO vo, Model model, ImageVO ivo) {
@@ -265,8 +297,30 @@ public class HRRegisterController {
 	
 		
 		 @PostMapping("/myhotel/update.do")	
-		 public String H_update(HotelVO hvo, Model model) {
-			 System.out.println("vo 확인 : "+ hvo);
+		 public String H_update(Map mapp, HotelVO hvo, Model model,ImageVO ivo, @RequestParam("filename2") List<MultipartFile> filename, HttpServletRequest req) {
+			 System.out.println("vo 확인 : "+ hvo+mapp);
+			 
+			 
+			 
+			 ivo.setNo(hvo.getHotel_no());
+			 ivo.setImage_type("HOTEL");
+			 ImgHandling ih = new ImgHandling();
+			
+			//이미지 insert처리
+				if(!filename.get(0).isEmpty()) {//filename이 비어있는지 확인
+					for(int i=0; i<filename.size(); i++) {
+						Map map = ih.imghandle(filename.get(i), req);
+						ivo.setFilename_org((String)map.get("filename_org"));
+						ivo.setFilename_real((String)map.get("filename_real"));
+						ivo.setImage_order(i);
+						boolean r= service.img_insert(ivo);
+						System.out.println("imgInsert : " + r);
+					}
+				}
+			 
+			 
+			 
+			 
 			 if(service.H_update(hvo)) {
 				 model.addAttribute("msg","정상적으로 수정되었습니다");
 				 model.addAttribute("url","view.do?hotel_no="+hvo.getHotel_no());

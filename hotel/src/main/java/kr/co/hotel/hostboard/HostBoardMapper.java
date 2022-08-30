@@ -16,5 +16,11 @@ public interface HostBoardMapper {
 	int insert(HostBoardVO vo); // 등록
 	int update(HostBoardVO vo); // 수정
 	int delete(int hboard_no); // 삭제
+	int replyupdate(HostBoardVO vo); // 답변달기
+	
+	
+	List<HostBoardVO> list_in_mypage(HostBoardVO vo);
+	int count_in_mypage(HostBoardVO vo); // 게시물 개수 체크
+	
 
 }

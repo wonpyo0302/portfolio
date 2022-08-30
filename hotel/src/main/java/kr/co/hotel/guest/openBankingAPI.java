@@ -10,6 +10,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
@@ -56,11 +58,12 @@ public class openBankingAPI {
 			conn = (HttpURLConnection) url.openConnection();
 
 			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8 ");
+			conn.setRequestProperty("Date",time);
 			conn.setRequestProperty("Transfer-Encoding", "chunked");
 			conn.setRequestProperty("Connection", "keep-alive\"");
 			// token 값 header에 넣어주기
-			conn.setRequestProperty("Authorization", "BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNMjAyMjAxNTYwIiwic2NvcGUiOlsib29iIl0sImlzcyI6Imh0dHBzOi8vd3d3Lm9wZW5iYW5raW5nLm9yLmtyIiwiZXhwIjoxNjY5MDk2MTk3LCJqdGkiOiIyZjJiMTQ2YS1mMzZlLTQ3ODgtOWM5YS1lYmNlOWU1NzU3NzkifQ.eSIC8SBmbgWEuXnqoN7M6ModH_uga9OjcF94PP_yZQQ");
+			conn.setRequestProperty("Authorization", "BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNMjAyMjAxNTYwIiwic2NvcGUiOlsib29iIl0sImlzcyI6Imh0dHBzOi8vd3d3Lm9wZW5iYW5raW5nLm9yLmtyIiwiZXhwIjoxNjY5NTE0NzI3LCJqdGkiOiIyZTI3MjJkNi00ZjhkLTQ0NmYtYTIzNC01MGIxNTg2ZDg1ZjMifQ.wzvW6wbjDRQ4kPZHq56VWcdF80MLATH2KqluBH_T5Go");
             // POST 방식 사용을 위해
 			conn.setDoOutput(true);
 
@@ -100,12 +103,21 @@ public class openBankingAPI {
 				// 응답 데이터
 				System.out.println("responseJson :: " + sb.toString());
 				System.out.println("rsp_code :: " + code);
-				sess.setAttribute("code",code);
-				sess.setAttribute("JSON",sb);
             // 아래 else 이후 코드는 입력하지 않아도 됨
 			} else {
 				code = "9999";
 			}
+			sess.setAttribute("code",code);
+			for (int i =0; i<responseJson.size(); i++) {
+				JSONObject js = new JSONObject(responseJson);
+				avo.setAccount_holder_name(js.get("account_holder_name").toString());
+			}
+			
+			
+			
+//			JSONObject name = new JSONObject(responseJson);
+//			avo.setAccount_holder_name(name);
+			System.out.println("sesstion에 전달하는 코드는 :"+code);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

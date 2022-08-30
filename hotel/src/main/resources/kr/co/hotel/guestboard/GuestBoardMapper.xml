@@ -76,10 +76,58 @@
 			WHERE gboard_no = #{gboard_no}
 	</update>
 	
+	<!-- 답변업데이트(관리자용) -->
+		<update id="replyupdate" parameterType="kr.co.hotel.guestboard.GuestBoardVO">
+		UPDATE guestboard SET
+			 gboard_replyupdatedate= now(), gboard_reply=#{gboard_reply}
+			WHERE gboard_no =#{gboard_no}
+	</update>
+	
+	
 	<!-- 삭제하기 -->
 	<delete id="delete" parameterType="int">
 		DELETE FROM guestboard WHERE gboard_no = #{gboard_no}
 	</delete>
+	
+	
+	<!-- 이하빛찬 작성_마이페이지 내 문의글 목록보기_빛찬_220829 -->
+	
+	<select id="list_in_mypage" parameterType="kr.co.hotel.guestboard.GuestBoardVO" resultType="kr.co.hotel.guestboard.GuestBoardVO">
+		SELECT *,
+			( SELECT guest_name FROM guest 
+				WHERE guest_no = guestboard.guest_no ) AS guest_name, 
+					datediff(now(), gboard_regdate) as diff
+		FROM guestboard
+			<where>
+				guest_no=#{guest_no}
+				<if test="stype != null and sword != ''">
+					<if test="stype != 'all'">
+						${stype} LIKE '%${sword}%'
+					</if>
+					<if test="stype == 'all'">
+						gboard_title LIKE '%${sword}%' or gboard_content LIKE '%${sword}%' 
+					</if>
+				</if>
+			</where>
+			ORDER BY gboard_regdate DESC
+			LIMIT ${startIdx} , ${pageRow}
+	</select>
+	
+		<!-- 총 게시물 수 체크 -->
+	<select id="count_in_mypage" parameterType="kr.co.hotel.guestboard.GuestBoardVO" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM guestboard 
+		<where>
+			guest_no=#{guest_no}
+			<if test="stype != null and stype != ''">
+				<if test="stype !='all'">
+					${stype} LIKE '%${sword}%'
+				</if>
+				<if test="stype == 'all'">
+					gboard_title LIKE '%${sword}%' or gboard_content LIKE '%${sword}%'
+				</if>
+			</if>
+		</where>
+	</select>
 	
 
 </mapper>

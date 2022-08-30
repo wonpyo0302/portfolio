@@ -25,7 +25,7 @@
 			location.href='/hotel/guest/login.do';
 		</c:if>
 		<c:if test="${!empty loginInfo}">
-			location.href='write.do';
+			location.href='/hotel/guestboard/write.do';
 		</c:if>	
 	}
 </script>
@@ -46,10 +46,10 @@
 	<div class="sub">
 		<div class="size">
 		<br>
-			<h6 class="sub_content" style="text-align: left"> Q&A</h6>
+			<h1 class="sub_content" style="text-align: center"> 내가 남긴 Q&A</h1>
 			<br>
-			<h8 class="sub_content" style="text-align:left"> <img src="/hotel/image/boardPic/qna.png" width="40px">  게스트 전용 문의 게시판입니다. 문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
-			<br><br><br><br>
+			<h8 class="sub_content" style="text-align:left;"> <img src="/hotel/image/boardPic/qna.png" width="40px">  게스트 전용 문의 게시판입니다. 문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
+			<br>
 			<div class="bbs">
 				<table class="list">
 					<p>
@@ -117,11 +117,11 @@
 										
 										<td class="date"> <fmt:formatDate value="${vo.gboard_regdate}" pattern="yyyy-MM-dd"/></td>
 										
-										<c:if test="${empty vo.gboard_reply }">
-											<td style="color:red">[답변대기]</td>
+										<c:if test="${vo.gboard_status == 0 }">
+											<td>[답변대기]</td>
 										</c:if>	
-										<c:if test="${!empty vo.gboard_reply}">
-											<td style="color:blue">[답변완료]</td>
+										<c:if test="${vo.gboard_status == 1 }">
+											<td>[답변완료]</td>
 										</c:if>	
 									</tr>
 							</c:forEach>	
@@ -159,7 +159,7 @@
 								<option value="contents">내용</option>
 						</select>
 						</span> 
-						<span class="searchWord"> <input type="text" id="sword" name="sword" value="${param.sword }" placeholder="검색어를 입력하세요." title="검색어 입력"> 
+						<span class="searchWord"> <input type="text" id="sword" name="sword" placeholder="검색어를 입력하세요." title="검색어 입력"> 
 						<input type="button" id="" value="검색" title="검색">
 						</span>
 					</form>
