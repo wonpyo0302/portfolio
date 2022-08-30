@@ -69,29 +69,33 @@
 	</div>
 	</c:if>
 	<div id="background">
-	<div id="searchArea" class="container list_body">
+	<div id="searchArea" class="container list_body" style="width: 1000px;">
 		<div class="low">
 		<c:if test="${empty hotelList}">
 			<div class="first" colspan="8">등록된 호텔이 없습니다.</div>
 		</c:if>
 			<c:forEach var="list" items="${hotelList }" varStatus="idx">
-				<div class="container list" style="table-layout: fixed; float: left; width: 300px; <c:if test="${idx.count < 2 && idx.last }"> height: 400px;</c:if>">
+				<div class="container_list" style="
+					<c:if test="${idx.count == 1 || idx.count % 2 != 0}">border-right: 0.5px solid black;</c:if>
+					<c:if test="${idx.count < 2 && idx.last }"> height: 400px;</c:if>
+					<c:if test="${!idx.last || idx < idx.end}">border-bottom: 0.5px solid black;</c:if>
+					<c:if test="${idx.count > 2 }">padding-top: 5px;</c:if>">
 					<div>
 						<div class="list_hotel" style="border: 1px;">
-							<a href="/hotel/main/hotelView.do?hotel_no=${list.hotel_no }">
-								<div class="hotel_img"><img alt="이미지오류" src="/hotel/upload/${list.filename}" width="200" height="200"></div>
-								<div style="font-size: 20px;">
-									<div>${list.hotel_name} (${list.avgScore})</div>
-									<div class="star-ratings" style="text-align: center; display: inline-block;">
+							<a href="/hotel/main/hotelView.do?hotel_no=${list.hotel_no }" style="text-decoration: none;">
+								<div class="hotel_img"><img alt="이미지오류" src="/hotel/upload/${list.filename}" width="250" height="200"></div>
+								<div style="color: #000000;">
+									<div><strong>${list.hotel_name}</strong></div>
+									<div class="star-ratings" style="text-align: center; display: inline-block; font-size: 20px;">
 										<div class="star-ratings-fill space-x-2 text-lg" style="width: ${list.avgScore/5*100}%;">
 											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 										</div>
 										<div class="star-ratings-base space-x-2 text-lg">
 											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 										</div>
-									</div><br>
-									<span>최저가:  <fmt:formatNumber value="${list.lowPrice }" pattern="#,###"/> ~</span><br>
-									<span>리뷰 수: ${list.totalReview}, 좋아요 수: ${list.totalLike}</span>
+									</div>(${list.avgScore})<br>
+									<span style="font-size: 15px;">최저가:  <fmt:formatNumber value="${list.lowPrice }" pattern="#,###"/> ~</span><br>
+									<span style="font-size: 15px;">리뷰 수: ${list.totalReview}, 좋아요 수: ${list.totalLike}</span>
 								</div>
 							</a>
 						</div>

@@ -134,6 +134,7 @@ span {
 	padding-top: 80px;
 }
 .low{
+	 margin-left: 40px;
 	 display: inline-block;
 	 width: 650px;
 }
@@ -146,4 +147,10 @@ span {
 #background{
 	background-image:url("/hotel/upload/pinkSky.jpg");
 	background-size:cover;
+}
+.container_list {
+	table-layout: fixed;
+	float: left; 
+	width: 300px;
+	padding-bottom: 5px;
 }
