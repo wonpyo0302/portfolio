@@ -34,6 +34,9 @@
 			
 			$(".outer-div-modi").hide();
 			$(".outer-div").show();
+			$("input[name=filename]").val("");
+			
+			$(".preview").attr("src","");
 		})
 		
 			
@@ -130,8 +133,10 @@
 				$("#imgSpan"+image_no).show();
 			},
 			success: function(res){
-				alert(res);
-				alert("성공")
+				alert("사진이 삭제되었습니다.")
+				$("#imgSpan"+image_no+" img").attr("src", "");
+				$(".img-fluid"+image_no).attr("src", "/hotel/image/mypage/noImage.png");
+				
 				$("#imgAtc"+image_no).show();
 								
 			}
