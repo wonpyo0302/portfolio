@@ -22,7 +22,6 @@
 	<script type="text/javascript">
 		function rejectRev(reserv_no){
 			if(confirm("예약을 반려하시겠습니까?")){
-			
 				$.ajax({
 					type:'post',
 					data: {reserv_no : reserv_no},
@@ -207,25 +206,33 @@
 		                                	<c:if test="${row.pay_status ==0 }">
 		                                		입금대기 <br> <a class="paycheck" id ="${row.imp_uid}">[입금완료]</a>
 		                                	</c:if>
-		                                	<c:if test="${row.pay_status ==1 }">결제완료</c:if>
+		                                	<c:if test="${row.pay_status == 1 }">결제완료</c:if>
+		                                	<c:if test="${row.pay_status == 2 }">결제취소</c:if>
 		                                </td>
 		                                
 		                                <td>
 		                                	<p id="rejected${row.reserv_no}" style="display:none;">"예약반려(규정위반)"</p>
-			                                 <div class="rejectBtn${row.reserv_no}"><c:if test="${row.use_status == 0 }">이용전 <br> 
-			                                 	<a id="rejectRev" href="javascript:rejectRev(${row.reserv_no});" >[예약 반려하기]</a></c:if></div>
+		                                	<c:if test="${row.rev_status !=1}">
+				                                 <div class="rejectBtn${row.reserv_no}">
+				                                 	<c:if test="${row.use_status == 0 }">이용전 <br> 
+				                                 		<a id="rejectRev" href="javascript:rejectRev(${row.reserv_no});">[예약 반려하기]</a>
+				                                 	</c:if>
+				                                 </div>
+			                                 </c:if>
 			                                 <c:if test="${row.use_status == 1}">이용완료</c:if>
 			                                 <c:if test="${row.use_status == 2 }">'예약반려(규정위반)'</c:if>
 		                                </td>
 		                                
 		                                <td>
 		                                	<div id="in${row.reserv_no }" >
-			                                	<c:if test="${row.check_in_out_status == 0 }">
-			                                		<a class="check" id="checkin?${row.reserv_no }">[입실처리]</a>
-			                                	</c:if>
-			                                	<c:if test="${row.check_in_out_status == 1 || row.check_in_out_status ==2  }">
-			                                		${row.checkin_date}
-			                                	</c:if>
+			                                	<%-- <c:if test="${row.rev_status ==1 && row.pay_status !=1} "> --%>
+				                                	<c:if test="${row.rev_status ==0 && row.use_status==0 && row.pay_status==1 && row.check_in_out_status == 0 }">
+				                                		<a class="check" id="checkin?${row.reserv_no }">[입실처리]</a>
+				                                	</c:if>
+				                                	<c:if test="${row.check_in_out_status == 1 || row.check_in_out_status ==2  }">
+				                                		${row.checkin_date}
+				                                	</c:if>
+				                                <%-- </c:if> --%>
 		                                	</div> 
 		                                </td>
 		                                <td>

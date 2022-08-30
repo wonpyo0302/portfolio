@@ -11,7 +11,7 @@ import kr.co.hotel.reserve.ReserveVO;
 
 @Service
 public interface CancelService {
-	public List<LinkedHashMap> list(GuestVO vo);
+	//카트 결제 취소
 	public String cancel(ReserveVO vo, GuestVO gvo) throws IOException;
 
 	//무통장입금 취소
