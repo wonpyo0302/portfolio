@@ -64,7 +64,7 @@
 			<c:forEach var="SH" items="${data.listSeoul }">
 			<div class="swiper-slide" >
 				<a href="/hotel/main/hotelView.do?hotel_no=${SH.hotel_no}">
-						<div class="hotel01"><img alt="서울이미지오류" src="/hotel/image/hotel/${SH.filename}" width="100px" height="100px">
+						<div class="hotel01"><img alt="서울이미지오류" src="/hotel/upload/${SH.filename}" width="100px" height="100px">
 						</div>
 					<div style="font-size: 15px;">
 						<div>${SH.hotel_name} (${SH.avgScore})</div>
@@ -94,7 +94,7 @@
 			<c:forEach var="IH" items="${data.listIncheon }">
 			<div class="swiper-slide">
 				<a href="/hotel/main/hotelView.do?hotel_no=${IH.hotel_no}">
-						<div id="hotel01"><img alt="인천이미지오류" src="/hotel/image/hotel/${IH.filename}" width="200px" height="200px">
+						<div id="hotel01"><img alt="인천이미지오류" src="/hotel/upload/${IH.filename}" width="200px" height="200px">
 						</div>
 					<div style="font-size: 15px;">
 					<div>${IH.hotel_name} (${IH.avgScore})</div>
@@ -125,7 +125,7 @@
 			<div class="swiper-slide">
 				<a href="/hotel/main/hotelView.do?hotel_no=${KH.hotel_no}">
 						<div class="hotel01">
-							<img alt="경기이미지오류" src="/hotel/image/hotel/${KH.filename}" width="200px" height="200px">
+							<img alt="경기이미지오류" src="/hotel/upload/${KH.filename}" width="200px" height="200px">
 						</div>
 					<div style="font-size: 15px;">
 						<div>${KH.hotel_name} (${KH.avgScore})</div>

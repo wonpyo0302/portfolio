@@ -9,7 +9,7 @@
 				<div>
 					<div class="list_hotel" style="border: 1px;">
 						<a href="/hotel/main/hotelView.do">
-							<div class="hotel_img"><img alt="이미지오류" src="/hotel/image/hotel/${list.filename}" width="200" height="200"></div>
+							<div class="hotel_img"><img alt="이미지오류" src="/hotel/upload/${list.filename}" width="200" height="200"></div>
 								<div style="font-size: 15px;">
 									<div>${list.hotel_name} (${list.avgScore})</div>
 									<div class="star-ratings" style="text-align: center; display: inline-block;">

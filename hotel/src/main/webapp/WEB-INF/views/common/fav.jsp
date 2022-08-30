@@ -32,7 +32,7 @@
 									<img class="like"  data-name="del" data-gno="${vo.guest_no}" data-hno="${vo.hotel_no}" src="/hotel/image/mypage/heart.png" width="40px" >
 								</div>
 								<div>
-									<img src="/hotel/image/${img.filename_real }" class="card-img-top" alt="이미지 없음">
+									<img src="/hotel/upload/${img.filename_org }" class="card-img-top" alt="이미지 없음">
 								</div>
 							</div>
 						</c:forEach>
@@ -43,7 +43,7 @@
 									<img class="like"  data-name="del" data-gno="${vo.guest_no}" data-hno="${vo.hotel_no}" src="/hotel/image/mypage/heart.png" width="40px" >
 								</div>
 								<div>
-									<img src="/hotel/image/hotel/ex_room.jpg" class="card-img-top" alt="이미지 없음">
+									<img src="/hotel/image/hotel/ah1.jpg" class="card-img-top" alt="이미지 없음">
 								</div>
 							</div>
 						</c:if>
