@@ -26,34 +26,6 @@ public class CouponController {
 	@Autowired
 	CouponService service;
 	
-	@GetMapping("coupon/idList.do")
-	public String idList(Model model, @RequestParam(required = false) String sword) {
-		Map map = new HashMap();
-		System.out.println("========================================"+sword);
-		map.put("sword", sword);
-		model.addAttribute("data",service.list(map));
-		return "/admin/main/coupon/idList";
-	}
-	
-	@PostMapping("coupon/create.do")
-	public String createpro(GuestVO gvo, CouponVO cvo, 
-			@RequestParam List<String> guest_id, 
-			@RequestParam List<Integer>coupon_price,
-			@RequestParam List<Integer>amount) {
-		
-		for(String id : guest_id) {
-			for(int i=0; i<coupon_price.size(); i++) {
-				for(int j=0; j<amount.get(i); j++) {
-					cvo.setGuest_no((service.selectGuestNo(id)).getGuest_no());//1
-					cvo.setCoupon_price(coupon_price.get(i));
-					service.createCoupon(cvo);
-				}
-			}
-		}
-			return "/admin/main/couponcreate";
-	}
-	
-	
 	//--------이하 빛찬--------------------------------------------------
 	
 	@GetMapping("/coupon/index.do")
@@ -77,18 +49,40 @@ public class CouponController {
 		}
 		return "coupon/index";
 	}
+	
 	//=====================쿠폰 admin내용 추가=========================
 	
+	//admin 쿠폰 생성 페이지
 	@GetMapping("/admin/main/coupon/couponcreate.do")
 	public String couponcreate(AdminVO avo,HttpSession sess, Model model) {
 		return "/admin/main/coupon/couponcreate";
 	}
 	
+	//게스트 목록 리스트 출력
+	@GetMapping("coupon/idList.do")
+	public String idList(Model model, @RequestParam(required = false) String sword) {
+		Map map = new HashMap();
+		map.put("sword", sword);
+		model.addAttribute("data",service.list(map));
+		return "/admin/main/coupon/idList";
+	}
 	
-	
-	
-	
-	
-	
-	
+	//쿠폰 생성
+	@PostMapping("coupon/create.do")
+	public String createpro(GuestVO gvo, CouponVO cvo, 
+			@RequestParam List<String> guest_id, 
+			@RequestParam List<Integer>coupon_price,
+			@RequestParam List<Integer>amount) {
+		
+		for(String id : guest_id) {
+			for(int i=0; i<coupon_price.size(); i++) {
+				for(int j=0; j<amount.get(i); j++) {
+					cvo.setGuest_no((service.selectGuestNo(id)).getGuest_no());//1
+					cvo.setCoupon_price(coupon_price.get(i));
+					service.createCoupon(cvo);
+				}
+			}
+		}
+			return "/admin/main/coupon/couponcreate";
+	}
 }

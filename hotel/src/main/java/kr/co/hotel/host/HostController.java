@@ -2,7 +2,7 @@ package kr.co.hotel.host;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -156,9 +156,10 @@ public class HostController {
 			
 			Map map = hservice.get_numbers(host_loginInfo);
 			model.addAttribute("map", map);
+			//공지사항
 			Map map2 =hnservice.index(vo);
 			model.addAttribute("map2", map2);
-			
+			//문의글
 			hvo.setHost_no(host_no);
 			Map map3 = hbservice.index_in_mypage(hvo);
 			model.addAttribute("map3", map3);
@@ -268,17 +269,17 @@ public class HostController {
 	
 	
 
-	 //캘린더 테이블 만드는 메소드
-	  @GetMapping("/host/test.do") 
-	  public void making() { 
-		  LocalDate now = LocalDate.now(); 
-		  Map map = new HashMap();
-	  
-		  for(int i = -365; i<4000; i++ ) { 
-			  map.put("date", now.plusDays(i)); 
-			  map.put("day", now.plusDays(i).getDayOfWeek());
-			  hservice.making_calendar(map); }
-		  
-		  }
+	/*
+	 * //캘린더 테이블 만드는 메소드
+	 * 
+	 * @GetMapping("/host/test.do") public void making() { LocalDate now =
+	 * LocalDate.now(); Map map = new HashMap();
+	 * 
+	 * for(int i = -365; i<4000; i++ ) { map.put("date", now.plusDays(i));
+	 * map.put("day", now.plusDays(i).getDayOfWeek());
+	 * hservice.making_calendar(map); }
+	 * 
+	 * }
+	 */
 	 
 }

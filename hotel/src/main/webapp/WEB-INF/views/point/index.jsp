@@ -23,7 +23,7 @@
         <div class="sub">
             <div class="size">
                 <h3 class="sub_title"></h3>
-                <p class="sub_title">MY POINT :  ${totalpoint }  P</p>
+                <p class="sub_title">MY POINT :  <fmt:formatNumber value="${totalpoint }" pattern="#,###"></fmt:formatNumber>P</p>
     
                 <div class="bbs">
                     <table class="list">

@@ -7,13 +7,15 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.hotel.admin.AdminVO;
 
@@ -224,22 +226,22 @@ public class GuestController {
 			model.addAttribute("guestlist",gservice.guestlist(vo));
 			return "/admin/main/guest/guestview";
 		}
+
 	 @PostMapping("/guest/realNameApi.do")
-	 public void realNameApi(ApiVO avo,HttpSession sess, HttpServletResponse res) throws Exception {
+	 @ResponseBody
+	 public ApiVO realNameApi(ApiVO avo,HttpSession sess, HttpServletResponse res, Model model) throws Exception {
 		 openBankingAPI api=new openBankingAPI();
 		 boolean r= false;
 		 String code = api.bankingRealNameApi(avo,sess);
 		 System.out.println("code="+code);
+		 model.addAttribute("acc",avo.getAccount_holder_name());
+		 System.out.println("내가 확인하려는 인증계좌실명"+avo.getAccount_holder_name());
 		 if(code.equals("A0000")) {
-			 r=true;
-			 PrintWriter out = res.getWriter();
-			 out.print(r); 
-			 out.flush();
+			 avo.setResult(true);
+			 return avo;
 		 }else {
-			 r=false;
-			 PrintWriter out = res.getWriter();
-			 out.print(r); 
-			 out.flush();
+			 avo.setResult(false);
+			 return avo;
 		 }
 		
 	 }

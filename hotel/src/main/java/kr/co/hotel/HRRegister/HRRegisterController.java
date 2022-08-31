@@ -33,19 +33,12 @@ public class HRRegisterController {
 	
 	//-----------이하 객실----------------
 	
-	//on going
+	//객실, 호텔 등록 리스트
 	@GetMapping("/room/index.do")
 	public String index(Model model,HotelVO hvo, RoomVO vo, HttpSession sess, HttpServletRequest req) {
-		/*
-		 * HostVO loginInfo1 = new HostVO();// demo data
-		 * loginInfo1.setHost_no(110);//demo data
-		 * loginInfo1.setHost_name("호스트_빛찬");//demo data 
-		 *sess.setAttribute("loginInfo2",loginInfo1);
-		 */
 		
 		
 		HostVO Host_loginInfo = (HostVO)(sess.getAttribute("loginInfo2"));
-		System.out.println("호스트번호확인 : "+ Host_loginInfo.getHost_no());
 		vo.setHost_no(Host_loginInfo.getHost_no());
 		
 		model.addAttribute("data", service.index(vo));
@@ -59,10 +52,10 @@ public class HRRegisterController {
 		return "room/index";//검색...포함?
 	}
 	
+	//객실 등록 페이지
 	@GetMapping("/room/write.do")
 	public String write() {
 		//로그인세션이 없으면 들어갈 수 없도록 처리
-		
 		return"/room/write";
 	}
 	
@@ -72,8 +65,6 @@ public class HRRegisterController {
 		HttpSession sess = req.getSession();
 		//세션에서 host_no를 가져옴, host_no로 hotel테이블에서 hotel_no를 가져옴
 		HostVO Host_loginInfo = (HostVO) sess.getAttribute("loginInfo2");
-		System.out.println("호스트번호확인스 : "+Host_loginInfo.getHost_no());
-		
 		
 		vo.setHost_no(Host_loginInfo.getHost_no());
 		HotelVO hotelInfo = service.get_hotelInfo(vo.getHost_no());
@@ -81,7 +72,6 @@ public class HRRegisterController {
 		
 		ivo.setImage_type("ROOM");
 		ImgHandling ih = new ImgHandling();//파일명을 org와 real 구분 후, map에 담아 반환하고 파일을 저장
-		
 		
 		if(service.insert(vo)) {
 			RoomVO latest =service.get_roomInfo();//바로 윗줄 insert 실행시 발생되는 room_no를 구해와 image테이블에 room_no를 같이 insert함
@@ -107,9 +97,7 @@ public class HRRegisterController {
 			model.addAttribute("msg", "저장 실패하였습니다.");
 			return "common/alert";
 		}
-		
 	}
-	
 	
 	@GetMapping("/room/view.do")
 	public String view(RoomVO vo, Model model, ImageVO ivo) {
@@ -121,7 +109,6 @@ public class HRRegisterController {
 		
 		model.addAttribute("data", data);
 		model.addAttribute("imgList", imgList);
-				
 		return "room/view";
 	}
 	
@@ -144,7 +131,6 @@ public class HRRegisterController {
 		 boolean r = false;
 		 r = service.update(vo);
 		 
-		 
 		 ivo.setNo(vo.getRoom_no());
 		 ivo.setImage_type("ROOM");
 		 ImgHandling ih = new ImgHandling();
@@ -160,8 +146,6 @@ public class HRRegisterController {
 					System.out.println("imgInsert : " + r);
 				}
 			}
-		 
-	
 		 
 		 if(r) {
 			 model.addAttribute("msg","정상적으로 수정되었습니다");
@@ -201,10 +185,8 @@ public class HRRegisterController {
 
 		@GetMapping("/myhotel/write.do")
 		public String hotelWrite() {
-			//로그인세션이 없으면 들어갈 수 없도록 처리
 			return"/hotel/write";
 		}
-		
 		
 		// 호텔등록페이지 지역코드 ajax
 		@PostMapping("/myhotel/district.do")
@@ -214,17 +196,10 @@ public class HRRegisterController {
 			return service.get_district_code(vo);
 		}
 		
-		
 		@PostMapping("/myhotel/insert.do")
 		public String hotel_insert(HostVO vo ,HotelVO hvo, ImageVO ivo, Model model, @RequestParam("filename2") List<MultipartFile> filename, HttpServletRequest req, HttpSession sess ) {
-			//세션 정보 축출
-			/*
-			 * HostVO loginInfo1 = new HostVO();// demo data HttpSession sess =
-			 * req.getSession(); sess.setAttribute("loginInfo", loginInfo1);// demo data
-			 */
-			//세션에서 host_no를 가져옴, host_no로 hotel테이블에서 hotel_no를 가져옴
+			
 			HostVO Host_loginInfo = (HostVO)sess.getAttribute("loginInfo2");
-			//Host_loginInfo.setHost_no(50);//demo data
 			
 			hvo.setHost_no(Host_loginInfo.getHost_no());//hvo에 세션으로부터 host_no를 넣어줌
 			vo.setHost_no(Host_loginInfo.getHost_no());
@@ -232,7 +207,6 @@ public class HRRegisterController {
 			ImgHandling ih = new ImgHandling();//파일명을 org와 real 구분 후, map에 담아 반환하고 파일을 저장
 			
 			System.out.println("hvo확인 : "+ hvo);
-			
 			
 			if(service.hotel_insert(hvo)) {
 				//호텔정보 입력 후, 호스트 테이블에 hotel_no 업데이트
@@ -262,7 +236,6 @@ public class HRRegisterController {
 				model.addAttribute("msg", "저장 실패하였습니다.");
 				return "common/alert";
 			}
-			
 		}
 		
 		
@@ -300,8 +273,6 @@ public class HRRegisterController {
 		 public String H_update(Map mapp, HotelVO hvo, Model model,ImageVO ivo, @RequestParam("filename2") List<MultipartFile> filename, HttpServletRequest req) {
 			 System.out.println("vo 확인 : "+ hvo+mapp);
 			 
-			 
-			 
 			 ivo.setNo(hvo.getHotel_no());
 			 ivo.setImage_type("HOTEL");
 			 ImgHandling ih = new ImgHandling();
@@ -317,9 +288,6 @@ public class HRRegisterController {
 						System.out.println("imgInsert : " + r);
 					}
 				}
-			 
-			 
-			 
 			 
 			 if(service.H_update(hvo)) {
 				 model.addAttribute("msg","정상적으로 수정되었습니다");

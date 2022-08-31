@@ -91,7 +91,7 @@
 				<div class="row g-0">
 					<div class="col-md-4">
 					<c:if test="${!empty rv.img.filename_real }">
-						<img src="/hotel/upload/${rv.img.filename_real }" class="img-fluid rounded-start" alt="..." width="200px">
+						<img src="/hotel/upload/${rv.img.filename_real }" class="img-fluid${rv.img.image_no } rounded-start" alt="..." width="200px">
 					</c:if>
 					<c:if test="${empty rv.img.filename_real }">
 						<img src="/hotel/image/mypage/noImage.png" class="img-fluid rounded-start" alt="..." width="200px">
@@ -101,12 +101,14 @@
 				
 					<div class="col-md-8">
 						<div class="card-body">
-							<h5 class="card-title"> ${rv.review_title }</h5>
+							<h5 class="card-title" onclick="location.href='/hotel/main/hotelView.do?hotel_no=${rv.hotel_no}'" > 
+								${rv.review_title }
+							</h5>
 							
 							<div id="score">
 								<img alt="평점 :" src="/hotel/image/mypage/star.png" width="30px"> ${rv.review_score }점
 							</div>
-							<div>
+							<div onclick="location.href='/hotel/main/hotelView.do?hotel_no=${rv.hotel_no}'">
 								호텔  ${rv.hotel_name }
 							</div>
 							
@@ -158,10 +160,9 @@
 								<img src="/hotel/upload/${rv.img.filename_real }" class="img-fluid rounded-start" width="200px">
 							</span>	
 							<div id="imgAtc${rv.img.image_no}" style="display: none; position: relative;">
-							
 								<input id="file${rv.img.image_no}" type="file" name="filename" onchange="readURL(this, ${rv.img.image_no});"  hidden="true" > 
 								<div>
-									<img id="preview${rv.img.image_no}" style="position: absolute; right: 0" width="200px"/>
+									<img id="preview${rv.img.image_no}" class="preview" style="position: absolute; right: 0" width="200px"/>
 								</div>
 							
 								<label for="file${rv.img.image_no}">
@@ -173,10 +174,14 @@
 						
 						<!-- 이미지가 존재하지 않는 경우 -->
 						<c:if test="${empty rv.img.filename_real }">
+						
 							<div id="imgAtc${rv.review_no}" style=" position: relative;">
 								<input id="file${rv.review_no}" type="file" name="filename" onchange="readURL(this, ${rv.review_no});" hidden="true" > 
-								<div><img id="preview${rv.review_no}" style="position: absolute; right: 0" width="200px"/></div>
+								<div>
+									<img id="preview${rv.review_no}" class="preview" style="position: absolute; right: 0" width="200px"/>
+								</div>
 							</div>
+							
 							<label for="file${rv.review_no}">
 								<img src="/hotel/image/mypage/imgPlus.png" class="img-fluid rounded-start"  width="40px" style="margin: 135px 0 5px 5px; ">
 							</label>

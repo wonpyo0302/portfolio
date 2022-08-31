@@ -46,6 +46,7 @@ public class HostReserveController {
 	}
 	
 	//=================이하 형욱==================
+	//포인트 적립
 	@PostMapping("/hostReserve/checkin")
 	@ResponseBody
 	public int checkin(ReserveVO vo, GuestVO gvo) {

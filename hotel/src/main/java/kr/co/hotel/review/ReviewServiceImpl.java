@@ -101,14 +101,12 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public boolean delete(int review_no) {
-		
 		return mapper.delete(review_no);
 	}
 
 
 	@Override
 	public boolean review_update(ReviewVO vo) {
-		
 		return mapper.review_update(vo);
 	}
 	
@@ -126,14 +124,12 @@ public class ReviewServiceImpl implements ReviewService {
 		List<ReviewVO> list = mapper.host_review_list(vo);
 		//FavoriteVO 안에 ImageVO가 있음, 
 		
-		
 		for(int i=0; i<list.size(); i++) {
 			//해당 호텔의 이미지 리스트를 가져옴
 			ImageVO img = mapper.get_review_img(list.get(i).getReview_no());
 			list.get(i).setImg(img);
 			//해당 호텔의 총 리뷰 개수를 가져옴
 		}
-		 
 		
 		//페이징 처리
 		int endPage = (int)(Math.ceil(vo.getPage()/10.0)*10);
@@ -157,7 +153,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public boolean review_delImg(int image_no) {
-		
 		return mapper.review_delImg(image_no) >0? true:false;
 	}
 

@@ -47,7 +47,6 @@ public class ReserveController {
 	@PostMapping("/reserve/reserveinsert.do")
 	@ResponseBody
 	public int reserveinsert(ReserveVO vo,GuestVO gvo, Model model) {
-		System.out.println("===================================="+vo.getPay_type());
 		return service.insert(vo, gvo); //0,1조회값
 	}
 	
@@ -58,12 +57,6 @@ public class ReserveController {
 		return service.reservecheck(vo);
 	}
 	
-
-	//포인트 적립 메소드
-	@PostMapping("/reserve/pointdeposit.do")
-	public void pointdeposit(ReserveVO vo, GuestVO gvo) {
-		service.PointDeposit(vo, gvo);
-	}
 	
 	//쿠폰 삭제 스케줄러(만료시)
 	//@Scheduled(cron="0/10 * * * * *")
@@ -79,14 +72,14 @@ public class ReserveController {
 		List<ReserveVO> list = service.CancleList();
 		for(int i=0; i<list.size();i++) {
 			ReserveVO vo = list.get(i);
-			System.out.println("==================목록"+list.get(i).getReserv_no());
-			System.out.println("==================상태업데이트"+service.UpdateReserveStatus(vo));
+			list.get(i).getReserv_no();
+			service.UpdateReserveStatus(vo);
 			if(vo.getUsed_point() !=0) {
-				System.out.println("==================포인트업데이트"+service.UpdateGuestPoint(vo));
-				System.out.println("==================포인트테이블 삽입"+service.InsertPointTable(vo));
+				service.UpdateGuestPoint(vo);
+				service.InsertPointTable(vo);
 			}
 			if(vo.getCoupon_no() !="") {
-				System.out.println("==================쿠폰상태 업데이트"+service.UpdateCouponStatus(vo));
+				service.UpdateCouponStatus(vo);
 			}	
 		}
 	
@@ -123,18 +116,10 @@ public class ReserveController {
 	//-----게스트-----------------------------------------------
 	@GetMapping("/reserve/index.do")
 	public String index(Model model,HotelVO hvo, ReserveVO vo, HttpSession sess, HttpServletRequest req) {
-		//GuestVO loginInfo1 = new GuestVO();// demo data
-		//loginInfo1.setGuest_no(3);//demo data
-		//loginInfo1.setGuest_name("게스트_빛찬");//demo data
-		//sess.setAttribute("loginInfo", loginInfo1);//demo data
-		
 		GuestVO Host_loginInfo = (GuestVO) sess.getAttribute("loginInfo");
-		
 		vo.setGuest_no(Host_loginInfo.getGuest_no());
-		
 		model.addAttribute("data", service.index(vo));
 		model.addAttribute("totalpoint", service.SelectTotalPoint(vo));
-		
 		return "reserve/index";
 	}
 	

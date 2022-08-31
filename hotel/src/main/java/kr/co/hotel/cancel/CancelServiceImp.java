@@ -27,12 +27,7 @@ public class CancelServiceImp implements CancelService {
 	@Autowired
 	CancelMapper mapper;
 
-	@Override
-	public List<LinkedHashMap> list(GuestVO vo) {
-		System.out.println("====================="+mapper.list(vo));
-		return  mapper.list(vo);
-	}
-
+	//카드 결제 취소
 	@Override
 	public String cancel(ReserveVO vo, GuestVO gvo) throws IOException {
 		//인증 토큰 가져오기
@@ -89,12 +84,10 @@ public class CancelServiceImp implements CancelService {
 		while((line = br.readLine()) != null) { // 읽을 수 있을 때 까지 반복
 			sb.append(line);
 		}
-		//System.out.println(sb.toString().getClass().getName());
-		System.out.println(" message= " + sb.toString());
 		br.close();
 		conn.disconnect();
 		
-		mapper.cancelReserve(vo); //ok
+		mapper.cancelReserve(vo);
 		gvo.setTotalpoint(gvo.getTotalpoint());
 		mapper.cancelGuestPoint(gvo);
 		mapper.cancelPoint(vo);
@@ -103,27 +96,31 @@ public class CancelServiceImp implements CancelService {
 		return sb.toString();
 	}	
 	
-	
+	//예약테이블에서 상태 업데이트
 	@Override
 	public int UpdateReserveStatus(ReserveVO vo) {
 		return mapper.UpdateReserveStatus(vo);
 	}
 
+	//특정 게스트에서 데이터 업데이트
 	@Override
 	public int UpdateGuestPoint(ReserveVO vo) {
 		return mapper.UpdateGuestPoint(vo);
 	}
 
+	//포인트 테이블 이력 저장(포인트 취소)
 	@Override
 	public int InsertPointTable(ReserveVO vo) {
 		return mapper.InsertPointTable(vo);
 	}
 
+	//쿠폰 상태 업데이트
 	@Override
 	public int UpdateCouponStatus(ReserveVO vo) {
 		return mapper.UpdateCouponStatus(vo);
 	}
 
+	//특정 예약정보 가져오기
 	@Override
 	public ReserveVO SelectReserve(ReserveVO vo) {
 		return mapper.SelectReserve(vo);

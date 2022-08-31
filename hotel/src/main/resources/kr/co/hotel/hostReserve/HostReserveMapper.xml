@@ -68,16 +68,19 @@
 	
 	
 
-	<!-- 이하 마이페이지 포인트 적립_형욱 -->
+<!-- 이하 마이페이지 포인트 적립_형욱 -->
 	
+	<!-- 특정 예약정보 가져오기 -->	
 	<select id="reservelist" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.reserve.ReserveVO">
 		select * from reserv where reserv_no =#{reserv_no}
 	</select>
-	
+
+	<!-- 예약테이블에서 포인트 적립 상태, check_in 시간 업데이트 -->	
 	<update id="UpdatePointDeposit" parameterType="kr.co.hotel.reserve.ReserveVO">
 		update reserv set point_deposit_status=1, use_status=1, check_in_out_status=1, checkin_date=now()  where reserv_no = #{reserv_no}
 	</update>
 	
+	<!-- -->
 	<select id="gvolist" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="kr.co.hotel.guest.GuestVO">
 		select * from guest where guest_no = #{guest_no}
 	</select>
@@ -90,7 +93,8 @@
 	<insert id="InsertPointDeposit" parameterType="kr.co.hotel.reserve.ReserveVO">
 		insert into point 
 			(guest_no, io_point, totalpoint, pointtype,date)
-		values (#{guest_no}, #{used_point},(select totalpoint from guest where guest_no = #{guest_no}),1, now())
+		values 
+			(#{guest_no}, #{used_point},(select totalpoint from guest where guest_no = #{guest_no}), 0, (select checkin_date from reserv where imp_uid = #{imp_uid}))
 	</insert>
 	
 	<update id="checkout" parameterType="kr.co.hotel.reserve.ReserveVO">
