@@ -3,6 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="/WEB-INF/views/includes/G_header.jsp"%>
+<%@ page import="java.net.*"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -45,7 +47,7 @@ th {
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "list.do?stype=${param.stype}&sword=${param.sword}";
+		location.href = "/hotel/guestnotice/list.do?stype=${param.stype}&sword=${param.sword}";
 	}
 
 
@@ -68,7 +70,7 @@ th {
 				})
 	})
 	
-	// 트위터, 페이스북 공유 버튼
+/* 	// 트위터, 페이스북 공유 버튼 (추후 적용예정)
 	function shareTwitter() {
 	    var sendText = "둘이놀까"; // 전달할 텍스트
 	    var sendUrl = 'http://localhost:8080/hotel/guestboard/view.do?gnotice_no=${data.gnotice_no}'; // 전달할 URL
@@ -80,7 +82,7 @@ th {
 	    var sendUrl = 'http://localhost:8080/hotel/guestboard/view.do?gnotice_no=${data.gnotice_no}'; // 전달할 URL
 	    window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 	}
-
+ */
 </script>
 
 </head>
@@ -114,8 +116,8 @@ th {
 							<div class="btnSet" style="text-align: right;">
 								<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();">카카오톡</a>
 								<!-- <a id="create-kakaotalk-sharing-btn" href="javascript:share();"> <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" width="30px" alt="카카오톡 공유 보내기 버튼" /> </a>  -->
-								<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">트위터</a> 
-								<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">페이스북</a>
+							<!-- 	<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">트위터</a> 
+								<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">페이스북</a> -->
 
 							</div>
 							<tr>
@@ -131,8 +133,9 @@ th {
 							</tr>
 							<tr>
 								<th>첨부파일</th>
-								<td colspan="3">
-								<input type="file" name="filename">
+								<td colspan="2">
+									<a href="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}" target="_blank"> ${data.filename_org } 
+									</a>
 								</td>
 							</tr>
 						</div>

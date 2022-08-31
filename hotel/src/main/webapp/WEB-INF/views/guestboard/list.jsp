@@ -48,21 +48,23 @@
 		<br>
 			<h6 class="sub_content" style="text-align: left"> Q&A</h6>
 			<br>
-			<h8 class="sub_content" style="text-align:left"> <img src="/hotel/image/boardPic/qna.png" width="40px">  게스트 전용 문의 게시판입니다. 문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
+			<h8 class="sub_content" style="text-align:left"> 
+			<img src="/hotel/image/boardPic/qna.png" width="40px">  게스트 전용 문의 게시판입니다. 문의를 남겨주시면 빠른 답변드릴 수 있도록 하겠습니다.</h8>
 			<br><br><br><br>
 			<div class="bbs">
 				<table class="list">
 					<p>
 						<span><strong>총 ${data.totalCount}개</strong> | ${guestBoardVO.page}/${data.totalPage}페이지</span> 
 					</p>
+					
 					<caption>게시판 목록</caption>
 					<colgroup>
 						<col width="80px" />
-						<col width="150px" />
+						<col width="130px" />
 						<col width="*" />
 						<col width="80px" />
-						<col width="150px" />
-						<col width="150px" />
+						<col width="90px" />
+						<col width="100px" />
 						<col width="100px" />
 					</colgroup>
 					<thead style="text-align:center">
@@ -76,8 +78,7 @@
 							<th>답변상태</th>
 						</tr>
 					</thead>
-							<tbody>
-					
+					<tbody>
 						<c:if test="${empty data}">
 							<tr>
 								<td class="first" colspan="8">등록된 글이 없습니다.</td>
@@ -129,10 +130,10 @@
 					</tbody>
 				</table>
 				<div class="btnSet" style="text-align: right;">
-				
 					<a class="btn" href="javascript:goWrite();">글작성 </a>
-					
 				</div>
+				
+				<!-- 페이지처리 시작 -->
 				<div class="pagenate clear">
 					<ul class='paging'>
 					<!-- 이전페이지 -->
@@ -149,26 +150,28 @@
 					</c:if>
 					</ul>
 				</div>
-				<!-- 페이지처리 -->
+				<!-- 페이지처리 끝 -->
 
+				<!-- 검색조건 시작 -->
 				<div class="bbsSearch">
 					<form method="get" name="searchForm" id="searchForm" action="">
-						<span class="srchSelect"> <select id="stype" name="stype" class="dSelect" title="검색분류 선택">
+						<span class="srchSelect"> 
+							<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 								<option value="all">전체</option>
 								<option value="title">제목</option>
 								<option value="contents">내용</option>
-						</select>
+							</select>
 						</span> 
-						<span class="searchWord"> <input type="text" id="sword" name="sword" value="${param.sword }" placeholder="검색어를 입력하세요." title="검색어 입력"> 
-						<input type="button" id="" value="검색" title="검색">
+						<span class="searchWord"> 
+							<input type="text" id="sword" name="sword" value="${param.sword }" placeholder="검색어를 입력하세요." title="검색어 입력"> 
+							<input type="button" id="" value="검색" title="검색">
 						</span>
 					</form>
 				</div>
+				<!-- 검색조건 끝 -->
 			</div>
 		</div>
 	</div>
-					
-
 </body>
 </html>
 

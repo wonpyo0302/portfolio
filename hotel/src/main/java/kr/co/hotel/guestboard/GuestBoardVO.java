@@ -23,7 +23,7 @@ public class GuestBoardVO extends GuestVO {
 	private String gboard_reply; // 답변내용
 	
 	private String guest_name; // 스칼라서브쿼리로 guest_name를 가져옴
-	private int diff; // 최신글 확인을 위한 날짜 차이 
+	private int diff; // 최신글 new 날짜차이 (서브쿼리)
 	
 	private String filename_org;
 	private String filename_real;
@@ -39,6 +39,7 @@ public class GuestBoardVO extends GuestVO {
 	
 	private String sword; // 검색어
 	private String stype; // 검색유형
+	private String stype2; // 검색유형 220830 추가
 	
 
 	public GuestBoardVO () {

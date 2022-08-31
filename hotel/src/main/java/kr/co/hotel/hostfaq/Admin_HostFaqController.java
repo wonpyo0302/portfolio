@@ -38,12 +38,6 @@ public class Admin_HostFaqController {
 	@PostMapping("/admin/main/hostboard/faq/write.do")
 	public String insert(Model model, HostFaqVO vo, HttpSession sess) {
 
-		// admin 로그인 테스트
-		HostFaqVO AdminLoginInfo = new HostFaqVO();
-		AdminLoginInfo.setAdmin_no(2); // demo
-		AdminLoginInfo.setAdmin_id("admin_찌수"); // demo
-		sess.setAttribute("loginInfo_admin", AdminLoginInfo);
-
 		if (service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
 			model.addAttribute("url", "view.do");

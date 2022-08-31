@@ -1,9 +1,7 @@
 package kr.co.hotel.guestboard;
 
-import java.io.File;
-import java.util.Date;
+import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.hotel.guest.GuestVO;
-import kr.co.hotel.guestnotice.GuestNoticeVO;
 import util.ImgHandling;
 
 @Controller
@@ -31,6 +26,14 @@ public class Admin_GuestBoardController extends ImgHandling {
 		return "admin/main/guestboard/qna/list";
 	}
 
+	// 관리자 검색조건
+	@PostMapping("/admin/main/guestboard/qna/list.do")
+	@ResponseBody
+	public List<GuestBoardVO> adminList(GuestBoardVO vo){
+		return service.adminList(vo);
+	}
+	
+	
 	// 조회
 	@GetMapping("/admin/main/guestboard/qna/view.do")
 	public String view(Model model, GuestBoardVO vo) {

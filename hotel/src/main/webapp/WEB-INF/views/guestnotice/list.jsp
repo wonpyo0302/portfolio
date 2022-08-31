@@ -45,6 +45,7 @@
 						<col width="100px" />
 						<col width="150px" />
 						<col width="80px" />
+						<col width="80px" />
 					</colgroup>
 					<thead style="text-align: center">
 						<tr>
@@ -53,6 +54,7 @@
 							<th>작성자</th>
 							<th>작성일</th>
 							<th>조회수</th>
+							<th>파일</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -92,14 +94,21 @@
 										<td class="writer">관리자</td>
 										<td class="date"><fmt:formatDate value="${vo.gnotice_regdate}" pattern="yyyy-MM-dd" /></td>
 										<td>${vo.gnotice_viewcount}</td>
+										
+										<c:if test="${!empty vo.filename_org }">
+											<td><img src="/hotel/image/boardPic/folder.png" width="15px"></td>
+										</c:if>
+										<c:if test="${empty vo.filename_org }">
+										<td></td>
+										</c:if>
 									</tr>
-							
-					
 							</c:forEach>
 						</c:if>
 					</tbody>
 				</table>
 				<div class="btnSet" style="text-align: right;"></div>
+				
+				<!-- 페이지 처리 시작 -->
 				<div class="pagenate clear">
 					<ul class='paging'>
 						<!-- 이전페이지 -->
@@ -120,8 +129,9 @@
 						</c:if>
 					</ul>
 				</div>
-
-				<!-- 페이지처리 -->
+				<!-- 페이지처리 끝 -->
+				
+				<!-- 검색처리 시작 -->
 				<div class="bbsSearch">
 					<form method="get" name="searchForm" id="searchForm" action="">
 						<span class="srchSelect"> <select id="stype" name="stype"

@@ -130,4 +130,9 @@ public class GuestBoardServiceImpl implements GuestBoardService {
 
 	}
 
+	@Override
+	public List<GuestBoardVO> adminList(GuestBoardVO vo) {
+		return mapper.adminList(vo);
+	}
+
 }
