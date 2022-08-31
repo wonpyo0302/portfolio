@@ -19,6 +19,15 @@
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
     
 <script>
+	$(function() {
+		goPage();
+		
+	})
+	
+	function goPage(){
+		
+	}
+
 	function goWrite(){
 		<c:if test="${empty loginInfo_admin}">
 			alert('로그인 후 작성 가능합니다.');
@@ -39,6 +48,77 @@
 			location.href='list.do';
 		</c:if>
 	}
+	
+	function select(){
+		$.ajax ({
+			url : "/hotel/admin/main/guestboard/qna/list.do",
+			type : 'post',
+			data : {
+				stype :$("#select_type").val(),
+				stype2 :$("#select_status").val()
+			},
+			success : function (res){
+				console.log(res);
+				$.each(res, function(idx, val) {
+					console.log(val.gboard_title);
+					var str = '';
+					str += "<tr>";
+					
+					
+					 <tr>
+						<td>${data.totalCount - status.index - ((guestBoardVO.page - 1) * guestBoardVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
+						
+						<c:if test="${vo.gboard_type == 1 }">
+							<td>예약</td>
+						</c:if>
+						<c:if test="${vo.gboard_type == 2 }">
+							<td>결제</td>
+						</c:if>
+						<c:if test="${vo.gboard_type == 3 }">
+							<td>숙소</td>
+						</c:if>
+						<c:if test="${vo.gboard_type == 4 }">
+							<td>포인트/쿠폰</td>
+						</c:if>
+						<c:if test="${vo.gboard_type == 5 }">
+							<td>이용/기타</td>
+						</c:if>
+						<td class="txt_l">
+						
+						<a href="/hotel/admin/main/guestboard/qna/view.do?gboard_no=${vo.gboard_no}&stype=${param.stype}&sword=${param.sword}">${vo.gboard_title}
+						<c:if test="${vo.diff <= 3 }">
+						<img src="/hotel/image/boardPic/new (1).png" width="30px">
+						</c:if>
+						</a></td>								
+						
+						<td>${vo.gboard_viewcount}</td>
+						
+						<td class="writer">${vo.guest_name}</td>
+						
+						<td class="date"> <fmt:formatDate value="${vo.gboard_regdate}" pattern="yyyy-MM-dd"/></td>
+						
+						<c:if test="${vo.gboard_status == 0 }">
+							<td style="color:red">[답변대기]</td>
+						</c:if>	
+						<c:if test="${vo.gboard_status == 1 }">
+							<td style="color:blue">[답변완료]</td>
+						</c:if>	
+					</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				});
+				//$("#admin").html(str);
+			}
+		})
+	}
 </script>
 
 </head>
@@ -58,10 +138,32 @@
 					<div class="btnSet" style="text-align: right;">
 						<a class="btn" href="list.do">관리 </a>
 					</div>
-					<p style="width:50%">
-						<span><strong>총 ${data.totalCount}개</strong> | ${guestBoardVO.page}/${data.totalPage}페이지</span> 
-					</p>
-					
+					<div style="width:100%">
+							<div style="float:left">
+								<p>
+									<span><strong>총 ${data.totalCount}개</strong> | ${guestBoardVO.page}/${data.totalPage}페이지</span> 
+								</p>
+							</div>
+							<!-- 답변 여부별 정렬 시작 -->
+							 <select id="select_status" name="select_status" title="검색분류 선택" style="float:right" onchange="select();">
+								<option value="all">전체</option>
+								<option value="0">답변대기</option>
+								<option value="1">답변완료</option>
+							</select>
+						
+							<!-- 문의유형별 정렬 시작 -->
+							 <select id="select_type" name="select_type" title="검색분류 선택" style="float:right;  margin-right: 5px" onchange="select();">
+								<option value="all">전체</option>
+								<option value="1">예약</option>
+								<option value="2">결제</option>
+								<option value="3">숙소</option>
+								<option value="4">포인트/쿠폰</option>
+								<option value="5">이용/기타</option>
+							</select>
+							</div>
+					</div>
+					<!-- 정렬 끝-->
+					<br>	<br>
 					
 					<caption>게시판 목록</caption>
 					<colgroup>
@@ -84,8 +186,8 @@
 							<th>답변상태</th>
 						</tr>
 					</thead>
-							<tbody>
 					
+					<tbody id="admin">
 						<c:if test="${empty data}">
 							<tr>
 								<td class="first" colspan="8">등록된 글이 없습니다.</td>
@@ -126,10 +228,10 @@
 										
 										<td class="date"> <fmt:formatDate value="${vo.gboard_regdate}" pattern="yyyy-MM-dd"/></td>
 										
-										<c:if test="${empty vo.gboard_reply }">
+										<c:if test="${vo.gboard_status == 0 }">
 											<td style="color:red">[답변대기]</td>
 										</c:if>	
-										<c:if test="${!empty vo.gboard_reply}">
+										<c:if test="${vo.gboard_status == 1 }">
 											<td style="color:blue">[답변완료]</td>
 										</c:if>	
 									</tr>

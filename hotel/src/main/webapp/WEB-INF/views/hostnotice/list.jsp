@@ -47,6 +47,7 @@
 						<col width="100px" />
 						<col width="150px" />
 						<col width="80px" />
+						<col width="80px" />
 					</colgroup>
 					<thead style="text-align: center">
 						<tr>
@@ -55,6 +56,7 @@
 							<th>작성자</th>
 							<th>작성일</th>
 							<th>조회수</th>
+							<th>파일</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -67,6 +69,7 @@
 
 						<c:if test="${not empty data.list}">
 							<c:forEach items="${data.list }" var="vo" varStatus="status">
+							
 								<c:if test="${vo.fix == 1}">
 									<tr style="background-color: pink" style="font-weight" :bold" >
 										<td>${data.totalCount - status.index - ((hostNoticeVO.page - 1) * hostNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
@@ -88,6 +91,13 @@
 										<td class="date"><fmt:formatDate
 												value="${vo.hnotice_regdate}" pattern="yyyy-MM-dd" /></td>
 										<td>${vo.hnotice_viewcount}</td>
+										
+										<c:if test="${!empty vo.filename_org }">
+											<td><img src="/hotel/image/boardPic/folder.png" width="15px"></td>
+										</c:if>
+										<c:if test="${empty vo.filename_org }">
+										<td></td>
+										</c:if>
 
 									</tr>
 								</c:if>
@@ -114,6 +124,13 @@
 										<td class="date"><fmt:formatDate
 												value="${vo.hnotice_regdate}" pattern="yyyy-MM-dd" /></td>
 										<td>${vo.hnotice_viewcount}</td>
+										
+										<c:if test="${!empty vo.filename_org }">
+											<td><img src="/hotel/image/boardPic/folder.png" width="15px"></td>
+										</c:if>
+										<c:if test="${empty vo.filename_org }">
+										<td></td>
+										</c:if>
 									</tr>
 								</c:if>
 							</c:forEach>

@@ -35,14 +35,6 @@ public class Admin_GuestFaqController {
 	// 등록처리(관리자용)
 	@PostMapping("/admin/main/guestboard/faq/write.do")
 	public String insert(Model model, GuestFaqVO vo, AdminVO avo,  HttpSession sess) {
-		
-		
-		//admin 로그인 테스트
-		GuestFaqVO AdminLoginInfo = new GuestFaqVO();
-		AdminLoginInfo.setAdmin_no(2); // demo
-		AdminLoginInfo.setAdmin_id("admin_찌수"); //demo
-		sess.setAttribute("loginInfo_admin", AdminLoginInfo);
-		
 		if (service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
 			model.addAttribute("url", "view.do");

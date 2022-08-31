@@ -3,6 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="/WEB-INF/views/includes/G_header.jsp"%>
+<%@ page import="java.net.*"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -45,7 +47,7 @@ th {
 <script>
 	// 목록가기
 	function goList() {
-		location.href = "list.do?stype=${param.stype}&sword=${param.sword}";
+		location.href = "/hotel/guestnotice/list.do?stype=${param.stype}&sword=${param.sword}";
 	}
 
 
@@ -131,8 +133,9 @@ th {
 							</tr>
 							<tr>
 								<th>첨부파일</th>
-								<td colspan="3">
-								<input type="file" name="filename">
+								<td colspan="2">
+									<a href="/hotel/download.jsp?oName=${URLEncoder.encode(data.filename_org, 'UTF-8')}&sName=${data.filename_real}" target="_blank"> ${data.filename_org } 
+									</a>
 								</td>
 							</tr>
 						</div>
