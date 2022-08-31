@@ -26,12 +26,6 @@ public class Admin_GuestNoticeController {
 	@GetMapping("/admin/main/guestboard/notice/list.do")
 	public String index(Model model, GuestNoticeVO vo, HttpSession sess) {
 
-		// admin 로그인 테스트
-		GuestNoticeVO AdminLoginInfo = new GuestNoticeVO();
-		AdminLoginInfo.setAdmin_no(2); // demo
-		AdminLoginInfo.setAdmin_id("admin_찌수"); // demo
-		sess.setAttribute("loginInfo_admin", AdminLoginInfo);
-
 		model.addAttribute("data", service.index(vo));
 		return "admin/main/guestboard/notice/list";
 
@@ -40,11 +34,9 @@ public class Admin_GuestNoticeController {
 	// 조회
 	@GetMapping("/admin/main/guestboard/notice/view.do")
 	public String view(Model model, int gnotice_no, GuestNoticeVO vo) {
-		//System.out.println("aaa: " + vo.getGnotice_no());
 		service.updateViewcount(gnotice_no);
 		model.addAttribute("data", service.view(gnotice_no));
 		vo.setRownum(service.nowRownum(vo).getRownum());
-		//System.out.println("========================" + vo.getRownum());
 
 		model.addAttribute("now", service.nowRownum(vo)); // 현재글 rownum
 		model.addAttribute("prev", service.prevRownum(vo)); // 이전글 rownum
@@ -77,11 +69,6 @@ public class Admin_GuestNoticeController {
 			vo.setFilename_org(org);
 			vo.setFilename_real(real);
 		}
-
-		// admin 로그인 테스트
-		GuestNoticeVO AdminLoginInfo = new GuestNoticeVO();
-		AdminLoginInfo.setAdmin_no(2); // demo
-		sess.setAttribute("loginInfo_admin", AdminLoginInfo);
 
 		if (service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");

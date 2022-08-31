@@ -30,7 +30,6 @@ function goWrite(){
 	<c:if test="${empty loginInfo_admin}">
 		alert("관리자 로그인 바랍니다.");
 	</c:if>
-
 }
 </script>
 
@@ -46,8 +45,6 @@ function goWrite(){
 		<div class="size">
 			<div class="bbs">
 				<table class="list">
-				
-						
 					<p>
 						<span><strong>총 ${data.totalCount}개</strong> | ${guestNoticeVO.page}/${data.totalPage}페이지 </span>
 					</p>
@@ -69,8 +66,8 @@ function goWrite(){
 							<th>조회수</th>
 						</tr>
 					</thead>
+					
 					<tbody>
-
 						<c:if test="${empty data}">
 							<tr>
 								<td class="first" colspan="8">등록된 글이 없습니다.</td>
@@ -85,7 +82,6 @@ function goWrite(){
 									<c:if test="${vo.fix != 1}">
 									<tr>
 									</c:if>
-								
 										<td>${data.totalCount - status.index - ((guestNoticeVO.page - 1) * guestNoticeVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
 										<td class="txt_l" >
 										<a	href="/hotel/admin/main/guestboard/notice/view.do?gnotice_no=${vo.gnotice_no}&stype=${param.stype}&sword=${param.sword}">
@@ -115,9 +111,9 @@ function goWrite(){
 					</tbody>
 				</table>
 				<div class="btnSet" style="text-align: right;">
-
-
 				</div>
+				
+				<!-- 페이지처리 -->
 				<div class="pagenate clear">
 					<ul class='paging'>
 						<!-- 이전페이지 -->
@@ -143,7 +139,7 @@ function goWrite(){
 						<a class="btn" href="javascript:goWrite();">등록 </a>
 				</div>
 				
-				<!-- 페이지처리 -->
+				<!-- 검색처리 -->
 				<div class="bbsSearch">
 					<form method="get" name="searchForm" id="searchForm" action="">
 						<span class="srchSelect"> <select id="stype" name="stype"

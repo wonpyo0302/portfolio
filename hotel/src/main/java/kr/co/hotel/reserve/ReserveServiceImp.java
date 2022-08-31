@@ -20,11 +20,7 @@ public class ReserveServiceImp implements ReserveService {
 	@Autowired
 	ReserveMapper mapper;
 	
-	@Override
-	public GuestVO select(GuestVO vo) {
-		return mapper.select(vo);
-	}
-
+	//예약테이블에 저장하기
 	@Override
 	public synchronized int insert(ReserveVO vo,GuestVO gvo) {
 		int data = mapper.reservecheck(vo);
@@ -41,6 +37,7 @@ public class ReserveServiceImp implements ReserveService {
 		}
 	}
 
+	//중복 체크
 	@Override
 	public int reservecheck(ReserveVO vo) {
 		return mapper.reservecheck(vo);
@@ -80,90 +77,91 @@ public class ReserveServiceImp implements ReserveService {
 		return map;
 	}
 
+	//보유한 쿠폰 리스트 내역
 	@Override
 	public List<GuestVO> couponlist(GuestVO vo) {
 		return mapper.couponlist(vo);
 	}
 
+	//쿠폰 기한 만료 삭제
 	@Override
 	public int CouponDelete() {
 		return mapper.CounponDelete();
 	}
 
-	@Override
-	public int PointDeposit(ReserveVO vo, GuestVO gvo) {
-		mapper.UpdatePointDeposit(vo);
-		int point_depoist = (int)(vo.getTotal_price()*0.09);
-		gvo.setTotalpoint(gvo.getTotalpoint()+point_depoist);
-		mapper.guestUsedPointUpdate(gvo);
-		vo.setUsed_point(point_depoist);
-		mapper.UpdatePointDeposit(vo);
-		return mapper.InsertPointDeposit(vo);
-	}
 
+	//호스트 정보 가져오기
 	@Override
 	public HostVO SelectHostNo(HotelVO vo) {
 		vo.setHost_no(mapper.SelectHostNo(vo).getHost_no());
 		return mapper.SelectHostAccount(vo);
 	}
-
+	
+	//호텔정보 가져오기
 	@Override
 	public HotelVO SelectHotelInfo(HotelVO vo) {
 		return mapper.SelectHostNo(vo);
 	}
 
+	//룸정보 가져오기
 	@Override
 	public RoomVO SelectRoomInfo(ReserveVO vo) {
 		return mapper.SelectRoominfo(vo);
 	}
 
+	//예약정보 가져오기
 	@Override
 	public ReserveVO SelectReserveInfo(ReserveVO vo) {
 		return mapper.SelectReserveInfo(vo);
 	}
 
+	//입금확인시 예약 상태 업데이트
 	@Override
 	public ReserveVO UpdatePay_Status(ReserveVO vo) {
 		return mapper.UpdatePay_Status(vo);
 	}
 
-	@Override
-	public void DeleteAccountPay() {
-		mapper.DeleteAccountPay();
-	}
 
 	
 	//스케줄러로 자동취소메소드 구현
+	
+	//미입금 리스트 가져오기
 	@Override
 	public List<ReserveVO> CancleList() {
 		return mapper.CancleList();
 	}
 
+	//예약상태를 취소로 업데이트
 	@Override
 	public int UpdateReserveStatus(ReserveVO vo) {
 		return mapper.cancelReserve(vo);
 	}
 
+	//게스트계정의 사용한 포인트 돌려주기
 	@Override
 	public int UpdateGuestPoint(ReserveVO vo) {
 		return mapper.UpdateGuestPoint(vo);
 	}
 
+	//포인트 테이블에 이력 남기기
 	@Override
 	public int InsertPointTable(ReserveVO vo) {
 		return mapper.InsertPointTable(vo);
 	}
 
+	//쿠폰 상태 업데이트
 	@Override
 	public int UpdateCouponStatus(ReserveVO vo) {
 		return mapper.UpdateCouponStatus(vo);
 	}
 
+	//totalpoint 가져오기
 	@Override
 	public int SelectTotalPoint(ReserveVO vo) {
 		return mapper.SelectTotalPoint(vo);
 	}
 
+	//룸 가격 가져오기
 	@Override
 	public int SelectRoomPrice(ReserveVO vo) {
 		return mapper.SelectRoomPrice(vo);

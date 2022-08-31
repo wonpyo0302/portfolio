@@ -15,7 +15,7 @@
 	
 	<select id="list" parameterType="kr.co.hotel.point.PointVO" resultType="kr.co.hotel.point.PointVO">
 		select p.date, h.hotel_name, p.io_point, p.pointtype from hotel h join reserv r on h.hotel_no = r.hotel_no and 
-		r.guest_no=#{guest_no} join point p on (p.date = r.canceldate or p.date = r.rev_date)
+		r.guest_no=#{guest_no} join point p on (p.date = r.canceldate or p.date = r.rev_date or p.date = r.checkin_date)
 		ORDER BY p.date DESC
 		limit ${startIdx}, ${pageRow}
 	</select>

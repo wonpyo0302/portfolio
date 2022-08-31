@@ -59,7 +59,7 @@ public class openBankingAPI {
 
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8 ");
-			conn.setRequestProperty("Date",time);
+			/* conn.setRequestProperty("Date",time); */
 			conn.setRequestProperty("Transfer-Encoding", "chunked");
 			conn.setRequestProperty("Connection", "keep-alive\"");
 			// token 값 header에 넣어주기
