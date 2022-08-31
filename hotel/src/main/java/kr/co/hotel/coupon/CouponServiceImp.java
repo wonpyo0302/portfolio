@@ -16,16 +16,19 @@ public class CouponServiceImp implements CouponService {
 	@Autowired
 	CouponMapper mapper;
 
+	//게스트 목록 출력
 	@Override
 	public List<GuestVO> list(Map map) {
 		return mapper.list(map);
 	}
 
+	//특정 게스트 정보 출력
 	@Override
 	public GuestVO selectGuestNo(String guest_id) {
 		return mapper.selectGuestNo(guest_id);
 	}
 	
+	//쿠폰 생성
 	@Override
 	public int createCoupon(CouponVO vo) {
 		boolean result=true;

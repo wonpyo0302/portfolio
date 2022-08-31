@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.hotel.reserve.ReserveMapper">
-
-	<select id="select" parameterType="kr.co.hotel.guest.GuestVO" resultType="kr.co.hotel.guest.GuestVO">
-		select * from guest where guest_email =#{guest_name} and guest_pwd = #{guest_pwd}
-	</select>
 	
+	<!-- 카드(pay_type==0), 무통장(pay_type==0) 입금 따른 입금 -->
 	<insert id="insert" parameterType="kr.co.hotel.reserve.ReserveVO">
 		<if test="pay_type==0">
 			insert into reserv (
@@ -35,86 +32,88 @@
 		</if>
 	</insert>
 	
+	<!-- 포인트 테이블 이력 저장 (사용 포인트)-->
 	<insert id="pointinsert" parameterType="kr.co.hotel.reserve.ReserveVO">
 			insert into point (
 				guest_no, io_point, totalpoint, pointtype, date)
-			values (#{guest_no}, #{used_point}, (select totalpoint from guest where guest_no = #{guest_no}), 1, (select rev_date from reserv where imp_uid= #{imp_uid}) )
+			values 
+				(#{guest_no}, #{used_point}, (select totalpoint from guest where guest_no = #{guest_no}), 1, (select rev_date from reserv where imp_uid= #{imp_uid}) )
 	</insert>
 	
+	<!-- 예약자 totalpoint 업데이트  -->
 	<update id="guestUsedPointUpdate" parameterType="kr.co.hotel.guest.GuestVO">
 		update guest set totalpoint = #{totalpoint} where guest_no =#{guest_no}
 	</update>
 	
+	<!-- 예약 중복 체크 -->
 	<select id="reservecheck" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="int">
 			select count(*) from reserv where room_no =#{room_no} and hotel_no =#{hotel_no} and
 			startdate between #{startdate} and #{enddate} and rev_status !=1
 	</select>
 	
+	<!-- 쿠폰 상태 업데이트 -->
 	<update id="updateCoupon" parameterType="kr.co.hotel.reserve.ReserveVO">
 		update coupon set use_status=1, usedate=now() where coupon_no =#{coupon_no} 
 	</update>
 	
+	<!-- 보유한 쿠폰 리스트 출력 -->
 	<select id="couponlist" parameterType="kr.co.hotel.coupon.CouponVO" resultType="kr.co.hotel.coupon.CouponVO">
 		select * from coupon where guest_no=#{guest_no} and use_status !=1 and delete_status !=1
 	</select>
 	
+	<!-- 유효기간 만료된 쿠폰 삭제 -->
 	<update id="CounponDelete">
 		update coupon set delete_status = 1 where now() > expdate and delete_status !=1
 	</update>
 	
-	<update id="UpdatePointDeposit" parameterType="kr.co.hotel.reserve.ReserveVO">
-		update reserv set point_deposit_status=1 where imp_uid = #{imp_uid}
-	</update>
-	
-	<insert id="InsertPointDeposit" parameterType="kr.co.hotel.reserve.ReserveVO">
-		insert into point 
-			(guest_no, io_point, totalpoint, pointtype)
-		values (#{guest_no}, #{used_point},(select totalpoint from guest where guest_no = #{guest_no}),1)
-	</insert>
-	
+	<!-- 호텔정보 가져오기 -->
 	<select id="SelectHostNo" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.main.HotelVO">
 		select * from hotel where hotel_no=#{hotel_no}
 	</select>
 	
+	<!-- 호스트 정보 가져오기 -->
 	<select id="SelectHostAccount" parameterType="kr.co.hotel.main.HotelVO" resultType="kr.co.hotel.host.HostVO">
 		select * from host where host_no=#{host_no}
 	</select>
 	
+	<!-- 룸정보 가져오기 -->
 	<select id="SelectRoominfo" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="kr.co.hotel.room.RoomVO">
 		select * from room where room_no=#{room_no}
 	</select>
 	
+	<!-- 특정 예약 정보 가져오기 -->
 	<select id="SelectReserveInfo" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="kr.co.hotel.reserve.ReserveVO">
 		select * from reserv where imp_uid=#{imp_uid}
 	</select>
 	
+	<!-- 입금내역 업데이트 -->
 	<select id="UpdatePay_Status" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="kr.co.hotel.reserve.ReserveVO">
 		update reserv set pay_status=1 where imp_uid=#{imp_uid}
 	</select>
 
-	<update id="DeleteAccountPay">
-		update reserv set rev_status=1  where pay_status=0
-	</update>
-	
+	<!-- 룸가격 가져오기(몇박 묵을지 계산한 가격) -->
 	<select id="SelectRoomPrice" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="int">
 		select datediff(#{enddate},#{startdate})*(select room_price from room where room_no = #{room_no} and hotel_no = #{hotel_no}) as room_price  from room where room_no = #{room_no} and hotel_no = #{hotel_no}
 	</select>
 	
-<!--============================================================================  -->	
+	<!-- 미입금 리스트 출력 -->
 	<select id="CancleList" resultType="kr.co.hotel.reserve.ReserveVO">
 		select * from reserv where pay_status = 0
 	</select>
 
+	<!-- 미입금 상태 예약취소  -->
 	<update id="cancelReserve" parameterType="kr.co.hotel.reserve.ReserveVO">
 		update reserv set rev_status = 1, canceldate = now(), pay_status = 2 where reserv_no=#{reserv_no}
 	</update>
 	
+	<!-- 게스트 포인트 업데이트(취소) -->
 	<update id="UpdateGuestPoint" parameterType="kr.co.hotel.reserve.ReserveVO">
 		update guest set totalpoint = 
 			(select totalpoint from (select totalpoint from guest where guest_no =#{guest_no})as b)+
 			(select used_point from reserv  where reserv_no =#{reserv_no}) where guest_no=#{guest_no}; 
 	</update>
 	
+	<!-- 포인트 테이블 이력 저장(포인트 사용 취소) -->
 	<update id="InsertPointTable" parameterType="kr.co.hotel.reserve.ReserveVO">
 		insert into point 
 			( guest_no, io_point, totalpoint, pointtype, date)
@@ -122,20 +121,15 @@
 			(#{guest_no}, #{used_point}, (select totalpoint from guest where guest_no=#{guest_no}), 0, now())	
 	</update>
 	
+	<!-- 쿠폰 상태 업데이트 -->
 	<update id="UpdateCouponStatus" parameterType="kr.co.hotel.reserve.ReserveVO">
 		update coupon set usedate = null, use_status = 0 where coupon_no =#{coupon_no}
 	</update>
 	
+	<!-- 특정 게스트 totalpoint 가져오기 -->
 	<select id="SelectTotalPoint" parameterType="kr.co.hotel.reserve.ReserveVO" resultType="java.lang.Integer">
 		select totalpoint from guest where guest_no=#{guest_no}
 	</select>
-	
-
-
-	
-	
-	
-	
 	
 	<!-- 이하_ 마이페이지 예약리스트_빛찬 -->
 	

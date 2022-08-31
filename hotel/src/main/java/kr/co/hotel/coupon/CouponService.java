@@ -11,8 +11,13 @@ import kr.co.hotel.point.PointVO;
 @Service
 public interface CouponService {
 
+	//게스트 목록 출력
 	public List<GuestVO> list(Map map);
+	
+	//특정 게스트 정보 출력
 	public GuestVO selectGuestNo(String guest_id);
+	
+	//쿠폰 생성
 	public int createCoupon(CouponVO vo);
 	
 	//---이하 빛찬--------------------------------

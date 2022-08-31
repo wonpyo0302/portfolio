@@ -17,7 +17,7 @@ public interface GuestBoardMapper {
 	int update(GuestBoardVO vo); // 수정(관리자용)
 	int delete(int gboard_no); // 삭제(관리자용)
 	int replyupdate(GuestBoardVO vo); // 답변달기(관리자용)
-
+	List<GuestBoardVO> adminList(GuestBoardVO vo); // 관리자 문의게시판 정렬조건
 	
 	//마이페이지 내 문의글 목록보기_빛찬_220829
 	List<GuestBoardVO> list_in_mypage(GuestBoardVO vo); // 목록

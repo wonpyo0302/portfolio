@@ -77,7 +77,7 @@ public class HostReserveServiceImp implements HostReserveService {
 	@Override
 	public int PointDeposit(ReserveVO vo, GuestVO gvo) {
 		vo = mapper.reservelist(vo);
-		mapper.UpdatePointDeposit(vo); //ok
+		mapper.UpdatePointDeposit(vo); 
 		gvo =mapper.gvolist(vo);
 		int point_depoist = (int)(vo.getTotal_price()*0.01);
 		System.out.println("================================"+vo.getTotal_price());

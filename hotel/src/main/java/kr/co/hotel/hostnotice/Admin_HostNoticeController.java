@@ -27,11 +27,6 @@ public class Admin_HostNoticeController {
 	@GetMapping("/admin/main/hostboard/notice/list.do")
 	public String index(Model model, HostNoticeVO vo, HttpSession sess) {
 
-		// admin 로그인 테스트
-		GuestNoticeVO AdminLoginInfo = new GuestNoticeVO();
-		AdminLoginInfo.setAdmin_no(2); // demo
-		sess.setAttribute("loginInfo_admin", AdminLoginInfo);
-
 		model.addAttribute("data", service.index(vo));
 		return "admin/main/hostboard/notice/list";
 	}
@@ -76,10 +71,6 @@ public class Admin_HostNoticeController {
 			vo.setFilename_real(real);
 		}
 
-		// admin 로그인 테스트
-		HostNoticeVO AdminLoginInfo = new HostNoticeVO();
-		AdminLoginInfo.setAdmin_no(3); // demo
-		sess.setAttribute("loginInfo_admin", AdminLoginInfo);
 
 		if (service.insert(vo)) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");

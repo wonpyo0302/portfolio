@@ -52,6 +52,16 @@
 			LIMIT ${startIdx} , ${pageRow}
 	</select>
 	
+	<!-- 관리자 검색조건 22.08.30 -->
+	<select id="adminList" parameterType="kr.co.hotel.guestboard.GuestBoardVO" resultType="kr.co.hotel.guestboard.GuestBoardVO">
+		SELECT * FROM guestboard
+			<where>
+						gboard_type = #{stype} and gboard_status = #{stype2}
+			</where>
+			ORDER BY gboard_regdate DESC
+			LIMIT ${startIdx} , ${pageRow}
+	</select>
+	
 	<!-- 조회하기 -->
 	<select id="view" parameterType="int" resultType="kr.co.hotel.guestboard.GuestBoardVO">
 		SELECT *, 
@@ -79,7 +89,7 @@
 	<!-- 답변업데이트(관리자용) -->
 		<update id="replyupdate" parameterType="kr.co.hotel.guestboard.GuestBoardVO">
 		UPDATE guestboard SET
-			 gboard_replyupdatedate= now(), gboard_reply=#{gboard_reply}
+			 gboard_replyupdatedate = now(), gboard_reply=#{gboard_reply}, gboard_status = 1
 			WHERE gboard_no =#{gboard_no}
 	</update>
 	
