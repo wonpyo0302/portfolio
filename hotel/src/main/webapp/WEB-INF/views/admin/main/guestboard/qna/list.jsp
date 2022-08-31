@@ -19,14 +19,6 @@
     <link rel="stylesheet" href="/hotel/css/contents.css"/>
     
 <script>
-	$(function() {
-		goPage();
-		
-	})
-	
-	function goPage(){
-		
-	}
 
 	function goWrite(){
 		<c:if test="${empty loginInfo_admin}">
@@ -49,6 +41,7 @@
 		</c:if>
 	}
 	
+	//추후 적용 22_08_31 -JS 
 	function select(){
 		$.ajax ({
 			url : "/hotel/admin/main/guestboard/qna/list.do",
@@ -61,59 +54,6 @@
 				console.log(res);
 				$.each(res, function(idx, val) {
 					console.log(val.gboard_title);
-					var str = '';
-					str += "<tr>";
-					
-					
-					 <tr>
-						<td>${data.totalCount - status.index - ((guestBoardVO.page - 1) * guestBoardVO.pageRow)}<!-- 계산식 = "총개수 - 인덱스 - (현재 페이지 번호 - 1) * 페이지당 개수" --></td>
-						
-						<c:if test="${vo.gboard_type == 1 }">
-							<td>예약</td>
-						</c:if>
-						<c:if test="${vo.gboard_type == 2 }">
-							<td>결제</td>
-						</c:if>
-						<c:if test="${vo.gboard_type == 3 }">
-							<td>숙소</td>
-						</c:if>
-						<c:if test="${vo.gboard_type == 4 }">
-							<td>포인트/쿠폰</td>
-						</c:if>
-						<c:if test="${vo.gboard_type == 5 }">
-							<td>이용/기타</td>
-						</c:if>
-						<td class="txt_l">
-						
-						<a href="/hotel/admin/main/guestboard/qna/view.do?gboard_no=${vo.gboard_no}&stype=${param.stype}&sword=${param.sword}">${vo.gboard_title}
-						<c:if test="${vo.diff <= 3 }">
-						<img src="/hotel/image/boardPic/new (1).png" width="30px">
-						</c:if>
-						</a></td>								
-						
-						<td>${vo.gboard_viewcount}</td>
-						
-						<td class="writer">${vo.guest_name}</td>
-						
-						<td class="date"> <fmt:formatDate value="${vo.gboard_regdate}" pattern="yyyy-MM-dd"/></td>
-						
-						<c:if test="${vo.gboard_status == 0 }">
-							<td style="color:red">[답변대기]</td>
-						</c:if>	
-						<c:if test="${vo.gboard_status == 1 }">
-							<td style="color:blue">[답변완료]</td>
-						</c:if>	
-					</tr>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
 				});
 				//$("#admin").html(str);
 			}
@@ -241,7 +181,7 @@
 				</table>
 				
 			
-				
+				<!-- 페이지처리 -->
 				<div class="pagenate clear">
 					<ul class='paging'>
 					<!-- 이전페이지 -->
@@ -262,8 +202,9 @@
 					</c:if>
 					</ul>
 				</div>
-				<!-- 페이지처리 -->
+			
 
+				<!-- 검색처리 -->
 				<div class="bbsSearch">
 					<form method="get" name="searchForm" id="searchForm" action="">
 						<span class="srchSelect"> <select id="stype" name="stype" class="dSelect" title="검색분류 선택">
@@ -280,8 +221,6 @@
 			</div>
 		</div>
 	</div>
-					
-
 </body>
 </html>
 
